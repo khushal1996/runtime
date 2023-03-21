@@ -640,6 +640,20 @@ INST3(vinserti32x8,      "inserti32x8",     IUM_WR, BAD_CODE,     BAD_CODE,     
 INST3(vpmovd2m,          "pmovd2m",         IUM_WR, BAD_CODE,     BAD_CODE,     PACK4(0xF3, 0x0F, 0x38, 0x39),           INS_TT_NONE,                         Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)
 INST3(vpmovq2m,          "pmovq2m",         IUM_WR, BAD_CODE,     BAD_CODE,     PACK4(0xF3, 0x0F, 0x38, 0x39),           INS_TT_NONE,                         Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)
 
+INST3(vcvtsd2usi,         "cvtsd2usi",         IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF2, 0x0f, 0x79),              INS_TT_TUPLE1_FIXED,                 Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    
+
+INST3(vcvttsd2usi_r32,        "cvttsd2usi",        IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF2, 0x0f, 0x78),          INS_TT_TUPLE1_FIXED,                 Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)
+INST3(vcvttsd2usi_r64,        "cvttsd2usi",        IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF2, 0x0f, 0x78),          INS_TT_TUPLE1_FIXED,                 Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)
+
+INST3(vcvtusi2ss_r32,     "cvttusi2ss",        IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF3, 0x0f, 0x7b),              INS_TT_TUPLE1_SCALAR,                Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)    
+INST3(vcvtusi2ss_r64,     "cvttusi2ss",        IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF3, 0x0f, 0x7b),              INS_TT_TUPLE1_SCALAR,                Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    
+
+INST3(vcvtusi2sd_r32,     "cvtusi2sd",         IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF2, 0x0f, 0x7b),              INS_TT_TUPLE1_SCALAR,                Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)    
+INST3(vcvtusi2sd_r64,     "cvtusi2sd",         IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF2, 0x0f, 0x7b),              INS_TT_TUPLE1_SCALAR,                Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    
+
+INST3(vcvttss2usi_r32,    "cvttss2usi",        IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF3, 0x0f, 0x78),              INS_TT_TUPLE1_FIXED,                 Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)    
+INST3(vcvttss2usi_r64,    "cvttss2usi",        IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF3, 0x0f, 0x78),              INS_TT_TUPLE1_FIXED,                 Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    
+
 INST3(LAST_AVX512_INSTRUCTION, "LAST_AVX512_INSTRUCTION", IUM_WR, BAD_CODE, BAD_CODE, BAD_CODE, INS_TT_NONE, INS_FLAGS_None)
 
 // Scalar instructions in SSE4.2
