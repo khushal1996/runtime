@@ -7497,8 +7497,26 @@ void CodeGen::genIntToFloatCast(GenTree* treeNode)
 
     // Also we don't expect to see uint32 -> float/double and uint64 -> float conversions
     // here since they should have been lowered appropriately.
-    noway_assert(srcType != TYP_UINT);
-    noway_assert((srcType != TYP_ULONG) || (dstType != TYP_FLOAT));
+    // TODO-XARCH-AVX512 : These asserts change now
+    if (!compiler->compOpportunisticallyDependsOn(InstructionSet_AVX512F))
+    {
+        noway_assert((srcType != TYP_ULONG) || (dstType != TYP_FLOAT) || (srcType != TYP_UINT));
+    }
+
+    if (compiler->compOpportunisticallyDependsOn(InstructionSet_AVX512F)) 
+    {
+        // TODO-XARCH-AVX512 : Clean up
+        if ((srcType == TYP_ULONG && (dstType == TYP_DOUBLE || dstType == TYP_FLOAT)) ||
+           (srcType == TYP_UINT && (dstType == TYP_FLOAT || dstType == TYP_DOUBLE)))
+        {
+            // TODO : what does this do?
+            genConsumeOperands(treeNode->AsOp());
+            instruction ins = ins_FloatConv(dstType, srcType, emitTypeSize(srcType));
+            GetEmitter()->emitInsBinary(ins, emitTypeSize(srcType), treeNode, op1);
+            genProduceReg(treeNode);
+            return;
+        }
+    }
 
     // To convert int to a float/double, cvtsi2ss/sd SSE2 instruction is used
     // which does a partial write to lower 4/8 bytes of xmm register keeping the other
@@ -7605,8 +7623,12 @@ void CodeGen::genFloatToIntCast(GenTree* treeNode)
     noway_assert((dstSize == EA_ATTR(genTypeSize(TYP_INT))) || (dstSize == EA_ATTR(genTypeSize(TYP_LONG))));
 
     // We shouldn't be seeing uint64 here as it should have been converted
-    // into a helper call by either front-end or lowering phase.
-    noway_assert(!varTypeIsUnsigned(dstType) || (dstSize != EA_ATTR(genTypeSize(TYP_LONG))));
+    // into a helper call by either front-end or lowering phase, unless we have AVX512F
+    // accelerated conversions.
+    if (!compiler->compOpportunisticallyDependsOn(InstructionSet_AVX512F))
+    {
+        noway_assert(!varTypeIsUnsigned(dstType) || (dstSize != EA_ATTR(genTypeSize(TYP_LONG))));
+    }
 
     // If the dstType is TYP_UINT, we have 32-bits to encode the
     // float number. Any of 33rd or above bits can be the sign bit.
@@ -7619,7 +7641,19 @@ void CodeGen::genFloatToIntCast(GenTree* treeNode)
     // Note that we need to specify dstType here so that it will determine
     // the size of destination integer register and also the rex.w prefix.
     genConsumeOperands(treeNode->AsOp());
-    instruction ins = ins_FloatConv(TYP_INT, srcType, emitTypeSize(srcType));
+
+    // TODO-XARCH-AVX512 writing like this until I fully understand all the possible dstTypes
+    // to not break backware compatibility
+    instruction ins;
+    if (dstType == TYP_ULONG)
+    {
+        ins = ins_FloatConv(dstType, srcType, emitTypeSize(srcType));
+    }
+    else
+    {
+        ins = ins_FloatConv(TYP_INT, srcType, emitTypeSize(srcType));
+    }
+
     GetEmitter()->emitInsBinary(ins, emitTypeSize(dstType), treeNode, op1);
     genProduceReg(treeNode);
 }
