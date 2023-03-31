@@ -747,6 +747,13 @@ INST3(vpmullq,          "pmullq",           IUM_WR, BAD_CODE,               BAD_
 // AVX512VBMI
 INST3(vpermb,           "permb",            IUM_WR, BAD_CODE,               BAD_CODE,     SSE38(0x8D),                   INS_TT_FULL_MEM,                     Input_8Bit     | REX_W0                       | Encoding_EVEX  | INS_Flags_IsDstSrcSrcAVXInstruction)                                                                                           // Permute Packed Byte Elements
 
+INST3(vcvtqq2pd,          "cvtqq2pd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0xE6),                            INS_TT_FULL,                         Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    // cvt packed quad word to double
+INST3(vcvtuqq2pd,         "cvtuqq2pd",      IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x7A),                            INS_TT_FULL,                         Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    // cvt packed unsigned quad word to double
+INST3(vcvtudq2ps,         "cvtudq2ps",      IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x7A),                            INS_TT_FULL,                         Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)    // cvt packed unsigned quad word to double
+INST3(vcvtpd2qq,          "cvtpd2qq",       IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x7B),                            INS_TT_FULL,                         Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    // cvt packed quad word to double
+INST3(vcvtpd2uqq,         "cvtpd2uqq",      IUM_WR, BAD_CODE,     BAD_CODE,     PCKDBL(0x79),                            INS_TT_FULL,                         Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    // cvt packed quad word to double
+INST3(vcvtps2udq,         "cvtps2udq",      IUM_WR, BAD_CODE,     BAD_CODE,     PCKFLT(0x79),                            INS_TT_FULL,                         Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)    // cvt packed quad word to double
+
 INST3(LAST_AVX512_INSTRUCTION, "LAST_AVX512_INSTRUCTION", IUM_WR, BAD_CODE, BAD_CODE, BAD_CODE, INS_TT_NONE, INS_FLAGS_None)
 
 // Scalar instructions in SSE4.2
