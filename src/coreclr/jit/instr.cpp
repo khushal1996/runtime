@@ -1894,6 +1894,10 @@ instruction CodeGen::ins_MathOp(genTreeOps oper, var_types type)
 instruction CodeGen::ins_FloatConv(var_types to, var_types from, emitAttr attr)
 {
     // AVX: For now we support only conversion from Int/Long -> float
+    // AVX512: Supports following conversions
+    //   srcType = float/double                    castToType = ulong
+    //   srcType = ulong                           castToType = double
+    //   srcType = uint                            castToType = float/double
 
     switch (from)
     {
@@ -1942,6 +1946,8 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from, emitAttr attr)
                     return ins_Move_Extend(TYP_FLOAT, false);
                 case TYP_DOUBLE:
                     return INS_cvtss2sd;
+                case TYP_ULONG:
+                    return INS_vcvttss2usi_r64;
                 default:
                     unreached();
             }
@@ -1958,10 +1964,33 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from, emitAttr attr)
                     return INS_cvtsd2ss;
                 case TYP_DOUBLE:
                     return ins_Move_Extend(TYP_DOUBLE, false);
+                case TYP_ULONG:
+                    return INS_vcvttsd2usi_r64;
                 default:
                     unreached();
             }
             break;
+        case TYP_ULONG:
+            switch (to)
+            {
+                case TYP_DOUBLE:
+                    return INS_vcvtusi2sd_r64;
+                default:
+                    unreached();
+            }
+        
+        case TYP_UINT:
+            switch (to)
+            {
+                case TYP_FLOAT:
+                    return INS_vcvtusi2ss_r32;
+
+                case TYP_DOUBLE:
+                    return INS_vcvtusi2sd_r32;
+
+                default:
+                    unreached();
+            }
 
         default:
             unreached();

@@ -18218,6 +18218,43 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
             result.insThroughput = PERFSCORE_THROUGHPUT_1C;
             break;
         }
+        
+        case INS_vcvtsd2usi:
+        case INS_vcvttsd2usi_r64:
+        {
+            result.insLatency += PERFSCORE_LATENCY_6C;
+            result.insThroughput = PERFSCORE_THROUGHPUT_1C;
+            break;
+        }
+
+        case INS_vcvtusi2sd_r64:
+        {
+            result.insLatency += PERFSCORE_LATENCY_5C;
+            result.insThroughput = PERFSCORE_THROUGHPUT_1C;
+            break;
+        }
+
+        case INS_vcvttss2usi_r64:
+        {
+            result.insLatency += PERFSCORE_LATENCY_7C;
+            result.insThroughput = PERFSCORE_THROUGHPUT_1C;
+            break;
+        }
+     
+        case INS_vcvtqq2pd:
+        case INS_vcvtuqq2pd:
+        case INS_vcvtudq2ps:
+        case INS_vcvtpd2qq:
+        case INS_vcvtpd2uqq:
+        case INS_vcvtps2udq:
+        case INS_vcvtusi2ss_r32:
+        case INS_vcvtusi2sd_r32:
+        {
+            // TBD for new avx512 instructions
+            result.insLatency += PERFSCORE_LATENCY_3C;
+            result.insThroughput = PERFSCORE_THROUGHPUT_1C;
+            break;
+        }
 
         default:
             // unhandled instruction insFmt combination
