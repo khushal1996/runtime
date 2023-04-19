@@ -7538,6 +7538,7 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                     case NI_AVX2_ConvertToVector256Int64:
                     case NI_AVX512DQ_VL_ConvertToVector128Double:
                     case NI_AVX512DQ_VL_ConvertToVector256Double:
+                    case NI_AVX512DQ_VL_ConvertToVector512Double:
                     {
                         if (node->OperIsMemoryLoad())
                         {
