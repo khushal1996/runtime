@@ -1364,14 +1364,16 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
         case NI_Vector128_ConvertToDouble:
         case NI_Vector256_ConvertToDouble:
+        case NI_Vector512_ConvertToDouble:
         {
             if (IsBaselineVector512IsaSupported())
             {
                 assert(sig->numArgs == 1);
                 assert(simdBaseType == TYP_LONG || simdBaseType == TYP_ULONG);
 
-                intrinsic = (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Double
-                                            : NI_AVX512DQ_VL_ConvertToVector128Double;
+                intrinsic = (simdSize == 16) ? NI_AVX512DQ_VL_ConvertToVector128Double
+                          : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Double
+                                             : NI_AVX512DQ_VL_ConvertToVector512Double;
 
                 op1     = impSIMDPopStack(retType);
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
@@ -1382,14 +1384,16 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
         case NI_Vector128_ConvertToInt64:
         case NI_Vector256_ConvertToInt64:
+        case NI_Vector512_ConvertToInt64:
         {
             if (IsBaselineVector512IsaSupported())
             {
                 assert(sig->numArgs == 1);
                 assert(simdBaseType == TYP_DOUBLE);
 
-                intrinsic = (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Int64
-                                            : NI_AVX512DQ_VL_ConvertToVector128Int64;
+                intrinsic = (simdSize == 16) ? NI_AVX512DQ_VL_ConvertToVector128Int64
+                          : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Int64
+                                             : NI_AVX512DQ_VL_ConvertToVector512Int64;
 
                 op1     = impSIMDPopStack(retType);
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
@@ -1400,14 +1404,16 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
         case NI_Vector128_ConvertToUInt32:
         case NI_Vector256_ConvertToUInt32:
+        case NI_Vector512_ConvertToUInt32:
         {
             if (IsBaselineVector512IsaSupported())
             {
                 assert(sig->numArgs == 1);
                 assert(simdBaseType == TYP_FLOAT);
 
-                intrinsic = (simdSize == 32) ? NI_AVX512F_VL_ConvertToVector256UInt32
-                                            : NI_AVX512F_VL_ConvertToVector128UInt32;
+                intrinsic = (simdSize == 16) ? NI_AVX512F_VL_ConvertToVector128UInt32 
+                          : (simdSize == 32) ? NI_AVX512F_VL_ConvertToVector256UInt32
+                                             : NI_AVX512F_VL_ConvertToVector512UInt32;
 
                 op1     = impSIMDPopStack(retType);
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
@@ -1417,14 +1423,16 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
         case NI_Vector128_ConvertToUInt64:
         case NI_Vector256_ConvertToUInt64:
+        case NI_Vector512_ConvertToUInt64:
         {
             if (IsBaselineVector512IsaSupported())
             {
                 assert(sig->numArgs == 1);
                 assert(simdBaseType == TYP_DOUBLE);
 
-                intrinsic = (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256UInt64
-                                            : NI_AVX512DQ_VL_ConvertToVector128UInt64;
+                intrinsic = (simdSize == 16) ? NI_AVX512DQ_VL_ConvertToVector128UInt64
+                          : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256UInt64
+                                             : NI_AVX512DQ_VL_ConvertToVector512UInt64;
 
                 op1     = impSIMDPopStack(retType);
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
@@ -1464,6 +1472,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
         case NI_Vector256_ConvertToSingle:
         case NI_Vector512_ConvertToSingle:
         {
+            /* TBD: Add implementation for vector512 */
             assert(sig->numArgs == 1);
 
             if (simdBaseType == TYP_INT)
