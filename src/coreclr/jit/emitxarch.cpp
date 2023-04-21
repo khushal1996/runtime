@@ -18837,9 +18837,9 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
         case INS_vcvtqq2pd:
         case INS_vcvtuqq2pd:
         case INS_vcvtudq2ps:
-        case INS_vcvtpd2qq:
-        case INS_vcvtpd2uqq:
-        case INS_vcvtps2udq:
+        case INS_vcvttpd2qq:
+        case INS_vcvttpd2uqq:
+        case INS_vcvttps2udq:
         case INS_vcvtusi2ss_r32:
         case INS_vcvtusi2sd_r32:
         {
