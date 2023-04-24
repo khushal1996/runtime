@@ -760,7 +760,9 @@ INST3(vcvttsd2usi_r64,   "cvttsd2usi",      IUM_WR, BAD_CODE,     BAD_CODE,     
 
 INST3(vcvtusi2sd_r64,    "cvtusi2sd",       IUM_WR, BAD_CODE,     BAD_CODE,     SSEDBL(0x7b),                            INS_TT_TUPLE1_SCALAR,                Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    
 
-INST3(vcvttss2usi_r64,   "cvttss2usi",      IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x78),                            INS_TT_TUPLE1_FIXED,                 Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)    
+INST3(vcvttss2usi_r64,   "cvttss2usi",      IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x78),                            INS_TT_TUPLE1_FIXED,                 Input_64Bit    | REX_W1_EVEX                  | Encoding_EVEX)
+
+INST3(vcvttss2usi_r32,   "cvttss2usi",      IUM_WR, BAD_CODE,     BAD_CODE,     SSEFLT(0x78),                            INS_TT_TUPLE1_FIXED,                 Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)
 
 INST3(vcvtusi2ss_r32,     "cvttusi2ss",        IUM_WR, BAD_CODE,     BAD_CODE,     PACK3(0xF3, 0x0f, 0x7b),              INS_TT_TUPLE1_SCALAR,                Input_32Bit    | REX_W0_EVEX                  | Encoding_EVEX)    
 
