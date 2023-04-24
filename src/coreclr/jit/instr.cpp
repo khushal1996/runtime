@@ -2334,6 +2334,8 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from, emitAttr attr)
                     return INS_cvtss2sd;
                 case TYP_ULONG:
                     return INS_vcvttss2usi64;
+                case TYP_UINT:
+                    return INS_vcvttss2usi32;
                 default:
                     unreached();
             }
