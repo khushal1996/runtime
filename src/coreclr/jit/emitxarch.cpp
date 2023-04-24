@@ -18249,6 +18249,7 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
         case INS_vcvttps2udq:
         case INS_vcvtusi2ss_r32:
         case INS_vcvtusi2sd_r32:
+        case INS_vcvttss2usi_r32:
         {
             // TBD for new avx512 instructions
             result.insLatency += PERFSCORE_LATENCY_3C;
