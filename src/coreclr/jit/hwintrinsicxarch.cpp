@@ -1375,7 +1375,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
                           : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Double
                                              : NI_AVX512DQ_VL_ConvertToVector512Double;
 
-                op1     = impSIMDPopStack(retType);
+                op1     = impSIMDPopStack();
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
             }
 
@@ -1395,7 +1395,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
                           : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Int64
                                              : NI_AVX512DQ_VL_ConvertToVector512Int64;
 
-                op1     = impSIMDPopStack(retType);
+                op1     = impSIMDPopStack();
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
             }
 
@@ -1415,7 +1415,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
                           : (simdSize == 32) ? NI_AVX512F_VL_ConvertToVector256UInt32
                                              : NI_AVX512F_VL_ConvertToVector512UInt32;
 
-                op1     = impSIMDPopStack(retType);
+                op1     = impSIMDPopStack();
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
             }
             break;
@@ -1434,7 +1434,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
                           : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256UInt64
                                              : NI_AVX512DQ_VL_ConvertToVector512UInt64;
 
-                op1     = impSIMDPopStack(retType);
+                op1     = impSIMDPopStack();
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
             }
 
