@@ -18812,7 +18812,6 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
             break;
         }
         
-        case INS_vcvtsd2usi:
         case INS_vcvttsd2usi_r64:
         {
             result.insLatency += PERFSCORE_LATENCY_6C;
@@ -18834,12 +18833,6 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
             break;
         }
      
-        case INS_vcvtqq2pd:
-        case INS_vcvtuqq2pd:
-        case INS_vcvtudq2ps:
-        case INS_vcvttpd2qq:
-        case INS_vcvttpd2uqq:
-        case INS_vcvttps2udq:
         case INS_vcvtusi2ss_r32:
         case INS_vcvtusi2sd_r32:
         case INS_vcvttss2usi_r32:
