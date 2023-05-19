@@ -1237,8 +1237,7 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     assert(simdBaseType == TYP_LONG || simdBaseType == TYP_ULONG);
                     NamedIntrinsic convert = (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Double
                                                 : NI_AVX512DQ_VL_ConvertToVector128Double;
-                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize,
-                                                    /* isSimdAsHWIntrinsic */ true);
+                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
                 }
 
                 case NI_VectorT128_ConvertToInt64:
@@ -1248,8 +1247,7 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     assert(simdBaseType == TYP_DOUBLE);
                     NamedIntrinsic convert = (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Int64
                                                 : NI_AVX512DQ_VL_ConvertToVector128Int64;
-                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize,
-                                                    /* isSimdAsHWIntrinsic */ true);
+                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
                 }
 
                 case NI_VectorT128_ConvertToUInt64:
@@ -1259,8 +1257,7 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     assert(simdBaseType == TYP_DOUBLE);
                     NamedIntrinsic convert = (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256UInt64
                                                 : NI_AVX512DQ_VL_ConvertToVector128UInt64;
-                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize,
-                                                    /* isSimdAsHWIntrinsic */ true);
+                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
                 }
 
                 case NI_VectorT128_ConvertToUInt32:
@@ -1270,8 +1267,7 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     assert(simdBaseType == TYP_FLOAT);
                     NamedIntrinsic convert = (simdSize == 32) ? NI_AVX512F_VL_ConvertToVector256UInt32
                                                 : NI_AVX512F_VL_ConvertToVector128UInt32;
-                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize,
-                                                    /* isSimdAsHWIntrinsic */ true);
+                    return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
                 }
 
                 case NI_VectorT128_ConvertToSingle:
@@ -1281,15 +1277,13 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     {
                         NamedIntrinsic convert =
                             (simdSize == 32) ? NI_AVX_ConvertToVector256Single : NI_SSE2_ConvertToVector128Single;
-                        return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize,
-                                                        /* isSimdAsHWIntrinsic */ true);
+                        return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
                     }
                     else if (simdBaseType == TYP_UINT)
                     {
                         NamedIntrinsic convert =
                             (simdSize == 32) ? NI_AVX512F_VL_ConvertToVector256Single : NI_AVX512F_VL_ConvertToVector128Single;
-                        return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize,
-                                                    /* isSimdAsHWIntrinsic */ true);
+                        return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
                     }
                     else
                     {
