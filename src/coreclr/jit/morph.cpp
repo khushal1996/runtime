@@ -292,37 +292,6 @@ GenTree* Compiler::fgMorphExpandCast(GenTreeCast* tree)
     var_types srcType = genActualType(oper);
     var_types dstType = tree->CastToType();
     unsigned  dstSize = genTypeSize(dstType);
-/*
-    // See if the cast can be contracted into a single optimized cast
-#if defined(TARGET_AMD64)
-    if (compOpportunisticallyDependsOn(InstructionSet_AVX512F))
-    {
-        if (oper->OperIs(GT_CAST))
-        {
-            GenTreeCast *innerCast = static_cast<GenTreeCast*>(oper);
-            GenTree* innerOper = innerCast->CastOp();
-            var_types innerSrcType = genActualType(innerOper);
-            var_types innerDstType = innerCast->CastToType();
-            unsigned  innerDstSize = genTypeSize(innerDstType);
-
-            if (innerCast->IsUnsigned())
-            {
-                innerSrcType = varTypeToUnsigned(innerSrcType);
-
-                if (innerSrcType == TYP_UINT)
-                {
-                    if (dstType == TYP_FLOAT && innerDstType == TYP_DOUBLE)
-                    {
-                        // One optimized cast here
-                        tree = gtNewCastNode(TYP_UINT, innerOper, true, TYP_FLOAT);
-                        return fgMorphTree(tree);
-                    }
-                }
-            }
-        }
-    }
-#endif
-*/
 
 #if defined(TARGET_AMD64)
     // If AVX512 is present, we have intrinsic available to convert
@@ -541,10 +510,10 @@ GenTree* Compiler::fgMorphExpandCast(GenTreeCast* tree)
             if (!compOpportunisticallyDependsOn(InstructionSet_AVX512F))
             {
 #endif
-            oper = gtNewCastNode(TYP_LONG, oper, true, TYP_LONG);
-            oper->gtFlags |= (tree->gtFlags & (GTF_OVERFLOW | GTF_EXCEPT));
-            tree->ClearUnsigned();
-            tree->CastOp() = oper;
+                oper = gtNewCastNode(TYP_LONG, oper, true, TYP_LONG);
+                oper->gtFlags |= (tree->gtFlags & (GTF_OVERFLOW | GTF_EXCEPT));
+                tree->ClearUnsigned();
+                tree->CastOp() = oper;
 #if defined(TARGET_AMD64)
             }
 #endif
