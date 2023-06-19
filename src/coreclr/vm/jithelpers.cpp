@@ -619,10 +619,7 @@ HCIMPLEND
 /*********************************************************************/
 HCIMPL1_V(UINT64, JIT_Dbl2ULng, double val)
 {
-<<<<<<< HEAD
     FCALL_CONTRACT;
-=======
->>>>>>> d7e7b51ecce (Adding some scalar conversion changes from the PR and also making appropriate changes to fix the vector conversions)
 #if defined(TARGET_X86) || defined(TARGET_AMD64)
 
     const double uint64_max_plus_1 = -2.0 * (double)INT64_MIN;
