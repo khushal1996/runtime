@@ -1,0 +1,63 @@
+; Assembly listing for method System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float] (MinOpts)
+; Emitting BLENDED_CODE for X64 with AVX512 - Windows
+; MinOpts code
+; debuggable code
+; rbp based frame
+; fully interruptible
+; No PGO data
+; Final local variable assignments
+;
+;  V00 RetBuf       [V00    ] (  1,  1   )   byref  ->  [rbp+10H]   do-not-enreg[]
+;  V01 arg0         [V01    ] (  1,  1   )   byref  ->  [rbp+18H]   do-not-enreg[]
+;  V02 loc0         [V02    ] (  1,  1   )  simd32  ->  [rbp-30H]   do-not-enreg[S] must-init <System.Runtime.Intrinsics.Vector256`1[float]>
+;  V03 OutArgs      [V03    ] (  1,  1   )  struct (32) [rsp+00H]   do-not-enreg[XS] addr-exposed "OutgoingArgSpace"
+;  V04 tmp1         [V04    ] (  1,  1   )  simd32  ->  [rbp-50H]   do-not-enreg[S] "impSpillStackEnsure"
+;
+; Lcl frame size = 112
+; BEGIN METHOD System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+
+G_M52584_IG01:  ;; offset=0000H
+       push     rbp
+       sub      rsp, 112
+       vzeroupper 
+       lea      rbp, [rsp+70H]
+       vxorps   xmm4, xmm4, xmm4
+       vmovdqa32 xmmword ptr [rbp-30H], xmm4
+       vmovdqa32 xmmword ptr [rbp-20H], xmm4
+       mov      bword ptr [rbp+10H], rcx
+       mov      bword ptr [rbp+18H], rdx
+						;; size=41 bbWeight=1 PerfScore 9.08
+G_M52584_IG02:  ;; offset=0029H
+       cmp      dword ptr [(reloc 0x7ffd0bf91d48)], 0
+       je       SHORT G_M52584_IG04
+						;; size=9 bbWeight=1 PerfScore 4.00
+G_M52584_IG03:  ;; offset=0032H
+       call     CORINFO_HELP_DBG_IS_JUST_MY_CODE
+						;; size=5 bbWeight=0.50 PerfScore 0.50
+G_M52584_IG04:  ;; offset=0037H
+       nop      
+       mov      rax, bword ptr [rbp+18H]
+       vcvtdq2ps ymm0, ymmword ptr [rax]
+       vmovups  ymmword ptr [rbp-50H], ymm0
+       vmovups  ymm0, ymmword ptr [rbp-50H]
+       vmovups  ymmword ptr [rbp-30H], ymm0
+       nop      
+						;; size=42 bbWeight=1 PerfScore 13.50
+G_M52584_IG05:  ;; offset=0061H
+       mov      rax, bword ptr [rbp+10H]
+       vmovups  ymm0, ymmword ptr [rbp-30H]
+       vmovups  ymmword ptr [rax], ymm0
+       mov      rax, bword ptr [rbp+10H]
+						;; size=24 bbWeight=1 PerfScore 8.00
+G_M52584_IG06:  ;; offset=0079H
+       vzeroupper 
+       add      rsp, 112
+       pop      rbp
+       ret      
+						;; size=9 bbWeight=1 PerfScore 2.75
+; END METHOD System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+
+; Total bytes of code 130, prolog size 41, PerfScore 50.83, instruction count 28, allocated bytes for code 130 (MethodHash=f7033297) for method System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float] (MinOpts)
+; ============================================================
+
+<1234, 1234, 1234, 1234, 1234, 1234, 1234, 1234>

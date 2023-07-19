@@ -421,6 +421,25 @@ namespace System.Runtime.Intrinsics
             );
         }
 
+        /// <summary>Converts a <see cref="Vector256{UInt64}" /> to a <see cref="Vector256{Single}" />.</summary>
+        /// <param name="vector">The vector to convert.</param>
+        /// <returns>The converted vector.</returns>
+        [Intrinsic]
+        [CLSCompliant(false)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector128<float> ConvertToSingle(Vector256<ulong> vector)
+        {
+            Vector128<float> result =  Vector128.Create((float)0);
+
+            for (int i = 0; i < Vector256<ulong>.Count; i++)
+            {
+                float value = vector.GetElementUnsafe(i);
+                result.SetElementUnsafe(i, value);
+            }
+
+            return result;
+        }
+
         /// <summary>Converts a <see cref="Vector256{UInt32}" /> to a <see cref="Vector256{Single}" />.</summary>
         /// <param name="vector">The vector to convert.</param>
         /// <returns>The converted vector.</returns>

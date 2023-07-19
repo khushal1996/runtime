@@ -1,0 +1,2838 @@
+****** START compiling System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float] (MethodHash=f7033297)
+Generating code for Windows x64
+OPTIONS: compCodeOpt = BLENDED_CODE
+OPTIONS: compDbgCode = true
+OPTIONS: compDbgInfo = true
+OPTIONS: compDbgEnC  = false
+OPTIONS: compProcedureSplitting   = false
+OPTIONS: compProcedureSplittingEH = false
+OPTIONS: optimizer should use profile data
+IL to import:
+IL_0000  00                nop         
+IL_0001  02                ldarg.0     
+IL_0002  28 15 00 00 0a    call         0xA000015
+IL_0007  0a                stloc.0     
+IL_0008  2b 00             br.s         0 (IL_000a)
+IL_000a  06                ldloc.0     
+IL_000b  2a                ret         
+ Found Vector256<float>
+'__retBuf'  passed in register rcx
+ Found Vector256<int>
+Marking V01 as a byref parameter
+Arg #1    passed in register(s) rdx
+ Found Vector256<float>
+
+lvaGrabTemp returning 3 (V03 loc1) (a long lifetime temp) called for OutgoingArgSpace.
+
+Local V03 should not be enregistered because: it is address exposed
+; Initial local variable assignments
+;
+;  V00 RetBuf          byref 
+;  V01 arg0           simd32  <System.Runtime.Intrinsics.Vector256`1[int]>
+;  V02 loc0           simd32  <System.Runtime.Intrinsics.Vector256`1[float]>
+;  V03 OutArgs        struct <0> do-not-enreg[XS] addr-exposed "OutgoingArgSpace"
+*************** In compInitDebuggingInfo() for System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+getVars() returned cVars = 0, extendOthers = true
+info.compVarScopesCount = 3
+    	VarNum 	LVNum 	      Name 	Beg 	End
+ 0: 	00h 	00h 	V00 RetBuf 	000h   	00Ch
+ 1: 	01h 	01h 	  V01 arg0 	000h   	00Ch
+ 2: 	02h 	02h 	  V02 loc0 	000h   	00Ch
+New Basic Block BB01 [0000] created.
+New scratch BB01
+Debuggable code - Add new BB01 [0000] to perform initialization of variables
+info.compStmtOffsetsCount    = 0
+info.compStmtOffsetsImplicit = 0007h ( STACK_EMPTY NOP CALL_SITE )
+*************** In fgFindBasicBlocks() for System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+Marked V02 as a single def local
+Jump targets:
+  IL_000a
+New Basic Block BB02 [0001] created.
+BB02 [000..00A)
+New Basic Block BB03 [0002] created.
+BB03 [00A..00C)
+Setting edge weights for BB01 -> BB02 to [0 .. 3.402823e+38]
+Setting edge weights for BB02 -> BB03 to [0 .. 3.402823e+38]
+CLFLG_MINOPT set for method System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+IL Code Size,Instr   12,   7, Basic Block count   3, Local Variable Num,Ref count   4,  3 for method System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+IL Code Size,Instr   12,   7, Basic Block count   3, Local Variable Num,Ref count   4,  3 for method System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+OPTIONS: opts.MinOpts() == true
+Basic block list for 'System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]'
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal 
+BB02 [0001]  1       BB01                  1       [000..00A)-> BB03 (always)                     
+BB03 [0002]  1       BB02                  1       [00A..00C)        (return)                     
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+*************** Starting PHASE Pre-import
+
+*************** Finishing PHASE Pre-import
+Trees after Pre-import
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal 
+BB02 [0001]  1       BB01                  1       [000..00A)-> BB03 (always)                     
+BB03 [0002]  1       BB02                  1       [00A..00C)        (return)                     
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+               [000000] -----------                         *  NOP       void  
+
+------------ BB02 [000..00A) -> BB03 (always), preds={BB01} succs={BB03}
+
+------------ BB03 [00A..00C) (return), preds={BB02} succs={}
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+
+*************** Starting PHASE Profile incorporation
+BBOPT set, but no profile data available (hr=80004001)
+
+*************** Finishing PHASE Profile incorporation [no changes]
+
+*************** Starting PHASE Importation
+Marking leading BBF_INTERNAL block BB01 as BBF_IMPORTED
+
+impImportBlockPending for BB02
+
+Importing BB02 (PC=000) of 'System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]'
+    [ 0]   0 (0x000) nop
+
+STMT00001 ( 0x000[E-] ... ??? )
+               [000001] -----------                         *  NO_OP     void  
+
+    [ 0]   1 (0x001) ldarg.0
+    [ 1]   2 (0x002) call 0A000015
+In Compiler::impImportCall: opcode is call, kind=0, callRetType is struct, structSize is 32
+Named Intrinsic System.Runtime.Intrinsics.Vector256.ConvertToSingle: Notify VM instruction set (Vector256) must be supported.
+Notify VM instruction set (AVX2) must be supported.
+Recognized
+ Found Vector256<float>
+ Found Vector256<int>
+
+lvaGrabTemp returning 4 (V04 tmp1) called for impSpillStackEnsure.
+
+
+STMT00002 ( 0x001[E-] ... ??? )
+               [000004] DA---------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] -----------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000002] -----------                            \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V01 arg0         
+Marked V04 as a single def temp
+
+    [ 1]   7 (0x007) stloc.0
+
+STMT00003 ( 0x007[--] ... ??? )
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+    [ 0]   8 (0x008) br.s
+
+STMT00004 ( 0x008[E-] ... ??? )
+               [000007] -----------                         *  NOP       void  
+
+impImportBlockPending for BB03
+
+Importing BB03 (PC=010) of 'System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]'
+    [ 0]  10 (0x00a) ldloc.0
+    [ 1]  11 (0x00b) ret
+
+STMT00005 ( 0x00A[E-] ... ??? )
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+
+STMT00006 ( ??? ... ??? )
+               [000012] -----------                         *  RETURN    byref 
+               [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+*************** Finishing PHASE Importation
+Trees after Importation
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal 
+BB02 [0001]  1       BB01                  1       [000..00A)-> BB03 (always)                     i 
+BB03 [0002]  1       BB02                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+               [000000] -----------                         *  NOP       void  
+
+------------ BB02 [000..00A) -> BB03 (always), preds={BB01} succs={BB03}
+
+***** BB02
+STMT00001 ( 0x000[E-] ... 0x000 )
+               [000001] -----------                         *  NO_OP     void  
+
+***** BB02
+STMT00002 ( 0x001[E-] ... 0x007 )
+               [000004] DA---------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] -----------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000002] -----------                            \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V01 arg0         
+
+***** BB02
+STMT00003 ( 0x007[--] ... ??? )
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+***** BB02
+STMT00004 ( 0x008[E-] ... 0x008 )
+               [000007] -----------                         *  NOP       void  
+
+------------ BB03 [00A..00C) (return), preds={BB02} succs={}
+
+***** BB03
+STMT00005 ( 0x00A[E-] ... 0x00B )
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+***** BB03
+STMT00006 ( ??? ... ??? )
+               [000012] -----------                         *  RETURN    byref 
+               [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Expand patchpoints
+
+ -- no patchpoints to transform
+
+*************** Finishing PHASE Expand patchpoints [no changes]
+
+*************** Starting PHASE Indirect call transform
+
+ -- no candidates to transform
+
+*************** Finishing PHASE Indirect call transform [no changes]
+
+*************** Starting PHASE Post-import
+
+*************** Finishing PHASE Post-import [no changes]
+
+*************** Starting PHASE Morph - Init
+
+New BlockSet epoch 1, # of blocks (including unused BB00): 4, bitset array size: 1 (short)
+
+*************** Finishing PHASE Morph - Init [no changes]
+
+*************** Starting PHASE Morph - Inlining
+
+*************** Finishing PHASE Morph - Inlining [no changes]
+
+*************** Starting PHASE Allocate Objects
+no newobjs in this method; punting
+
+*************** Finishing PHASE Allocate Objects [no changes]
+
+*************** Starting PHASE Morph - Add internal blocks
+
+*************** After fgAddInternal()
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal 
+BB02 [0001]  1       BB01                  1       [000..00A)-> BB03 (always)                     i 
+BB03 [0002]  1       BB02                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+***************  Exception Handling table is empty
+
+*************** Finishing PHASE Morph - Add internal blocks
+Trees after Morph - Add internal blocks
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal 
+BB02 [0001]  1       BB01                  1       [000..00A)-> BB03 (always)                     i 
+BB03 [0002]  1       BB02                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+               [000000] -----------                         *  NOP       void  
+
+***** BB01
+STMT00007 ( ??? ... ??? )
+               [000020] --C-G------                         *  QMARK     void  
+               [000016] ----G------    if                   +--*  EQ        int   
+               [000014] n---G------                         |  +--*  IND       int   
+               [000013] H----------                         |  |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----------                         |  \--*  CNS_INT   int    0
+               [000019] --C-G------    if                   \--*  COLON     void  
+               [000017] --C-G------ else                       +--*  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+               [000018] ----------- then                       \--*  NOP       void  
+
+------------ BB02 [000..00A) -> BB03 (always), preds={BB01} succs={BB03}
+
+***** BB02
+STMT00001 ( 0x000[E-] ... 0x000 )
+               [000001] -----------                         *  NO_OP     void  
+
+***** BB02
+STMT00002 ( 0x001[E-] ... 0x007 )
+               [000004] DA---------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] -----------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000002] -----------                            \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V01 arg0         
+
+***** BB02
+STMT00003 ( 0x007[--] ... ??? )
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+***** BB02
+STMT00004 ( 0x008[E-] ... 0x008 )
+               [000007] -----------                         *  NOP       void  
+
+------------ BB03 [00A..00C) (return), preds={BB02} succs={}
+
+***** BB03
+STMT00005 ( 0x00A[E-] ... 0x00B )
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+***** BB03
+STMT00006 ( ??? ... ??? )
+               [000012] -----------                         *  RETURN    byref 
+               [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Remove empty try
+
+*************** In fgRemoveEmptyTry()
+No EH in this method, nothing to remove.
+
+*************** Finishing PHASE Remove empty try [no changes]
+
+*************** Starting PHASE Remove empty finally
+No EH in this method, nothing to remove.
+
+*************** Finishing PHASE Remove empty finally [no changes]
+
+*************** Starting PHASE Merge callfinally chains
+No EH in this method, nothing to merge.
+
+*************** Finishing PHASE Merge callfinally chains [no changes]
+
+*************** Starting PHASE Clone finally
+No EH in this method, no cloning.
+
+*************** Finishing PHASE Clone finally [no changes]
+
+*************** Starting PHASE Morph - Promote Structs
+  promotion opt flag not enabled
+
+*************** Finishing PHASE Morph - Promote Structs [no changes]
+
+*************** Starting PHASE Morph - Structs/AddrExp
+LocalAddressVisitor visiting statement:
+STMT00000 ( ??? ... ??? )
+               [000000] -----------                         *  NOP       void  
+
+LocalAddressVisitor visiting statement:
+STMT00007 ( ??? ... ??? )
+               [000020] --C-G------                         *  QMARK     void  
+               [000016] ----G------    if                   +--*  EQ        int   
+               [000014] n---G------                         |  +--*  IND       int   
+               [000013] H----------                         |  |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----------                         |  \--*  CNS_INT   int    0
+               [000019] --C-G------    if                   \--*  COLON     void  
+               [000017] --C-G------ else                       +--*  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+               [000018] ----------- then                       \--*  NOP       void  
+
+LocalAddressVisitor visiting statement:
+STMT00001 ( 0x000[E-] ... 0x000 )
+               [000001] -----------                         *  NO_OP     void  
+
+LocalAddressVisitor visiting statement:
+STMT00002 ( 0x001[E-] ... 0x007 )
+               [000004] DA---------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] -----------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000002] -----------                            \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V01 arg0         
+
+LocalAddressVisitor visiting statement:
+STMT00003 ( 0x007[--] ... ??? )
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+LocalAddressVisitor visiting statement:
+STMT00004 ( 0x008[E-] ... 0x008 )
+               [000007] -----------                         *  NOP       void  
+
+LocalAddressVisitor visiting statement:
+STMT00005 ( 0x00A[E-] ... 0x00B )
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+LocalAddressVisitor visiting statement:
+STMT00006 ( ??? ... ??? )
+               [000012] -----------                         *  RETURN    byref 
+               [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+
+*************** Finishing PHASE Morph - Structs/AddrExp [no changes]
+
+*************** Starting PHASE Early liveness
+
+*************** Finishing PHASE Early liveness [no changes]
+
+*************** Starting PHASE Forward Substitution
+
+*************** Finishing PHASE Forward Substitution [no changes]
+
+*************** Starting PHASE Physical promotion
+
+*************** Finishing PHASE Physical promotion [no changes]
+
+*************** Starting PHASE Morph - ByRefs
+Changing the lvType for struct parameter V01 to TYP_BYREF.
+
+*************** Finishing PHASE Morph - ByRefs
+Trees after Morph - ByRefs
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal 
+BB02 [0001]  1       BB01                  1       [000..00A)-> BB03 (always)                     i 
+BB03 [0002]  1       BB02                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+               [000000] -----------                         *  NOP       void  
+
+***** BB01
+STMT00007 ( ??? ... ??? )
+               [000020] --C-G------                         *  QMARK     void  
+               [000016] ----G------    if                   +--*  EQ        int   
+               [000014] n---G------                         |  +--*  IND       int   
+               [000013] H----------                         |  |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----------                         |  \--*  CNS_INT   int    0
+               [000019] --C-G------    if                   \--*  COLON     void  
+               [000017] --C-G------ else                       +--*  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+               [000018] ----------- then                       \--*  NOP       void  
+
+------------ BB02 [000..00A) -> BB03 (always), preds={BB01} succs={BB03}
+
+***** BB02
+STMT00001 ( 0x000[E-] ... 0x000 )
+               [000001] -----------                         *  NO_OP     void  
+
+***** BB02
+STMT00002 ( 0x001[E-] ... 0x007 )
+               [000004] DA---------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] -----------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000002] -----------                            \--*  LCL_VAR   simd32 V01 arg0         
+
+***** BB02
+STMT00003 ( 0x007[--] ... ??? )
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+***** BB02
+STMT00004 ( 0x008[E-] ... 0x008 )
+               [000007] -----------                         *  NOP       void  
+
+------------ BB03 [00A..00C) (return), preds={BB02} succs={}
+
+***** BB03
+STMT00005 ( 0x00A[E-] ... 0x00B )
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+***** BB03
+STMT00006 ( ??? ... ??? )
+               [000012] -----------                         *  RETURN    byref 
+               [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Morph - Global
+
+*************** In fgMorphBlocks()
+compEnregLocals() is false, setting doNotEnreg flag for all locals.
+Local V00 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V01 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V02 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V03 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V04 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Morphing BB01 of 'System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]'
+
+fgMorphTree BB01, STMT00000 (before)
+               [000000] -----------                         *  NOP       void  
+
+fgMorphTree BB01, STMT00007 (before)
+               [000020] --C-G------                         *  QMARK     void  
+               [000016] ----G------    if                   +--*  EQ        int   
+               [000014] n---G------                         |  +--*  IND       int   
+               [000013] H----------                         |  |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----------                         |  \--*  CNS_INT   int    0
+               [000019] --C-G------    if                   \--*  COLON     void  
+               [000017] --C-G------ else                       +--*  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+               [000018] ----------- then                       \--*  NOP       void  
+Initializing arg info for 17.CALL:
+Args for call [000017] CALL after AddFinalArgsAndDetermineABIInfo:
+
+Morphing args for 17.CALL:
+Args for [000017].CALL after fgMorphArgs:
+OutgoingArgsStackSize is 32
+
+
+Morphing BB02 of 'System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]'
+
+fgMorphTree BB02, STMT00001 (before)
+               [000001] -----------                         *  NO_OP     void  
+
+fgMorphTree BB02, STMT00002 (before)
+               [000004] DA---------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] -----------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000002] -----------                            \--*  LCL_VAR   simd32 V01 arg0         
+
+Rewriting an implicit by-ref parameter reference:
+               [000002] -----------                         *  LCL_VAR   simd32 V01 arg0         
+Transformed into:
+               [000021] n---G------                         *  IND       simd32
+               [000002] -----------                         \--*  LCL_VAR   byref  V01 arg0         
+
+MorphCopyBlock:
+PrepareDst for [000004] have found a local var V04.
+block assignment to morph:
+               [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] ----G+-----                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000021] n---G+-----                            \--*  IND       simd32
+               [000002] -----+-----                               \--*  LCL_VAR   byref  V01 arg0         
+ src is not an L-value this requires a CopyBlock.
+MorphCopyBlock (after):
+               [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] ----G+-----                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000021] n---G+-----                            \--*  IND       simd32
+               [000002] -----+-----                               \--*  LCL_VAR   byref  V01 arg0         
+
+fgMorphTree BB02, STMT00002 (after)
+               [000004] DA--G+-----                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] ----G+-----                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000021] n---G+-----                            \--*  IND       simd32
+               [000002] -----+-----                               \--*  LCL_VAR   byref  V01 arg0         
+
+fgMorphTree BB02, STMT00003 (before)
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+MorphCopyBlock:
+PrepareDst for [000006] have found a local var V02.
+block assignment to morph:
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----+-----                         \--*  LCL_VAR   simd32 V04 tmp1         
+ with no promoted structs this requires a CopyBlock.
+MorphCopyBlock (after):
+               [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----+-----                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+fgMorphTree BB02, STMT00004 (before)
+               [000007] -----------                         *  NOP       void  
+
+Morphing BB03 of 'System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]'
+
+fgMorphTree BB03, STMT00005 (before)
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+MorphCopyBlock:
+PrepareDst for [000010] have not found a local var.
+block assignment to morph:
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----+-----                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----+-----                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+ with no promoted structs this requires a CopyBlock.
+MorphCopyBlock (after):
+               [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+               [000009] -----+-----                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----+-----                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+fgMorphTree BB03, STMT00006 (before)
+               [000012] -----------                         *  RETURN    byref 
+               [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+*************** In fgMarkDemotedImplicitByRefArgs()
+Clearing annotation for V01
+
+Expanding top-level qmark in BB01 (before)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+               [000000] -----+-----                         *  NOP       void  
+
+***** BB01
+STMT00007 ( ??? ... ??? )
+               [000020] --C-G+-----                         *  QMARK     void  
+               [000016] J---G+-N---    if                   +--*  EQ        int   
+               [000014] n---G+-----                         |  +--*  IND       int   
+               [000013] H----+-----                         |  |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----+-----                         |  \--*  CNS_INT   int    0
+               [000019] --C-G+?----    if                   \--*  COLON     void  
+               [000017] --C-G+?---- else                       +--*  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+               [000018] -----+?---- then                       \--*  NOP       void  
+
+-------------------------------------------------------------------------------------------------------------------
+New Basic Block BB04 [0003] created.
+BB02 previous predecessor was BB01, now is BB04
+Setting edge weights for BB01 -> BB04 to [0 .. 3.402823e+38]
+New Basic Block BB05 [0004] created.
+New Basic Block BB06 [0005] created.
+Setting edge weights for BB01 -> BB05 to [0 .. 3.402823e+38]
+Setting edge weights for BB05 -> BB06 to [0 .. 3.402823e+38]
+Setting edge weights for BB06 -> BB04 to [0 .. 3.402823e+38]
+Setting edge weights for BB05 -> BB04 to [0 .. 3.402823e+38]
+
+removing useless STMT00007 ( ??? ... ??? )
+               [000020] --C-G+-----                         *  QMARK     void  
+               [000016] J---G+-N---    if                   +--*  EQ        int   
+               [000014] n---G+-----                         |  +--*  IND       int   
+               [000013] H----+-----                         |  |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----+-----                         |  \--*  CNS_INT   int    0
+               [000019] --C-G+?----    if                   \--*  COLON     void  
+               [000017] --C-G+?---- else                       +--*  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+               [000018] -----+?---- then                       \--*  NOP       void  
+ from BB01
+
+Expanding top-level qmark in BB01 (after)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+BB05 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal 
+BB06 [0005]  1       BB05                  0.50    [???..???)                                     internal 
+BB04 [0003]  2       BB05,BB06             1       [???..???)                                     i internal hascall 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB05}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+               [000000] -----+-----                         *  NOP       void  
+
+------------ BB05 [???..???) -> BB04 (cond), preds={BB01} succs={BB06,BB04}
+
+***** BB05
+STMT00008 ( ??? ... ??? )
+               [000022] ----G------                         *  JTRUE     void  
+               [000016] J---G+-N---                         \--*  EQ        int   
+               [000014] n---G+-----                            +--*  IND       int   
+               [000013] H----+-----                            |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----+-----                            \--*  CNS_INT   int    0
+
+------------ BB06 [???..???), preds={BB05} succs={BB04}
+
+***** BB06
+STMT00009 ( ??? ... ??? )
+               [000017] --C-G+?----                         *  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+------------ BB04 [???..???), preds={BB05,BB06} succs={BB02}
+
+-------------------------------------------------------------------------------------------------------------------
+
+*************** Before renumbering the basic blocks
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+BB05 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal 
+BB06 [0005]  1       BB05                  0.50    [???..???)                                     internal 
+BB04 [0003]  2       BB05,BB06             1       [???..???)                                     i internal hascall 
+BB02 [0001]  1       BB04                  1       [000..00A)-> BB03 (always)                     i 
+BB03 [0002]  1       BB02                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+***************  Exception Handling table is empty
+Renumber BB05 to BB02
+Renumber BB06 to BB03
+Renumber BB02 to BB05
+Renumber BB03 to BB06
+
+*************** After renumbering the basic blocks
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+***************  Exception Handling table is empty
+
+New BlockSet epoch 2, # of blocks (including unused BB00): 7, bitset array size: 1 (short)
+
+*************** Finishing PHASE Morph - Global
+Trees after Morph - Global
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+               [000000] -----+-----                         *  NOP       void  
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+
+***** BB02
+STMT00008 ( ??? ... ??? )
+               [000022] ----G------                         *  JTRUE     void  
+               [000016] J---G+-N---                         \--*  EQ        int   
+               [000014] n---G+-----                            +--*  IND       int   
+               [000013] H----+-----                            |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+               [000015] -----+-----                            \--*  CNS_INT   int    0
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+
+***** BB03
+STMT00009 ( ??? ... ??? )
+               [000017] --C-G+?----                         *  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+
+***** BB05
+STMT00001 ( 0x000[E-] ... 0x000 )
+               [000001] -----+-----                         *  NO_OP     void  
+
+***** BB05
+STMT00002 ( 0x001[E-] ... 0x007 )
+               [000004] DA--G+-----                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000003] ----G+-----                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+               [000021] n---G+-----                            \--*  IND       simd32
+               [000002] -----+-----                               \--*  LCL_VAR   byref  V01 arg0         
+
+***** BB05
+STMT00003 ( 0x007[--] ... ??? )
+               [000006] DA---+-----                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000005] -----+-----                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+***** BB05
+STMT00004 ( 0x008[E-] ... 0x008 )
+               [000007] -----+-----                         *  NOP       void  
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+
+***** BB06
+STMT00005 ( 0x00A[E-] ... 0x00B )
+               [000010] -A-XG+-----                         *  STOREIND  simd32 (copy)
+               [000009] -----+-----                         +--*  LCL_VAR   byref  V00 RetBuf       
+               [000008] -----+-----                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+***** BB06
+STMT00006 ( ??? ... ??? )
+               [000012] -----+-----                         *  RETURN    byref 
+               [000011] -----+-----                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE GS Cookie
+No GS security needed
+
+*************** Finishing PHASE GS Cookie [no changes]
+
+*************** Starting PHASE Compute edge weights (1, false)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+ -- no profile data, so using default called count
+ -- not optimizing or no profile data, so not computing edge weights
+
+*************** Finishing PHASE Compute edge weights (1, false) [no changes]
+
+*************** Starting PHASE Create EH funclets
+
+*************** Finishing PHASE Create EH funclets [no changes]
+
+*************** Starting PHASE Morph array ops
+No multi-dimensional array references in the function
+
+*************** Finishing PHASE Morph array ops [no changes]
+
+*************** Starting PHASE Mark local vars
+
+*************** In lvaMarkLocalVars()
+*** lvaComputeRefCounts ***
+
+*************** Finishing PHASE Mark local vars [no changes]
+
+*************** Starting PHASE Find oper order
+*************** In fgFindOperOrder()
+
+*************** Finishing PHASE Find oper order
+Trees after Find oper order
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+     (  0,  0) [000000] -----------                         *  NOP       void  
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+
+***** BB02
+STMT00008 ( ??? ... ??? )
+     (  9, 16) [000022] ----G------                         *  JTRUE     void  
+     (  7, 14) [000016] J---G--N---                         \--*  EQ        int   
+     (  5, 12) [000014] n---G------                            +--*  IND       int   
+     (  3, 10) [000013] H----------                            |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+     (  1,  1) [000015] -----------                            \--*  CNS_INT   int    0
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+
+***** BB03
+STMT00009 ( ??? ... ??? )
+     ( 14,  5) [000017] --C-G-?----                         *  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+
+***** BB05
+STMT00001 ( 0x000[E-] ... 0x000 )
+     (  1,  1) [000001] -----------                         *  NO_OP     void  
+
+***** BB05
+STMT00002 ( 0x001[E-] ... 0x007 )
+     ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+     (  7,  5) [000003] ----G------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+     (  6,  4) [000021] n---G------                            \--*  IND       simd32
+     (  3,  2) [000002] -----------                               \--*  LCL_VAR   byref  V01 arg0         
+
+***** BB05
+STMT00003 ( 0x007[--] ... ??? )
+     (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+     (  3,  2) [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+***** BB05
+STMT00004 ( 0x008[E-] ... 0x008 )
+     (  0,  0) [000007] -----------                         *  NOP       void  
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+
+***** BB06
+STMT00005 ( 0x00A[E-] ... 0x00B )
+     ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+     (  3,  2) [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+     (  3,  2) [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+***** BB06
+STMT00006 ( ??? ... ??? )
+     (  4,  3) [000012] -----------                         *  RETURN    byref 
+     (  3,  2) [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Set block order
+*************** In fgSetBlockOrder()
+The biggest BB has    5 tree nodes
+
+*************** Finishing PHASE Set block order
+Trees after Set block order
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+
+***** BB01
+STMT00000 ( ??? ... ??? )
+N001 (  0,  0) [000000] -----------                         *  NOP       void  
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+
+***** BB02
+STMT00008 ( ??? ... ??? )
+N005 (  9, 16) [000022] ----G------                         *  JTRUE     void  
+N004 (  7, 14) [000016] J---G--N---                         \--*  EQ        int   
+N002 (  5, 12) [000014] n---G------                            +--*  IND       int   
+N001 (  3, 10) [000013] H----------                            |  \--*  CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+N003 (  1,  1) [000015] -----------                            \--*  CNS_INT   int    0
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+
+***** BB03
+STMT00009 ( ??? ... ??? )
+N001 ( 14,  5) [000017] --C-G-?----                         *  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+
+***** BB05
+STMT00001 ( 0x000[E-] ... 0x000 )
+N001 (  1,  1) [000001] -----------                         *  NO_OP     void  
+
+***** BB05
+STMT00002 ( 0x001[E-] ... 0x007 )
+N004 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+N003 (  7,  5) [000003] ----G------                         \--*  HWINTRINSIC simd32 int ConvertToVector256Single
+N002 (  6,  4) [000021] n---G------                            \--*  IND       simd32
+N001 (  3,  2) [000002] -----------                               \--*  LCL_VAR   byref  V01 arg0         
+
+***** BB05
+STMT00003 ( 0x007[--] ... ??? )
+N002 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+N001 (  3,  2) [000005] -----------                         \--*  LCL_VAR   simd32 V04 tmp1         
+
+***** BB05
+STMT00004 ( 0x008[E-] ... 0x008 )
+N001 (  0,  0) [000007] -----------                         *  NOP       void  
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+
+***** BB06
+STMT00005 ( 0x00A[E-] ... 0x00B )
+N003 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+N001 (  3,  2) [000009] -----------                         +--*  LCL_VAR   byref  V00 RetBuf       
+N002 (  3,  2) [000008] -----------                         \--*  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+***** BB06
+STMT00006 ( ??? ... ??? )
+N002 (  4,  3) [000012] -----------                         *  RETURN    byref 
+N001 (  3,  2) [000011] -----------                         \--*  LCL_VAR   byref  V00 RetBuf       
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Stress gtSplitTree
+
+*************** Finishing PHASE Stress gtSplitTree [no changes]
+
+*************** Starting PHASE Expand runtime lookups
+
+*************** Finishing PHASE Expand runtime lookups [no changes]
+
+*************** Starting PHASE Expand static init
+Nothing to expand.
+
+*************** Finishing PHASE Expand static init [no changes]
+
+*************** Starting PHASE Expand TLS access
+Nothing to expand.
+
+*************** Finishing PHASE Expand TLS access [no changes]
+
+*************** Starting PHASE Insert GC Polls
+
+*************** Finishing PHASE Insert GC Polls [no changes]
+
+*************** Starting PHASE Determine first cold block
+No procedure splitting will be done for this method
+
+*************** Finishing PHASE Determine first cold block [no changes]
+
+*************** Starting PHASE Rationalize IR
+
+*************** Finishing PHASE Rationalize IR
+Trees after Rationalize IR
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall LIR 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal LIR 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal LIR 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall LIR 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i LIR 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i LIR 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+N001 (  0,  0) [000000] -----------                            NOP       void  
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+N001 (  3, 10) [000013] H----------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+                                                            /--*  t13    long   
+N002 (  5, 12) [000014] n---G------                   t14 = *  IND       int   
+N003 (  1,  1) [000015] -----------                   t15 =    CNS_INT   int    0
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N004 (  7, 14) [000016] J---G--N---                   t16 = *  EQ        int   
+                                                            /--*  t16    int    
+N005 (  9, 16) [000022] ----G------                         *  JTRUE     void  
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+N001 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+               [000023] -----------                            IL_OFFSET void   INLRT @ 0x000[E-]
+N001 (  1,  1) [000001] -----------                            NO_OP     void  
+               [000024] -----------                            IL_OFFSET void   INLRT @ 0x001[E-]
+N001 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0         
+                                                            /--*  t2     byref  
+N002 (  6,  4) [000021] n---G------                   t21 = *  IND       simd32
+                                                            /--*  t21    simd32 
+N003 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single
+                                                            /--*  t3     simd32 
+N004 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000025] -----------                            IL_OFFSET void   INLRT @ 0x007[--]
+N001 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1         
+                                                            /--*  t5     simd32 
+N002 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000026] -----------                            IL_OFFSET void   INLRT @ 0x008[E-]
+N001 (  0,  0) [000007] -----------                            NOP       void  
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+               [000027] -----------                            IL_OFFSET void   INLRT @ 0x00A[E-]
+N001 (  3,  2) [000009] -----------                    t9 =    LCL_VAR   byref  V00 RetBuf       
+N002 (  3,  2) [000008] -----------                    t8 =    LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+                                                            /--*  t9     byref  
+                                                            +--*  t8     simd32 
+N003 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+N001 (  3,  2) [000011] -----------                   t11 =    LCL_VAR   byref  V00 RetBuf       
+                                                            /--*  t11    byref  
+N002 (  4,  3) [000012] -----------                         *  RETURN    byref 
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Do 'simple' lowering
+
+*************** Finishing PHASE Do 'simple' lowering [no changes]
+
+*************** Starting PHASE Lowering nodeinfo
+compEnregLocals() is false, setting doNotEnreg flag for all locals.
+Local V00 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V01 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V02 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V03 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+
+Local V04 should not be enregistered because: opts.compFlags & CLFLG_REGVAR is not set
+Lowering JTRUE:
+N001 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+                                                            /--*  t13    long   
+N002 (  5, 12) [000014] nc--G------                   t14 = *  IND       int   
+N003 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N004 (  7, 14) [000016] J---G--N---                   t16 = *  EQ        int   
+                                                            /--*  t16    int    
+N005 (  9, 16) [000022] ----G------                         *  JTRUE     void  
+
+Lowering condition:
+N001 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+                                                            /--*  t13    long   
+N002 (  5, 12) [000014] nc--G------                   t14 = *  IND       int   
+N003 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N004 (  7, 14) [000016] J---G--N---                   t16 = *  EQ        int   
+
+Lowering JTRUE Result:
+N001 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+                                                            /--*  t13    long   
+N002 (  5, 12) [000014] nc--G------                   t14 = *  IND       int   
+N003 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N004 (  7, 14) [000016] ----G--N---                         *  CMP       void  
+N005 (  9, 16) [000022] ----G------                            JCC       void   cond=UEQ
+
+lowering call (before):
+N001 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+args:
+======
+
+late:
+======
+Bumping outgoing arg space size from 0 to 32 for [000017]
+lowering call (after):
+N001 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+lowering store lcl var/field (before):
+N001 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0         
+                                                            /--*  t2     byref  
+N002 (  6,  4) [000021] nc--G------                   t21 = *  IND       simd32
+                                                            /--*  t21    simd32 
+N003 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single
+                                                            /--*  t3     simd32 
+N004 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+
+lowering store lcl var/field (after):
+N001 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0         
+                                                            /--*  t2     byref  
+N002 (  6,  4) [000021] nc--G------                   t21 = *  IND       simd32
+                                                            /--*  t21    simd32 
+N003 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single
+                                                            /--*  t3     simd32 
+N004 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+
+lowering store lcl var/field (before):
+N001 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1         
+                                                            /--*  t5     simd32 
+N002 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+lowering store lcl var/field (after):
+N001 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1         
+                                                            /--*  t5     simd32 
+N002 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+
+Lower of StoreInd didn't mark the node as self contained for reason: oper is not supported
+N001 (  3,  2) [000009] -----------                    t9 =    LCL_VAR   byref  V00 RetBuf       
+N002 (  3,  2) [000008] -----------                    t8 =    LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+                                                            /--*  t9     byref  
+                                                            +--*  t8     simd32 
+N003 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+lowering GT_RETURN
+N002 (  4,  3) [000012] -----------                         *  RETURN    byref 
+============Lower has completed modifying nodes.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall LIR 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal LIR 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal LIR 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall LIR 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i LIR 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i LIR 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+N001 (  0,  0) [000000] -----------                            NOP       void  
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+N001 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+                                                            /--*  t13    long   
+N002 (  5, 12) [000014] nc--G------                   t14 = *  IND       int   
+N003 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N004 (  7, 14) [000016] ----G--N---                         *  CMP       void  
+N005 (  9, 16) [000022] ----G------                            JCC       void   cond=UEQ
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+N001 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+               [000023] -----------                            IL_OFFSET void   INLRT @ 0x000[E-]
+N001 (  1,  1) [000001] -----------                            NO_OP     void  
+               [000024] -----------                            IL_OFFSET void   INLRT @ 0x001[E-]
+N001 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0         
+                                                            /--*  t2     byref  
+N002 (  6,  4) [000021] nc--G------                   t21 = *  IND       simd32
+                                                            /--*  t21    simd32 
+N003 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single
+                                                            /--*  t3     simd32 
+N004 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000025] -----------                            IL_OFFSET void   INLRT @ 0x007[--]
+N001 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1         
+                                                            /--*  t5     simd32 
+N002 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000026] -----------                            IL_OFFSET void   INLRT @ 0x008[E-]
+N001 (  0,  0) [000007] -----------                            NOP       void  
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+               [000027] -----------                            IL_OFFSET void   INLRT @ 0x00A[E-]
+N001 (  3,  2) [000009] -----------                    t9 =    LCL_VAR   byref  V00 RetBuf       
+N002 (  3,  2) [000008] -----------                    t8 =    LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+                                                            /--*  t9     byref  
+                                                            +--*  t8     simd32 
+N003 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+N001 (  3,  2) [000011] -----------                   t11 =    LCL_VAR   byref  V00 RetBuf       
+                                                            /--*  t11    byref  
+N002 (  4,  3) [000012] -----------                         *  RETURN    byref 
+
+-------------------------------------------------------------------------------------------------------------------
+
+*** lvaComputeRefCounts ***
+*************** In fgLocalVarLiveness()
+; Initial local variable assignments
+;
+;  V00 RetBuf          byref  do-not-enreg[]
+;  V01 arg0            byref  do-not-enreg[]
+;  V02 loc0           simd32  do-not-enreg[S] <System.Runtime.Intrinsics.Vector256`1[float]>
+;  V03 OutArgs        struct <32> do-not-enreg[XS] addr-exposed "OutgoingArgSpace"
+;  V04 tmp1           simd32  do-not-enreg[S] "impSpillStackEnsure"
+In fgLocalVarLivenessInit
+*************** In fgPerBlockLocalVarLiveness()
+*************** In fgInterBlockLocalVarLiveness()
+*************** In fgExtendDbgLifetimes()
+
+Marking vars alive over their entire scope :
+
+Local variable scopes = 3
+    	VarNum 	LVNum 	      Name 	Beg 	End
+Sorted by enter scope:
+ 0: 	00h 	00h 	V00 RetBuf 	000h   	00Ch <-- next enter scope
+ 1: 	01h 	01h 	  V01 arg0 	000h   	00Ch
+ 2: 	02h 	02h 	  V02 loc0 	000h   	00Ch
+Sorted by exit scope:
+ 0: 	00h 	00h 	V00 RetBuf 	000h   	00Ch <-- next exit scope
+ 1: 	01h 	01h 	  V01 arg0 	000h   	00Ch
+ 2: 	02h 	02h 	  V02 loc0 	000h   	00Ch
+Scope info: block BB01 marking in scope: {}
+Scope info: block BB02 marking in scope: {}
+Scope info: block BB03 marking in scope: {}
+Scope info: block BB04 marking in scope: {}
+Scope info: block BB05 marking in scope: {}
+Scope info: block BB06 marking in scope: {}
+
+Debug scopes:
+BB01: {}
+BB02: {}
+BB03: {}
+BB04: {}
+BB05: {}
+BB06: {}
+Scope info: block BB01 UNmarking in scope: {}
+
+BB liveness after fgExtendDbgLifetimes():
+
+BB01 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+BB02 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+BB03 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+BB04 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+BB05 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+BB06 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+
+
+*************** In fgRemoveDeadBlocks()
+Removing unreachable blocks for fgRemoveDeadBlocks iteration #1
+*************** In fgDebugCheckBBlist
+
+*** lvaComputeRefCounts ***
+
+*************** Finishing PHASE Lowering nodeinfo
+Trees after Lowering nodeinfo
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall LIR 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal LIR 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal LIR 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall LIR 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i LIR 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i LIR 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+N001 (  0,  0) [000000] -----------                            NOP       void  
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+N001 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr
+                                                            /--*  t13    long   
+N002 (  5, 12) [000014] nc--G------                   t14 = *  IND       int   
+N003 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N004 (  7, 14) [000016] ----G--N---                         *  CMP       void  
+N005 (  9, 16) [000022] ----G------                            JCC       void   cond=UEQ
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+N001 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+               [000023] -----------                            IL_OFFSET void   INLRT @ 0x000[E-]
+N001 (  1,  1) [000001] -----------                            NO_OP     void  
+               [000024] -----------                            IL_OFFSET void   INLRT @ 0x001[E-]
+N001 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0         
+                                                            /--*  t2     byref  
+N002 (  6,  4) [000021] nc--G------                   t21 = *  IND       simd32
+                                                            /--*  t21    simd32 
+N003 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single
+                                                            /--*  t3     simd32 
+N004 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1         
+               [000025] -----------                            IL_OFFSET void   INLRT @ 0x007[--]
+N001 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1         
+                                                            /--*  t5     simd32 
+N002 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+               [000026] -----------                            IL_OFFSET void   INLRT @ 0x008[E-]
+N001 (  0,  0) [000007] -----------                            NOP       void  
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+               [000027] -----------                            IL_OFFSET void   INLRT @ 0x00A[E-]
+N001 (  3,  2) [000009] -----------                    t9 =    LCL_VAR   byref  V00 RetBuf       
+N002 (  3,  2) [000008] -----------                    t8 =    LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0         
+                                                            /--*  t9     byref  
+                                                            +--*  t8     simd32 
+N003 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy)
+N001 (  3,  2) [000011] -----------                   t11 =    LCL_VAR   byref  V00 RetBuf       
+                                                            /--*  t11    byref  
+N002 (  4,  3) [000012] -----------                         *  RETURN    byref 
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Calculate stack level slots
+
+*************** Finishing PHASE Calculate stack level slots [no changes]
+
+*************** Starting PHASE Linear scan register alloc
+Clearing modified regs.
+
+buildIntervals ========
+
+-----------------
+LIVENESS:
+-----------------
+BB01
+use: {}
+def: {}
+ in: {}
+out: {}
+BB02
+use: {}
+def: {}
+ in: {}
+out: {}
+BB03
+use: {}
+def: {}
+ in: {}
+out: {}
+BB04
+use: {}
+def: {}
+ in: {}
+out: {}
+BB05
+use: {}
+def: {}
+ in: {}
+out: {}
+BB06
+use: {}
+def: {}
+ in: {}
+out: {}
+
+FP callee save candidate vars: None
+
+floatVarCount = 0; hasLoops = false, singleExit = true
+TUPLE STYLE DUMP BEFORE LSRA
+Start LSRA Block Sequence: 
+Current block: BB01
+	Succ block: BB02, Criteria: weight, Worklist: [BB02 ]
+Current block: BB02
+	Succ block: BB03, Criteria: weight, Worklist: [BB03 ]
+	Succ block: BB04, Criteria: weight, Worklist: [BB03 BB04 ]
+Current block: BB03
+Current block: BB04
+	Succ block: BB05, Criteria: bbNum, Worklist: [BB05 ]
+Current block: BB05
+	Succ block: BB06, Criteria: bbNum, Worklist: [BB06 ]
+Current block: BB06
+Final LSRA Block Sequence:
+BB01 (  1   )
+BB02 (  1   ) critical-out
+BB03 (  0.50)
+BB04 (  1   ) critical-in
+BB05 (  1   )
+BB06 (  1   )
+
+BB01 [???..???), preds={} succs={BB02}
+=====
+  N001.                    NOP      
+
+BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+=====
+  N001.                    CNS_INT(h) 0x7ffd0bf81d48 global ptr
+  N002.                    IND      
+  N003.                    CNS_INT   0
+  N004.                    CMP      
+  N005.                    JCC       cond=UEQ
+
+BB03 [???..???), preds={BB02} succs={BB04}
+=====
+  N001.                    CALL help
+
+BB04 [???..???), preds={BB02,BB03} succs={BB05}
+=====
+
+BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+=====
+  N000.                    IL_OFFSET INLRT @ 0x000[E-]
+  N001.                    NO_OP    
+  N000.                    IL_OFFSET INLRT @ 0x001[E-]
+  N001. t2              =  V01 MEM
+  N002. t21             =  IND      ; t2
+  N003. t3              =  HWINTRINSIC; t21
+  N004.                    V04 MEM; t3
+  N000.                    IL_OFFSET INLRT @ 0x007[--]
+  N001. t5              =  V04 MEM
+  N002.                    V02 MEM; t5
+  N000.                    IL_OFFSET INLRT @ 0x008[E-]
+  N001.                    NOP      
+
+BB06 [00A..00C) (return), preds={BB05} succs={}
+=====
+  N000.                    IL_OFFSET INLRT @ 0x00A[E-]
+  N001. t9              =  V00 MEM
+  N002. t8              =  V02 MEM
+  N003.                    STOREIND ; t9,t8
+  N001. t11             =  V00 MEM
+  N002.                    RETURN   ; t11
+
+
+
+
+buildIntervals second part ========
+Int arg V00 in reg rcx
+Int arg V01 in reg rdx
+
+NEW BLOCK BB01
+<RefPosition #0   @0   RefTypeBB BB01 regmask=[] minReg=1 wt=100.00>
+
+DefList: {  }
+N002 (  0,  0) [000000] -----------                         *  NOP       void   REG NA
+
+
+NEW BLOCK BB02
+
+
+Setting BB01 as the predecessor for determining incoming variable registers of BB02
+<RefPosition #1   @4   RefTypeBB BB02 regmask=[] minReg=1 wt=100.00>
+
+DefList: {  }
+N006 (  3, 10) [000013] Hc---------                         *  CNS_INT(h) long   0x7ffd0bf81d48 global ptr REG NA
+Contained
+DefList: {  }
+N008 (  5, 12) [000014] nc--G------                         *  IND       int    REG NA
+Contained
+DefList: {  }
+N010 (  1,  1) [000015] -c---------                         *  CNS_INT   int    0 REG NA
+Contained
+DefList: {  }
+N012 (  7, 14) [000016] ----G--N---                         *  CMP       void   REG NA
+
+DefList: {  }
+N014 (  9, 16) [000022] ----G------                         *  JCC       void   cond=UEQ REG NA
+
+
+NEW BLOCK BB03
+
+
+Setting BB02 as the predecessor for determining incoming variable registers of BB03
+<RefPosition #2   @16  RefTypeBB BB03 regmask=[] minReg=1 wt=50.00>
+
+DefList: {  }
+N018 ( 14,  5) [000017] --C-G-?----                         *  CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE REG NA
+<RefPosition #3   @19  RefTypeKill <Reg:rax> BB03 regmask=[rax] minReg=1 wt=50.00>
+<RefPosition #4   @19  RefTypeKill <Reg:rcx> BB03 regmask=[rcx] minReg=1 wt=50.00>
+<RefPosition #5   @19  RefTypeKill <Reg:rdx> BB03 regmask=[rdx] minReg=1 wt=50.00>
+<RefPosition #6   @19  RefTypeKill <Reg:r8 > BB03 regmask=[r8] minReg=1 wt=50.00>
+<RefPosition #7   @19  RefTypeKill <Reg:r9 > BB03 regmask=[r9] minReg=1 wt=50.00>
+<RefPosition #8   @19  RefTypeKill <Reg:r10> BB03 regmask=[r10] minReg=1 wt=50.00>
+<RefPosition #9   @19  RefTypeKill <Reg:r11> BB03 regmask=[r11] minReg=1 wt=50.00>
+<RefPosition #10  @19  RefTypeKill <Reg:mm0> BB03 regmask=[mm0] minReg=1 wt=50.00>
+<RefPosition #11  @19  RefTypeKill <Reg:mm1> BB03 regmask=[mm1] minReg=1 wt=50.00>
+<RefPosition #12  @19  RefTypeKill <Reg:mm2> BB03 regmask=[mm2] minReg=1 wt=50.00>
+<RefPosition #13  @19  RefTypeKill <Reg:mm3> BB03 regmask=[mm3] minReg=1 wt=50.00>
+<RefPosition #14  @19  RefTypeKill <Reg:mm4> BB03 regmask=[mm4] minReg=1 wt=50.00>
+<RefPosition #15  @19  RefTypeKill <Reg:mm5> BB03 regmask=[mm5] minReg=1 wt=50.00>
+<RefPosition #16  @19  RefTypeKill <Reg:mm16> BB03 regmask=[mm16] minReg=1 wt=50.00>
+<RefPosition #17  @19  RefTypeKill <Reg:mm17> BB03 regmask=[mm17] minReg=1 wt=50.00>
+<RefPosition #18  @19  RefTypeKill <Reg:mm18> BB03 regmask=[mm18] minReg=1 wt=50.00>
+<RefPosition #19  @19  RefTypeKill <Reg:mm19> BB03 regmask=[mm19] minReg=1 wt=50.00>
+<RefPosition #20  @19  RefTypeKill <Reg:mm20> BB03 regmask=[mm20] minReg=1 wt=50.00>
+<RefPosition #21  @19  RefTypeKill <Reg:mm21> BB03 regmask=[mm21] minReg=1 wt=50.00>
+<RefPosition #22  @19  RefTypeKill <Reg:mm22> BB03 regmask=[mm22] minReg=1 wt=50.00>
+<RefPosition #23  @19  RefTypeKill <Reg:mm23> BB03 regmask=[mm23] minReg=1 wt=50.00>
+<RefPosition #24  @19  RefTypeKill <Reg:mm24> BB03 regmask=[mm24] minReg=1 wt=50.00>
+<RefPosition #25  @19  RefTypeKill <Reg:mm25> BB03 regmask=[mm25] minReg=1 wt=50.00>
+<RefPosition #26  @19  RefTypeKill <Reg:mm26> BB03 regmask=[mm26] minReg=1 wt=50.00>
+<RefPosition #27  @19  RefTypeKill <Reg:mm27> BB03 regmask=[mm27] minReg=1 wt=50.00>
+<RefPosition #28  @19  RefTypeKill <Reg:mm28> BB03 regmask=[mm28] minReg=1 wt=50.00>
+<RefPosition #29  @19  RefTypeKill <Reg:mm29> BB03 regmask=[mm29] minReg=1 wt=50.00>
+<RefPosition #30  @19  RefTypeKill <Reg:mm30> BB03 regmask=[mm30] minReg=1 wt=50.00>
+<RefPosition #31  @19  RefTypeKill <Reg:mm31> BB03 regmask=[mm31] minReg=1 wt=50.00>
+
+
+NEW BLOCK BB04
+
+
+Setting BB02 as the predecessor for determining incoming variable registers of BB04
+<RefPosition #32  @20  RefTypeBB BB04 regmask=[] minReg=1 wt=100.00>
+
+
+NEW BLOCK BB05
+
+
+Setting BB04 as the predecessor for determining incoming variable registers of BB05
+<RefPosition #33  @22  RefTypeBB BB05 regmask=[] minReg=1 wt=100.00>
+
+DefList: {  }
+N024 (???,???) [000023] -----------                         *  IL_OFFSET void   INLRT @ 0x000[E-] REG NA
+
+DefList: {  }
+N026 (  1,  1) [000001] -----------                         *  NO_OP     void   REG NA
+
+DefList: {  }
+N028 (???,???) [000024] -----------                         *  IL_OFFSET void   INLRT @ 0x001[E-] REG NA
+
+DefList: {  }
+N030 (  3,  2) [000002] -----------                         *  LCL_VAR   byref  V01 arg0          NA REG NA
+Interval  0: byref RefPositions {} physReg:NA Preferences=[allIntButFP]
+<RefPosition #34  @31  RefTypeDef <Ivl:0> LCL_VAR BB05 regmask=[allIntButFP] minReg=1 wt=400.00>
+
+DefList: { N030.t2. LCL_VAR }
+N032 (  6,  4) [000021] nc--G------                         *  IND       simd32 REG NA
+Contained
+DefList: { N030.t2. LCL_VAR }
+N034 (  7,  5) [000003] ----G------                         *  HWINTRINSIC simd32 int ConvertToVector256Single REG NA
+<RefPosition #35  @34  RefTypeUse <Ivl:0> BB05 regmask=[allIntButFP] minReg=1 last wt=100.00>
+Interval  1: simd32 RefPositions {} physReg:NA Preferences=[allFloat]
+<RefPosition #36  @35  RefTypeDef <Ivl:1> HWINTRINSIC BB05 regmask=[allFloat] minReg=1 wt=400.00>
+
+DefList: { N034.t3. HWINTRINSIC }
+N036 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1          NA REG NA
+<RefPosition #37  @36  RefTypeUse <Ivl:1> BB05 regmask=[allFloat] minReg=1 last wt=100.00>
+
+DefList: {  }
+N038 (???,???) [000025] -----------                         *  IL_OFFSET void   INLRT @ 0x007[--] REG NA
+
+DefList: {  }
+N040 (  3,  2) [000005] -----------                         *  LCL_VAR   simd32 V04 tmp1          NA REG NA
+Interval  2: simd32 RefPositions {} physReg:NA Preferences=[allFloat]
+<RefPosition #38  @41  RefTypeDef <Ivl:2> LCL_VAR BB05 regmask=[allFloat] minReg=1 wt=400.00>
+
+DefList: { N040.t5. LCL_VAR }
+N042 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          NA REG NA
+<RefPosition #39  @42  RefTypeUse <Ivl:2> BB05 regmask=[allFloat] minReg=1 last wt=100.00>
+
+DefList: {  }
+N044 (???,???) [000026] -----------                         *  IL_OFFSET void   INLRT @ 0x008[E-] REG NA
+
+DefList: {  }
+N046 (  0,  0) [000007] -----------                         *  NOP       void   REG NA
+
+
+NEW BLOCK BB06
+
+
+Setting BB05 as the predecessor for determining incoming variable registers of BB06
+<RefPosition #40  @48  RefTypeBB BB06 regmask=[] minReg=1 wt=100.00>
+
+DefList: {  }
+N050 (???,???) [000027] -----------                         *  IL_OFFSET void   INLRT @ 0x00A[E-] REG NA
+
+DefList: {  }
+N052 (  3,  2) [000009] -----------                         *  LCL_VAR   byref  V00 RetBuf        NA REG NA
+Interval  3: byref RefPositions {} physReg:NA Preferences=[allIntButFP]
+<RefPosition #41  @53  RefTypeDef <Ivl:3> LCL_VAR BB06 regmask=[allIntButFP] minReg=1 wt=400.00>
+
+DefList: { N052.t9. LCL_VAR }
+N054 (  3,  2) [000008] -----------                         *  LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          NA REG NA
+Interval  4: simd32 RefPositions {} physReg:NA Preferences=[allFloat]
+<RefPosition #42  @55  RefTypeDef <Ivl:4> LCL_VAR BB06 regmask=[allFloat] minReg=1 wt=400.00>
+
+DefList: { N052.t9. LCL_VAR; N054.t8. LCL_VAR }
+N056 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy) REG NA
+<RefPosition #43  @56  RefTypeUse <Ivl:3> BB06 regmask=[allIntButFP] minReg=1 last wt=100.00>
+<RefPosition #44  @56  RefTypeUse <Ivl:4> BB06 regmask=[allFloat] minReg=1 last wt=100.00>
+
+DefList: {  }
+N058 (  3,  2) [000011] -----------                         *  LCL_VAR   byref  V00 RetBuf        NA REG NA
+Interval  5: byref RefPositions {} physReg:NA Preferences=[allIntButFP]
+<RefPosition #45  @59  RefTypeDef <Ivl:5> LCL_VAR BB06 regmask=[allIntButFP] minReg=1 wt=400.00>
+
+DefList: { N058.t11. LCL_VAR }
+N060 (  4,  3) [000012] -----------                         *  RETURN    byref  REG NA
+<RefPosition #46  @60  RefTypeFixedReg <Reg:rax> BB06 regmask=[rax] minReg=1 wt=100.00>
+<RefPosition #47  @60  RefTypeUse <Ivl:5> BB06 regmask=[rax] minReg=1 last fixed wt=100.00>
+
+
+Linear scan intervals BEFORE VALIDATING INTERVALS:
+Interval  0: byref RefPositions {#34@31 #35@34} physReg:NA Preferences=[allIntButFP]
+Interval  1: simd32 RefPositions {#36@35 #37@36} physReg:NA Preferences=[allFloat]
+Interval  2: simd32 RefPositions {#38@41 #39@42} physReg:NA Preferences=[allFloat]
+Interval  3: byref RefPositions {#41@53 #43@56} physReg:NA Preferences=[allIntButFP]
+Interval  4: simd32 RefPositions {#42@55 #44@56} physReg:NA Preferences=[allFloat]
+Interval  5: byref RefPositions {#45@59 #47@60} physReg:NA Preferences=[rax]
+
+------------
+REFPOSITIONS BEFORE VALIDATING INTERVALS: 
+------------
+<RefPosition #0   @0   RefTypeBB BB01 regmask=[] minReg=1 wt=100.00>
+<RefPosition #1   @4   RefTypeBB BB02 regmask=[] minReg=1 wt=100.00>
+<RefPosition #2   @16  RefTypeBB BB03 regmask=[] minReg=1 wt=50.00>
+<RefPosition #3   @19  RefTypeKill <Reg:rax> BB03 regmask=[rax] minReg=1 last wt=50.00>
+<RefPosition #4   @19  RefTypeKill <Reg:rcx> BB03 regmask=[rcx] minReg=1 last wt=50.00>
+<RefPosition #5   @19  RefTypeKill <Reg:rdx> BB03 regmask=[rdx] minReg=1 last wt=50.00>
+<RefPosition #6   @19  RefTypeKill <Reg:r8 > BB03 regmask=[r8] minReg=1 last wt=50.00>
+<RefPosition #7   @19  RefTypeKill <Reg:r9 > BB03 regmask=[r9] minReg=1 last wt=50.00>
+<RefPosition #8   @19  RefTypeKill <Reg:r10> BB03 regmask=[r10] minReg=1 last wt=50.00>
+<RefPosition #9   @19  RefTypeKill <Reg:r11> BB03 regmask=[r11] minReg=1 last wt=50.00>
+<RefPosition #10  @19  RefTypeKill <Reg:mm0> BB03 regmask=[mm0] minReg=1 last wt=50.00>
+<RefPosition #11  @19  RefTypeKill <Reg:mm1> BB03 regmask=[mm1] minReg=1 last wt=50.00>
+<RefPosition #12  @19  RefTypeKill <Reg:mm2> BB03 regmask=[mm2] minReg=1 last wt=50.00>
+<RefPosition #13  @19  RefTypeKill <Reg:mm3> BB03 regmask=[mm3] minReg=1 last wt=50.00>
+<RefPosition #14  @19  RefTypeKill <Reg:mm4> BB03 regmask=[mm4] minReg=1 last wt=50.00>
+<RefPosition #15  @19  RefTypeKill <Reg:mm5> BB03 regmask=[mm5] minReg=1 last wt=50.00>
+<RefPosition #16  @19  RefTypeKill <Reg:mm16> BB03 regmask=[mm16] minReg=1 last wt=50.00>
+<RefPosition #17  @19  RefTypeKill <Reg:mm17> BB03 regmask=[mm17] minReg=1 last wt=50.00>
+<RefPosition #18  @19  RefTypeKill <Reg:mm18> BB03 regmask=[mm18] minReg=1 last wt=50.00>
+<RefPosition #19  @19  RefTypeKill <Reg:mm19> BB03 regmask=[mm19] minReg=1 last wt=50.00>
+<RefPosition #20  @19  RefTypeKill <Reg:mm20> BB03 regmask=[mm20] minReg=1 last wt=50.00>
+<RefPosition #21  @19  RefTypeKill <Reg:mm21> BB03 regmask=[mm21] minReg=1 last wt=50.00>
+<RefPosition #22  @19  RefTypeKill <Reg:mm22> BB03 regmask=[mm22] minReg=1 last wt=50.00>
+<RefPosition #23  @19  RefTypeKill <Reg:mm23> BB03 regmask=[mm23] minReg=1 last wt=50.00>
+<RefPosition #24  @19  RefTypeKill <Reg:mm24> BB03 regmask=[mm24] minReg=1 last wt=50.00>
+<RefPosition #25  @19  RefTypeKill <Reg:mm25> BB03 regmask=[mm25] minReg=1 last wt=50.00>
+<RefPosition #26  @19  RefTypeKill <Reg:mm26> BB03 regmask=[mm26] minReg=1 last wt=50.00>
+<RefPosition #27  @19  RefTypeKill <Reg:mm27> BB03 regmask=[mm27] minReg=1 last wt=50.00>
+<RefPosition #28  @19  RefTypeKill <Reg:mm28> BB03 regmask=[mm28] minReg=1 last wt=50.00>
+<RefPosition #29  @19  RefTypeKill <Reg:mm29> BB03 regmask=[mm29] minReg=1 last wt=50.00>
+<RefPosition #30  @19  RefTypeKill <Reg:mm30> BB03 regmask=[mm30] minReg=1 last wt=50.00>
+<RefPosition #31  @19  RefTypeKill <Reg:mm31> BB03 regmask=[mm31] minReg=1 last wt=50.00>
+<RefPosition #32  @20  RefTypeBB BB04 regmask=[] minReg=1 wt=100.00>
+<RefPosition #33  @22  RefTypeBB BB05 regmask=[] minReg=1 wt=100.00>
+<RefPosition #34  @31  RefTypeDef <Ivl:0> LCL_VAR BB05 regmask=[allIntButFP] minReg=1 wt=400.00>
+<RefPosition #35  @34  RefTypeUse <Ivl:0> BB05 regmask=[allIntButFP] minReg=1 last wt=100.00>
+<RefPosition #36  @35  RefTypeDef <Ivl:1> HWINTRINSIC BB05 regmask=[allFloat] minReg=1 wt=400.00>
+<RefPosition #37  @36  RefTypeUse <Ivl:1> BB05 regmask=[allFloat] minReg=1 last wt=100.00>
+<RefPosition #38  @41  RefTypeDef <Ivl:2> LCL_VAR BB05 regmask=[allFloat] minReg=1 wt=400.00>
+<RefPosition #39  @42  RefTypeUse <Ivl:2> BB05 regmask=[allFloat] minReg=1 last wt=100.00>
+<RefPosition #40  @48  RefTypeBB BB06 regmask=[] minReg=1 wt=100.00>
+<RefPosition #41  @53  RefTypeDef <Ivl:3> LCL_VAR BB06 regmask=[allIntButFP] minReg=1 wt=400.00>
+<RefPosition #42  @55  RefTypeDef <Ivl:4> LCL_VAR BB06 regmask=[allFloat] minReg=1 wt=400.00>
+<RefPosition #43  @56  RefTypeUse <Ivl:3> BB06 regmask=[allIntButFP] minReg=1 last wt=100.00>
+<RefPosition #44  @56  RefTypeUse <Ivl:4> BB06 regmask=[allFloat] minReg=1 last wt=100.00>
+<RefPosition #45  @59  RefTypeDef <Ivl:5> LCL_VAR BB06 regmask=[rax] minReg=1 wt=400.00>
+<RefPosition #46  @60  RefTypeFixedReg <Reg:rax> BB06 regmask=[rax] minReg=1 wt=100.00>
+<RefPosition #47  @60  RefTypeUse <Ivl:5> BB06 regmask=[rax] minReg=1 last fixed wt=100.00>
+TUPLE STYLE DUMP WITH REF POSITIONS
+Incoming Parameters: 
+BB01 [???..???), preds={} succs={BB02}
+=====
+  N002.                    NOP      
+
+BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+=====
+  N006.                    CNS_INT(h) 0x7ffd0bf81d48 global ptr
+  N008.                    IND      
+  N010.                    CNS_INT   0
+  N012.                    CMP      
+  N014.                    JCC       cond=UEQ
+
+BB03 [???..???), preds={BB02} succs={BB04}
+=====
+  N018.                    CALL help
+        Kill: rax rcx rdx r8 r9 r10 r11 mm0 mm1 mm2 mm3 mm4 mm5 mm16 mm17 mm18 mm19 mm20 mm21 mm22 mm23 mm24 mm25 mm26 mm27 mm28 mm29 mm30 mm31 
+
+BB04 [???..???), preds={BB02,BB03} succs={BB05}
+=====
+
+BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+=====
+  N024.                    IL_OFFSET INLRT @ 0x000[E-]
+  N026.                    NO_OP    
+  N028.                    IL_OFFSET INLRT @ 0x001[E-]
+  N030.                    V01 MEM
+        Def:<I0>(#34)
+  N032.                    IND      
+  N034.                    HWINTRINSIC
+                               Use:<I0>(#35) *
+        Def:<I1>(#36)
+  N036.                    V04 MEM
+                               Use:<I1>(#37) *
+  N038.                    IL_OFFSET INLRT @ 0x007[--]
+  N040.                    V04 MEM
+        Def:<I2>(#38)
+  N042.                    V02 MEM
+                               Use:<I2>(#39) *
+  N044.                    IL_OFFSET INLRT @ 0x008[E-]
+  N046.                    NOP      
+
+BB06 [00A..00C) (return), preds={BB05} succs={}
+=====
+  N050.                    IL_OFFSET INLRT @ 0x00A[E-]
+  N052.                    V00 MEM
+        Def:<I3>(#41)
+  N054.                    V02 MEM
+        Def:<I4>(#42)
+  N056.                    STOREIND 
+                               Use:<I3>(#43) *
+                               Use:<I4>(#44) *
+  N058.                    V00 MEM
+        Def:<I5>(#45)
+  N060.                    RETURN   
+                               Use:<I5>(#47) Fixed:rax(#46) *
+
+
+
+
+Linear scan intervals after buildIntervals:
+Interval  0: byref RefPositions {#34@31 #35@34} physReg:NA Preferences=[allIntButFP]
+Interval  1: simd32 RefPositions {#36@35 #37@36} physReg:NA Preferences=[allFloat]
+Interval  2: simd32 RefPositions {#38@41 #39@42} physReg:NA Preferences=[allFloat]
+Interval  3: byref RefPositions {#41@53 #43@56} physReg:NA Preferences=[allIntButFP]
+Interval  4: simd32 RefPositions {#42@55 #44@56} physReg:NA Preferences=[allFloat]
+Interval  5: byref RefPositions {#45@59 #47@60} physReg:NA Preferences=[rax]
+
+*************** In LinearScan::allocateRegisters()
+
+Linear scan intervals before allocateRegisters:
+Interval  0: byref RefPositions {#34@31 #35@34} physReg:NA Preferences=[allIntButFP]
+Interval  1: simd32 RefPositions {#36@35 #37@36} physReg:NA Preferences=[allFloat]
+Interval  2: simd32 RefPositions {#38@41 #39@42} physReg:NA Preferences=[allFloat]
+Interval  3: byref RefPositions {#41@53 #43@56} physReg:NA Preferences=[allIntButFP]
+Interval  4: simd32 RefPositions {#42@55 #44@56} physReg:NA Preferences=[allFloat]
+Interval  5: byref RefPositions {#45@59 #47@60} physReg:NA Preferences=[rax]
+
+------------
+REFPOSITIONS BEFORE ALLOCATION: 
+------------
+<RefPosition #0   @0   RefTypeBB BB01 regmask=[] minReg=1 wt=100.00>
+<RefPosition #1   @4   RefTypeBB BB02 regmask=[] minReg=1 wt=100.00>
+<RefPosition #2   @16  RefTypeBB BB03 regmask=[] minReg=1 wt=50.00>
+<RefPosition #3   @19  RefTypeKill <Reg:rax> BB03 regmask=[rax] minReg=1 last wt=50.00>
+<RefPosition #4   @19  RefTypeKill <Reg:rcx> BB03 regmask=[rcx] minReg=1 last wt=50.00>
+<RefPosition #5   @19  RefTypeKill <Reg:rdx> BB03 regmask=[rdx] minReg=1 last wt=50.00>
+<RefPosition #6   @19  RefTypeKill <Reg:r8 > BB03 regmask=[r8] minReg=1 last wt=50.00>
+<RefPosition #7   @19  RefTypeKill <Reg:r9 > BB03 regmask=[r9] minReg=1 last wt=50.00>
+<RefPosition #8   @19  RefTypeKill <Reg:r10> BB03 regmask=[r10] minReg=1 last wt=50.00>
+<RefPosition #9   @19  RefTypeKill <Reg:r11> BB03 regmask=[r11] minReg=1 last wt=50.00>
+<RefPosition #10  @19  RefTypeKill <Reg:mm0> BB03 regmask=[mm0] minReg=1 last wt=50.00>
+<RefPosition #11  @19  RefTypeKill <Reg:mm1> BB03 regmask=[mm1] minReg=1 last wt=50.00>
+<RefPosition #12  @19  RefTypeKill <Reg:mm2> BB03 regmask=[mm2] minReg=1 last wt=50.00>
+<RefPosition #13  @19  RefTypeKill <Reg:mm3> BB03 regmask=[mm3] minReg=1 last wt=50.00>
+<RefPosition #14  @19  RefTypeKill <Reg:mm4> BB03 regmask=[mm4] minReg=1 last wt=50.00>
+<RefPosition #15  @19  RefTypeKill <Reg:mm5> BB03 regmask=[mm5] minReg=1 last wt=50.00>
+<RefPosition #16  @19  RefTypeKill <Reg:mm16> BB03 regmask=[mm16] minReg=1 last wt=50.00>
+<RefPosition #17  @19  RefTypeKill <Reg:mm17> BB03 regmask=[mm17] minReg=1 last wt=50.00>
+<RefPosition #18  @19  RefTypeKill <Reg:mm18> BB03 regmask=[mm18] minReg=1 last wt=50.00>
+<RefPosition #19  @19  RefTypeKill <Reg:mm19> BB03 regmask=[mm19] minReg=1 last wt=50.00>
+<RefPosition #20  @19  RefTypeKill <Reg:mm20> BB03 regmask=[mm20] minReg=1 last wt=50.00>
+<RefPosition #21  @19  RefTypeKill <Reg:mm21> BB03 regmask=[mm21] minReg=1 last wt=50.00>
+<RefPosition #22  @19  RefTypeKill <Reg:mm22> BB03 regmask=[mm22] minReg=1 last wt=50.00>
+<RefPosition #23  @19  RefTypeKill <Reg:mm23> BB03 regmask=[mm23] minReg=1 last wt=50.00>
+<RefPosition #24  @19  RefTypeKill <Reg:mm24> BB03 regmask=[mm24] minReg=1 last wt=50.00>
+<RefPosition #25  @19  RefTypeKill <Reg:mm25> BB03 regmask=[mm25] minReg=1 last wt=50.00>
+<RefPosition #26  @19  RefTypeKill <Reg:mm26> BB03 regmask=[mm26] minReg=1 last wt=50.00>
+<RefPosition #27  @19  RefTypeKill <Reg:mm27> BB03 regmask=[mm27] minReg=1 last wt=50.00>
+<RefPosition #28  @19  RefTypeKill <Reg:mm28> BB03 regmask=[mm28] minReg=1 last wt=50.00>
+<RefPosition #29  @19  RefTypeKill <Reg:mm29> BB03 regmask=[mm29] minReg=1 last wt=50.00>
+<RefPosition #30  @19  RefTypeKill <Reg:mm30> BB03 regmask=[mm30] minReg=1 last wt=50.00>
+<RefPosition #31  @19  RefTypeKill <Reg:mm31> BB03 regmask=[mm31] minReg=1 last wt=50.00>
+<RefPosition #32  @20  RefTypeBB BB04 regmask=[] minReg=1 wt=100.00>
+<RefPosition #33  @22  RefTypeBB BB05 regmask=[] minReg=1 wt=100.00>
+<RefPosition #34  @31  RefTypeDef <Ivl:0> LCL_VAR BB05 regmask=[allIntButFP] minReg=1 wt=400.00>
+<RefPosition #35  @34  RefTypeUse <Ivl:0> BB05 regmask=[allIntButFP] minReg=1 last wt=100.00>
+<RefPosition #36  @35  RefTypeDef <Ivl:1> HWINTRINSIC BB05 regmask=[allFloat] minReg=1 wt=400.00>
+<RefPosition #37  @36  RefTypeUse <Ivl:1> BB05 regmask=[allFloat] minReg=1 last wt=100.00>
+<RefPosition #38  @41  RefTypeDef <Ivl:2> LCL_VAR BB05 regmask=[allFloat] minReg=1 wt=400.00>
+<RefPosition #39  @42  RefTypeUse <Ivl:2> BB05 regmask=[allFloat] minReg=1 last wt=100.00>
+<RefPosition #40  @48  RefTypeBB BB06 regmask=[] minReg=1 wt=100.00>
+<RefPosition #41  @53  RefTypeDef <Ivl:3> LCL_VAR BB06 regmask=[allIntButFP] minReg=1 wt=400.00>
+<RefPosition #42  @55  RefTypeDef <Ivl:4> LCL_VAR BB06 regmask=[allFloat] minReg=1 wt=400.00>
+<RefPosition #43  @56  RefTypeUse <Ivl:3> BB06 regmask=[allIntButFP] minReg=1 last wt=100.00>
+<RefPosition #44  @56  RefTypeUse <Ivl:4> BB06 regmask=[allFloat] minReg=1 last wt=100.00>
+<RefPosition #45  @59  RefTypeDef <Ivl:5> LCL_VAR BB06 regmask=[rax] minReg=1 wt=400.00>
+<RefPosition #46  @60  RefTypeFixedReg <Reg:rax> BB06 regmask=[rax] minReg=1 wt=100.00>
+<RefPosition #47  @60  RefTypeUse <Ivl:5> BB06 regmask=[rax] minReg=1 last fixed wt=100.00>
+
+
+Allocating Registers
+--------------------
+The following table has one or more rows for each RefPosition that is handled during allocation.
+The columns are: (1) Loc: LSRA location, (2) RP#: RefPosition number, (3) Name, (4) Type (e.g. Def, Use,
+Fixd, Parm, DDef (Dummy Def), ExpU (Exposed Use), Kill) followed by a '*' if it is a last use, and a 'D'
+if it is delayRegFree, (5) Action taken during allocation. Some actions include (a) Alloc a new register,
+(b) Keep an existing register, (c) Spill a register, (d) ReLod (Reload) a register. If an ALL-CAPS name
+such as COVRS is displayed, it is a score name from lsra_score.h, with a trailing '(A)' indicating alloc,
+'(C)' indicating copy, and '(R)' indicating re-use. See dumpLsraAllocationEvent() for details.
+The subsequent columns show the Interval occupying each register, if any, followed by 'a' if it is
+active, 'p' if it is a large vector that has been partially spilled, and 'i' if it is inactive.
+Columns are only printed up to the last modified register, which may increase during allocation,
+in which case additional columns will appear. Registers which are not marked modified have ---- in
+their column.
+
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+                                          |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+          0.#0  BB1 PredBB0               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+          4.#1  BB2 PredBB1               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         16.#2  BB3 PredBB2               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000017] 19.#3  rax  Kill   Keep     rax  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#4  rcx  Kill   Keep     rcx  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#5  rdx  Kill   Keep     rdx  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#6  r8   Kill   Keep     r8   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#7  r9   Kill   Keep     r9   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#8  r10  Kill   Keep     r10  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#9  r11  Kill   Keep     r11  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#10 mm0  Kill   Keep     mm0  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#11 mm1  Kill   Keep     mm1  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#12 mm2  Kill   Keep     mm2  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#13 mm3  Kill   Keep     mm3  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#14 mm4  Kill   Keep     mm4  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#15 mm5  Kill   Keep     mm5  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#16 mm16 Kill   Keep     mm16 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#17 mm17 Kill   Keep     mm17 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#18 mm18 Kill   Keep     mm18 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#19 mm19 Kill   Keep     mm19 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#20 mm20 Kill   Keep     mm20 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#21 mm21 Kill   Keep     mm21 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#22 mm22 Kill   Keep     mm22 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#23 mm23 Kill   Keep     mm23 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#24 mm24 Kill   Keep     mm24 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#25 mm25 Kill   Keep     mm25 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#26 mm26 Kill   Keep     mm26 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#27 mm27 Kill   Keep     mm27 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#28 mm28 Kill   Keep     mm28 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#29 mm29 Kill   Keep     mm29 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#30 mm30 Kill   Keep     mm30 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#31 mm31 Kill   Keep     mm31 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         20.#32 BB4 PredBB2               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         22.#33 BB5 PredBB4               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000002] 31.#34 I0   Def    BSFIT(A) rax  |I0 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000003] 34.#35 I0   Use *  Keep     rax  |I0 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+         35.#36 I1   Def    ORDER(A) mm0  |    |    |    |    |    |    |    |    |    |I1 a|    |    |    |    |
+[000004] 36.#37 I1   Use *  Keep     mm0  |    |    |    |    |    |    |    |    |    |I1 a|    |    |    |    |
+[000005] 41.#38 I2   Def    ORDER(A) mm0  |    |    |    |    |    |    |    |    |    |I2 a|    |    |    |    |
+[000006] 42.#39 I2   Use *  Keep     mm0  |    |    |    |    |    |    |    |    |    |I2 a|    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         48.#40 BB6 PredBB5               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000009] 53.#41 I3   Def    BSFIT(A) rax  |I3 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000008] 55.#42 I4   Def    ORDER(A) mm0  |I3 a|    |    |    |    |    |    |    |    |I4 a|    |    |    |    |
+[000010] 56.#43 I3   Use *  Keep     rax  |I3 a|    |    |    |    |    |    |    |    |I4 a|    |    |    |    |
+         56.#44 I4   Use *  Keep     mm0  |I3 a|    |    |    |    |    |    |    |    |I4 a|    |    |    |    |
+[000011] 59.#45 I5   Def    Alloc    rax  |I5 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000012] 60.#46 rax  Fixd   Keep     rax  |I5 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+         60.#47 I5   Use *  Keep     rax  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+
+------------
+REFPOSITIONS AFTER ALLOCATION: 
+------------
+<RefPosition #0   @0   RefTypeBB BB01 regmask=[] minReg=1 wt=100.00>
+<RefPosition #1   @4   RefTypeBB BB02 regmask=[] minReg=1 wt=100.00>
+<RefPosition #2   @16  RefTypeBB BB03 regmask=[] minReg=1 wt=50.00>
+<RefPosition #3   @19  RefTypeKill <Reg:rax> BB03 regmask=[rax] minReg=1 last wt=50.00>
+<RefPosition #4   @19  RefTypeKill <Reg:rcx> BB03 regmask=[rcx] minReg=1 last wt=50.00>
+<RefPosition #5   @19  RefTypeKill <Reg:rdx> BB03 regmask=[rdx] minReg=1 last wt=50.00>
+<RefPosition #6   @19  RefTypeKill <Reg:r8 > BB03 regmask=[r8] minReg=1 last wt=50.00>
+<RefPosition #7   @19  RefTypeKill <Reg:r9 > BB03 regmask=[r9] minReg=1 last wt=50.00>
+<RefPosition #8   @19  RefTypeKill <Reg:r10> BB03 regmask=[r10] minReg=1 last wt=50.00>
+<RefPosition #9   @19  RefTypeKill <Reg:r11> BB03 regmask=[r11] minReg=1 last wt=50.00>
+<RefPosition #10  @19  RefTypeKill <Reg:mm0> BB03 regmask=[mm0] minReg=1 last wt=50.00>
+<RefPosition #11  @19  RefTypeKill <Reg:mm1> BB03 regmask=[mm1] minReg=1 last wt=50.00>
+<RefPosition #12  @19  RefTypeKill <Reg:mm2> BB03 regmask=[mm2] minReg=1 last wt=50.00>
+<RefPosition #13  @19  RefTypeKill <Reg:mm3> BB03 regmask=[mm3] minReg=1 last wt=50.00>
+<RefPosition #14  @19  RefTypeKill <Reg:mm4> BB03 regmask=[mm4] minReg=1 last wt=50.00>
+<RefPosition #15  @19  RefTypeKill <Reg:mm5> BB03 regmask=[mm5] minReg=1 last wt=50.00>
+<RefPosition #16  @19  RefTypeKill <Reg:mm16> BB03 regmask=[mm16] minReg=1 last wt=50.00>
+<RefPosition #17  @19  RefTypeKill <Reg:mm17> BB03 regmask=[mm17] minReg=1 last wt=50.00>
+<RefPosition #18  @19  RefTypeKill <Reg:mm18> BB03 regmask=[mm18] minReg=1 last wt=50.00>
+<RefPosition #19  @19  RefTypeKill <Reg:mm19> BB03 regmask=[mm19] minReg=1 last wt=50.00>
+<RefPosition #20  @19  RefTypeKill <Reg:mm20> BB03 regmask=[mm20] minReg=1 last wt=50.00>
+<RefPosition #21  @19  RefTypeKill <Reg:mm21> BB03 regmask=[mm21] minReg=1 last wt=50.00>
+<RefPosition #22  @19  RefTypeKill <Reg:mm22> BB03 regmask=[mm22] minReg=1 last wt=50.00>
+<RefPosition #23  @19  RefTypeKill <Reg:mm23> BB03 regmask=[mm23] minReg=1 last wt=50.00>
+<RefPosition #24  @19  RefTypeKill <Reg:mm24> BB03 regmask=[mm24] minReg=1 last wt=50.00>
+<RefPosition #25  @19  RefTypeKill <Reg:mm25> BB03 regmask=[mm25] minReg=1 last wt=50.00>
+<RefPosition #26  @19  RefTypeKill <Reg:mm26> BB03 regmask=[mm26] minReg=1 last wt=50.00>
+<RefPosition #27  @19  RefTypeKill <Reg:mm27> BB03 regmask=[mm27] minReg=1 last wt=50.00>
+<RefPosition #28  @19  RefTypeKill <Reg:mm28> BB03 regmask=[mm28] minReg=1 last wt=50.00>
+<RefPosition #29  @19  RefTypeKill <Reg:mm29> BB03 regmask=[mm29] minReg=1 last wt=50.00>
+<RefPosition #30  @19  RefTypeKill <Reg:mm30> BB03 regmask=[mm30] minReg=1 last wt=50.00>
+<RefPosition #31  @19  RefTypeKill <Reg:mm31> BB03 regmask=[mm31] minReg=1 last wt=50.00>
+<RefPosition #32  @20  RefTypeBB BB04 regmask=[] minReg=1 wt=100.00>
+<RefPosition #33  @22  RefTypeBB BB05 regmask=[] minReg=1 wt=100.00>
+<RefPosition #34  @31  RefTypeDef <Ivl:0> LCL_VAR BB05 regmask=[rax] minReg=1 wt=400.00>
+<RefPosition #35  @34  RefTypeUse <Ivl:0> BB05 regmask=[rax] minReg=1 last wt=100.00>
+<RefPosition #36  @35  RefTypeDef <Ivl:1> HWINTRINSIC BB05 regmask=[mm0] minReg=1 wt=400.00>
+<RefPosition #37  @36  RefTypeUse <Ivl:1> BB05 regmask=[mm0] minReg=1 last wt=100.00>
+<RefPosition #38  @41  RefTypeDef <Ivl:2> LCL_VAR BB05 regmask=[mm0] minReg=1 wt=400.00>
+<RefPosition #39  @42  RefTypeUse <Ivl:2> BB05 regmask=[mm0] minReg=1 last wt=100.00>
+<RefPosition #40  @48  RefTypeBB BB06 regmask=[] minReg=1 wt=100.00>
+<RefPosition #41  @53  RefTypeDef <Ivl:3> LCL_VAR BB06 regmask=[rax] minReg=1 wt=400.00>
+<RefPosition #42  @55  RefTypeDef <Ivl:4> LCL_VAR BB06 regmask=[mm0] minReg=1 wt=400.00>
+<RefPosition #43  @56  RefTypeUse <Ivl:3> BB06 regmask=[rax] minReg=1 last wt=100.00>
+<RefPosition #44  @56  RefTypeUse <Ivl:4> BB06 regmask=[mm0] minReg=1 last wt=100.00>
+<RefPosition #45  @59  RefTypeDef <Ivl:5> LCL_VAR BB06 regmask=[rax] minReg=1 wt=400.00>
+<RefPosition #46  @60  RefTypeFixedReg <Reg:rax> BB06 regmask=[rax] minReg=1 wt=100.00>
+<RefPosition #47  @60  RefTypeUse <Ivl:5> BB06 regmask=[rax] minReg=1 last fixed wt=100.00>
+Active intervals at end of allocation:
+
+Trees after linear scan register allocator (LSRA)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall LIR 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal LIR 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal LIR 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall LIR 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i LIR 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i LIR 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+N002 (  0,  0) [000000] -----------                            NOP       void   REG NA
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+N006 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr REG NA
+                                                            /--*  t13    long   
+N008 (  5, 12) [000014] nc--G------                   t14 = *  IND       int    REG NA
+N010 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0 REG NA
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N012 (  7, 14) [000016] ----G--N---                         *  CMP       void   REG NA
+N014 (  9, 16) [000022] ----G------                            JCC       void   cond=UEQ REG NA
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+N018 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE REG NA
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+N024 (???,???) [000023] -----------                            IL_OFFSET void   INLRT @ 0x000[E-] REG NA
+N026 (  1,  1) [000001] -----------                            NO_OP     void   REG NA
+N028 (???,???) [000024] -----------                            IL_OFFSET void   INLRT @ 0x001[E-] REG NA
+N030 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0          rax REG rax
+                                                            /--*  t2     byref  
+N032 (  6,  4) [000021] nc--G------                   t21 = *  IND       simd32 REG NA
+                                                            /--*  t21    simd32 
+N034 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single REG mm0
+                                                            /--*  t3     simd32 
+N036 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1          NA REG NA
+N038 (???,???) [000025] -----------                            IL_OFFSET void   INLRT @ 0x007[--] REG NA
+N040 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1          mm0 REG mm0
+                                                            /--*  t5     simd32 
+N042 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          NA REG NA
+N044 (???,???) [000026] -----------                            IL_OFFSET void   INLRT @ 0x008[E-] REG NA
+N046 (  0,  0) [000007] -----------                            NOP       void   REG NA
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+N050 (???,???) [000027] -----------                            IL_OFFSET void   INLRT @ 0x00A[E-] REG NA
+N052 (  3,  2) [000009] -----------                    t9 =    LCL_VAR   byref  V00 RetBuf        rax REG rax
+N054 (  3,  2) [000008] -----------                    t8 =    LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          mm0 REG mm0
+                                                            /--*  t9     byref  
+                                                            +--*  t8     simd32 
+N056 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy) REG NA
+N058 (  3,  2) [000011] -----------                   t11 =    LCL_VAR   byref  V00 RetBuf        rax REG rax
+                                                            /--*  t11    byref  
+N060 (  4,  3) [000012] -----------                         *  RETURN    byref  REG NA
+
+-------------------------------------------------------------------------------------------------------------------
+
+Final allocation
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+          0.#0  BB1 PredBB0               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+          4.#1  BB2 PredBB1               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         16.#2  BB3 PredBB2               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000017] 19.#3  rax  Kill   Keep     rax  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#4  rcx  Kill   Keep     rcx  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#5  rdx  Kill   Keep     rdx  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#6  r8   Kill   Keep     r8   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#7  r9   Kill   Keep     r9   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#8  r10  Kill   Keep     r10  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#9  r11  Kill   Keep     r11  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#10 mm0  Kill   Keep     mm0  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#11 mm1  Kill   Keep     mm1  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#12 mm2  Kill   Keep     mm2  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#13 mm3  Kill   Keep     mm3  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#14 mm4  Kill   Keep     mm4  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#15 mm5  Kill   Keep     mm5  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#16 mm16 Kill   Keep     mm16 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#17 mm17 Kill   Keep     mm17 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#18 mm18 Kill   Keep     mm18 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#19 mm19 Kill   Keep     mm19 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#20 mm20 Kill   Keep     mm20 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#21 mm21 Kill   Keep     mm21 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#22 mm22 Kill   Keep     mm22 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#23 mm23 Kill   Keep     mm23 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#24 mm24 Kill   Keep     mm24 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#25 mm25 Kill   Keep     mm25 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#26 mm26 Kill   Keep     mm26 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#27 mm27 Kill   Keep     mm27 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#28 mm28 Kill   Keep     mm28 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#29 mm29 Kill   Keep     mm29 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#30 mm30 Kill   Keep     mm30 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+         19.#31 mm31 Kill   Keep     mm31 |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         20.#32 BB4 PredBB2               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         22.#33 BB5 PredBB4               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000002] 31.#34 I0   Def    Alloc    rax  |I0 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000003] 34.#35 I0   Use *  Keep     rax  |I0 i|    |    |    |    |    |    |    |    |    |    |    |    |    |
+         35.#36 I1   Def    Alloc    mm0  |    |    |    |    |    |    |    |    |    |I1 a|    |    |    |    |
+[000004] 36.#37 I1   Use *  Keep     mm0  |    |    |    |    |    |    |    |    |    |I1 i|    |    |    |    |
+[000005] 41.#38 I2   Def    Alloc    mm0  |    |    |    |    |    |    |    |    |    |I2 a|    |    |    |    |
+[000006] 42.#39 I2   Use *  Keep     mm0  |    |    |    |    |    |    |    |    |    |I2 i|    |    |    |    |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+TreeID   LocRP# Name Type  Action    Reg  |rax |rcx |rdx |rbx |rbp |rsi |rdi |r8  |r9  |mm0 |mm1 |mm2 |mm6 |mm7 |
+------------------------------------------+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+         48.#40 BB6 PredBB5               |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000009] 53.#41 I3   Def    Alloc    rax  |I3 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000008] 55.#42 I4   Def    Alloc    mm0  |I3 a|    |    |    |    |    |    |    |    |I4 a|    |    |    |    |
+[000010] 56.#43 I3   Use *  Keep     rax  |I3 i|    |    |    |    |    |    |    |    |I4 a|    |    |    |    |
+         56.#44 I4   Use *  Keep     mm0  |    |    |    |    |    |    |    |    |    |I4 i|    |    |    |    |
+[000011] 59.#45 I5   Def    Alloc    rax  |I5 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+[000012] 60.#46 rax  Fixd   Keep     rax  |I5 a|    |    |    |    |    |    |    |    |    |    |    |    |    |
+         60.#47 I5   Use *  Keep     rax  |I5 i|    |    |    |    |    |    |    |    |    |    |    |    |    |
+
+Recording the maximum number of concurrent spills:
+
+----------
+LSRA Stats
+----------
+Register selection order: ABCDEFGHIJKLMNOPQ
+Total Tracked Vars:  0
+Total Reg Cand Vars: 0
+Total number of Intervals: 5
+Total number of RefPositions: 47
+Total Number of spill temps created: 0
+..........
+BB05 [  100.00]: BEST_FIT = 1, REG_ORDER = 2
+BB06 [  100.00]: BEST_FIT = 1, REG_ORDER = 1
+..........
+Total SpillCount : 0   Weighted: 0.000000
+Total CopyReg : 0   Weighted: 0.000000
+Total ResolutionMovs : 0   Weighted: 0.000000
+Total SplitEdges : 0   Weighted: 0.000000
+..........
+Total BEST_FIT [#11] : 2   Weighted: 200.000000
+Total REG_ORDER [#13] : 3   Weighted: 300.000000
+
+TUPLE STYLE DUMP WITH REGISTER ASSIGNMENTS
+Incoming Parameters: 
+BB01 [???..???), preds={} succs={BB02}
+=====
+  N002.                    NOP      
+
+BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+=====
+  N006.                    CNS_INT(h) 0x7ffd0bf81d48 global ptr
+  N008.                    IND      
+  N010.                    CNS_INT   0
+  N012.                    CMP      
+  N014.                    JCC       cond=UEQ
+
+BB03 [???..???), preds={BB02} succs={BB04}
+=====
+  N018.                    CALL help
+
+BB04 [???..???), preds={BB02,BB03} succs={BB05}
+=====
+
+BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+=====
+  N024.                    IL_OFFSET INLRT @ 0x000[E-]
+  N026.                    NO_OP    
+  N028.                    IL_OFFSET INLRT @ 0x001[E-]
+  N030. rax             =  V01 MEM
+  N032. STK             =  IND      ; rax
+  N034. mm0             =  HWINTRINSIC; STK
+  N036.                    V04 MEM; mm0
+  N038.                    IL_OFFSET INLRT @ 0x007[--]
+  N040. mm0             =  V04 MEM
+  N042.                    V02 MEM; mm0
+  N044.                    IL_OFFSET INLRT @ 0x008[E-]
+  N046.                    NOP      
+
+BB06 [00A..00C) (return), preds={BB05} succs={}
+=====
+  N050.                    IL_OFFSET INLRT @ 0x00A[E-]
+  N052. rax             =  V00 MEM
+  N054. mm0             =  V02 MEM
+  N056.                    STOREIND ; rax,mm0
+  N058. rax             =  V00 MEM
+  N060.                    RETURN   ; rax
+
+
+
+
+*************** Finishing PHASE Linear scan register alloc
+Trees after Linear scan register alloc
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall LIR 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal LIR 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal LIR 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall LIR 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i LIR 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i LIR 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------ BB01 [???..???), preds={} succs={BB02}
+N002 (  0,  0) [000000] -----------                            NOP       void   REG NA
+
+------------ BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04}
+N006 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr REG NA
+                                                            /--*  t13    long   
+N008 (  5, 12) [000014] nc--G------                   t14 = *  IND       int    REG NA
+N010 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0 REG NA
+                                                            /--*  t14    int    
+                                                            +--*  t15    int    
+N012 (  7, 14) [000016] ----G--N---                         *  CMP       void   REG NA
+N014 (  9, 16) [000022] ----G------                            JCC       void   cond=UEQ REG NA
+
+------------ BB03 [???..???), preds={BB02} succs={BB04}
+N018 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE REG NA
+
+------------ BB04 [???..???), preds={BB02,BB03} succs={BB05}
+
+------------ BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06}
+N024 (???,???) [000023] -----------                            IL_OFFSET void   INLRT @ 0x000[E-] REG NA
+N026 (  1,  1) [000001] -----------                            NO_OP     void   REG NA
+N028 (???,???) [000024] -----------                            IL_OFFSET void   INLRT @ 0x001[E-] REG NA
+N030 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0          rax REG rax
+                                                            /--*  t2     byref  
+N032 (  6,  4) [000021] nc--G------                   t21 = *  IND       simd32 REG NA
+                                                            /--*  t21    simd32 
+N034 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single REG mm0
+                                                            /--*  t3     simd32 
+N036 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1          NA REG NA
+N038 (???,???) [000025] -----------                            IL_OFFSET void   INLRT @ 0x007[--] REG NA
+N040 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1          mm0 REG mm0
+                                                            /--*  t5     simd32 
+N042 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          NA REG NA
+N044 (???,???) [000026] -----------                            IL_OFFSET void   INLRT @ 0x008[E-] REG NA
+N046 (  0,  0) [000007] -----------                            NOP       void   REG NA
+
+------------ BB06 [00A..00C) (return), preds={BB05} succs={}
+N050 (???,???) [000027] -----------                            IL_OFFSET void   INLRT @ 0x00A[E-] REG NA
+N052 (  3,  2) [000009] -----------                    t9 =    LCL_VAR   byref  V00 RetBuf        rax REG rax
+N054 (  3,  2) [000008] -----------                    t8 =    LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          mm0 REG mm0
+                                                            /--*  t9     byref  
+                                                            +--*  t8     simd32 
+N056 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy) REG NA
+N058 (  3,  2) [000011] -----------                   t11 =    LCL_VAR   byref  V00 RetBuf        rax REG rax
+                                                            /--*  t11    byref  
+N060 (  4,  3) [000012] -----------                         *  RETURN    byref  REG NA
+
+-------------------------------------------------------------------------------------------------------------------
+*************** In fgDebugCheckBBlist
+*************** In fgDebugCheckLoopTable: loop table not valid
+
+*************** Starting PHASE Place 'align' instructions
+
+*************** Finishing PHASE Place 'align' instructions [no changes]
+*************** In genGenerateCode()
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal hascall LIR 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal LIR 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal LIR 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal hascall LIR 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i LIR 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i LIR 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+*************** Starting PHASE Generate code
+*************** In fgDebugCheckBBlist
+Finalizing stack frame
+must init V02 because compInitMem is set and it is not a temp
+Modified regs: [rax rcx rdx r8-r11 mm0-mm5 mm16-mm31]
+Callee-saved registers pushed: 0 []
+*************** In lvaAssignFrameOffsets(FINAL_FRAME_LAYOUT)
+Pad V02 loc0, size=32, stkOffs=-0x20, pad=16
+Assign V02 loc0, size=32, stkOffs=-0x40
+Pad V04 tmp1, size=32, stkOffs=-0x40, pad=0
+Assign V04 tmp1, size=32, stkOffs=-0x60
+Assign V03 OutArgs, size=32, stkOffs=-0x80
+--- delta bump 8 for RA
+--- delta bump 8 for FP
+--- delta bump 0 for FP frame
+--- virtual stack offset to actual stack offset delta is 16
+-- V00 was 0, now 16
+-- V01 was 8, now 24
+-- V02 was -64, now -48
+-- V03 was -128, now -112
+-- V04 was -96, now -80
+; Final local variable assignments
+;
+;  V00 RetBuf       [V00    ] (  1,  1   )   byref  ->  [rbp+10H]   do-not-enreg[]
+;  V01 arg0         [V01    ] (  1,  1   )   byref  ->  [rbp+18H]   do-not-enreg[]
+;  V02 loc0         [V02    ] (  1,  1   )  simd32  ->  [rbp-30H]   do-not-enreg[S] must-init <System.Runtime.Intrinsics.Vector256`1[float]>
+;  V03 OutArgs      [V03    ] (  1,  1   )  struct (32) [rsp+00H]   do-not-enreg[XS] addr-exposed "OutgoingArgSpace"
+;  V04 tmp1         [V04    ] (  1,  1   )  simd32  ->  [rbp-50H]   do-not-enreg[S] "impSpillStackEnsure"
+;
+; Lcl frame size = 112
+Created:
+      G_M52584_IG02:        ; offs=000000H, size=0000H, bbWeight=1, gcrefRegs=0000 {}
+Mark labels for codegen
+  BB01 : first block
+  BB04 : branch target
+  BB06 : branch target
+*************** After genMarkLabelsForCodegen()
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+BBnum BBid ref try hnd preds           weight    lp [IL range]     [jump]      [EH region]         [flags]
+-----------------------------------------------------------------------------------------------------------------------------------------
+BB01 [0000]  1                             1       [???..???)                                     i internal label hascall LIR 
+BB02 [0004]  1       BB01                  1       [???..???)-> BB04 ( cond )                     internal LIR 
+BB03 [0005]  1       BB02                  0.50    [???..???)                                     internal LIR 
+BB04 [0003]  2       BB02,BB03             1       [???..???)                                     i internal label hascall LIR 
+BB05 [0001]  1       BB04                  1       [000..00A)-> BB06 (always)                     i LIR 
+BB06 [0002]  1       BB05                  1       [00A..00C)        (return)                     i label LIR 
+-----------------------------------------------------------------------------------------------------------------------------------------
+Setting stack level from -572662307 to 0
+
+=============== Generating BB01 [???..???), preds={} succs={BB02} flags=0x00000001.00020031: i internal label hascall LIR 
+BB01 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+Liveness not changing: 0000000000000000 {}
+							Live regs: (unchanged) 0000 {}
+							GC regs: (unchanged) 0000 {}
+							Byref regs: (unchanged) 0000 {}
+
+      L_M52584_BB01:
+Label: G_M52584_IG02, GCvars=0000000000000000 {}, gcrefRegs=0000 {}, byrefRegs=0000 {}
+
+Scope info: begin block BB01, IL range [???..???)
+Scope info: ignoring block beginning
+Generating: N002 (  0,  0) [000000] -----------                            NOP       void   REG NA
+Scope info: ignoring block end
+
+Variable Live Range History Dump for BB01
+..None..
+
+=============== Generating BB02 [???..???) -> BB04 (cond), preds={BB01} succs={BB03,BB04} flags=0x00000000.00000021: internal LIR 
+BB02 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+Liveness not changing: 0000000000000000 {}
+							Live regs: (unchanged) 0000 {}
+							GC regs: (unchanged) 0000 {}
+							Byref regs: (unchanged) 0000 {}
+
+      L_M52584_BB02:
+
+Scope info: begin block BB02, IL range [???..???)
+Scope info: ignoring block beginning
+Added IP mapping: NO_MAP (G_M52584_IG02,ins#0,ofs#0) label
+Generating: N006 (  3, 10) [000013] Hc---------                   t13 =    CNS_INT(h) long   0x7ffd0bf81d48 global ptr REG NA
+                                                                        /--*  t13    long   
+Generating: N008 (  5, 12) [000014] nc--G------                   t14 = *  IND       int    REG NA
+Generating: N010 (  1,  1) [000015] -c---------                   t15 =    CNS_INT   int    0 REG NA
+                                                                        /--*  t14    int    
+                                                                        +--*  t15    int    
+Generating: N012 (  7, 14) [000016] ----G--N---                         *  CMP       void   REG NA
+Mapped BB02 to G_M52584_IG02
+IN0001:        cmp      dword ptr [(reloc 0x7ffd0bf81d48)], 0
+Generating: N014 (  9, 16) [000022] ----G------                            JCC       void   cond=UEQ REG NA
+IN0002:        je       L_M52584_BB04
+Scope info: ignoring block end
+
+Variable Live Range History Dump for BB02
+..None..
+
+=============== Generating BB03 [???..???), preds={BB02} succs={BB04} flags=0x00000000.00000021: internal LIR 
+BB03 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+Liveness not changing: 0000000000000000 {}
+							Live regs: (unchanged) 0000 {}
+							GC regs: (unchanged) 0000 {}
+							Byref regs: (unchanged) 0000 {}
+
+      L_M52584_BB03:
+Adding label due to BB weight difference: BBJ_COND BB02 with weight 100 different from BB03 with weight 50
+Saved:
+      G_M52584_IG02:        ; offs=000000H, size=000DH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB02 [0004], byref
+Created:
+      G_M52584_IG03:        ; offs=00000DH, size=0000H, bbWeight=0.50, gcrefRegs=0000 {}
+Label: G_M52584_IG03, GCvars=0000000000000000 {}, gcrefRegs=0000 {}, byrefRegs=0000 {}
+
+Scope info: begin block BB03, IL range [???..???)
+Scope info: ignoring block beginning
+genIPmappingAdd: ignoring duplicate IL offset 0xffffffff
+Generating: N018 ( 14,  5) [000017] --C-G-?----                            CALL help void   CORINFO_HELP_DBG_IS_JUST_MY_CODE REG NA
+							Call: GCvars=0000000000000000 {}, gcrefRegs=0000 {}, byrefRegs=0000 {}
+Mapped BB03 to G_M52584_IG03
+IN0003:        call     CORINFO_HELP_DBG_IS_JUST_MY_CODE
+Scope info: ignoring block end
+
+Variable Live Range History Dump for BB03
+..None..
+
+=============== Generating BB04 [???..???), preds={BB02,BB03} succs={BB05} flags=0x00000001.00020031: i internal label hascall LIR 
+BB04 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+Liveness not changing: 0000000000000000 {}
+							Live regs: (unchanged) 0000 {}
+							GC regs: (unchanged) 0000 {}
+							Byref regs: (unchanged) 0000 {}
+
+      L_M52584_BB04:
+Saved:
+      G_M52584_IG03:        ; offs=00000DH, size=0005H, bbWeight=0.50, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB03 [0005], byref
+Created:
+      G_M52584_IG04:        ; offs=000012H, size=0000H, bbWeight=1, gcrefRegs=0000 {}
+Label: G_M52584_IG04, GCvars=0000000000000000 {}, gcrefRegs=0000 {}, byrefRegs=0000 {}
+
+Scope info: begin block BB04, IL range [???..???)
+Scope info: ignoring block beginning
+genIPmappingAdd: ignoring duplicate IL offset 0xffffffff
+Scope info: ignoring block end
+
+Variable Live Range History Dump for BB04
+..None..
+
+=============== Generating BB05 [000..00A) -> BB06 (always), preds={BB04} succs={BB06} flags=0x00000000.00000011: i LIR 
+BB05 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+Liveness not changing: 0000000000000000 {}
+							Live regs: (unchanged) 0000 {}
+							GC regs: (unchanged) 0000 {}
+							Byref regs: (unchanged) 0000 {}
+
+      L_M52584_BB05:
+
+Scope info: begin block BB05, IL range [000..00A)
+Scope info: opening scope, LVnum=0 [000..00C)
+New debug range: first
+Scope info: opening scope, LVnum=1 [000..00C)
+New debug range: first
+Scope info: opening scope, LVnum=2 [000..00C)
+New debug range: first
+Added IP mapping: 0x0000 STACK_EMPTY (G_M52584_IG04,ins#0,ofs#0) label
+Generating: N024 (???,???) [000023] -----------                            IL_OFFSET void   INLRT @ 0x000[E-] REG NA
+Generating: N026 (  1,  1) [000001] -----------                            NO_OP     void   REG NA
+Mapped BB05 to G_M52584_IG04
+IN0004:        nop      
+Added IP mapping: 0x0001 STACK_EMPTY (G_M52584_IG04,ins#1,ofs#1)
+Generating: N028 (???,???) [000024] -----------                            IL_OFFSET void   INLRT @ 0x001[E-] REG NA
+Generating: N030 (  3,  2) [000002] -----------                    t2 =    LCL_VAR   byref  V01 arg0          rax REG rax
+IN0005:        mov      rax, bword ptr [V01 rbp+18H]
+							Byref regs: 0000 {} => 0001 {rax}
+                                                                        /--*  t2     byref  
+Generating: N032 (  6,  4) [000021] nc--G------                   t21 = *  IND       simd32 REG NA
+                                                                        /--*  t21    simd32 
+Generating: N034 (  7,  5) [000003] ----G------                    t3 = *  HWINTRINSIC simd32 int ConvertToVector256Single REG mm0
+							Byref regs: 0001 {rax} => 0000 {}
+IN0006:        vcvtdq2ps ymm0, ymmword ptr [rax]
+                                                                        /--*  t3     simd32 
+Generating: N036 ( 11,  8) [000004] DA--G------                         *  STORE_LCL_VAR simd32 V04 tmp1          NA REG NA
+IN0007:        vmovups  ymmword ptr [V04 rbp-50H], ymm0
+Added IP mapping: 0x0007 (G_M52584_IG04,ins#4,ofs#21)
+Generating: N038 (???,???) [000025] -----------                            IL_OFFSET void   INLRT @ 0x007[--] REG NA
+Generating: N040 (  3,  2) [000005] -----------                    t5 =    LCL_VAR   simd32 V04 tmp1          mm0 REG mm0
+IN0008:        vmovups  ymm0, ymmword ptr [V04 rbp-50H]
+                                                                        /--*  t5     simd32 
+Generating: N042 (  7,  5) [000006] DA---------                         *  STORE_LCL_VAR simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          NA REG NA
+IN0009:        vmovups  ymmword ptr [V02 rbp-30H], ymm0
+Added IP mapping: 0x0008 STACK_EMPTY (G_M52584_IG04,ins#6,ofs#41)
+Generating: N044 (???,???) [000026] -----------                            IL_OFFSET void   INLRT @ 0x008[E-] REG NA
+Generating: N046 (  0,  0) [000007] -----------                            NOP       void   REG NA
+IN000a:        nop      
+IN000b:        jmp      L_M52584_BB06
+
+Variable Live Range History Dump for BB05
+V00 RetBuf: rbp[16] (1 slot) [(G_M52584_IG04,ins#0,ofs#0), ...]
+V01 arg0: rbp[24] (1 slot) [(G_M52584_IG04,ins#0,ofs#0), ...]
+V02 loc0: rbp[-48] (1 slot) [(G_M52584_IG04,ins#0,ofs#0), ...]
+
+=============== Generating BB06 [00A..00C) (return), preds={BB05} succs={} flags=0x00000000.00020011: i label LIR 
+BB06 IN (0)={} + ByrefExposed + GcHeap
+     OUT(0)={} + ByrefExposed + GcHeap
+
+Liveness not changing: 0000000000000000 {}
+							Live regs: (unchanged) 0000 {}
+							GC regs: (unchanged) 0000 {}
+							Byref regs: (unchanged) 0000 {}
+
+      L_M52584_BB06:
+Saved:
+      G_M52584_IG04:        ; offs=000012H, size=002FH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB05 [0001], byref
+Created:
+      G_M52584_IG05:        ; offs=000041H, size=0000H, bbWeight=1, gcrefRegs=0000 {}
+Label: G_M52584_IG05, GCvars=0000000000000000 {}, gcrefRegs=0000 {}, byrefRegs=0000 {}
+
+Scope info: begin block BB06, IL range [00A..00C)
+Added IP mapping: 0x000A STACK_EMPTY (G_M52584_IG05,ins#0,ofs#0) label
+Generating: N050 (???,???) [000027] -----------                            IL_OFFSET void   INLRT @ 0x00A[E-] REG NA
+Generating: N052 (  3,  2) [000009] -----------                    t9 =    LCL_VAR   byref  V00 RetBuf        rax REG rax
+Mapped BB06 to G_M52584_IG05
+IN000c:        mov      rax, bword ptr [V00 rbp+10H]
+							Byref regs: 0000 {} => 0001 {rax}
+Generating: N054 (  3,  2) [000008] -----------                    t8 =    LCL_VAR   simd32<System.Runtime.Intrinsics.Vector256`1> V02 loc0          mm0 REG mm0
+IN000d:        vmovups  ymm0, ymmword ptr [V02 rbp-30H]
+                                                                        /--*  t9     byref  
+                                                                        +--*  t8     simd32 
+Generating: N056 ( 10,  7) [000010] -A-XG------                         *  STOREIND  simd32 (copy) REG NA
+							Byref regs: 0001 {rax} => 0000 {}
+IN000e:        vmovups  ymmword ptr [rax], ymm0
+Generating: N058 (  3,  2) [000011] -----------                   t11 =    LCL_VAR   byref  V00 RetBuf        rax REG rax
+IN000f:        mov      rax, bword ptr [V00 rbp+10H]
+							Byref regs: 0000 {} => 0001 {rax}
+                                                                        /--*  t11    byref  
+Generating: N060 (  4,  3) [000012] -----------                         *  RETURN    byref  REG NA
+							Byref regs: 0001 {rax} => 0000 {}
+Closing debug range.
+Closing debug range.
+Closing debug range.
+Added IP mapping: EPILOG (G_M52584_IG05,ins#4,ofs#24) label
+Reserving epilog IG for block BB06
+Saved:
+      G_M52584_IG05:        ; offs=000041H, size=0018H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB06 [0002], byref
+Created:
+      G_M52584_IG06:        ; offs=000059H, size=0000H, bbWeight=1, gcrefRegs=0000 {}
+*************** After placeholder IG creation
+G_M52584_IG01:        ; func=00, offs=000000H, size=0000H, bbWeight=1, gcrefRegs=0000 {} <-- Prolog IG
+G_M52584_IG02:        ; offs=000000H, size=000DH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB02 [0004], byref
+G_M52584_IG03:        ; offs=00000DH, size=0005H, bbWeight=0.50, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB03 [0005], byref
+G_M52584_IG04:        ; offs=000012H, size=002FH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB05 [0001], byref
+G_M52584_IG05:        ; offs=000041H, size=0018H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB06 [0002], byref
+G_M52584_IG06:        ; epilog placeholder, next placeholder=<END>, BB06 [0002], epilog, extend <-- First placeholder <-- Last placeholder
+                      ;   PrevGCVars=0000000000000000 {}, PrevGCrefRegs=0000 {}, PrevByrefRegs=0000 {}
+                      ;   InitGCVars=0000000000000000 {}, InitGCrefRegs=0000 {}, InitByrefRegs=0000 {}
+
+Variable Live Range History Dump for BB06
+V00 RetBuf: rbp[16] (1 slot) [(G_M52584_IG04,ins#0,ofs#0), (G_M52584_IG05,ins#4,ofs#24)]
+V01 arg0: rbp[24] (1 slot) [(G_M52584_IG04,ins#0,ofs#0), (G_M52584_IG05,ins#4,ofs#24)]
+V02 loc0: rbp[-48] (1 slot) [(G_M52584_IG04,ins#0,ofs#0), (G_M52584_IG05,ins#4,ofs#24)]
+Liveness not changing: 0000000000000000 {}
+
+# compCycleEstimate =     56, compSizeEstimate =    45 System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+; Final local variable assignments
+;
+;  V00 RetBuf       [V00    ] (  1,  1   )   byref  ->  [rbp+10H]   do-not-enreg[]
+;  V01 arg0         [V01    ] (  1,  1   )   byref  ->  [rbp+18H]   do-not-enreg[]
+;  V02 loc0         [V02    ] (  1,  1   )  simd32  ->  [rbp-30H]   do-not-enreg[S] must-init <System.Runtime.Intrinsics.Vector256`1[float]>
+;  V03 OutArgs      [V03    ] (  1,  1   )  struct (32) [rsp+00H]   do-not-enreg[XS] addr-exposed "OutgoingArgSpace"
+;  V04 tmp1         [V04    ] (  1,  1   )  simd32  ->  [rbp-50H]   do-not-enreg[S] "impSpillStackEnsure"
+;
+; Lcl frame size = 112
+*************** Before prolog / epilog generation
+G_M52584_IG01:        ; func=00, offs=000000H, size=0000H, bbWeight=1, gcrefRegs=0000 {} <-- Prolog IG
+G_M52584_IG02:        ; offs=000000H, size=000DH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB02 [0004], byref
+G_M52584_IG03:        ; offs=00000DH, size=0005H, bbWeight=0.50, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB03 [0005], byref
+G_M52584_IG04:        ; offs=000012H, size=002FH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB05 [0001], byref
+G_M52584_IG05:        ; offs=000041H, size=0018H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB06 [0002], byref
+G_M52584_IG06:        ; epilog placeholder, next placeholder=<END>, BB06 [0002], epilog, extend <-- First placeholder <-- Last placeholder
+                      ;   PrevGCVars=0000000000000000 {}, PrevGCrefRegs=0000 {}, PrevByrefRegs=0000 {}
+                      ;   InitGCVars=0000000000000000 {}, InitGCrefRegs=0000 {}, InitByrefRegs=0000 {}
+*************** In genFnProlog()
+Added IP mapping to front: PROLOG (G_M52584_IG01,ins#0,ofs#0) label
+
+__prolog:
+New debug range: first
+New debug range: first
+Found 8 lvMustInit int-sized stack slots, frame offsets 48 through 16
+IN0010:        push     rbp
+IN0011:        sub      rsp, 112
+IN0012:        vzeroupper 
+IN0013:        lea      rbp, [rsp+70H]
+IN0014:        vxorps   xmm4, xmm4, xmm4
+IN0015:        vmovdqa32 xmmword ptr [rbp-30H], xmm4
+IN0016:        vmovdqa32 xmmword ptr [rbp-20H], xmm4
+*************** In genFnPrologCalleeRegArgs() for int regs
+IN0017:        mov      bword ptr [V00 rbp+10H], rcx
+IN0018:        mov      bword ptr [V01 rbp+18H], rdx
+*************** In genEnregisterIncomingStackArgs()
+Closing debug range.
+Closing debug range.
+
+Saved:
+      G_M52584_IG01:        ; offs=000000H, size=0029H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, byref, nogc
+*************** In genFnEpilog()
+
+__epilog:
+gcVarPtrSetCur=0000000000000000 {}, gcRegGCrefSetCur=0000 {}, gcRegByrefSetCur=0000 {}
+IN0019:        vzeroupper 
+IN001a:        add      rsp, 112
+IN001b:        pop      rbp
+IN001c:        ret      
+Saved:
+      G_M52584_IG06:        ; offs=000059H, size=0009H, bbWeight=1, epilog, nogc, extend
+0 prologs, 1 epilogs, 0 funclet prologs, 0 funclet epilogs
+*************** After prolog / epilog generation
+G_M52584_IG01:        ; func=00, offs=000000H, size=0029H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, byref, nogc <-- Prolog IG
+G_M52584_IG02:        ; offs=000029H, size=000DH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB02 [0004], byref
+G_M52584_IG03:        ; offs=000036H, size=0005H, bbWeight=0.50, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB03 [0005], byref
+G_M52584_IG04:        ; offs=00003BH, size=002FH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB05 [0001], byref
+G_M52584_IG05:        ; offs=00006AH, size=0018H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB06 [0002], byref
+G_M52584_IG06:        ; offs=000082H, size=0009H, bbWeight=1, epilog, nogc, extend
+*************** In emitRemoveJumpToNextInst()
+Emitter Jump List:
+IG02 IN0002  je[6] -> IG04
+IG04 IN000b jmp[5] -> IG05 ; removal candidate
+  total jump count: 2
+IG04 IN000b is the last instruction in the group and jumps to the next instruction group IG05 G_M52584_IG05, removing.
+Adjusted offset of IG05 from 006A to 0065
+Adjusted offset of IG06 from 0082 to 007D
+Emitter Jump List:
+IG02 IN0002  je[6] -> IG04
+  total jump count: 1
+emitRemoveJumpToNextInst removed 5 bytes of unconditional jumps
+*************** In emitJumpDistBind()
+Emitter Jump List:
+IG02 IN0002  je[6] -> IG04
+  total jump count: 1
+Binding: IN0002: 000000 je       L_M52584_BB04
+Binding L_M52584_BB04 to G_M52584_IG04
+Estimate of fwd jump [000AB504/002]: 0030 -> 003B = 0009
+Shrinking jump [000AB504/002]
+Adjusted offset of BB03 from 0036 to 0032
+Adjusted offset of BB04 from 003B to 0037
+Adjusted offset of BB05 from 0065 to 0061
+Adjusted offset of BB06 from 007D to 0079
+Total shrinkage =   4, min extra jump size = 4294967295
+
+*************** Finishing PHASE Generate code
+
+*************** Starting PHASE Emit code
+
+Hot  code size = 0x82 bytes
+Cold code size = 0x0 bytes
+reserveUnwindInfo(isFunclet=false, isColdCode=false, unwindSize=0x8)
+*************** In emitEndCodeGen()
+Converting emitMaxStackDepth from bytes (0) to elements (0)
+
+***************************************************************************
+Instructions as they come out of the scheduler
+
+
+G_M52584_IG01:        ; offs=000000H, size=0029H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, byref, nogc <-- Prolog IG
+IN0010: 000000 push     rbp
+IN0011: 000001 sub      rsp, 112
+IN0012: 000005 vzeroupper 
+IN0013: 000008 lea      rbp, [rsp+70H]
+IN0014: 00000D vxorps   xmm4, xmm4, xmm4
+IN0015: 000013 vmovdqa32 xmmword ptr [rbp-30H], xmm4
+IN0016: 00001A vmovdqa32 xmmword ptr [rbp-20H], xmm4
+IN0017: 000021 mov      bword ptr [rbp+10H], rcx
+IN0018: 000025 mov      bword ptr [rbp+18H], rdx
+						;; size=41 bbWeight=1 PerfScore 9.08
+G_M52584_IG02:        ; offs=000029H, size=0009H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB02 [0004], byref, isz
+recordRelocation: 00007FFD0BD85DDB (rw: 0000015A51418EE3) => 00007FFD0BF81D48, type 16 (IMAGE_REL_BASED_DISP32), delta -1
+IN0001: 000029 cmp      dword ptr [(reloc 0x7ffd0bf81d48)], 0
+IN0002: 000030 je       SHORT G_M52584_IG04
+						;; size=9 bbWeight=1 PerfScore 4.00
+G_M52584_IG03:        ; offs=000032H, size=0005H, bbWeight=0.50, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB03 [0005], byref
+recordRelocation: 00007FFD0BD85DE3 (rw: 0000015A51418EEB) => 00007FFD6A5D58B0, type 16 (IMAGE_REL_BASED_REL32), delta 0
+IN0003: 000032 call     CORINFO_HELP_DBG_IS_JUST_MY_CODE
+                            ; gcr arg pop 0
+						;; size=5 bbWeight=0.50 PerfScore 0.50
+G_M52584_IG04:        ; offs=000037H, size=002AH, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB05 [0001], byref, isz
+IN0004: 000037 nop      
+IN0005: 000038 mov      rax, bword ptr [rbp+18H]
+                            ; byrRegs +[rax]
+IN0006: 00003C vcvtdq2ps ymm0, ymmword ptr [rax]
+IN0007: 000042 vmovups  ymmword ptr [rbp-50H], ymm0
+IN0008: 00004C vmovups  ymm0, ymmword ptr [rbp-50H]
+IN0009: 000056 vmovups  ymmword ptr [rbp-30H], ymm0
+IN000a: 000060 nop      
+						;; size=42 bbWeight=1 PerfScore 13.50
+G_M52584_IG05:        ; offs=000061H, size=0018H, bbWeight=1, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB06 [0002], byref
+                            ; byrRegs -[rax]
+IN000c: 000061 mov      rax, bword ptr [rbp+10H]
+                            ; byrRegs +[rax]
+IN000d: 000065 vmovups  ymm0, ymmword ptr [rbp-30H]
+IN000e: 00006F vmovups  ymmword ptr [rax], ymm0
+IN000f: 000075 mov      rax, bword ptr [rbp+10H]
+						;; size=24 bbWeight=1 PerfScore 8.00
+G_M52584_IG06:        ; offs=000079H, size=0009H, bbWeight=1, epilog, nogc, extend
+IN0019: 000079 vzeroupper 
+IN001a: 00007C add      rsp, 112
+IN001b: 000080 pop      rbp
+IN001c: 000081 ret      
+						;; size=9 bbWeight=1 PerfScore 2.75Allocated method code size =  130 , actual size =  130, unused size =    0
+
+; Total bytes of code 130, prolog size 41, PerfScore 50.83, instruction count 28, allocated bytes for code 130 (MethodHash=f7033297) for method System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float] (MinOpts)
+; ============================================================
+
+*************** After end code gen, before unwindEmit()
+G_M52584_IG01:        ; func=00, offs=000000H, size=0029H, bbWeight=1, PerfScore 9.08, gcrefRegs=0000 {}, byrefRegs=0000 {}, byref, nogc <-- Prolog IG
+
+IN0010: 000000 push     rbp
+IN0011: 000001 sub      rsp, 112
+IN0012: 000005 vzeroupper 
+IN0013: 000008 lea      rbp, [rsp+70H]
+IN0014: 00000D vxorps   xmm4, xmm4, xmm4
+IN0015: 000013 vmovdqa32 xmmword ptr [rbp-30H], xmm4
+IN0016: 00001A vmovdqa32 xmmword ptr [rbp-20H], xmm4
+IN0017: 000021 mov      bword ptr [V00 rbp+10H], rcx
+IN0018: 000025 mov      bword ptr [V01 rbp+18H], rdx
+
+G_M52584_IG02:        ; offs=000029H, size=0009H, bbWeight=1, PerfScore 4.00, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB02 [0004], byref, isz
+
+IN0001: 000029 cmp      dword ptr [(reloc 0x7ffd0bf81d48)], 0
+IN0002: 000030 je       SHORT G_M52584_IG04
+
+G_M52584_IG03:        ; offs=000032H, size=0005H, bbWeight=0.50, PerfScore 0.50, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB03 [0005], byref
+
+IN0003: 000032 call     CORINFO_HELP_DBG_IS_JUST_MY_CODE
+
+G_M52584_IG04:        ; offs=000037H, size=002AH, bbWeight=1, PerfScore 13.50, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB05 [0001], byref, isz
+
+IN0004: 000037 nop      
+IN0005: 000038 mov      rax, bword ptr [V01 rbp+18H]
+IN0006: 00003C vcvtdq2ps ymm0, ymmword ptr [rax]
+IN0007: 000042 vmovups  ymmword ptr [V04 rbp-50H], ymm0
+IN0008: 00004C vmovups  ymm0, ymmword ptr [V04 rbp-50H]
+IN0009: 000056 vmovups  ymmword ptr [V02 rbp-30H], ymm0
+IN000a: 000060 nop      
+
+G_M52584_IG05:        ; offs=000061H, size=0018H, bbWeight=1, PerfScore 8.00, gcrefRegs=0000 {}, byrefRegs=0000 {}, BB06 [0002], byref
+
+IN000c: 000061 mov      rax, bword ptr [V00 rbp+10H]
+IN000d: 000065 vmovups  ymm0, ymmword ptr [V02 rbp-30H]
+IN000e: 00006F vmovups  ymmword ptr [rax], ymm0
+IN000f: 000075 mov      rax, bword ptr [V00 rbp+10H]
+
+G_M52584_IG06:        ; offs=000079H, size=0009H, bbWeight=1, PerfScore 2.75, epilog, nogc, extend
+
+IN0019: 000079 vzeroupper 
+IN001a: 00007C add      rsp, 112
+IN001b: 000080 pop      rbp
+IN001c: 000081 ret      
+
+
+*************** Finishing PHASE Emit code
+
+*************** Starting PHASE Emit GC+EH tables
+Unwind Info:
+  >> Start offset   : 0x000000 (not in unwind data)
+  >>   End offset   : 0x000082 (not in unwind data)
+  Version           : 1
+  Flags             : 0x00
+  SizeOfProlog      : 0x05
+  CountOfUnwindCodes: 2
+  FrameRegister     : none (0)
+  FrameOffset       : N/A (no FrameRegister) (Value=0)
+  UnwindCodes       :
+    CodeOffset: 0x05 UnwindOp: UWOP_ALLOC_SMALL (2)     OpInfo: 13 * 8 + 8 = 112 = 0x70
+    CodeOffset: 0x01 UnwindOp: UWOP_PUSH_NONVOL (0)     OpInfo: rbp (5)
+allocUnwindInfo(pHotCode=0x00007FFD0BD85DB0, pColdCode=0x0000000000000000, startOffset=0x0, endOffset=0x82, unwindSize=0x8, pUnwindBlock=0x0000015A000A5B60, funKind=0 (main function))
+*************** In genIPmappingGen()
+IP mapping count : 8
+IL offs PROLOG : 0x00000000 ( STACK_EMPTY )
+IL offs NO_MAP : 0x00000029 ( STACK_EMPTY )
+IL offs 0x0000 : 0x00000037 ( STACK_EMPTY )
+IL offs 0x0001 : 0x00000038 ( STACK_EMPTY )
+IL offs 0x0007 : 0x0000004C
+IL offs 0x0008 : 0x00000060 ( STACK_EMPTY )
+IL offs 0x000A : 0x00000061 ( STACK_EMPTY )
+IL offs EPILOG : 0x00000079 ( STACK_EMPTY )
+
+*************** In genSetScopeInfo()
+VarLocInfo count is 5
+; Variable debug info: 5 live ranges, 2 vars for method System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+(   retBuff) : From 00000000h to 00000029h, in rcx
+(   retBuff) : From 00000037h to 00000079h, in rbp[16] (1 slot)
+(V00 RetBuf) : From 00000000h to 00000029h, in rdx
+(V00 RetBuf) : From 00000037h to 00000079h, in rbp[24] (1 slot)
+(V01 arg0) : From 00000037h to 00000079h, in rbp[-48] (1 slot)
+*************** In gcInfoBlockHdrSave()
+Set code length to 130.
+Set ReturnKind to Scalar.
+Set stack base register to rbp.
+Set Outgoing stack arg area size to 32.
+Stack slot id for offset 16 (0x10) (frame) (byref, untracked) = 0.
+Stack slot id for offset 24 (0x18) (frame) (byref, untracked) = 1.
+Register slot id for reg rax (byref) = 2.
+Set state of slot 2 at instr offset 0x3c to Live.
+Set state of slot 2 at instr offset 0x61 to Dead.
+Set state of slot 2 at instr offset 0x65 to Live.
+Set state of slot 2 at instr offset 0x82 to Dead.
+Defining interruptible range: [0x29, 0x79).
+
+*************** Finishing PHASE Emit GC+EH tables
+Method code size: 130
+
+Allocations for System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float] (MethodHash=f7033297)
+count:        630, size:      53382, max =       5304
+allocateMemory:      65536, nraUsed:      56080
+
+Alloc'd bytes by kind:
+                  kind |       size |     pct
+  ---------------------+------------+--------
+         AssertionProp |          0 |   0.00%
+               ASTNode |       4176 |   7.82%
+              InstDesc |       4484 |   8.40%
+              ImpStack |        384 |   0.72%
+            BasicBlock |       2320 |   4.35%
+              CallArgs |          0 |   0.00%
+              FlowEdge |        336 |   0.63%
+     TreeStatementList |          0 |   0.00%
+               SiScope |          0 |   0.00%
+       DominatorMemory |          0 |   0.00%
+                  LSRA |       7400 |  13.86%
+         LSRA_Interval |        480 |   0.90%
+      LSRA_RefPosition |       3840 |   7.19%
+          Reachability |        168 |   0.31%
+                   SSA |          0 |   0.00%
+           ValueNumber |          0 |   0.00%
+              LvaTable |       1536 |   2.88%
+            UnwindInfo |          0 |   0.00%
+                hashBv |         40 |   0.07%
+                bitset |         32 |   0.06%
+          FixedBitVect |         16 |   0.03%
+               Generic |       1050 |   1.97%
+   LocalAddressVisitor |          0 |   0.00%
+         FieldSeqStore |          0 |   0.00%
+          MemorySsaMap |          0 |   0.00%
+          MemoryPhiArg |          0 |   0.00%
+                   CSE |          0 |   0.00%
+                    GC |       2548 |   4.77%
+       CorTailCallInfo |          0 |   0.00%
+              Inlining |        248 |   0.46%
+            ArrayStack |          0 |   0.00%
+             DebugInfo |        504 |   0.94%
+             DebugOnly |      21489 |  40.26%
+               Codegen |       1224 |   2.29%
+               LoopOpt |          0 |   0.00%
+             LoopClone |          0 |   0.00%
+             LoopHoist |          0 |   0.00%
+               Unknown |         51 |   0.10%
+            RangeCheck |          0 |   0.00%
+              CopyProp |          0 |   0.00%
+             Promotion |          0 |   0.00%
+           SideEffects |          0 |   0.00%
+       ObjectAllocator |          0 |   0.00%
+    VariableLiveRanges |        832 |   1.56%
+           ClassLayout |        224 |   0.42%
+       TailMergeThrows |          0 |   0.00%
+             EarlyProp |          0 |   0.00%
+              ZeroInit |          0 |   0.00%
+                   Pgo |          0 |   0.00%
+
+****** DONE compiling System.Runtime.Intrinsics.X86.Program:AVX512ConvertToVector256Single(System.Runtime.Intrinsics.Vector256`1[int]):System.Runtime.Intrinsics.Vector256`1[float]
+<1234, 1234, 1234, 1234, 1234, 1234, 1234, 1234>
