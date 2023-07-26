@@ -1899,46 +1899,77 @@ namespace System
 
         private static void MakeSeparatorListVectorized(ReadOnlySpan<char> sourceSpan, ref ValueListBuilder<int> sepListBuilder, char c, char c2, char c3)
         {
-            // Redundant test so we won't prejit remainder of this method
-            // on platforms where it is not supported
-            if (!Vector128.IsHardwareAccelerated)
+            Debug.Assert(sourceSpan.Length >= Vector128<ushort>.Count);
+            Internal.Console.WriteLine("Implementing MakeSeparatorListVectorized codepath");
+            nuint lengthToExamine = (uint)sourceSpan.Length;
+            nuint offset = 0;
+            ref char source = ref MemoryMarshal.GetReference(sourceSpan);
+            Internal.Console.WriteLine("length to examine: " + lengthToExamine.ToString());
+            Internal.Console.WriteLine("length > vector512: " + (lengthToExamine >= (uint)Vector512<ushort>.Count).ToString());
+            Internal.Console.WriteLine("Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
+            //Vector512
+            if (Vector512.IsHardwareAccelerated && lengthToExamine >= (uint)Vector512<ushort>.Count)
             {
-                throw new PlatformNotSupportedException();
+                Internal.Console.WriteLine("Implementing vector512 codepath");
+                Vector512<ushort> v1 = Vector512.Create((ushort)c);
+                Vector512<ushort> v2 = Vector512.Create((ushort)c2);
+                Vector512<ushort> v3 = Vector512.Create((ushort)c3);
+
+                do
+                {
+                    Vector512<ushort> vector = Vector512.LoadUnsafe(ref source, offset);
+                    Vector512<ushort> v1Eq = Vector512.Equals(vector, v1);
+                    Vector512<ushort> v2Eq = Vector512.Equals(vector, v2);
+                    Vector512<ushort> v3Eq = Vector512.Equals(vector, v3);
+                    Vector512<byte> cmp = (v1Eq | v2Eq | v3Eq).AsByte();
+
+                    if (cmp != Vector512<byte>.Zero)
+                    {
+                        // Skip every other bit
+                        ulong mask = cmp.ExtractMostSignificantBits() & 0x5555555555555555;
+                        do
+                        {
+                            uint bitPos = (uint)BitOperations.TrailingZeroCount(mask) / sizeof(char);
+                            sepListBuilder.Append((int)(offset + bitPos));
+                            mask = BitOperations.ResetLowestSetBit(mask);
+                        } while (mask != 0);
+                    }
+
+                    offset += (nuint)Vector512<ushort>.Count;
+                } while (offset <= lengthToExamine - (nuint)Vector512<ushort>.Count);
             }
 
-            Debug.Assert(sourceSpan.Length >= Vector128<ushort>.Count);
-
-            nuint offset = 0;
-            nuint lengthToExamine = (uint)sourceSpan.Length;
-
-            ref char source = ref MemoryMarshal.GetReference(sourceSpan);
-
-            Vector128<ushort> v1 = Vector128.Create((ushort)c);
-            Vector128<ushort> v2 = Vector128.Create((ushort)c2);
-            Vector128<ushort> v3 = Vector128.Create((ushort)c3);
-
-            do
+            // Vector128
+            else if (Vector128.IsHardwareAccelerated)
             {
-                Vector128<ushort> vector = Vector128.LoadUnsafe(ref source, offset);
-                Vector128<ushort> v1Eq = Vector128.Equals(vector, v1);
-                Vector128<ushort> v2Eq = Vector128.Equals(vector, v2);
-                Vector128<ushort> v3Eq = Vector128.Equals(vector, v3);
-                Vector128<byte> cmp = (v1Eq | v2Eq | v3Eq).AsByte();
+                Internal.Console.WriteLine("Implementing vector128 codepath");
+                Vector128<ushort> v1 = Vector128.Create((ushort)c);
+                Vector128<ushort> v2 = Vector128.Create((ushort)c2);
+                Vector128<ushort> v3 = Vector128.Create((ushort)c3);
 
-                if (cmp != Vector128<byte>.Zero)
+                do
                 {
-                    // Skip every other bit
-                    uint mask = cmp.ExtractMostSignificantBits() & 0x5555;
-                    do
-                    {
-                        uint bitPos = (uint)BitOperations.TrailingZeroCount(mask) / sizeof(char);
-                        sepListBuilder.Append((int)(offset + bitPos));
-                        mask = BitOperations.ResetLowestSetBit(mask);
-                    } while (mask != 0);
-                }
+                    Vector128<ushort> vector = Vector128.LoadUnsafe(ref source, offset);
+                    Vector128<ushort> v1Eq = Vector128.Equals(vector, v1);
+                    Vector128<ushort> v2Eq = Vector128.Equals(vector, v2);
+                    Vector128<ushort> v3Eq = Vector128.Equals(vector, v3);
+                    Vector128<byte> cmp = (v1Eq | v2Eq | v3Eq).AsByte();
 
-                offset += (nuint)Vector128<ushort>.Count;
-            } while (offset <= lengthToExamine - (nuint)Vector128<ushort>.Count);
+                    if (cmp != Vector128<byte>.Zero)
+                    {
+                        // Skip every other bit
+                        uint mask = cmp.ExtractMostSignificantBits() & 0x5555;
+                        do
+                        {
+                            uint bitPos = (uint)BitOperations.TrailingZeroCount(mask) / sizeof(char);
+                            sepListBuilder.Append((int)(offset + bitPos));
+                            mask = BitOperations.ResetLowestSetBit(mask);
+                        } while (mask != 0);
+                    }
+
+                    offset += (nuint)Vector128<ushort>.Count;
+                } while (offset <= lengthToExamine - (nuint)Vector128<ushort>.Count);
+            }
 
             while (offset < lengthToExamine)
             {

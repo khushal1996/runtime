@@ -1,0 +1,5 @@
+Implementing MakeSeparatorListVectorized codepath
+length to examine: 180
+length > vector512: True
+Vector512.IsHardwareAccelerated: False
+Implementing vector128 codepath
