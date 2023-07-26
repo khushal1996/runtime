@@ -1,0 +1,2 @@
+Vector512.IsHardwareAccelerated: False
+Implementing vector128 codepath
