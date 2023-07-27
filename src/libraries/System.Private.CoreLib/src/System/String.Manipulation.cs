@@ -1899,6 +1899,7 @@ namespace System
 
         private static void MakeSeparatorListVectorized(ReadOnlySpan<char> sourceSpan, ref ValueListBuilder<int> sepListBuilder, char c, char c2, char c3)
         {
+            Internal.Console.WriteLine("Vector512: " + Vector512.IsHardwareAccelerated);
             // Redundant test so we won't prejit remainder of this method
             // on platforms where it is not supported
             if (!Vector128.IsHardwareAccelerated)

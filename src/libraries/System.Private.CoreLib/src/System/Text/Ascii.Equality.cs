@@ -63,6 +63,7 @@ namespace System.Text
             }
             else if (Vector512.IsHardwareAccelerated && length >= (uint)Vector512<TLeft>.Count)
             {
+                Internal.Console.WriteLine("Vector512: " + Vector512.IsHardwareAccelerated);
                 ref TLeft currentLeftSearchSpace = ref left;
                 ref TRight currentRightSearchSpace = ref right;
                 // Add Vector512<TLeft>.Count because TLeft == TRight
@@ -93,6 +94,7 @@ namespace System.Text
             }
             else if (Avx.IsSupported && length >= (uint)Vector256<TLeft>.Count)
             {
+                Internal.Console.WriteLine("Vector256");
                 ref TLeft currentLeftSearchSpace = ref left;
                 ref TRight currentRightSearchSpace = ref right;
                 // Add Vector256<TLeft>.Count because TLeft == TRight
@@ -123,6 +125,7 @@ namespace System.Text
             }
             else
             {
+                Internal.Console.WriteLine("Vector128");
                 ref TLeft currentLeftSearchSpace = ref left;
                 ref TLeft oneVectorAwayFromLeftEnd = ref Unsafe.Add(ref currentLeftSearchSpace, length - TLoader.Count128);
                 ref TRight currentRightSearchSpace = ref right;
