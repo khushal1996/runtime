@@ -63,6 +63,7 @@ namespace System.Text
             }
             else if (Vector512.IsHardwareAccelerated && length >= (uint)Vector512<TLeft>.Count)
             {
+                Internal.Console.WriteLine("Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
                 ref TLeft currentLeftSearchSpace = ref left;
                 ref TRight currentRightSearchSpace = ref right;
                 // Add Vector512<TLeft>.Count because TLeft == TRight

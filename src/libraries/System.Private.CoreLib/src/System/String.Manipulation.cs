@@ -1552,6 +1552,7 @@ namespace System
 
         public string[] Split(char[]? separator, StringSplitOptions options)
         {
+            Internal.Console.WriteLine("split Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
             return SplitInternal(separator, int.MaxValue, options);
         }
 
@@ -1562,6 +1563,7 @@ namespace System
 
         private string[] SplitInternal(ReadOnlySpan<char> separators, int count, StringSplitOptions options)
         {
+            Internal.Console.WriteLine("split internal Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
             ArgumentOutOfRangeException.ThrowIfNegative(count);
 
             CheckStringSplitOptions(options);

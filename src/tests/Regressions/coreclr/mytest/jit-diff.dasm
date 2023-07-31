@@ -1,2 +1,14 @@
+Ascii------
+Vector512.IsHardwareAccelerated: True
+True
+String------
+split Vector512.IsHardwareAccelerated: False
+split internal Vector512.IsHardwareAccelerated: False
+Implementing MakeSeparatorListVectorized codepath
+length to examine: 180
+length > vector512: True
 Vector512.IsHardwareAccelerated: False
 Implementing vector128 codepath
+A
+span: False
+Main Vector512: True
