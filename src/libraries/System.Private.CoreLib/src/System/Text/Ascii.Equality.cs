@@ -249,6 +249,7 @@ namespace System.Text
                     rightValues = Vector512.LoadUnsafe(ref currentRightSearchSpace);
                     if (!AllCharsInVectorAreAscii(leftValues | rightValues))
                     {
+                        Internal.Console.WriteLine("Returning false 1");
                         return false;
                     }
 
@@ -263,6 +264,7 @@ namespace System.Text
 
                         if (Vector512.GreaterThanAny((leftValues - vecA) & notEquals, vecZMinusA) || leftValues != rightValues)
                         {
+                            Internal.Console.WriteLine("Returning false 2");
                             return false; // first input isn't in [A-Za-z], and not exact match of lowered
                         }
                     }
@@ -280,6 +282,7 @@ namespace System.Text
 
                     if (!AllCharsInVectorAreAscii(leftValues | rightValues))
                     {
+                        Internal.Console.WriteLine("Returning false 3");
                         return false;
                     }
 
@@ -294,6 +297,7 @@ namespace System.Text
 
                         if (Vector512.GreaterThanAny((leftValues - vecA) & notEquals, vecZMinusA) || leftValues != rightValues)
                         {
+                            Internal.Console.WriteLine("Returning false 4");
                             return false; // first input isn't in [A-Za-z], and not exact match of lowered
                         }
                     }
@@ -321,6 +325,7 @@ namespace System.Text
 
                     if (!AllCharsInVectorAreAscii(leftValues | rightValues))
                     {
+                        Internal.Console.WriteLine("Returning false256 1");
                         return false;
                     }
 
