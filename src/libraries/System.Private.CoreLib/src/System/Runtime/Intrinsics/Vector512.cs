@@ -383,6 +383,20 @@ namespace System.Runtime.Intrinsics
             );
         }
 
+        /// <summary>Converts a <see cref="Vector512{UInt64}" /> to a <see cref="Vector512{Single}" />.</summary>
+        /// <param name="vector">The vector to convert.</param>
+        /// <returns>The converted vector.</returns>
+        [Intrinsic]
+        [CLSCompliant(false)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector256<float> ConvertToSingle(Vector512<ulong> vector)
+        {
+            return Vector256.Create(
+                Vector256.ConvertToSingle(vector._lower),
+                Vector256.ConvertToSingle(vector._upper)
+            );
+        }
+
         /// <summary>Converts a <see cref="Vector512{UInt32}" /> to a <see cref="Vector512{Single}" />.</summary>
         /// <param name="vector">The vector to convert.</param>
         /// <returns>The converted vector.</returns>
@@ -1768,11 +1782,11 @@ namespace System.Runtime.Intrinsics
         /// <exception cref="NotSupportedException">The type of <paramref name="source" /> (<typeparamref name="T" />) is not supported.</exception>
         [Intrinsic]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector512<T> LoadUnsafe<T>(ref readonly T source)
+        public static Vector512<T> LoadUnsafe<T>(ref T source)
         {
             ThrowHelper.ThrowForUnsupportedIntrinsicsVector512BaseType<T>();
-            ref readonly byte address = ref Unsafe.As<T, byte>(ref Unsafe.AsRef(in source));
-            return Unsafe.ReadUnaligned<Vector512<T>>(in address);
+            ref byte address = ref Unsafe.As<T, byte>(ref source);
+            return Unsafe.ReadUnaligned<Vector512<T>>(ref address);
         }
 
         /// <summary>Loads a vector from the given source and element offset.</summary>
@@ -1784,11 +1798,11 @@ namespace System.Runtime.Intrinsics
         [Intrinsic]
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector512<T> LoadUnsafe<T>(ref readonly T source, nuint elementOffset)
+        public static Vector512<T> LoadUnsafe<T>(ref T source, nuint elementOffset)
         {
             ThrowHelper.ThrowForUnsupportedIntrinsicsVector512BaseType<T>();
-            ref readonly byte address = ref Unsafe.As<T, byte>(ref Unsafe.Add(ref Unsafe.AsRef(in source), (nint)elementOffset));
-            return Unsafe.ReadUnaligned<Vector512<T>>(in address);
+            source = ref Unsafe.Add(ref source, (nint)elementOffset);
+            return Unsafe.ReadUnaligned<Vector512<T>>(ref Unsafe.As<T, byte>(ref source));
         }
 
         /// <summary>Loads a vector from the given source and reinterprets it as <see cref="ushort"/>.</summary>

@@ -376,6 +376,31 @@ namespace System.Numerics
             return result;
         }
 
+        /// <summary>Converts a <see cref="Vector{UInt64}" /> to a <see cref="Vector{Single}" />.</summary>
+        /// <param name="value">The vector to convert.</param>
+        /// <returns>The converted vector.</returns>
+        [Intrinsic]
+        [CLSCompliant(false)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector<float> ConvertToSingle(Vector<ulong> value)
+        {
+            if (Avx512F.IsSupported)
+            {
+                Debug.Assert(Vector<float>.Count == Vector256<float>.Count);
+                return Vector512.ConvertToSingle(value.AsVector512()).AsVector();
+            }
+            else if (Avx2.IsSupported)
+            {
+                Debug.Assert(Vector<float>.Count == Vector256<float>.Count);
+                return Vector256.ConvertToSingle(value.AsVector256()).AsVector();
+            }
+            else
+            {
+                Debug.Assert(Vector<float>.Count == Vector128<float>.Count);
+                return Vector128.ConvertToSingle(value.AsVector128()).AsVector();
+            }
+        }
+
         /// <summary>Converts a <see cref="Vector{UInt32}" /> to a <see cref="Vector{Single}" />.</summary>
         /// <param name="value">The vector to convert.</param>
         /// <returns>The converted vector.</returns>
