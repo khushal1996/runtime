@@ -54,6 +54,8 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector128<System.UInt32> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
+        public static System.Runtime.Intrinsics.Vector128<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector128<System.UInt64> vector) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.UInt32> ConvertToUInt32(System.Runtime.Intrinsics.Vector128<System.Single> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.UInt64> ConvertToUInt64(System.Runtime.Intrinsics.Vector128<System.Double> vector) { throw null; }

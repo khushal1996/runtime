@@ -240,6 +240,8 @@ namespace System.Numerics
         [System.CLSCompliantAttribute(false)]
         public static System.Numerics.Vector<System.Single> ConvertToSingle(System.Numerics.Vector<System.UInt32> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
+        public static System.Numerics.Vector<System.Single> ConvertToSingle(System.Numerics.Vector<System.UInt64> value) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.Numerics.Vector<System.UInt32> ConvertToUInt32(System.Numerics.Vector<System.Single> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Numerics.Vector<System.UInt64> ConvertToUInt64(System.Numerics.Vector<System.Double> value) { throw null; }
