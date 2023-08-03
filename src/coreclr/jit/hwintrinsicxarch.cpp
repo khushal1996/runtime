@@ -1400,6 +1400,22 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
         case NI_Vector128_ConvertToDouble:
         case NI_Vector256_ConvertToDouble:
+        case NI_Vector512_ConvertToDouble:
+        {
+            assert(sig->numArgs == 1);
+            assert(varTypeIsLong(simdBaseType));
+            if (IsBaselineVector512IsaSupportedOpportunistically())
+            {
+                intrinsic = (simdSize == 16) ? NI_AVX512DQ_VL_ConvertToVector128Double
+                                             : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Double
+                                                                : NI_AVX512DQ_ConvertToVector512Double;
+
+                op1     = impSIMDPopStack();
+                retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
+            }
+            break;
+        }
+
         case NI_Vector128_ConvertToInt64:
         case NI_Vector256_ConvertToInt64:
         case NI_Vector128_ConvertToUInt32:
@@ -1464,6 +1480,16 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
                 op1     = impSIMDPopStack();
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
+            }
+            else if (simdBaseType == TYP_ULONG)
+            {
+                if (IsBaselineVector512IsaSupportedOpportunistically())
+                {
+                    intrinsic = (simdSize == 64) ? NI_AVX512DQ_ConvertToVector256Single
+                                                 : NI_AVX512DQ_VL_ConvertToVector128Single;
+                    op1     = impSIMDPopStack();
+                    retNode = gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
+                }
             }
             else
             {

@@ -54,6 +54,8 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector128<System.UInt32> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
+        public static System.Runtime.Intrinsics.Vector128<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector128<System.UInt64> vector) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.UInt32> ConvertToUInt32(System.Runtime.Intrinsics.Vector128<System.Single> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.UInt64> ConvertToUInt64(System.Runtime.Intrinsics.Vector128<System.Double> vector) { throw null; }
@@ -381,6 +383,8 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector256<System.UInt32> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
+        public static System.Runtime.Intrinsics.Vector128<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector256<System.UInt64> vector) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.UInt32> ConvertToUInt32(System.Runtime.Intrinsics.Vector256<System.Single> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.UInt64> ConvertToUInt64(System.Runtime.Intrinsics.Vector256<System.Double> vector) { throw null; }
@@ -705,6 +709,8 @@ namespace System.Runtime.Intrinsics
         public static System.Runtime.Intrinsics.Vector512<System.Int32> ConvertToInt32(System.Runtime.Intrinsics.Vector512<System.Single> vector) { throw null; }
         public static System.Runtime.Intrinsics.Vector512<System.Int64> ConvertToInt64(System.Runtime.Intrinsics.Vector512<System.Double> vector) { throw null; }
         public static System.Runtime.Intrinsics.Vector512<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector512<System.Int32> vector) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static System.Runtime.Intrinsics.Vector256<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector512<System.UInt64> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector512<System.Single> ConvertToSingle(System.Runtime.Intrinsics.Vector512<System.UInt32> vector) { throw null; }
         [System.CLSCompliantAttribute(false)]
