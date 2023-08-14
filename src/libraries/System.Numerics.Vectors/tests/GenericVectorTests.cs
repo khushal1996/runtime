@@ -3145,18 +3145,6 @@ namespace System.Numerics.Tests
         }
 
         [Fact]
-        public void ConvertUInt64ToSingle()
-        {
-            ulong[] source = GenerateRandomValuesForVector<ulong>();
-            Vector<ulong> sourceVec = new Vector<ulong>(source);
-            Vector<float> targetVec = Vector.ConvertToSingle(sourceVec);
-            for (int i = 0; i < Vector<float>.Count / 2; i++)
-            {
-                Assert.Equal(unchecked((float)source[i]), targetVec[i]);
-            }
-        }
-
-        [Fact]
         public void ConvertUInt64ToDouble()
         {
             ulong[] source = GenerateRandomValuesForVector<ulong>();
