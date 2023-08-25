@@ -517,7 +517,6 @@ namespace System
             // We get past SequentialScan only if IsHardwareAccelerated is true; and remain length is greater than Vector length.
             // However, we still have the redundant check to allow the JIT to see that the code is unreachable and eliminate it when the platform does not
             // have hardware accelerated. After processing Vector lengths we return to SequentialScan to finish any remaining.
-            Internal.Console.WriteLine("span: " + Vector512.IsHardwareAccelerated);
             if (Vector512.IsHardwareAccelerated)
             {
                 if (offset < (nuint)(uint)Length)
