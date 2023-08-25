@@ -992,7 +992,9 @@ namespace System.Text
             Console.WriteLine("String------");
             string s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ A B C D E F G H I J K L M N O P Q R S T U V W X Y ZA B C D E F G H I J K L M N O P Q R S T U V W X Y ZA B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
             char[] arr = {' ', ',', '.'};
-            Split(s, arr, StringSplitOptions.RemoveEmptyEntries);
+            for ( int i = 0; i < 300; i++ ) {
+                Split(s, arr, StringSplitOptions.RemoveEmptyEntries);
+            }
             Console.WriteLine(s[0]);
             sbyte[] a = {0x20, 0x20, 0x20, 0x20, 0x20};
             unsafe {

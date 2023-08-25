@@ -1188,7 +1188,14 @@ namespace System
             // process the remaining elements vectorized too.
             // Thus we adjust the pointers so that at least one full vector from the end can be processed.
             nuint length = (uint)Length;
-            if (Vector128.IsHardwareAccelerated && length >= (uint)Vector128<ushort>.Count)
+            if (Vector512.IsHardwareAccelerated && length >= (uint)Vector512<ushort>.Count)
+            {
+                nuint adjust = (length - remainingLength) & ((uint)Vector512<ushort>.Count - 1);
+                pSrc = ref Unsafe.Subtract(ref pSrc, adjust);
+                pDst = ref Unsafe.Subtract(ref pDst, adjust);
+                remainingLength += adjust;
+            }
+            else if (Vector128.IsHardwareAccelerated && length >= (uint)Vector128<ushort>.Count)
             {
                 nuint adjust = (length - remainingLength) & ((uint)Vector128<ushort>.Count - 1);
                 pSrc = ref Unsafe.Subtract(ref pSrc, adjust);
@@ -1552,7 +1559,7 @@ namespace System
 
         public string[] Split(char[]? separator, StringSplitOptions options)
         {
-            Internal.Console.WriteLine("split Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
+            //Internal.Console.WriteLine("split Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
             return SplitInternal(separator, int.MaxValue, options);
         }
 
@@ -1563,7 +1570,7 @@ namespace System
 
         private string[] SplitInternal(ReadOnlySpan<char> separators, int count, StringSplitOptions options)
         {
-            Internal.Console.WriteLine("split internal Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
+            //Internal.Console.WriteLine("split internal Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
             ArgumentOutOfRangeException.ThrowIfNegative(count);
 
             CheckStringSplitOptions(options);
@@ -1902,17 +1909,12 @@ namespace System
         private static void MakeSeparatorListVectorized(ReadOnlySpan<char> sourceSpan, ref ValueListBuilder<int> sepListBuilder, char c, char c2, char c3)
         {
             Debug.Assert(sourceSpan.Length >= Vector128<ushort>.Count);
-            Internal.Console.WriteLine("Implementing MakeSeparatorListVectorized codepath");
             nuint lengthToExamine = (uint)sourceSpan.Length;
             nuint offset = 0;
             ref char source = ref MemoryMarshal.GetReference(sourceSpan);
-            Internal.Console.WriteLine("length to examine: " + lengthToExamine.ToString());
-            Internal.Console.WriteLine("length > vector512: " + (lengthToExamine >= (uint)Vector512<ushort>.Count).ToString());
-            Internal.Console.WriteLine("Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
-            //Vector512
             if (Vector512.IsHardwareAccelerated && lengthToExamine >= (uint)Vector512<ushort>.Count)
             {
-                Internal.Console.WriteLine("Implementing vector512 codepath");
+                //Internal.Console.WriteLine("Implementing vector512 codepath");
                 Vector512<ushort> v1 = Vector512.Create((ushort)c);
                 Vector512<ushort> v2 = Vector512.Create((ushort)c2);
                 Vector512<ushort> v3 = Vector512.Create((ushort)c3);
@@ -1944,7 +1946,7 @@ namespace System
             // Vector128
             else if (Vector128.IsHardwareAccelerated)
             {
-                Internal.Console.WriteLine("Implementing vector128 codepath");
+                //Internal.Console.WriteLine("Implementing vector128 codepath");
                 Vector128<ushort> v1 = Vector128.Create((ushort)c);
                 Vector128<ushort> v2 = Vector128.Create((ushort)c2);
                 Vector128<ushort> v3 = Vector128.Create((ushort)c3);
