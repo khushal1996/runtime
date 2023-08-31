@@ -1233,8 +1233,34 @@ namespace System
                 // Find all occurrences of the oldValue character.
                 char c = oldValue[0];
                 int i = 0;
+                if (Vector512.IsHardwareAccelerated && this.Length >= (uint)Vector512<ushort>.Count*2)
+                {
+                    //MakeSeparatorListVectorized(this, ref replacementIndices, c, c, c);
+                    nuint lengthToExamine = (uint)this.Length;
+                    nuint offset = 0;
+                    ref char source = ref MemoryMarshal.GetReference(this.AsSpan());
+                    Vector512<ushort> v1 = Vector512.Create((ushort)c);
+                    do
+                    {
+                        Vector512<ushort> vector = Vector512.LoadUnsafe(ref source, offset);
+                        Vector512<byte> cmp = (Vector512.Equals(vector, v1)).AsByte();
 
-                if (PackedSpanHelpers.PackedIndexOfIsSupported && PackedSpanHelpers.CanUsePackedIndexOf(c))
+                        if (cmp != Vector512<byte>.Zero)
+                        {
+                            // Skip every other bit
+                            ulong mask = cmp.ExtractMostSignificantBits() & 0x5555555555555555;
+                            do
+                            {
+                                uint bitPos = (uint)BitOperations.TrailingZeroCount(mask) / sizeof(char);
+                                replacementIndices.Append((int)(offset + bitPos));
+                                mask = BitOperations.ResetLowestSetBit(mask);
+                            } while (mask != 0);
+                        }
+
+                        offset += (nuint)Vector512<ushort>.Count;
+                    } while (offset <= lengthToExamine - (nuint)Vector512<ushort>.Count);
+                }
+                else if (PackedSpanHelpers.PackedIndexOfIsSupported && PackedSpanHelpers.CanUsePackedIndexOf(c))
                 {
                     while (true)
                     {
@@ -1559,7 +1585,6 @@ namespace System
 
         public string[] Split(char[]? separator, StringSplitOptions options)
         {
-            //Internal.Console.WriteLine("split Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
             return SplitInternal(separator, int.MaxValue, options);
         }
 
@@ -1570,7 +1595,6 @@ namespace System
 
         private string[] SplitInternal(ReadOnlySpan<char> separators, int count, StringSplitOptions options)
         {
-            //Internal.Console.WriteLine("split internal Vector512.IsHardwareAccelerated: " + (Vector512.IsHardwareAccelerated).ToString());
             ArgumentOutOfRangeException.ThrowIfNegative(count);
 
             CheckStringSplitOptions(options);
@@ -1912,9 +1936,8 @@ namespace System
             nuint lengthToExamine = (uint)sourceSpan.Length;
             nuint offset = 0;
             ref char source = ref MemoryMarshal.GetReference(sourceSpan);
-            if (Vector512.IsHardwareAccelerated && lengthToExamine >= (uint)Vector512<ushort>.Count)
+            if (Vector512.IsHardwareAccelerated && lengthToExamine >= (uint)Vector512<ushort>.Count*2)
             {
-                //Internal.Console.WriteLine("Implementing vector512 codepath");
                 Vector512<ushort> v1 = Vector512.Create((ushort)c);
                 Vector512<ushort> v2 = Vector512.Create((ushort)c2);
                 Vector512<ushort> v3 = Vector512.Create((ushort)c3);
@@ -1946,7 +1969,6 @@ namespace System
             // Vector128
             else if (Vector128.IsHardwareAccelerated)
             {
-                //Internal.Console.WriteLine("Implementing vector128 codepath");
                 Vector128<ushort> v1 = Vector128.Create((ushort)c);
                 Vector128<ushort> v2 = Vector128.Create((ushort)c2);
                 Vector128<ushort> v3 = Vector128.Create((ushort)c3);
