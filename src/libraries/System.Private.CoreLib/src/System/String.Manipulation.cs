@@ -1927,10 +1927,10 @@ namespace System
                 do
                 {
                     Vector512<ushort> vector = Vector512.LoadUnsafe(ref source, offset);
-                    Vector512<ushort> v1Eq = Vector512.Equals(vector, v1);
-                    Vector512<ushort> v2Eq = Vector512.Equals(vector, v2);
-                    Vector512<ushort> v3Eq = Vector512.Equals(vector, v3);
-                    Vector512<byte> cmp = (v1Eq | v2Eq | v3Eq).AsByte();
+                    // Vector512<ushort> v1Eq = Vector512.Equals(vector, v1);
+                    // Vector512<ushort> v2Eq = Vector512.Equals(vector, v2);
+                    // Vector512<ushort> v3Eq = Vector512.Equals(vector, v3);
+                    Vector512<byte> cmp = (Vector512.Equals(vector, v1) | Vector512.Equals(vector, v2) | Vector512.Equals(vector, v3)).AsByte();
 
                     if (cmp != Vector512<byte>.Zero)
                     {
