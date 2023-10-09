@@ -823,6 +823,35 @@ namespace System.Collections
             }
             else if (array is bool[] boolArray)
             {
+/*
+///BitArray --> 1000 1000 0000 1000 0000 1111 1111 0010 --> stored as a single int (32 bits)
+///shuffled to copy each byte 8 times
+///         {10, 10, 10, 10, 10, 10, 10, 10,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             10, 10, 10, 10, 10, 10, 10, 10,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             10, 10, 10, 10, 10, 10, 10, 10,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             11, 11, 11, 11, 11, 11, 11, 11,
+             11, 11, 11, 11, 11, 11, 11, 11,
+             11, 11, 11, 11, 11, 11, 11, 11,
+             11, 11, 11, 11, 11, 11, 11, 11,
+             00, 00, 00, 00, 00, 00, 00, 00,
+             10, 10, 10, 10, 10, 10, 10, 10
+            }
+//boolArray --> { true, false, false, false, -->    1000
+                  true, false, false, false, -->    1000
+                  false, false, false, false, -->   0000
+                  true, false, false, false, -->    1000
+                  false, false, false, false, -->   0000
+                  true, true, true, true, -->       1111
+                  true, true, true, true, -->       1111
+                  false, false, true, false} -->    0010
+*/
                 if (array.Length - index < m_length)
                 {
                     throw new ArgumentException(SR.Argument_InvalidOffLen);
