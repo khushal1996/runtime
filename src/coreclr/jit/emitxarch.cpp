@@ -1486,7 +1486,6 @@ bool emitter::TakesRexWPrefix(const instrDesc* id) const
 #endif // TARGET_AMD64
             case INS_vcvtsd2usi:
             case INS_vcvtss2usi:
-            case INS_vcvttsd2usi:
             {
                 if (attr == EA_8BYTE)
                 {
@@ -2690,7 +2689,8 @@ bool emitter::emitInsCanOnlyWriteSSE2OrAVXReg(instrDesc* id)
 #endif
         case INS_vcvtsd2usi:
         case INS_vcvtss2usi:
-        case INS_vcvttsd2usi:
+        case INS_vcvttsd2usi32:
+        case INS_vcvttsd2usi64:
         case INS_vcvttss2usi32:
         case INS_vcvttss2usi64:
         {
@@ -11522,16 +11522,12 @@ void emitter::emitDispIns(
                 case INS_cvttss2si:
                 case INS_vcvtsd2usi:
                 case INS_vcvtss2usi:
-                case INS_vcvttsd2usi:
-                {
-                    printf(" %s, %s", emitRegName(id->idReg1(), attr), emitRegName(id->idReg2(), EA_16BYTE));
-                    break;
-                }
-
+                case INS_vcvttsd2usi32:
+                case INS_vcvttsd2usi64:
                 case INS_vcvttss2usi32:
                 case INS_vcvttss2usi64:
                 {
-                    printf(" %s, %s", emitRegName(id->idReg1(), attr), emitRegName(id->idReg2(), EA_4BYTE));
+                    printf(" %s, %s", emitRegName(id->idReg1(), attr), emitRegName(id->idReg2(), EA_16BYTE));
                     break;
                 }
 
@@ -18801,7 +18797,8 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
         case INS_vcvtsd2usi:
         case INS_vcvtusi2ss32:
         case INS_vcvtusi2ss64:
-        case INS_vcvttsd2usi:
+        case INS_vcvttsd2usi32:
+        case INS_vcvttsd2usi64:
         case INS_vcvttss2usi32:
             result.insThroughput = PERFSCORE_THROUGHPUT_1C;
             result.insLatency += PERFSCORE_LATENCY_7C;
