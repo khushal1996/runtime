@@ -11,6 +11,10 @@
 
 EXTERN_C NATIVEAOT_API uint64_t REDHAWK_CALLCONV RhpDbl2ULng(double val)
 {
+#ifdef TARGET_X86
+    const double uint64_max_plus_1 = -2.0 * (double)INT64_MIN;
+    return (val < 0) ? 0 : (val != val || val >= uint64_max_plus_1) ? UINT64_MAX : (uint64_t)val;
+#else
     const double two63  = 2147483648.0 * 4294967296.0;
     uint64_t ret;
     if (val < two63)
@@ -23,6 +27,7 @@ EXTERN_C NATIVEAOT_API uint64_t REDHAWK_CALLCONV RhpDbl2ULng(double val)
         ret = (int64_t)(val - two63) + I64(0x8000000000000000);
     }
     return ret;
+#endif //TARGET_X86
 }
 
 #undef min
