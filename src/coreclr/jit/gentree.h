@@ -557,6 +557,7 @@ enum GenTreeFlags : unsigned int
 
     GTF_MDARRLOWERBOUND_NONFAULTING = 0x20000000, // GT_MDARR_LOWER_BOUND -- An MD array lower bound operation that cannot fault. Same as GT_IND_NONFAULTING.
 
+    GTF_CONVERSION_SATURATED    = 0x20000000, // GT_CAST -- conversion operation has saturation behavior
 };
 
 inline constexpr GenTreeFlags operator ~(GenTreeFlags a)
@@ -3867,6 +3868,16 @@ struct GenTreeCast : public GenTreeOp
         }
 
         return false;
+    }
+
+    bool IsSaturatedConversion()
+    {
+        return (gtFlags & GTF_CONVERSION_SATURATED) != 0;
+    }
+
+    void SetSaturatedConversion()
+    {
+        gtFlags |= GTF_CONVERSION_SATURATED;
     }
 };
 
