@@ -531,13 +531,6 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
     switch (intrinsic)
     {
 #if defined(TARGET_XARCH)
-        case NI_VectorT128_ConvertToUInt32:
-        case NI_VectorT256_ConvertToUInt32:
-        {
-            // TODO-XARCH-CQ: These intrinsics should be accelerated
-            return nullptr;
-        }
-
         case NI_VectorT128_ConvertToSingle:
         case NI_VectorT256_ConvertToSingle:
         {
@@ -1274,18 +1267,60 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     {
                         assert(sig->numArgs == 1);
                         assert((simdBaseType == TYP_DOUBLE) || (simdBaseType == TYP_FLOAT));
-#ifdef TARGET_XARCH
+
                         NamedIntrinsic convert =
                             (simdSize == 16) ? NI_AVX512DQ_VL_ConvertToVector128Int64WithTruncation
                                              : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Int64WithTruncation
                                                                 : NI_AVX512DQ_ConvertToVector512Int64WithTruncation;
-#else
-                        NamedIntrinsic convert = (simdSize == 16)
-                                                     ? NI_AVX512DQ_VL_ConvertToVector128Int64
-                                                     : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256Int64
-                                                                        : NI_AVX512DQ_ConvertToVector512Int64;
-#endif // TARGET_XARCH
+
                         return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
+                    }
+                    return nullptr;
+                }
+
+                case NI_VectorT128_ConvertToUInt32:
+                case NI_VectorT256_ConvertToUInt32:
+                {
+                    if (IsBaselineVector512IsaSupportedOpportunistically())
+                    {
+                        assert(sig->numArgs == 1);
+                        assert((simdBaseType == TYP_DOUBLE) || (simdBaseType == TYP_FLOAT));
+
+                        var_types simdType = getSIMDTypeForSize(simdSize);
+                        // Generate the control table for VFIXUPIMMSD
+                        // The behavior we want is to saturate negative values to 0.
+                        GenTreeVecCon* tbl = gtNewVconNode(simdType);
+
+                        // QNAN: 0b1000:
+                        // SNAN: 0b1000
+                        // ZERO: 0b0000:
+                        // +ONE: 0b0000
+                        // -INF: 0b0000
+                        // +INF: 0b0000
+                        // -VAL: 0b1000: Saturate to Zero
+                        // +VAL: 0b0000
+                        for ( int i = 0; i < 16; i++ )
+                        {
+                            tbl->gtSimdVal.i32[i] = 0x08000088;
+                        }
+
+                        // Generate first operand
+                        // The logic is that first and second operand are basically the same because we want 
+                        // the output to be in the same xmm register
+                        // Hence we clone the first operand
+                        GenTree* op2Clone;
+                        op1 = impCloneExpr(op1, &op2Clone, CHECK_SPILL_ALL,
+                                            nullptr DEBUGARG("Cloning double for Dbl2Ulng conversion"));
+                        
+                        //run vfixupimmsd base on table and no flags reporting
+                        GenTree* retNode1 = gtNewSimdHWIntrinsicNode(simdType, op1, op2Clone, tbl, gtNewIconNode(0),
+                                                                    NI_AVX512F_Fixup, simdBaseJitType, simdSize);
+
+                        NamedIntrinsic convert = (simdSize == 16) ? NI_AVX512F_VL_ConvertToVector128UInt32WithTruncation
+                                                                  : (simdSize == 32) ? NI_AVX512F_VL_ConvertToVector256UInt32WithTruncation
+                                                                                     : NI_AVX512F_ConvertToVector512UInt32WithTruncation;
+
+                        return gtNewSimdHWIntrinsicNode(retType, retNode1, convert, simdBaseJitType, simdSize);
                     }
                     return nullptr;
                 }
@@ -1298,28 +1333,24 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     {
                         assert(sig->numArgs == 1);
                         assert((simdBaseType == TYP_DOUBLE) || (simdBaseType == TYP_FLOAT));
-#ifdef TARGET_XARCH
+
                         var_types simdType = getSIMDTypeForSize(simdSize);
                         // Generate the control table for VFIXUPIMMSD
                         // The behavior we want is to saturate negative values to 0.
                         GenTreeVecCon* tbl = gtNewVconNode(simdType);
 
-                        // QNAN: 0b0000:
-                        // SNAN: 0b0000
+                        // QNAN: 0b1000:
+                        // SNAN: 0b1000
                         // ZERO: 0b0000:
                         // +ONE: 0b0000
                         // -INF: 0b0000
                         // +INF: 0b0000
                         // -VAL: 0b1000: Saturate to Zero
                         // +VAL: 0b0000
-                        tbl->gtSimdVal.i64[0] = 0x08000000;
-                        tbl->gtSimdVal.i64[1] = 0x08000000;
-                        tbl->gtSimdVal.i64[2] = 0x08000000;
-                        tbl->gtSimdVal.i64[3] = 0x08000000;
-                        tbl->gtSimdVal.i64[4] = 0x08000000;
-                        tbl->gtSimdVal.i64[5] = 0x08000000;
-                        tbl->gtSimdVal.i64[6] = 0x08000000;
-                        tbl->gtSimdVal.i64[7] = 0x08000000;
+                        for ( int i = 0; i < 8; i++ )
+                        {
+                            tbl->gtSimdVal.i64[i] = 0x08000088;
+                        }
 
                         // Generate first operand
                         // The logic is that first and second operand are basically the same because we want 
@@ -1339,14 +1370,6 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                                                                 : NI_AVX512DQ_ConvertToVector512UInt64WithTruncation;
 
                         return gtNewSimdHWIntrinsicNode(retType, retNode1, convert, simdBaseJitType, simdSize);
-#else
-                        NamedIntrinsic convert = (simdSize == 16)
-                                                     ? NI_AVX512DQ_VL_ConvertToVector128UInt64
-                                                     : (simdSize == 32) ? NI_AVX512DQ_VL_ConvertToVector256UInt64
-                                                                        : NI_AVX512DQ_ConvertToVector512UInt64;
-
-                        return gtNewSimdHWIntrinsicNode(retType, op1, convert, simdBaseJitType, simdSize);
-#endif // TARGET_XARCH
                     }
                     return nullptr;
                 }
