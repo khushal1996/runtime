@@ -1466,7 +1466,8 @@ bool emitter::TakesRexWPrefix(const instrDesc* id) const
             case INS_cvtss2si:
             case INS_cvttss2si:
             case INS_cvtsd2si:
-            case INS_cvttsd2si:
+            case INS_cvttsd2si32:
+            case INS_cvttsd2si64:
             case INS_movd:
             case INS_movnti:
             case INS_andn:
@@ -2664,7 +2665,8 @@ bool emitter::emitInsCanOnlyWriteSSE2OrAVXReg(instrDesc* id)
         case INS_blsmsk:
         case INS_blsr:
         case INS_bzhi:
-        case INS_cvttsd2si:
+        case INS_cvttsd2si32:
+        case INS_cvttsd2si64:
         case INS_cvttss2si:
         case INS_cvtsd2si:
         case INS_cvtss2si:
@@ -11516,7 +11518,8 @@ void emitter::emitDispIns(
                     break;
                 }
 
-                case INS_cvttsd2si:
+                case INS_cvttsd2si32:
+                case INS_cvttsd2si64:
                 case INS_cvtss2si:
                 case INS_cvtsd2si:
                 case INS_cvttss2si:
@@ -18788,7 +18791,8 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
             break;
         }
 
-        case INS_cvttsd2si:
+        case INS_cvttsd2si32:
+        case INS_cvttsd2si64:
         case INS_cvtsd2si:
         case INS_cvtsi2sd32:
         case INS_cvtsi2ss32:
