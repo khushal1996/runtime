@@ -30,6 +30,38 @@ EXTERN_C NATIVEAOT_API uint64_t REDHAWK_CALLCONV RhpDbl2ULng(double val)
 #endif //TARGET_X86
 }
 
+EXTERN_C NATIVEAOT_API int64_t REDHAWK_CALLCONV RhpDbl2Lng(double val)
+{
+#ifdef TARGET_X86
+    const double int64_min_minus_1 = (double)INT64_MIN - 1.0;
+    const double int64_max_plus_1 = -2.0 * (double)INT64_MIN;
+    return (val!= val) ? 0 : (val <= int64_min_minus_1) ? INT64_MIN : (val >= int64_max_plus_1) ? INT64_MAX : (int64_t)val;
+#else
+    return (int64_t)val;
+#endif //TARGET_X86
+}
+
+EXTERN_C NATIVEAOT_API int32_t REDHAWK_CALLCONV RhpDbl2Int(double val)
+{
+#ifdef TARGET_X86
+    const double int32_min_minus_1 = (double)INT32_MIN - 1.0;
+    const double int32_max_plus_1 = -2.0 * (double)INT32_MIN;
+    return (val!= val) ? 0 : (val <= int32_min_minus_1) ? INT32_MIN : (val >= int32_max_plus_1) ? INT32_MAX : (int32_t)val;
+#else
+    return (int32_t)val;
+#endif //TARGET_X86
+}
+
+EXTERN_C NATIVEAOT_API uint32_t REDHAWK_CALLCONV RhpDbl2UInt(double val)
+{
+#ifdef TARGET_X86
+    const double uint32_max_plus_1 = -2.0 * (double)INT32_MIN;
+    return (val < 0) ? 0 : (val != val || val >= uint32_max_plus_1) ? UINT32_MAX : (uint32_t)val;
+#else
+    return (uint32_t)val;
+#endif //TARGET_X86
+}
+
 #undef min
 #undef max
 #include <cmath>
@@ -155,21 +187,6 @@ EXTERN_C NATIVEAOT_API int64_t REDHAWK_CALLCONV RhpLRsh(int64_t i, int32_t j)
 EXTERN_C NATIVEAOT_API int64_t REDHAWK_CALLCONV RhpLLsh(int64_t i, int32_t j)
 {
     return i << (j & 0x3f);
-}
-
-EXTERN_C NATIVEAOT_API int64_t REDHAWK_CALLCONV RhpDbl2Lng(double val)
-{
-    return (int64_t)val;
-}
-
-EXTERN_C NATIVEAOT_API int32_t REDHAWK_CALLCONV RhpDbl2Int(double val)
-{
-    return (int32_t)val;
-}
-
-EXTERN_C NATIVEAOT_API uint32_t REDHAWK_CALLCONV RhpDbl2UInt(double val)
-{
-    return (uint32_t)val;
 }
 
 EXTERN_C NATIVEAOT_API uint32_t REDHAWK_CALLCONV RhpFlt2UInt(float val)
