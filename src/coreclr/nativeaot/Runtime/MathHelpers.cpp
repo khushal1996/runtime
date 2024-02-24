@@ -199,11 +199,6 @@ EXTERN_C NATIVEAOT_API int64_t REDHAWK_CALLCONV RhpLLsh(int64_t i, int32_t j)
     return i << (j & 0x3f);
 }
 
-EXTERN_C NATIVEAOT_API uint32_t REDHAWK_CALLCONV RhpFlt2UInt(float val)
-{
-    return (uint32_t)val;
-}
-
 EXTERN_C NATIVEAOT_API double REDHAWK_CALLCONV RhpLng2Dbl(int64_t val)
 {
     return (double)val;
