@@ -1395,7 +1395,6 @@ GenTree* Compiler::impSimdAsHWIntrinsicSpecial(NamedIntrinsic       intrinsic,
                     }
                     if (intrinsic != NI_Illegal)
                     {
-                        // op1     = impSIMDPopStack();
                         return gtNewSimdHWIntrinsicNode(retType, op1, intrinsic, simdBaseJitType, simdSize);
                     }
                     return nullptr;

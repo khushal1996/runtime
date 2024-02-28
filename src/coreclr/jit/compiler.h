@@ -3160,6 +3160,17 @@ public:
                                  GenTree*    op3,
                                  CorInfoType simdBaseJitType,
                                  unsigned    simdSize);
+    
+    GenTree* gtNewSimdCvtNode(var_types   type,
+                              GenTree*    op1,
+                              GenTree*    op2,
+                              GenTree*    op3,
+                              CorInfoType simdTargetBaseJitType,
+                              CorInfoType simdSourceBaseJitType,
+                              unsigned    simdSize);
+
+    GenTreeVecCon* gtCvtCtrlTbl(var_types   sourceType,
+                                var_types   targetType);
 
     GenTree* gtNewSimdCreateBroadcastNode(
         var_types type, GenTree* op1, CorInfoType simdBaseJitType, unsigned simdSize);
