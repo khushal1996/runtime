@@ -587,11 +587,44 @@ HCIMPL1_V(UINT32, JIT_Dbl2UIntOvf, double val)
 }
 HCIMPLEND
 
+HCIMPL1_V(UINT32, JIT_Dbl2UInt, double val)
+{
+    FCALL_CONTRACT;
+#if defined(TARGET_X86) || defined(TARGET_AMD64)
+    double uint_max = (double)UINT32_MAX;
+    return (val != val || val <= 0) ? 0 : (val >= uint_max) ? UINT32_MAX : (UINT32)val;
+
+#else
+    return((UINT32)val);
+
+#endif //TARGET_X86 || TARGET_AMD64
+}
+HCIMPLEND
+
+/*********************************************************************/
+HCIMPL1_V(INT32, JIT_Dbl2Int, double val)
+{
+    FCALL_CONTRACT;
+#if defined(TARGET_X86) || defined(TARGET_AMD64)
+    const double int32_min = (double)INT32_MIN - 1.0;
+    const double int32_max = -2.0 * (double)INT32_MIN;
+    return (val!= val) ? 0 : (val <= int32_min) ? INT32_MIN : (val >= int32_max) ? INT32_MAX : (INT32)val;
+#else
+    return((INT32)val);
+#endif // TARGET_X86 || TARGET_AMD64
+}
+HCIMPLEND
+
 /*********************************************************************/
 HCIMPL1_V(UINT64, JIT_Dbl2ULng, double val)
 {
     FCALL_CONTRACT;
 
+#if defined(TARGET_X86) || defined(TARGET_AMD64)
+    const double uint64_max_plus_1 = (double)UINT64_MAX;
+    return (val != val || val < 0) ? 0 : (val >= uint64_max_plus_1) ? UINT64_MAX : (UINT64)val;
+
+#else
     const double two63  = 2147483648.0 * 4294967296.0;
     UINT64 ret;
     if (val < two63) {
@@ -602,6 +635,20 @@ HCIMPL1_V(UINT64, JIT_Dbl2ULng, double val)
         ret = FastDbl2Lng(val - two63) + I64(0x8000000000000000);
     }
     return ret;
+#endif // TARGET_X86 || TARGET_AMD64
+}
+HCIMPLEND
+
+/*********************************************************************/
+HCIMPL1_V(INT64, JIT_Flt2UInt, float val)
+{
+    FCALL_CONTRACT;
+#if defined(TARGET_X86) || defined(TARGET_AMD64)
+    float uint_max_plus_1 = (float)UINT32_MAX;
+    return (val != val || val <= 0) ? 0 : (val >= uint_max_plus_1) ? UINT32_MAX : (UINT32)val;
+#else
+    return((UINT32)val);
+#endif // TARGET_X86 || TARGET_AMD64
 }
 HCIMPLEND
 
@@ -637,11 +684,17 @@ HCIMPLEND
 
 #if !defined(TARGET_X86) || defined(TARGET_UNIX)
 
+/*********************************************************************/
 HCIMPL1_V(INT64, JIT_Dbl2Lng, double val)
 {
     FCALL_CONTRACT;
-
+#if defined(TARGET_X86) || defined(TARGET_AMD64)
+    const double int64_min = (double)INT64_MIN;
+    const double int64_max = (double)INT64_MAX;
+    return (val!= val) ? 0 : (val <= int64_min) ? INT64_MIN : (val >= int64_max) ? INT64_MAX : (INT64)val;
+#else
     return((INT64)val);
+#endif // TARGET_X86 || TARGET_AMD64
 }
 HCIMPLEND
 
