@@ -4867,6 +4867,7 @@ namespace System.Runtime.Intrinsics.X86
     {
         internal Avx10v1() { }
         public static new bool IsSupported { get { throw null; } }
+        public static System.Runtime.Intrinsics.Vector128<ulong> Abs(System.Runtime.Intrinsics.Vector128<long> value) { throw null; }
         public abstract partial class V256 : System.Runtime.Intrinsics.X86.Avx2
         {
             internal V256() { }

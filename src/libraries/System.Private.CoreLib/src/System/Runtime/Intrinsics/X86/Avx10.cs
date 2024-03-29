@@ -15,6 +15,8 @@ namespace System.Runtime.Intrinsics.X86
 
         public static new bool IsSupported { get => IsSupported; }
 
+        public static Vector128<ulong> Abs(Vector128<long> value) => Abs(value);
+
         [Intrinsic]
         public abstract class V256 : Avx2
         {

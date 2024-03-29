@@ -16,6 +16,8 @@ namespace System.Runtime.Intrinsics.X86
 
         public static new bool IsSupported { [Intrinsic] get { return false; } }
 
+        public static Vector128<ulong> Abs(Vector128<long> value) { throw new PlatformNotSupportedException(); }
+
         public abstract class V256 : Avx2
         {
             internal V256() { }
