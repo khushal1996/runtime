@@ -4861,6 +4861,24 @@ namespace System.Runtime.Intrinsics.X86
             public static new bool IsSupported { get { throw null; } }
         }
     }
+
+    [System.CLSCompliantAttribute(false)]
+    public abstract partial class Avx10v1 : System.Runtime.Intrinsics.X86.Avx2
+    {
+        internal Avx10v1() { }
+        public static new bool IsSupported { get { throw null; } }
+        public abstract partial class V256 : System.Runtime.Intrinsics.X86.Avx2
+        {
+            internal V256() { }
+            public new static bool IsSupported { get { throw null; } }
+        }
+        public abstract partial class V512 : System.Runtime.Intrinsics.X86.Avx512BW
+        {
+            internal V512() { }
+            public new static bool IsSupported { get { throw null; } }
+        }
+    }
+
     [System.CLSCompliantAttribute(false)]
     public abstract partial class Avx512BW : System.Runtime.Intrinsics.X86.Avx512F
     {
