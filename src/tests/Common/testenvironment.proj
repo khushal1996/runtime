@@ -22,6 +22,7 @@
       DOTNET_EnableAVX;
       DOTNET_EnableAVX2;
       DOTNET_EnableAVX512F;
+      DOTNET_EnableAVX10v1;
       DOTNET_EnableBMI1;
       DOTNET_EnableBMI2;
       DOTNET_EnableFMA;

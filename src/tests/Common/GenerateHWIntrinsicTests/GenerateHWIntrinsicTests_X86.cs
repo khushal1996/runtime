@@ -2063,6 +2063,11 @@ const string SimpleOpTest_ValidationLogic = @"if ({ValidateFirstResult})
     ("SimdScalarUnOpConvTest.template",new Dictionary<string, string> { ["Isa"] = "Avx512F.X64",        ["LoadIsa"] = "Avx512F", ["Method"] = "ConvertToUInt64WithTruncation",                                             ["RetBaseType"] = "UInt64", ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Single",                                                                                                                                                                    ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetSingle()",                                                                                                                     ["ValidateFirstResult"] = "(ulong)firstOp[0] != result"}),
 };
 
+(string templateFileName, Dictionary<string, string> templateData)[] Avx10v1Inputs = new []
+{
+    ("SimpleUnOpTest.template",        new Dictionary<string, string> { ["Isa"] = "Avx10v1",           ["LoadIsa"] = "Avx10v1", ["Method"] = "Abs",                                      ["RetVectorType"] = "Vector128", ["RetBaseType"] = "UInt64",   ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Int64",                                                                                                                                                                     ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetInt64()",                                                                                                                      ["ValidateFirstResult"] = "result[0] != (ulong)((firstOp[0] < 0) ? -firstOp[0] : firstOp[0])",                                                                                                                                                                                   ["ValidateRemainingResults"] = "result[i] != (ulong)((firstOp[i] < 0) ? -firstOp[i] : firstOp[i])"}),
+};
+
 (string templateFileName, Dictionary<string, string> templateData)[] Avx512BWInputs = new []
 {
     ("SimpleUnOpTest.template",        new Dictionary<string, string> { ["Isa"] = "Avx512BW",           ["LoadIsa"] = "Avx512F", ["Method"] = "Abs",                                      ["RetVectorType"] = "Vector512", ["RetBaseType"] = "Byte",   ["Op1VectorType"] = "Vector512", ["Op1BaseType"] = "SByte",                                                                                                                                                                     ["LargestVectorSize"] = "64", ["NextValueOp1"] = "TestLibrary.Generator.GetSByte()",                                                                                                                      ["ValidateFirstResult"] = "result[0] != (byte)((firstOp[0] < 0) ? -firstOp[0] : firstOp[0])",                                                                                                                                                                                   ["ValidateRemainingResults"] = "result[i] != (byte)((firstOp[i] < 0) ? -firstOp[i] : firstOp[i])"}),
@@ -2703,6 +2708,7 @@ string templateDirectory = args[1];
 string outputDirectory = args[2];
 string testListFileName = args[3];
 
+ProcessInputs("Avx10v1", Avx10v1Inputs);
 ProcessInputs("Sse1", Sse1Inputs);
 ProcessInputs("Sse1.X64", Sse1X64Inputs);
 ProcessInputs("Sse2", Sse2Inputs);

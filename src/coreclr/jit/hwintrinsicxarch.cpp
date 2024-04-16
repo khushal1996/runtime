@@ -155,6 +155,18 @@ static CORINFO_InstructionSet lookupInstructionSet(const char* className)
         {
             return InstructionSet_AVXVNNI;
         }
+        if (strcmp(className, "Avx10v1") == 0)
+        {
+            return InstructionSet_AVX10v1;
+        }
+        if (strcmp(className, "Avx10v1_V256") == 0)
+        {
+            return InstructionSet_AVX10v1_V256;
+        }
+        if (strcmp(className, "Avx10v1_V512") == 0)
+        {
+            return InstructionSet_AVX10v1_V512;
+        }
     }
     else if (className[0] == 'S')
     {

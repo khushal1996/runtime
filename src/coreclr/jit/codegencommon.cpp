@@ -1755,7 +1755,11 @@ void CodeGen::genGenerateMachineCode()
         printf(" for ");
 
 #if defined(TARGET_X86)
-        if (compiler->canUseEvexEncoding())
+        if (compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v1))
+        {
+            printf("X86 with AVX10v1");
+        }
+        else if (compiler->canUseEvexEncoding())
         {
             printf("X86 with AVX512");
         }
@@ -1768,7 +1772,11 @@ void CodeGen::genGenerateMachineCode()
             printf("generic X86");
         }
 #elif defined(TARGET_AMD64)
-        if (compiler->canUseEvexEncoding())
+        if (compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v1))
+        {
+            printf("X64 with AVX10v1");
+        }
+        else if (compiler->canUseEvexEncoding())
         {
             printf("X64 with AVX512");
         }

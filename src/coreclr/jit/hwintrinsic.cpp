@@ -567,6 +567,14 @@ NamedIntrinsic HWIntrinsicInfo::lookupId(Compiler*         comp,
             }
         }
 
+#ifdef TARGET_XARCH
+        //TBD : remove once AVX10 testing is done
+        if (isa == InstructionSet_AVX10v1)
+        {
+            return NI_IsSupported_True;
+        }
+#endif //TARGET_XARCH
+
         return NI_IsSupported_False;
     }
     else if (!isIsaSupported)

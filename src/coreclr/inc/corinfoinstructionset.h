@@ -230,6 +230,13 @@ public:
 
     bool HasInstructionSet(CORINFO_InstructionSet instructionSet) const
     {
+        //TBD Remove once testing on AVX10 hardware
+#ifdef TARGET_XARCH
+        if (instructionSet == InstructionSet_AVX10v1)
+        {
+            return true;
+        }
+#endif // TARGET_XARCH
         uint32_t index = GetFlagsFieldIndex(instructionSet);
         uint64_t bitIndex = GetRelativeBitMask(instructionSet);
         return ((_flags[index] & bitIndex) != 0);

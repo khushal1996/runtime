@@ -20014,7 +20014,11 @@ GenTree* Compiler::gtNewSimdAbsNode(var_types type, GenTree* op1, CorInfoType si
 
     NamedIntrinsic intrinsic = NI_Illegal;
 
-    if (simdBaseType == TYP_LONG)
+    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v1))
+    {
+        intrinsic =  NI_AVX10v1_Abs;
+    }
+    else if (simdBaseType == TYP_LONG)
     {
         if (simdSize == 64)
         {
