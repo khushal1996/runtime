@@ -24,6 +24,8 @@ namespace System.Runtime.Intrinsics.X86
 
             public static new bool IsSupported { [Intrinsic] get { return false; } }
 
+            public static Vector256<ulong> Abs(Vector256<long> value) { throw new PlatformNotSupportedException(); }
+
         }
 
         public abstract class V512 : Avx512BW
