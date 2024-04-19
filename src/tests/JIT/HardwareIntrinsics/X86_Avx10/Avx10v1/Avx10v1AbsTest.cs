@@ -52,27 +52,27 @@ namespace IntelHardwareIntrinsicTest._Avx10v1
             return Avx10v1.Abs(val);
         }
 
-        // [MethodImplAttribute(MethodImplOptions.NoInlining)]
-        // public static Vector256<ulong> getAbs256(Vector256<long> val)
-        // {
-        //     return Avx10v1.V256.Abs(val);
-        // }
+        [MethodImplAttribute(MethodImplOptions.NoInlining)]
+        public static Vector256<ulong> getAbs256(Vector256<long> val)
+        {
+            return Avx10v1.V256.Abs(val);
+        }
 
         [Fact]
         public static unsafe void Avx10v1AbsTest ()
         {
+            Console.WriteLine("Test exexuted");
             if (Avx10v1.IsSupported)
             {
                 Console.WriteLine("Avx10v1 supported");
                 Vector128<long> val = Vector128.Create<long>(-5);
                 Vector128<ulong> absVal = getAbs128(val);
             }
-            Console.WriteLine("Test exexuted");
             if (Avx10v1.V256.IsSupported)
             {
-                // Console.WriteLine("Avx10v1_V256 supported");
-                // Vector256<long> val = Vector256.Create<long>(-5);
-                // Vector256<ulong> absVal = getAbs256(val);
+                Console.WriteLine("Avx10v1_V256 supported");
+                Vector256<long> val = Vector256.Create<long>(-5);
+                Vector256<ulong> absVal = getAbs256(val);
             }
         }
     }
