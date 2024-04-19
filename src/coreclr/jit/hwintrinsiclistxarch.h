@@ -1363,6 +1363,13 @@ HARDWARE_INTRINSIC(AVX512F,         XorMask,                                    
 //  AVX10V1 Intrinsics
 HARDWARE_INTRINSIC(AVX10v1,         Abs,                                        16,              1,     true,   {INS_pabsb,             INS_invalid,            INS_pabsw,              INS_invalid,            INS_pabsd,              INS_invalid,            INS_vpabsq,             INS_invalid,            INS_invalid,            INS_invalid},           HW_Category_SimpleSIMD,             HW_Flag_BaseTypeFromFirstArg)
 
+// ***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+//                 ISA              Function name                               SIMD size       NumArg  EncodesExtraTypeArg                                                                                                       Instructions                                                                                                                  Category                            Flags
+//                                                                                                              {TYP_BYTE,              TYP_UBYTE,              TYP_SHORT,              TYP_USHORT,             TYP_INT,                TYP_UINT,               TYP_LONG,               TYP_ULONG,              TYP_FLOAT,              TYP_DOUBLE}
+// ***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+//  AVX10V1_V256 Intrinsics
+HARDWARE_INTRINSIC(AVX10v1_V256,    Abs,                                        32,              1,     true,   {INS_pabsb,             INS_invalid,            INS_pabsw,              INS_invalid,            INS_pabsd,              INS_invalid,            INS_vpabsq,             INS_invalid,            INS_invalid,            INS_invalid},           HW_Category_SimpleSIMD,             HW_Flag_BaseTypeFromFirstArg)
+
 #endif // FEATURE_HW_INTRINSIC
 
 #undef HARDWARE_INTRINSIC

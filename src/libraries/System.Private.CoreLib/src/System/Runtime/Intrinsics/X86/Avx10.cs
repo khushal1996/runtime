@@ -23,6 +23,8 @@ namespace System.Runtime.Intrinsics.X86
             internal V256() { }
 
             public static new bool IsSupported { get => IsSupported; }
+
+            public static Vector256<ulong> Abs(Vector256<long> value) => Abs(value);
         }
 
         [Intrinsic]

@@ -4872,6 +4872,7 @@ namespace System.Runtime.Intrinsics.X86
         {
             internal V256() { }
             public new static bool IsSupported { get { throw null; } }
+            public static System.Runtime.Intrinsics.Vector256<ulong> Abs(System.Runtime.Intrinsics.Vector256<long> value) { throw null; }
         }
         public abstract partial class V512 : System.Runtime.Intrinsics.X86.Avx512BW
         {

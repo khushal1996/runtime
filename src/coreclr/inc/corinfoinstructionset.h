@@ -232,7 +232,7 @@ public:
     {
         //TBD Remove once testing on AVX10 hardware
 #ifdef TARGET_XARCH
-        if (instructionSet == InstructionSet_AVX10v1)
+        if (instructionSet == InstructionSet_AVX10v1 || instructionSet == InstructionSet_AVX10v1_V256 || instructionSet == InstructionSet_AVX10v1_V512)
         {
             return true;
         }
