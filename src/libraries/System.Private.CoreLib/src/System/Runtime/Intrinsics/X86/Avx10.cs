@@ -700,6 +700,213 @@ namespace System.Runtime.Intrinsics.X86
         /// </summary>
         public static Vector128<double> TernaryLogic(Vector128<double> a, Vector128<double> b, Vector128<double> c, [ConstantExpected] byte control) => TernaryLogic(a, b, c, control);
 
+        /// From AVX512BW VL
+        /// <summary>
+        /// __m128i _mm_cmpgt_epu8 (__m128i a, __m128i b)
+        ///   VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8(6)
+        /// </summary>
+        public static Vector128<byte> CompareGreaterThan(Vector128<byte> left, Vector128<byte> right) => CompareGreaterThan(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpge_epu8 (__m128i a, __m128i b)
+        ///   VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8(5)
+        /// </summary>
+        public static Vector128<byte> CompareGreaterThanOrEqual(Vector128<byte> left, Vector128<byte> right) => CompareGreaterThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmplt_epu8 (__m128i a, __m128i b)
+        ///   VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8(1)
+        /// </summary>
+        public static Vector128<byte> CompareLessThan(Vector128<byte> left, Vector128<byte> right) => CompareLessThan(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmple_epu8 (__m128i a, __m128i b)
+        ///   VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8(2)
+        /// </summary>
+        public static Vector128<byte> CompareLessThanOrEqual(Vector128<byte> left, Vector128<byte> right) => CompareLessThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpne_epu8 (__m128i a, __m128i b)
+        ///   VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8(4)
+        /// </summary>
+        public static Vector128<byte> CompareNotEqual(Vector128<byte> left, Vector128<byte> right) => CompareNotEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpge_epi16 (__m128i a, __m128i b)
+        ///   VPCMPW k1 {k2}, xmm2, xmm3/m128, imm8(5)
+        /// </summary>
+        public static Vector128<short> CompareGreaterThanOrEqual(Vector128<short> left, Vector128<short> right) => CompareGreaterThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmplt_epi16 (__m128i a, __m128i b)
+        ///   VPCMPW k1 {k2}, xmm2, xmm3/m128, imm8(1)
+        /// </summary>
+        public static new Vector128<short> CompareLessThan(Vector128<short> left, Vector128<short> right) => CompareLessThan(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmple_epi16 (__m128i a, __m128i b)
+        ///   VPCMPW k1 {k2}, xmm2, xmm3/m128, imm8(2)
+        /// </summary>
+        public static Vector128<short> CompareLessThanOrEqual(Vector128<short> left, Vector128<short> right) => CompareLessThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpne_epi16 (__m128i a, __m128i b)
+        ///   VPCMPW k1 {k2}, xmm2, xmm3/m128, imm8(4)
+        /// </summary>
+        public static Vector128<short> CompareNotEqual(Vector128<short> left, Vector128<short> right) => CompareNotEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpge_epi8 (__m128i a, __m128i b)
+        ///   VPCMPB k1 {k2}, xmm2, xmm3/m128, imm8(5)
+        /// </summary>
+        public static Vector128<sbyte> CompareGreaterThanOrEqual(Vector128<sbyte> left, Vector128<sbyte> right) => CompareGreaterThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmplt_epi8 (__m128i a, __m128i b)
+        ///   VPCMPB k1 {k2}, xmm2, xmm3/m128, imm8(1)
+        /// </summary>
+        public static new Vector128<sbyte> CompareLessThan(Vector128<sbyte> left, Vector128<sbyte> right) => CompareLessThan(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmple_epi8 (__m128i a, __m128i b)
+        ///   VPCMPB k1 {k2}, xmm2, xmm3/m128, imm8(2)
+        /// </summary>
+        public static Vector128<sbyte> CompareLessThanOrEqual(Vector128<sbyte> left, Vector128<sbyte> right) => CompareLessThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpne_epi8 (__m128i a, __m128i b)
+        ///   VPCMPB k1 {k2}, xmm2, xmm3/m128, imm8(4)
+        /// </summary>
+        public static Vector128<sbyte> CompareNotEqual(Vector128<sbyte> left, Vector128<sbyte> right) => CompareNotEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpgt_epu16 (__m128i a, __m128i b)
+        ///   VPCMPUW k1 {k2}, xmm2, xmm3/m128, imm8(6)
+        /// </summary>
+        public static Vector128<ushort> CompareGreaterThan(Vector128<ushort> left, Vector128<ushort> right) => CompareGreaterThan(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpge_epu16 (__m128i a, __m128i b)
+        ///   VPCMPUW k1 {k2}, xmm2, xmm3/m128, imm8(5)
+        /// </summary>
+        public static Vector128<ushort> CompareGreaterThanOrEqual(Vector128<ushort> left, Vector128<ushort> right) => CompareGreaterThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmplt_epu16 (__m128i a, __m128i b)
+        ///   VPCMPUW k1 {k2}, xmm2, xmm3/m128, imm8(1)
+        /// </summary>
+        public static Vector128<ushort> CompareLessThan(Vector128<ushort> left, Vector128<ushort> right) => CompareLessThan(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmple_epu16 (__m128i a, __m128i b)
+        ///   VPCMPUW k1 {k2}, xmm2, xmm3/m128, imm8(2)
+        /// </summary>
+        public static Vector128<ushort> CompareLessThanOrEqual(Vector128<ushort> left, Vector128<ushort> right) => CompareLessThanOrEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cmpne_epu16 (__m128i a, __m128i b)
+        ///   VPCMPUW k1 {k2}, xmm2, xmm3/m128, imm8(4)
+        /// </summary>
+        public static Vector128<ushort> CompareNotEqual(Vector128<ushort> left, Vector128<ushort> right) => CompareNotEqual(left, right);
+
+        /// <summary>
+        /// __m128i _mm_cvtepi16_epi8 (__m128i a)
+        ///   VPMOVWB xmm1/m64 {k1}{z}, xmm2
+        /// </summary>
+        public static Vector128<byte> ConvertToVector128Byte(Vector128<short> value) => ConvertToVector128Byte(value);
+
+        /// <summary>
+        /// __m128i _mm_cvtepi16_epi8 (__m128i a)
+        ///   VPMOVWB xmm1/m64 {k1}{z}, xmm2
+        /// </summary>
+        public static Vector128<byte> ConvertToVector128Byte(Vector128<ushort> value) => ConvertToVector128Byte(value);
+
+        /// <summary>
+        /// __m128i _mm_cvtusepi16_epi8 (__m128i a)
+        ///   VPMOVUWB xmm1/m64 {k1}{z}, xmm2
+        /// </summary>
+        public static Vector128<byte> ConvertToVector128ByteWithSaturation(Vector128<ushort> value) => ConvertToVector128ByteWithSaturation(value);
+
+        /// <summary>
+        /// __m128i _mm_cvtepi16_epi8 (__m128i a)
+        ///   VPMOVWB xmm1/m64 {k1}{z}, zmm2
+        /// </summary>
+        public static Vector128<sbyte> ConvertToVector128SByte(Vector128<short> value) => ConvertToVector128SByte(value);
+
+        /// <summary>
+        /// __m128i _mm_cvtepi16_epi8 (__m128i a)
+        ///   VPMOVWB xmm1/m64 {k1}{z}, zmm2
+        /// </summary>
+        public static Vector128<sbyte> ConvertToVector128SByte(Vector128<ushort> value) => ConvertToVector128SByte(value);
+
+        /// <summary>
+        /// __m128i _mm_cvtsepi16_epi8 (__m128i a)
+        ///   VPMOVSWB xmm1/m64 {k1}{z}, zmm2
+        /// </summary>
+        public static Vector128<sbyte> ConvertToVector128SByteWithSaturation(Vector128<short> value) => ConvertToVector128SByteWithSaturation(value);
+
+        /// <summary>
+        /// __m128i _mm_permutevar8x16_epi16 (__m128i a, __m128i b)
+        ///   VPERMW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<short> PermuteVar8x16(Vector128<short> left, Vector128<short> control) => PermuteVar8x16(left, control);
+
+        /// <summary>
+        /// __m128i _mm_permutevar8x16_epi16 (__m128i a, __m128i b)
+        ///   VPERMW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<ushort> PermuteVar8x16(Vector128<ushort> left, Vector128<ushort> control) => PermuteVar8x16(left, control);
+
+        /// <summary>
+        /// __m128i _mm_permutex2var_epi16 (__m128i a, __m128i idx, __m128i b)
+        ///   VPERMI2W xmm1 {k1}{z}, xmm2, xmm3/m128
+        ///   VPERMT2W xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<short> PermuteVar8x16x2(Vector128<short> lower, Vector128<short> indices, Vector128<short> upper) => PermuteVar8x16x2(lower, indices, upper);
+
+        /// <summary>
+        /// __m128i _mm_permutex2var_epi16 (__m128i a, __m128i idx, __m128i b)
+        ///   VPERMI2W xmm1 {k1}{z}, xmm2, xmm3/m128
+        ///   VPERMT2W xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<ushort> PermuteVar8x16x2(Vector128<ushort> lower, Vector128<ushort> indices, Vector128<ushort> upper) => PermuteVar8x16x2(lower, indices, upper);
+
+        /// <summary>
+        /// __m128i _mm_sllv_epi16 (__m128i a, __m128i count)
+        ///   VPSLLVW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<short> ShiftLeftLogicalVariable(Vector128<short> value, Vector128<ushort> count) => ShiftLeftLogicalVariable(value, count);
+
+        /// <summary>
+        /// __m128i _mm_sllv_epi16 (__m128i a, __m128i count)
+        ///   VPSLLVW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<ushort> ShiftLeftLogicalVariable(Vector128<ushort> value, Vector128<ushort> count) => ShiftLeftLogicalVariable(value, count);
+
+        /// <summary>
+        /// __m128i _mm_srav_epi16 (__m128i a, __m128i count)
+        ///   VPSRAVW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<short> ShiftRightArithmeticVariable(Vector128<short> value, Vector128<ushort> count) => ShiftRightArithmeticVariable(value, count);
+
+        /// <summary>
+        /// __m128i _mm_srlv_epi16 (__m128i a, __m128i count)
+        ///   VPSRLVW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<short> ShiftRightLogicalVariable(Vector128<short> value, Vector128<ushort> count) => ShiftRightLogicalVariable(value, count);
+
+        /// <summary>
+        /// __m128i _mm_srlv_epi16 (__m128i a, __m128i count)
+        ///   VPSRLVW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<ushort> ShiftRightLogicalVariable(Vector128<ushort> value, Vector128<ushort> count) => ShiftRightLogicalVariable(value, count);
+
+        /// <summary>
+        /// __m128i _mm_dbsad_epu8 (__m128i a, __m128i b, int imm8)
+        ///   VDBPSADBW xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<ushort> SumAbsoluteDifferencesInBlock32(Vector128<byte> left, Vector128<byte> right, [ConstantExpected] byte control) => SumAbsoluteDifferencesInBlock32(left, right, control);
+
         [Intrinsic]
         public abstract class V256 : Avx2
         {
@@ -1445,6 +1652,213 @@ namespace System.Runtime.Intrinsics.X86
             /// The above native signature does not exist. We provide this additional overload for consistency with the other bitwise APIs.
             /// </summary>
             public static Vector256<double> TernaryLogic(Vector256<double> a, Vector256<double> b, Vector256<double> c, [ConstantExpected] byte control) => TernaryLogic(a, b, c, control);
+
+            // From AVX512BW VL
+            /// <summary>
+            /// __m256i _mm256_cmpgt_epu8 (__m256i a, __m256i b)
+            ///   VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8(6)
+            /// </summary>
+            public static Vector256<byte> CompareGreaterThan(Vector256<byte> left, Vector256<byte> right) => CompareGreaterThan(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpge_epu8 (__m256i a, __m256i b)
+            ///   VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8(5)
+            /// </summary>
+            public static Vector256<byte> CompareGreaterThanOrEqual(Vector256<byte> left, Vector256<byte> right) => CompareGreaterThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmplt_epu8 (__m256i a, __m256i b)
+            ///   VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8(1)
+            /// </summary>
+            public static Vector256<byte> CompareLessThan(Vector256<byte> left, Vector256<byte> right) => CompareLessThan(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmple_epu8 (__m256i a, __m256i b)
+            ///   VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8(2)
+            /// </summary>
+            public static Vector256<byte> CompareLessThanOrEqual(Vector256<byte> left, Vector256<byte> right) => CompareLessThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpne_epu8 (__m256i a, __m256i b)
+            ///   VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8(4)
+            /// </summary>
+            public static Vector256<byte> CompareNotEqual(Vector256<byte> left, Vector256<byte> right) => CompareNotEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpge_epi16 (__m256i a, __m256i b)
+            ///   VPCMPW k1 {k2}, ymm2, ymm3/m256, imm8(5)
+            /// </summary>
+            public static Vector256<short> CompareGreaterThanOrEqual(Vector256<short> left, Vector256<short> right) => CompareGreaterThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmplt_epi16 (__m256i a, __m256i b)
+            ///   VPCMPW k1 {k2}, ymm2, ymm3/m256, imm8(1)
+            /// </summary>
+            public static Vector256<short> CompareLessThan(Vector256<short> left, Vector256<short> right) => CompareLessThan(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmple_epi16 (__m256i a, __m256i b)
+            ///   VPCMPW k1 {k2}, ymm2, ymm3/m256, imm8(2)
+            /// </summary>
+            public static Vector256<short> CompareLessThanOrEqual(Vector256<short> left, Vector256<short> right) => CompareLessThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpne_epi16 (__m256i a, __m256i b)
+            ///   VPCMPW k1 {k2}, ymm2, ymm3/m256, imm8(4)
+            /// </summary>
+            public static Vector256<short> CompareNotEqual(Vector256<short> left, Vector256<short> right) => CompareNotEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpge_epi8 (__m256i a, __m256i b)
+            ///   VPCMPB k1 {k2}, ymm2, ymm3/m256, imm8(5)
+            /// </summary>
+            public static Vector256<sbyte> CompareGreaterThanOrEqual(Vector256<sbyte> left, Vector256<sbyte> right) => CompareGreaterThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmplt_epi8 (__m256i a, __m256i b)
+            ///   VPCMPB k1 {k2}, ymm2, ymm3/m256, imm8(1)
+            /// </summary>
+            public static Vector256<sbyte> CompareLessThan(Vector256<sbyte> left, Vector256<sbyte> right) => CompareLessThan(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmple_epi8 (__m256i a, __m256i b)
+            ///   VPCMPB k1 {k2}, ymm2, ymm3/m256, imm8(2)
+            /// </summary>
+            public static Vector256<sbyte> CompareLessThanOrEqual(Vector256<sbyte> left, Vector256<sbyte> right) => CompareLessThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpne_epi8 (__m256i a, __m256i b)
+            ///   VPCMPB k1 {k2}, ymm2, ymm3/m256, imm8(4)
+            /// </summary>
+            public static Vector256<sbyte> CompareNotEqual(Vector256<sbyte> left, Vector256<sbyte> right) => CompareNotEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpgt_epu16 (__m256i a, __m256i b)
+            ///   VPCMPUW k1 {k2}, ymm2, ymm3/m256, imm8(6)
+            /// </summary>
+            public static Vector256<ushort> CompareGreaterThan(Vector256<ushort> left, Vector256<ushort> right) => CompareGreaterThan(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpge_epu16 (__m256i a, __m256i b)
+            ///   VPCMPUW k1 {k2}, ymm2, ymm3/m256, imm8(5)
+            /// </summary>
+            public static Vector256<ushort> CompareGreaterThanOrEqual(Vector256<ushort> left, Vector256<ushort> right) => CompareGreaterThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmplt_epu16 (__m256i a, __m256i b)
+            ///   VPCMPUW k1 {k2}, ymm2, ymm3/m256, imm8(1)
+            /// </summary>
+            public static Vector256<ushort> CompareLessThan(Vector256<ushort> left, Vector256<ushort> right) => CompareLessThan(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmple_epu16 (__m256i a, __m256i b)
+            ///   VPCMPUW k1 {k2}, ymm2, ymm3/m256, imm8(2)
+            /// </summary>
+            public static Vector256<ushort> CompareLessThanOrEqual(Vector256<ushort> left, Vector256<ushort> right) => CompareLessThanOrEqual(left, right);
+
+            /// <summary>
+            /// __m256i _mm256_cmpne_epu16 (__m256i a, __m256i b)
+            ///   VPCMPUW k1 {k2}, ymm2, ymm3/m256, imm8(4)
+            /// </summary>
+            public static Vector256<ushort> CompareNotEqual(Vector256<ushort> left, Vector256<ushort> right) => CompareNotEqual(left, right);
+
+            /// <summary>
+            /// __m128i _mm256_cvtepi16_epi8 (__m256i a)
+            ///   VPMOVWB xmm1/m128 {k1}{z}, ymm2
+            /// </summary>
+            public static Vector128<byte> ConvertToVector128Byte(Vector256<short> value) => ConvertToVector128Byte(value);
+
+            /// <summary>
+            /// __m128i _mm256_cvtepi16_epi8 (__m256i a)
+            ///   VPMOVWB xmm1/m128 {k1}{z}, ymm2
+            /// </summary>
+            public static Vector128<byte> ConvertToVector128Byte(Vector256<ushort> value) => ConvertToVector128Byte(value);
+
+            /// <summary>
+            /// __m128i _mm256_cvtusepi16_epi8 (__m256i a)
+            ///   VPMOVUWB xmm1/m128 {k1}{z}, ymm2
+            /// </summary>
+            public static Vector128<byte> ConvertToVector128ByteWithSaturation(Vector256<ushort> value) => ConvertToVector128ByteWithSaturation(value);
+
+            /// <summary>
+            /// __m128i _mm256_cvtepi16_epi8 (__m256i a)
+            ///   VPMOVWB xmm1/m128 {k1}{z}, zmm2
+            /// </summary>
+            public static Vector128<sbyte> ConvertToVector128SByte(Vector256<short> value) => ConvertToVector128SByte(value);
+
+            /// <summary>
+            /// __m128i _mm256_cvtepi16_epi8 (__m256i a)
+            ///   VPMOVWB xmm1/m128 {k1}{z}, zmm2
+            /// </summary>
+            public static Vector128<sbyte> ConvertToVector128SByte(Vector256<ushort> value) => ConvertToVector128SByte(value);
+
+            /// <summary>
+            /// __m128i _mm256_cvtsepi16_epi8 (__m256i a)
+            ///   VPMOVSWB xmm1/m128 {k1}{z}, zmm2
+            /// </summary>
+            public static Vector128<sbyte> ConvertToVector128SByteWithSaturation(Vector256<short> value) => ConvertToVector128SByteWithSaturation(value);
+
+            /// <summary>
+            /// __m256i _mm256_permutevar16x16_epi16 (__m256i a, __m256i b)
+            ///   VPERMW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<short> PermuteVar16x16(Vector256<short> left, Vector256<short> control) => PermuteVar16x16(left, control);
+
+            /// <summary>
+            /// __m256i _mm256_permutevar16x16_epi16 (__m256i a, __m256i b)
+            ///   VPERMW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<ushort> PermuteVar16x16(Vector256<ushort> left, Vector256<ushort> control) => PermuteVar16x16(left, control);
+
+            /// <summary>
+            /// __m256i _mm256_permutex2var_epi16 (__m256i a, __m256i idx, __m256i b)
+            ///   VPERMI2W ymm1 {k1}{z}, ymm2, ymm3/m256
+            ///   VPERMT2W ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<short> PermuteVar16x16x2(Vector256<short> lower, Vector256<short> indices, Vector256<short> upper) => PermuteVar16x16x2(lower, indices, upper);
+
+            /// <summary>
+            /// __m256i _mm256_permutex2var_epi16 (__m256i a, __m256i idx, __m256i b)
+            ///   VPERMI2W ymm1 {k1}{z}, ymm2, ymm3/m256
+            ///   VPERMT2W ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<ushort> PermuteVar16x16x2(Vector256<ushort> lower, Vector256<ushort> indices, Vector256<ushort> upper) => PermuteVar16x16x2(lower, indices, upper);
+
+            /// <summary>
+            /// __m256i _mm256_sllv_epi16 (__m256i a, __m256i count)
+            ///   VPSLLVW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<short> ShiftLeftLogicalVariable(Vector256<short> value, Vector256<ushort> count) => ShiftLeftLogicalVariable(value, count);
+
+            /// <summary>
+            /// __m256i _mm256_sllv_epi16 (__m256i a, __m256i count)
+            ///   VPSLLVW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<ushort> ShiftLeftLogicalVariable(Vector256<ushort> value, Vector256<ushort> count) => ShiftLeftLogicalVariable(value, count);
+
+            /// <summary>
+            /// __m256i _mm256_srav_epi16 (__m256i a, __m256i count)
+            ///   VPSRAVW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<short> ShiftRightArithmeticVariable(Vector256<short> value, Vector256<ushort> count) => ShiftRightArithmeticVariable(value, count);
+
+            /// <summary>
+            /// __m256i _mm256_srlv_epi16 (__m256i a, __m256i count)
+            ///   VPSRLVW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<short> ShiftRightLogicalVariable(Vector256<short> value, Vector256<ushort> count) => ShiftRightLogicalVariable(value, count);
+
+            /// <summary>
+            /// __m256i _mm256_srlv_epi16 (__m256i a, __m256i count)
+            ///   VPSRLVW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<ushort> ShiftRightLogicalVariable(Vector256<ushort> value, Vector256<ushort> count) => ShiftRightLogicalVariable(value, count);
+
+            /// <summary>
+            /// __m256i _mm256_dbsad_epu8 (__m256i a, __m256i b, int imm8)
+            ///   VDBPSADBW ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+            public static Vector256<ushort> SumAbsoluteDifferencesInBlock32(Vector256<byte> left, Vector256<byte> right, [ConstantExpected] byte control) => SumAbsoluteDifferencesInBlock32(left, right, control);
         }
 
         [Intrinsic]

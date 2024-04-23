@@ -4980,6 +4980,40 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<float> TernaryLogic(System.Runtime.Intrinsics.Vector128<float> a, System.Runtime.Intrinsics.Vector128<float> b, System.Runtime.Intrinsics.Vector128<float> c, [System.Diagnostics.CodeAnalysis.ConstantExpectedAttribute] byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> TernaryLogic(System.Runtime.Intrinsics.Vector128<double> a, System.Runtime.Intrinsics.Vector128<double> b, System.Runtime.Intrinsics.Vector128<double> c, [System.Diagnostics.CodeAnalysis.ConstantExpectedAttribute] byte control) { throw null; }
 
+        public static System.Runtime.Intrinsics.Vector128<byte> CompareGreaterThan(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<byte> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<byte> CompareLessThan(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<byte> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<byte> CompareNotEqual(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector128<short> CompareLessThan(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> CompareNotEqual(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<sbyte> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector128<sbyte> CompareLessThan(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<sbyte> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<sbyte> CompareNotEqual(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> CompareGreaterThan(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> CompareLessThan(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> CompareNotEqual(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<byte> ConvertToVector128Byte(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<byte> ConvertToVector128Byte(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<byte> ConvertToVector128ByteWithSaturation(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<sbyte> ConvertToVector128SByte(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<sbyte> ConvertToVector128SByte(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<sbyte> ConvertToVector128SByteWithSaturation(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> PermuteVar8x16(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> control) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> PermuteVar8x16(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> control) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> PermuteVar8x16x2(System.Runtime.Intrinsics.Vector128<short> lower, System.Runtime.Intrinsics.Vector128<short> indices, System.Runtime.Intrinsics.Vector128<short> upper) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> PermuteVar8x16x2(System.Runtime.Intrinsics.Vector128<ushort> lower, System.Runtime.Intrinsics.Vector128<ushort> indices, System.Runtime.Intrinsics.Vector128<ushort> upper) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector128<short> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector128<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> ShiftRightArithmeticVariable(System.Runtime.Intrinsics.Vector128<short> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<short> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<short> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> SumAbsoluteDifferencesInBlock32(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right, [System.Diagnostics.CodeAnalysis.ConstantExpectedAttribute] byte control) { throw null; }
         public abstract partial class V256 : System.Runtime.Intrinsics.X86.Avx2
         {
             internal V256() { }
@@ -5106,6 +5140,40 @@ namespace System.Runtime.Intrinsics.X86
             public static System.Runtime.Intrinsics.Vector256<float> TernaryLogic(System.Runtime.Intrinsics.Vector256<float> a, System.Runtime.Intrinsics.Vector256<float> b, System.Runtime.Intrinsics.Vector256<float> c, [System.Diagnostics.CodeAnalysis.ConstantExpectedAttribute] byte control) { throw null; }
             public static System.Runtime.Intrinsics.Vector256<double> TernaryLogic(System.Runtime.Intrinsics.Vector256<double> a, System.Runtime.Intrinsics.Vector256<double> b, System.Runtime.Intrinsics.Vector256<double> c, [System.Diagnostics.CodeAnalysis.ConstantExpectedAttribute] byte control) { throw null; }
 
+            public static System.Runtime.Intrinsics.Vector256<byte> CompareGreaterThan(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<byte> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<byte> CompareLessThan(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<byte> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<byte> CompareNotEqual(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> CompareLessThan(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> CompareNotEqual(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<sbyte> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<sbyte> CompareLessThan(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<sbyte> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<sbyte> CompareNotEqual(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> CompareGreaterThan(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> CompareGreaterThanOrEqual(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> CompareLessThan(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> CompareLessThanOrEqual(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> CompareNotEqual(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
+            public static System.Runtime.Intrinsics.Vector128<byte> ConvertToVector128Byte(System.Runtime.Intrinsics.Vector256<short> value) { throw null; }
+            public static System.Runtime.Intrinsics.Vector128<byte> ConvertToVector128Byte(System.Runtime.Intrinsics.Vector256<ushort> value) { throw null; }
+            public static System.Runtime.Intrinsics.Vector128<byte> ConvertToVector128ByteWithSaturation(System.Runtime.Intrinsics.Vector256<ushort> value) { throw null; }
+            public static System.Runtime.Intrinsics.Vector128<sbyte> ConvertToVector128SByte(System.Runtime.Intrinsics.Vector256<short> value) { throw null; }
+            public static System.Runtime.Intrinsics.Vector128<sbyte> ConvertToVector128SByte(System.Runtime.Intrinsics.Vector256<ushort> value) { throw null; }
+            public static System.Runtime.Intrinsics.Vector128<sbyte> ConvertToVector128SByteWithSaturation(System.Runtime.Intrinsics.Vector256<short> value) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> PermuteVar16x16(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> control) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> PermuteVar16x16(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> control) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> PermuteVar16x16x2(System.Runtime.Intrinsics.Vector256<short> lower, System.Runtime.Intrinsics.Vector256<short> indices, System.Runtime.Intrinsics.Vector256<short> upper) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> PermuteVar16x16x2(System.Runtime.Intrinsics.Vector256<ushort> lower, System.Runtime.Intrinsics.Vector256<ushort> indices, System.Runtime.Intrinsics.Vector256<ushort> upper) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<short> value, System.Runtime.Intrinsics.Vector256<ushort> count) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<ushort> value, System.Runtime.Intrinsics.Vector256<ushort> count) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> ShiftRightArithmeticVariable(System.Runtime.Intrinsics.Vector256<short> value, System.Runtime.Intrinsics.Vector256<ushort> count) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<short> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<short> value, System.Runtime.Intrinsics.Vector256<ushort> count) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<ushort> value, System.Runtime.Intrinsics.Vector256<ushort> count) { throw null; }
+            public static System.Runtime.Intrinsics.Vector256<ushort> SumAbsoluteDifferencesInBlock32(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right, [System.Diagnostics.CodeAnalysis.ConstantExpectedAttribute] byte control) { throw null; }
         }
         public abstract partial class V512 : System.Runtime.Intrinsics.X86.Avx512BW
         {
