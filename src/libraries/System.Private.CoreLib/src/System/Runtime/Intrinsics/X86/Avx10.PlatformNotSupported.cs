@@ -907,6 +907,610 @@ namespace System.Runtime.Intrinsics.X86
         /// </summary>
         public static Vector128<ushort> SumAbsoluteDifferencesInBlock32(Vector128<byte> left, Vector128<byte> right, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
         //AVX512BW VL ends
+
+        // from avx512cd vl starts
+        /// <summary>
+        /// __m128i _mm_conflict_epi32 (__m128i a)
+        ///   VPCONFLICTD xmm1 {k1}{z}, xmm2/m128/m32bcst
+        /// </summary>
+        public static Vector128<int> DetectConflicts(Vector128<int> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_conflict_epi32 (__m128i a)
+        ///   VPCONFLICTD xmm1 {k1}{z}, xmm2/m128/m32bcst
+        /// </summary>
+        public static Vector128<uint> DetectConflicts(Vector128<uint> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_conflict_epi64 (__m128i a)
+        ///   VPCONFLICTQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<long> DetectConflicts(Vector128<long> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_conflict_epi64 (__m128i a)
+        ///   VPCONFLICTQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<ulong> DetectConflicts(Vector128<ulong> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_lzcnt_epi32 (__m128i a)
+        ///   VPLZCNTD xmm1 {k1}{z}, xmm2/m128/m32bcst
+        /// </summary>
+        public static Vector128<int> LeadingZeroCount(Vector128<int> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_lzcnt_epi32 (__m128i a)
+        ///   VPLZCNTD xmm1 {k1}{z}, xmm2/m128/m32bcst
+        /// </summary>
+        public static Vector128<uint> LeadingZeroCount(Vector128<uint> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_lzcnt_epi64 (__m128i a)
+        ///   VPLZCNTQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<long> LeadingZeroCount(Vector128<long> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_lzcnt_epi64 (__m128i a)
+        ///   VPLZCNTQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<ulong> LeadingZeroCount(Vector128<ulong> value) { throw new PlatformNotSupportedException(); }
+        // from avx512cd vl ends
+
+        //from avx512dq vl starts
+        /// <summary>
+        /// __m128i _mm_broadcast_i32x2 (__m128i a)
+        ///   VBROADCASTI32x2 xmm1 {k1}{z}, xmm2/m64
+        /// </summary>
+        public static Vector128<int> BroadcastPairScalarToVector128(Vector128<int> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_broadcast_i32x2 (__m128i a)
+        ///   VBROADCASTI32x2 xmm1 {k1}{z}, xmm2/m64
+        /// </summary>
+        public static Vector128<uint> BroadcastPairScalarToVector128(Vector128<uint> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_cvtepi64_pd (__m128i a)
+        ///   VCVTQQ2PD xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<double> ConvertToVector128Double(Vector128<long> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_cvtepu64_pd (__m128i a)
+        ///   VCVTUQQ2PD xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<double> ConvertToVector128Double(Vector128<ulong> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvtps_epi64 (__m128 a)
+        ///   VCVTPS2QQ xmm1 {k1}{z}, xmm2/m64/m32bcst
+        /// </summary>
+        public static Vector128<long> ConvertToVector128Int64(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvtpd_epi64 (__m128d a)
+        ///   VCVTPD2QQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<long> ConvertToVector128Int64(Vector128<double> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvttps_epi64 (__m128 a)
+        ///   VCVTTPS2QQ xmm1 {k1}{z}, xmm2/m64/m32bcst
+        /// </summary>
+        public static Vector128<long> ConvertToVector128Int64WithTruncation(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvttpd_epi64 (__m128d a)
+        ///   VCVTTPD2QQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<long> ConvertToVector128Int64WithTruncation(Vector128<double> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_cvtepi64_ps (__m128i a)
+        ///   VCVTQQ2PS xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<float> ConvertToVector128Single(Vector128<long> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_cvtepu64_ps (__m128i a)
+        ///   VCVTUQQ2PS xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<float> ConvertToVector128Single(Vector128<ulong> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvtps_epu64 (__m128 a)
+        ///   VCVTPS2UQQ xmm1 {k1}{z}, xmm2/m64/m32bcst
+        /// </summary>
+        public static Vector128<ulong> ConvertToVector128UInt64(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvtpd_epu64 (__m128d a)
+        ///   VCVTPD2UQQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<ulong> ConvertToVector128UInt64(Vector128<double> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvttps_epu64 (__m128 a)
+        ///   VCVTTPS2UQQ xmm1 {k1}{z}, xmm2/m64/m32bcst
+        /// </summary>
+        public static Vector128<ulong> ConvertToVector128UInt64WithTruncation(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_cvttpd_epu64 (__m128d a)
+        ///   VCVTTPD2UQQ xmm1 {k1}{z}, xmm2/m128/m64bcst
+        /// </summary>
+        public static Vector128<ulong> ConvertToVector128UInt64WithTruncation(Vector128<double> value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_mullo_epi64 (__m128i a, __m128i b)
+        ///   VPMULLQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst
+        /// </summary>
+        public static Vector128<long> MultiplyLow(Vector128<long> left, Vector128<long> right) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_mullo_epi64 (__m128i a, __m128i b)
+        ///   VPMULLQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst
+        /// </summary>
+        public static Vector128<ulong> MultiplyLow(Vector128<ulong> left, Vector128<ulong> right) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_range_ps(__m128 a, __m128 b, int imm);
+        ///   VRANGEPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst, imm8
+        /// </summary>
+        public static Vector128<float> Range(Vector128<float> left, Vector128<float> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_range_pd(__m128d a, __m128d b, int imm);
+        ///   VRANGEPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8
+        /// </summary>
+        public static Vector128<double> Range(Vector128<double> left, Vector128<double> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_reduce_ps(__m128 a, int imm);
+        ///   VREDUCEPS xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8
+        /// </summary>
+        public static Vector128<float> Reduce(Vector128<float> value, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_reduce_pd(__m128d a, int imm);
+        ///   VREDUCEPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8
+        /// </summary>
+        public static Vector128<double> Reduce(Vector128<double> value, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
+        //from avx512dq vl ends
+
+        //from avx512vbmi vl starts
+        /// <summary>
+        /// __m128i _mm_permutevar64x8_epi8 (__m128i a, __m128i b)
+        ///   VPERMB xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<sbyte> PermuteVar16x8(Vector128<sbyte> left, Vector128<sbyte> control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_permutevar64x8_epi8 (__m128i a, __m128i b)
+        ///   VPERMB xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<byte> PermuteVar16x8(Vector128<byte> left, Vector128<byte> control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_permutex2var_epi8 (__m128i a, __m128i idx, __m128i b)
+        ///   VPERMI2B xmm1 {k1}{z}, xmm2, xmm3/m128
+        ///   VPERMT2B xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<byte> PermuteVar16x8x2(Vector128<byte> lower, Vector128<byte> indices, Vector128<byte> upper) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128i _mm_permutex2var_epi8 (__m128i a, __m128i idx, __m128i b)
+        ///   VPERMI2B xmm1 {k1}{z}, xmm2, xmm3/m128
+        ///   VPERMT2B xmm1 {k1}{z}, xmm2, xmm3/m128
+        /// </summary>
+        public static Vector128<sbyte> PermuteVar16x8x2(Vector128<sbyte> lower, Vector128<sbyte> indices, Vector128<sbyte> upper) { throw new PlatformNotSupportedException(); }
+        //from avx512vbmi vl ends
+
+        //from avx512f starts
+        /// <summary>
+        /// __m128 _mm_add_round_ss (__m128 a, __m128 b, int rounding)
+        ///   VADDSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> AddScalar(Vector128<float> left, Vector128<float> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => AddScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_add_round_sd (__m128d a, __m128d b, int rounding)
+        ///   VADDSD xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> AddScalar(Vector128<double> left, Vector128<double> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => AddScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_cvtsi32_ss (__m128 a, int b)
+        ///   VCVTUSI2SS xmm1, xmm2, r/m32
+        /// </summary>
+        public static Vector128<float> ConvertScalarToVector128Single(Vector128<float> upper, uint value) => ConvertScalarToVector128Single(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_cvt_roundi32_ss (__m128 a, int b, int rounding)
+        /// VCVTUSI2SS xmm1, xmm2, r32 {er}
+        /// </summary>
+        public static Vector128<float> ConvertScalarToVector128Single(Vector128<float> upper, uint value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ConvertScalarToVector128Single(upper, value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_cvt_roundi32_ss (__m128 a, int b, int rounding)
+        /// VCVTSI2SS xmm1, xmm2, r32 {er}
+        /// </summary>
+        public static Vector128<float> ConvertScalarToVector128Single(Vector128<float> upper, int value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ConvertScalarToVector128Single(upper, value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_cvt_roundsd_ss (__m128 a, __m128d b, int rounding)
+        /// VCVTSD2SS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> ConvertScalarToVector128Single(Vector128<float> upper, Vector128<double> value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ConvertScalarToVector128Single(upper, value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_cvtsi32_sd (__m128d a, int b)
+        ///   VCVTUSI2SD xmm1, xmm2, r/m32
+        /// </summary>
+        public static Vector128<double> ConvertScalarToVector128Double(Vector128<double> upper, uint value) => ConvertScalarToVector128Double(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// int _mm_cvt_roundss_i32 (__m128 a, int rounding)
+        ///   VCVTSS2SIK r32, xmm1 {er}
+        /// </summary>
+        public static int ConvertToInt32(Vector128<float> value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ConvertToInt32(value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// int _mm_cvt_roundsd_i32 (__m128d a, int rounding)
+        ///   VCVTSD2SI r32, xmm1 {er}
+        /// </summary>
+        public static int ConvertToInt32(Vector128<double> value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ConvertToInt32(value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// unsigned int _mm_cvtss_u32 (__m128 a)
+        ///   VCVTSS2USI r32, xmm1/m32{er}
+        /// </summary>
+        public static uint ConvertToUInt32(Vector128<float> value) => ConvertToUInt32(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// unsigned int _mm_cvt_roundss_u32 (__m128 a, int rounding)
+        ///   VCVTSS2USI r32, xmm1 {er}
+        /// </summary>
+        public static uint ConvertToUInt32(Vector128<float> value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ConvertToUInt32(value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// unsigned int _mm_cvtsd_u32 (__m128d a)
+        ///   VCVTSD2USI r32, xmm1/m64{er}
+        /// </summary>
+        public static uint ConvertToUInt32(Vector128<double> value) => ConvertToUInt32(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// unsigned int _mm_cvt_roundsd_u32 (__m128d a, int rounding)
+        ///   VCVTSD2USI r32, xmm1 {er}
+        /// </summary>
+        public static uint ConvertToUInt32(Vector128<double> value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ConvertToUInt32(value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// unsigned int _mm_cvttss_u32 (__m128 a)
+        ///   VCVTTSS2USI r32, xmm1/m32{er}
+        /// </summary>
+        public static uint ConvertToUInt32WithTruncation(Vector128<float> value) => ConvertToUInt32WithTruncation(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// unsigned int _mm_cvttsd_u32 (__m128d a)
+        ///   VCVTTSD2USI r32, xmm1/m64{er}
+        /// </summary>
+        public static uint ConvertToUInt32WithTruncation(Vector128<double> value) => ConvertToUInt32WithTruncation(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_div_round_ss (__m128 a, __m128 b, int rounding)
+        ///   VDIVSD xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> DivideScalar(Vector128<float> left, Vector128<float> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => DivideScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_div_round_sd (__m128d a, __m128d b, int rounding)
+        ///   VDIVSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> DivideScalar(Vector128<double> left, Vector128<double> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => DivideScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_fixupimm_ss(__m128 a, __m128 b, __m128i tbl, int imm);
+        ///   VFIXUPIMMSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8
+        /// </summary>
+        public static Vector128<float> FixupScalar(Vector128<float> left, Vector128<float> right, Vector128<int> table, [ConstantExpected] byte control) => FixupScalar(left, right, table, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_fixupimm_sd(__m128d a, __m128d b, __m128i tbl, int imm);
+        ///   VFIXUPIMMSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8
+        /// </summary>
+        public static Vector128<double> FixupScalar(Vector128<double> left, Vector128<double> right, Vector128<long> table, [ConstantExpected] byte control) => FixupScalar(left, right, table, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_fmadd_round_ss (__m128 a, __m128 b, __m128 c, int r)
+        ///   VFMADDSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> FusedMultiplyAddScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplyAddScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_fmadd_round_sd (__m128d a, __m128d b, __m128d c, int r)
+        ///   VFMADDSD xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> FusedMultiplyAddScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplyAddScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_fmsub_round_ss (__m128 a, __m128 b, __m128 c, int r)
+        ///   VFMSUBSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> FusedMultiplySubtractScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplySubtractScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_fmsub_round_sd (__m128d a, __m128d b, __m128d c, int r)
+        ///   VFMSUBSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> FusedMultiplySubtractScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplySubtractScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_fnmadd_round_ss (__m128 a, __m128 b, __m128 c, int r)
+        ///   VFNMADDSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> FusedMultiplyAddNegatedScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplyAddNegatedScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_fnmadd_round_sd (__m128d a, __m128d b, __m128d c, int r)
+        ///   VFNMADDSD xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> FusedMultiplyAddNegatedScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplyAddNegatedScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_fnmsub_round_ss (__m128 a, __m128 b, __m128 c, int r)
+        ///   VFNMSUBSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> FusedMultiplySubtractNegatedScalar(Vector128<float> a, Vector128<float> b, Vector128<float> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplySubtractNegatedScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_fnmsub_round_sd (__m128d a, __m128d b, __m128d c, int r)
+        ///   VFNMSUBSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> FusedMultiplySubtractNegatedScalar(Vector128<double> a, Vector128<double> b, Vector128<double> c, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => FusedMultiplySubtractNegatedScalar(a, b, c, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_getexp_ss (__m128 a)
+        ///   VGETEXPSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}
+        /// </summary>
+        public static Vector128<float> GetExponentScalar(Vector128<float> value) => GetExponentScalar(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_getexp_sd (__m128d a)
+        ///   VGETEXPSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}
+        /// </summary>
+        public static Vector128<double> GetExponentScalar(Vector128<double> value) => GetExponentScalar(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_getexp_ss (__m128 a, __m128 b)
+        ///   VGETEXPSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<float> GetExponentScalar(Vector128<float> upper, Vector128<float> value) => GetExponentScalar(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_getexp_sd (__m128d a, __m128d b)
+        ///   VGETEXPSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<double> GetExponentScalar(Vector128<double> upper, Vector128<double> value) => GetExponentScalar(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_getmant_ss (__m128 a)
+        ///   VGETMANTSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}
+        /// </summary>
+        public static Vector128<float> GetMantissaScalar(Vector128<float> value, [ConstantExpected(Max = (byte)(0x0F))] byte control) => GetMantissaScalar(value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_getmant_sd (__m128d a)
+        ///   VGETMANTSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}
+        /// </summary>
+        public static Vector128<double> GetMantissaScalar(Vector128<double> value, [ConstantExpected(Max = (byte)(0x0F))] byte control) => GetMantissaScalar(value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_getmant_ss (__m128 a, __m128 b)
+        ///   VGETMANTSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<float> GetMantissaScalar(Vector128<float> upper, Vector128<float> value, [ConstantExpected(Max = (byte)(0x0F))] byte control) => GetMantissaScalar(upper, value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_getmant_sd (__m128d a, __m128d b)
+        ///   VGETMANTSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<double> GetMantissaScalar(Vector128<double> upper, Vector128<double> value, [ConstantExpected(Max = (byte)(0x0F))] byte control) => GetMantissaScalar(upper, value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_mul_round_ss (__m128 a, __m128 b, int rounding)
+        ///   VMULSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> MultiplyScalar(Vector128<float> left, Vector128<float> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => MultiplyScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_mul_round_sd (__m128d a, __m128d b, int rounding)
+        ///   VMULSD xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> MultiplyScalar(Vector128<double> left, Vector128<double> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => MultiplyScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_rcp14_ss (__m128 a)
+        ///   VRCP14SS xmm1 {k1}{z}, xmm2, xmm3/m32
+        /// </summary>
+        public static Vector128<float> Reciprocal14Scalar(Vector128<float> value) => Reciprocal14Scalar(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_rcp14_sd (__m128d a)
+        ///   VRCP14SD xmm1 {k1}{z}, xmm2, xmm3/m64
+        /// </summary>
+        public static Vector128<double> Reciprocal14Scalar(Vector128<double> value) => Reciprocal14Scalar(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_rcp14_ss (__m128 a, __m128 b)
+        ///   VRCP14SS xmm1 {k1}{z}, xmm2, xmm3/m32
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<float> Reciprocal14Scalar(Vector128<float> upper, Vector128<float> value) => Reciprocal14Scalar(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_rcp14_sd (__m128d a, __m128d b)
+        ///   VRCP14SD xmm1 {k1}{z}, xmm2, xmm3/m64
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<double> Reciprocal14Scalar(Vector128<double> upper, Vector128<double> value) => Reciprocal14Scalar(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_rsqrt14_ss (__m128 a)
+        ///   VRSQRT14SS xmm1 {k1}{z}, xmm2, xmm3/m32
+        /// </summary>
+        public static Vector128<float> ReciprocalSqrt14Scalar(Vector128<float> value) => ReciprocalSqrt14Scalar(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_rsqrt14_sd (__m128d a)
+        ///   VRSQRT14SD xmm1 {k1}{z}, xmm2, xmm3/m64
+        /// </summary>
+        public static Vector128<double> ReciprocalSqrt14Scalar(Vector128<double> value) => ReciprocalSqrt14Scalar(value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_rsqrt14_ss (__m128 a, __m128 b)
+        ///   VRSQRT14SS xmm1 {k1}{z}, xmm2, xmm3/m32
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<float> ReciprocalSqrt14Scalar(Vector128<float> upper, Vector128<float> value) => ReciprocalSqrt14Scalar(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_rsqrt14_sd (__m128d a, __m128d b)
+        ///   VRSQRT14SD xmm1 {k1}{z}, xmm2, xmm3/m64
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<double> ReciprocalSqrt14Scalar(Vector128<double> upper, Vector128<double> value) => ReciprocalSqrt14Scalar(upper, value) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_roundscale_ss (__m128 a, int imm)
+        ///   VRNDSCALESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8
+        /// </summary>
+        public static Vector128<float> RoundScaleScalar(Vector128<float> value, [ConstantExpected] byte control) => RoundScaleScalar(value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_roundscale_sd (__m128d a, int imm)
+        ///   VRNDSCALESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8
+        /// </summary>
+        public static Vector128<double> RoundScaleScalar(Vector128<double> value, [ConstantExpected] byte control) => RoundScaleScalar(value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_roundscale_ss (__m128 a, __m128 b, int imm)
+        ///   VRNDSCALESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<float> RoundScaleScalar(Vector128<float> upper, Vector128<float> value, [ConstantExpected] byte control) => RoundScaleScalar(upper, value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_roundscale_sd (__m128d a, __m128d b, int imm)
+        ///   VRNDSCALESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<double> RoundScaleScalar(Vector128<double> upper, Vector128<double> value, [ConstantExpected] byte control) => RoundScaleScalar(upper, value, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_scalef_ss (__m128 a, __m128 b)
+        ///   VSCALEFSS xmm1 {k1}{z}, xmm2, xmm3/m32{er}
+        /// </summary>
+        public static Vector128<float> ScaleScalar(Vector128<float> left, Vector128<float> right) => ScaleScalar(left, right) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_scalef_sd (__m128d a, __m128d b)
+        ///   VSCALEFSD xmm1 {k1}{z}, xmm2, xmm3/m64{er}
+        /// </summary>
+        public static Vector128<double> ScaleScalar(Vector128<double> left, Vector128<double> right) => ScaleScalar(left, right) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_scalef_round_ss (__m128 a, __m128 b)
+        ///   VSCALEFSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> ScaleScalar(Vector128<float> left, Vector128<float> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ScaleScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_scalef_round_sd (__m128d a, __m128d b)
+        ///   VSCALEFSD xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> ScaleScalar(Vector128<double> left, Vector128<double> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => ScaleScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_sqrt_round_ss (__m128 a, __m128 b, int rounding)
+        ///   VSQRTSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> SqrtScalar(Vector128<float> upper, Vector128<float> value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => SqrtScalar(upper, value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_sqrt_round_sd (__m128d a, __m128d b, int rounding)
+        ///   VSQRTSD xmm1, xmm2 xmm3 {er}
+        /// </summary>
+        public static Vector128<double> SqrtScalar(Vector128<double> upper, Vector128<double> value, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => SqrtScalar(upper, value, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_sub_round_ss (__m128 a, __m128 b, int rounding)
+        ///   VSUBSS xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<float> SubtractScalar(Vector128<float> left, Vector128<float> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => SubtractScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_sub_round_sd (__m128d a, __m128d b, int rounding)
+        ///   VSUBSD xmm1, xmm2, xmm3 {er}
+        /// </summary>
+        public static Vector128<double> SubtractScalar(Vector128<double> left, Vector128<double> right, [ConstantExpected(Max = FloatRoundingMode.ToZero)] FloatRoundingMode mode) => SubtractScalar(left, right, mode) { throw new PlatformNotSupportedException(); }
+        //from avx512f ends
+
+        //from avx512dq starts
+        /// <summary>
+        /// __m128 _mm_range_ss(__m128 a, __m128 b, int imm);
+        ///   VRANGESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8
+        /// </summary>
+        public static Vector128<float> RangeScalar(Vector128<float> left, Vector128<float> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) => RangeScalar(left, right, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128d _mm_range_sd(__m128d a, __m128d b, int imm);
+        ///   VRANGESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8
+        /// </summary>
+        public static Vector128<double> RangeScalar(Vector128<double> left, Vector128<double> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) => RangeScalar(left, right, control) { throw new PlatformNotSupportedException(); }
+
+        /// <summary>
+        /// __m128 _mm_reduce_ss(__m128 a, int imm);
+        ///   VREDUCESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8
+        /// </summary>
+        public static Vector128<float> ReduceScalar(Vector128<float> value, [ConstantExpected] byte control) => ReduceScalar(value, control) { throw new PlatformNotSupportedException(); }
+        
+        /// <summary>
+        /// __m128d _mm_reduce_sd(__m128d a, int imm);
+        ///   VREDUCESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8
+        /// </summary>
+        public static Vector128<double> ReduceScalar(Vector128<double> value, [ConstantExpected] byte control) => ReduceScalar(value, control) { throw new PlatformNotSupportedException(); }
+        
+        /// <summary>
+        /// __m128 _mm_reduce_ss(__m128 a, __m128 b, int imm);
+        ///   VREDUCESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<float> ReduceScalar(Vector128<float> upper, Vector128<float> value, [ConstantExpected] byte control) => ReduceScalar(upper, value, control) { throw new PlatformNotSupportedException(); }
+        
+        /// <summary>
+        /// __m128d _mm_reduce_sd(__m128d a, __m128d b, int imm);
+        ///   VREDUCESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8
+        /// The above native signature does not exist. We provide this additional overload for consistency with the other scalar APIs.
+        /// </summary>
+        public static Vector128<double> ReduceScalar(Vector128<double> upper, Vector128<double> value, [ConstantExpected] byte control) => ReduceScalar(upper, value, control) { throw new PlatformNotSupportedException(); }
+        //from avx512dq ends
+        
+        [Intrinsic]
+        public new abstract class X64 : Avx512F.X64
+        {
+            internal X64() { }
+
+            public static new bool IsSupported { [Intrinsic] get { return false; } }
+
+        }
+        
         public abstract class V256 : Avx2
         {
             internal V256() { }
@@ -1858,6 +2462,212 @@ namespace System.Runtime.Intrinsics.X86
             /// </summary>
 			public static Vector256<ushort> SumAbsoluteDifferencesInBlock32(Vector256<byte> left, Vector256<byte> right, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
             //AVX512BW VL ends
+
+            //from avx512cd vl starts
+            /// <summary>
+            /// __m256i _mm256_conflict_epi32 (__m256i a)
+            ///   VPCONFLICTD ymm1 {k1}{z}, ymm2/m256/m32bcst
+            /// </summary>
+            public static Vector256<int> DetectConflicts(Vector256<int> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_conflict_epi32 (__m256i a)
+            ///   VPCONFLICTD ymm1 {k1}{z}, ymm2/m256/m32bcst
+            /// </summary>
+            public static Vector256<uint> DetectConflicts(Vector256<uint> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_conflict_epi64 (__m256i a)
+            ///   VPCONFLICTQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+            public static Vector256<long> DetectConflicts(Vector256<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_conflict_epi64 (__m256i a)
+            ///   VPCONFLICTQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+            public static Vector256<ulong> DetectConflicts(Vector256<ulong> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_lzcnt_epi32 (__m256i a)
+            ///   VPLZCNTD ymm1 {k1}{z}, ymm2/m256/m32bcst
+            /// </summary>
+            public static Vector256<int> LeadingZeroCount(Vector256<int> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_lzcnt_epi32 (__m256i a)
+            ///   VPLZCNTD ymm1 {k1}{z}, ymm2/m256/m32bcst
+            /// </summary>
+            public static Vector256<uint> LeadingZeroCount(Vector256<uint> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_lzcnt_epi64 (__m256i a)
+            ///   VPLZCNTQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+            public static Vector256<long> LeadingZeroCount(Vector256<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_lzcnt_epi64 (__m256i a)
+            ///   VPLZCNTQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+            public static Vector256<ulong> LeadingZeroCount(Vector256<ulong> value) { throw new PlatformNotSupportedException(); }
+            //from avx512cd vl ends
+
+            //from avx512dq vl starts
+            /// <summary>
+            /// __m256i _mm256_broadcast_i32x2 (__m128i a)
+            ///   VBROADCASTI32x2 ymm1 {k1}{z}, xmm2/m64
+            /// </summary>
+			public static Vector256<int> BroadcastPairScalarToVector256(Vector128<int> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_broadcast_i32x2 (__m128i a)
+            ///   VBROADCASTI32x2 ymm1 {k1}{z}, xmm2/m64
+            /// </summary>
+			public static Vector256<uint> BroadcastPairScalarToVector256(Vector128<uint> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256 _mm256_broadcast_f32x2 (__m128 a)
+            ///   VBROADCASTF32x2 ymm1 {k1}{z}, xmm2/m64
+            /// </summary>
+			public static Vector256<float> BroadcastPairScalarToVector256(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m128 _mm256_cvtepi64_ps (__m256i a)
+            ///   VCVTQQ2PS xmm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector128<float> ConvertToVector128Single(Vector256<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m128 _mm256_cvtepu64_ps (__m256i a)
+            ///   VCVTUQQ2PS xmm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector128<float> ConvertToVector128Single(Vector256<ulong> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256d _mm256_cvtepi64_pd (__m256i a)
+            ///   VCVTQQ2PD ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector256<double> ConvertToVector256Double(Vector256<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256d _mm256_cvtepu64_pd (__m256i a)
+            ///   VCVTUQQ2PD ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector256<double> ConvertToVector256Double(Vector256<ulong> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvtps_epi64 (__m128 a)
+            ///   VCVTPS2QQ ymm1 {k1}{z}, xmm2/m128/m32bcst
+            /// </summary>
+			public static Vector256<long> ConvertToVector256Int64(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvtpd_epi64 (__m256d a)
+            ///   VCVTPD2QQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector256<long> ConvertToVector256Int64(Vector256<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvttps_epi64 (__m128 a)
+            ///   VCVTTPS2QQ ymm1 {k1}{z}, xmm2/m128/m32bcst
+            /// </summary>
+			public static Vector256<long> ConvertToVector256Int64WithTruncation(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvttpd_epi64 (__m256d a)
+            ///   VCVTTPD2QQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector256<long> ConvertToVector256Int64WithTruncation(Vector256<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvtps_epu64 (__m128 a)
+            ///   VCVTPS2UQQ ymm1 {k1}{z}, xmm2/m128/m32bcst
+            /// </summary>
+			public static Vector256<ulong> ConvertToVector256UInt64(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvtpd_epu64 (__m256d a)
+            ///   VCVTPD2UQQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector256<ulong> ConvertToVector256UInt64(Vector256<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvttps_epu64 (__m128 a)
+            ///   VCVTTPS2UQQ ymm1 {k1}{z}, xmm2/m128/m32bcst
+            /// </summary>
+			public static Vector256<ulong> ConvertToVector256UInt64WithTruncation(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_cvttpd_epu64 (__m256d a)
+            ///   VCVTTPD2UQQ ymm1 {k1}{z}, ymm2/m256/m64bcst
+            /// </summary>
+			public static Vector256<ulong> ConvertToVector256UInt64WithTruncation(Vector256<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_mullo_epi64 (__m256i a, __m256i b)
+            ///   VPMULLQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst
+            /// </summary>
+			public static Vector256<long> MultiplyLow(Vector256<long> left, Vector256<long> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_mullo_epi64 (__m256i a, __m256i b)
+            ///   VPMULLQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst
+            /// </summary>
+			public static Vector256<ulong> MultiplyLow(Vector256<ulong> left, Vector256<ulong> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256 _mm256_range_ps(__m256 a, __m256 b, int imm);
+            ///   VRANGEPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst, imm8
+            /// </summary>
+			public static Vector256<float> Range(Vector256<float> left, Vector256<float> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256d _mm256_range_pd(__m256d a, __m256d b, int imm);
+            ///   VRANGEPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8
+            /// </summary>
+			public static Vector256<double> Range(Vector256<double> left, Vector256<double> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256 _mm256_reduce_ps(__m256 a, int imm);
+            ///   VREDUCEPS ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8
+            /// </summary>
+			public static Vector256<float> Reduce(Vector256<float> value, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256d _mm256_reduce_pd(__m256d a, int imm);
+            ///   VREDUCEPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8
+            /// </summary>
+			public static Vector256<double> Reduce(Vector256<double> value, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
+            //from avx512dq vl ends
+
+            //from avx512vbmi vl starts
+            /// <summary>
+            /// __m256i _mm256_permutevar64x8_epi8 (__m256i a, __m256i b)
+            ///   VPERMB ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+			public static Vector256<sbyte> PermuteVar32x8(Vector256<sbyte> left, Vector256<sbyte> control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_permutevar64x8_epi8 (__m256i a, __m256i b)
+            ///   VPERMB ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+			public static Vector256<byte> PermuteVar32x8(Vector256<byte> left, Vector256<byte> control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_permutex2var_epi8 (__m256i a, __m256i idx, __m256i b)
+            ///   VPERMI2B ymm1 {k1}{z}, ymm2, ymm3/m256
+            ///   VPERMT2B ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+			public static Vector256<byte> PermuteVar32x8x2(Vector256<byte> lower, Vector256<byte> indices, Vector256<byte> upper) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm256_permutex2var_epi8 (__m256i a, __m256i idx, __m256i b)
+            ///   VPERMI2B ymm1 {k1}{z}, ymm2, ymm3/m256
+            ///   VPERMT2B ymm1 {k1}{z}, ymm2, ymm3/m256
+            /// </summary>
+			public static Vector256<sbyte> PermuteVar32x8x2(Vector256<sbyte> lower, Vector256<sbyte> indices, Vector256<sbyte> upper) { throw new PlatformNotSupportedException(); }
+            //from avx512vbmi vl ends
         }
 
         public abstract class V512 : Avx512BW
@@ -1865,6 +2675,366 @@ namespace System.Runtime.Intrinsics.X86
             internal V512() { }
 
             public static new bool IsSupported { [Intrinsic] get { return false; } }
+
+            //from avx512cd starts
+            /// <summary>
+            /// __m512i _mm512_conflict_epi32 (__m512i a)
+            ///   VPCONFLICTD zmm1 {k1}{z}, zmm2/m512/m32bcst
+            /// </summary>
+			public static Vector512<int> DetectConflicts(Vector512<int> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_conflict_epi32 (__m512i a)
+            ///   VPCONFLICTD zmm1 {k1}{z}, zmm2/m512/m32bcst
+            /// </summary>
+			public static Vector512<uint> DetectConflicts(Vector512<uint> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_conflict_epi64 (__m512i a)
+            ///   VPCONFLICTQ zmm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector512<long> DetectConflicts(Vector512<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_conflict_epi64 (__m512i a)
+            ///   VPCONFLICTQ zmm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector512<ulong> DetectConflicts(Vector512<ulong> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_lzcnt_epi32 (__m512i a)
+            ///   VPLZCNTD zmm1 {k1}{z}, zmm2/m512/m32bcst
+            /// </summary>
+			public static Vector512<int> LeadingZeroCount(Vector512<int> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_lzcnt_epi32 (__m512i a)
+            ///   VPLZCNTD zmm1 {k1}{z}, zmm2/m512/m32bcst
+            /// </summary>
+			public static Vector512<uint> LeadingZeroCount(Vector512<uint> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_lzcnt_epi64 (__m512i a)
+            ///   VPLZCNTQ zmm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector512<long> LeadingZeroCount(Vector512<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_lzcnt_epi64 (__m512i a)
+            ///   VPLZCNTQ zmm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector512<ulong> LeadingZeroCount(Vector512<ulong> value) { throw new PlatformNotSupportedException(); }
+            //from avx512cd ends
+
+            //from avx512dq starts
+            /// <summary>
+            /// __m512 _mm512_and_ps (__m512 a, __m512 b)
+            ///   VANDPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst
+            /// </summary>
+			public static Vector512<float> And(Vector512<float> left, Vector512<float> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_and_pd (__m512d a, __m512d b)
+            ///   VANDPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst
+            /// </summary>
+			public static Vector512<double> And(Vector512<double> left, Vector512<double> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_andnot_ps (__m512 a, __m512 b)
+            ///   VANDNPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst
+            /// </summary>
+			public static Vector512<float> AndNot(Vector512<float> left, Vector512<float> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_andnot_pd (__m512d a, __m512d b)
+            ///   VANDNPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst
+            /// </summary>
+			public static Vector512<double> AndNot(Vector512<double> left, Vector512<double> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_broadcast_i32x2 (__m128i a)
+            ///   VBROADCASTI32x2 zmm1 {k1}{z}, xmm2/m64
+            /// </summary>
+			public static Vector512<int> BroadcastPairScalarToVector512(Vector128<int> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_broadcast_i32x2 (__m128i a)
+            ///   VBROADCASTI32x2 zmm1 {k1}{z}, xmm2/m64
+            /// </summary>
+			public static Vector512<uint> BroadcastPairScalarToVector512(Vector128<uint> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_broadcast_f32x2 (__m128 a)
+            ///   VBROADCASTF32x2 zmm1 {k1}{z}, xmm2/m64
+            /// </summary>
+			public static Vector512<float> BroadcastPairScalarToVector512(Vector128<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_broadcast_i64x2 (__m128i const * mem_addr)
+            ///   VBROADCASTI64x2 zmm1 {k1}{z}, m128
+            /// </summary>
+			public static unsafe Vector512<long> BroadcastVector128ToVector512(long* address) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_broadcast_i64x2 (__m128i const * mem_addr)
+            ///   VBROADCASTI64x2 zmm1 {k1}{z}, m128
+            /// </summary>
+			public static unsafe Vector512<ulong> BroadcastVector128ToVector512(ulong* address) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_broadcast_f64x2 (__m128d const * mem_addr)
+            ///   VBROADCASTF64x2 zmm1 {k1}{z}, m128
+            /// </summary>
+			public static unsafe Vector512<double> BroadcastVector128ToVector512(double* address) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_broadcast_i32x8 (__m256i const * mem_addr)
+            ///   VBROADCASTI32x8 zmm1 {k1}{z}, m256
+            /// </summary>
+			public static unsafe Vector512<int> BroadcastVector256ToVector512(int* address) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_broadcast_i32x8 (__m256i const * mem_addr)
+            ///   VBROADCASTI32x8 zmm1 {k1}{z}, m256
+            /// </summary>
+			public static unsafe Vector512<uint> BroadcastVector256ToVector512(uint* address) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_broadcast_f32x8 (__m256 const * mem_addr)
+            ///   VBROADCASTF32x8 zmm1 {k1}{z}, m256
+            /// </summary>
+			public static unsafe Vector512<float> BroadcastVector256ToVector512(float* address) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_cvtepi64_ps (__m512i a)
+            ///   VCVTQQ2PS ymm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector256<float> ConvertToVector256Single(Vector512<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_cvtepu64_ps (__m512i a)
+            ///   VCVTUQQ2PS ymm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector256<float> ConvertToVector256Single(Vector512<ulong> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_cvtepi64_pd (__m512i a)
+            ///   VCVTQQ2PD zmm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector512<double> ConvertToVector512Double(Vector512<long> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_cvtepu64_pd (__m512i a)
+            ///   VCVTUQQ2PD zmm1 {k1}{z}, zmm2/m512/m64bcst
+            /// </summary>
+			public static Vector512<double> ConvertToVector512Double(Vector512<ulong> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvtps_epi64 (__m512 a)
+            ///   VCVTPS2QQ zmm1 {k1}{z}, ymm2/m256/m32bcst{er}
+            /// </summary>
+			public static Vector512<long> ConvertToVector512Int64(Vector256<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvtpd_epi64 (__m512d a)
+            ///   VCVTPD2QQ zmm1 {k1}{z}, zmm2/m512/m64bcst{er}
+            /// </summary>
+			public static Vector512<long> ConvertToVector512Int64(Vector512<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvttps_epi64 (__m512 a)
+            ///   VCVTTPS2QQ zmm1 {k1}{z}, ymm2/m256/m32bcst{er}
+            /// </summary>
+			public static Vector512<long> ConvertToVector512Int64WithTruncation(Vector256<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvttpd_epi64 (__m512 a)
+            ///   VCVTTPD2QQ zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}
+            /// </summary>
+			public static Vector512<long> ConvertToVector512Int64WithTruncation(Vector512<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvtps_epu64 (__m512 a)
+            ///   VCVTPS2UQQ zmm1 {k1}{z}, ymm2/m256/m32bcst{er}
+            /// </summary>
+			public static Vector512<ulong> ConvertToVector512UInt64(Vector256<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvtpd_epu64 (__m512d a)
+            ///   VCVTPD2UQQ zmm1 {k1}{z}, zmm2/m512/m64bcst{er}
+            /// </summary>
+			public static Vector512<ulong> ConvertToVector512UInt64(Vector512<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvttps_epu64 (__m512 a)
+            ///   VCVTTPS2UQQ zmm1 {k1}{z}, ymm2/m256/m32bcst{er}
+            /// </summary>
+			public static Vector512<ulong> ConvertToVector512UInt64WithTruncation(Vector256<float> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_cvttpd_epu64 (__m512d a)
+            ///   VCVTTPD2UQQ zmm1 {k1}{z}, zmm2/m512/m64bcst{er}
+            /// </summary>
+			public static Vector512<ulong> ConvertToVector512UInt64WithTruncation(Vector512<double> value) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m128i _mm512_extracti64x2_epi64 (__m512i a, const int imm8)
+            ///   VEXTRACTI64x2 xmm1/m128 {k1}{z}, zmm2, imm8
+            /// </summary>
+			public static new Vector128<long> ExtractVector128(Vector512<long> value, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m128i _mm512_extracti64x2_epi64 (__m512i a, const int imm8)
+            ///   VEXTRACTI64x2 xmm1/m128 {k1}{z}, zmm2, imm8
+            /// </summary>
+			public static new Vector128<ulong> ExtractVector128(Vector512<ulong> value, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m128d _mm512_extractf64x2_pd (__m512d a, const int imm8)
+            ///   VEXTRACTF64x2 xmm1/m128 {k1}{z}, zmm2, imm8
+            /// </summary>
+			public static new Vector128<double> ExtractVector128(Vector512<double> value, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm512_extracti32x8_epi32 (__m512i a, const int imm8)
+            ///   VEXTRACTI32x8 ymm1/m256 {k1}{z}, zmm2, imm8
+            /// </summary>
+			public static new Vector256<int> ExtractVector256(Vector512<int> value, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256i _mm512_extracti32x8_epi32 (__m512i a, const int imm8)
+            ///   VEXTRACTI32x8 ymm1/m256 {k1}{z}, zmm2, imm8
+            /// </summary>
+			public static new Vector256<uint> ExtractVector256(Vector512<uint> value, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m256 _mm512_extractf32x8_ps (__m512 a, const int imm8)
+            ///   VEXTRACTF32x8 ymm1/m256 {k1}{z}, zmm2, imm8
+            /// </summary>
+			public static new Vector256<float> ExtractVector256(Vector512<float> value, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_inserti64x2_si512 (__m512i a, __m128i b, const int imm8)
+            ///   VINSERTI64x2 zmm1 {k1}{z}, zmm2, xmm3/m128, imm8
+            /// </summary>
+			public static new Vector512<long> InsertVector128(Vector512<long> value, Vector128<long> data, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_inserti64x2_si512 (__m512i a, __m128i b, const int imm8)
+            ///   VINSERTI64x2 zmm1 {k1}{z}, zmm2, xmm3/m128, imm8
+            /// </summary>
+			public static new Vector512<ulong> InsertVector128(Vector512<ulong> value, Vector128<ulong> data, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_insertf64x2_pd (__m512d a, __m128d b, int imm8)
+            ///   VINSERTF64x2 zmm1 {k1}{z}, zmm2, xmm3/m128, imm8
+            /// </summary>
+			public static new Vector512<double> InsertVector128(Vector512<double> value, Vector128<double> data, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_inserti32x8_si512 (__m512i a, __m256i b, const int imm8)
+            ///   VINSERTI32x8 zmm1 {k1}{z}, zmm2, xmm3/m256, imm8
+            /// </summary>
+			public static new Vector512<int> InsertVector256(Vector512<int> value, Vector256<int> data, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_inserti32x8_si512 (__m512i a, __m256i b, const int imm8)
+            ///   VINSERTI32x8 zmm1 {k1}{z}, zmm2, xmm3/m256, imm8
+            /// </summary>
+			public static new Vector512<uint> InsertVector256(Vector512<uint> value, Vector256<uint> data, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_insertf32x8_ps (__m512 a, __m256 b, int imm8)
+            ///   VINSERTF32x8 zmm1 {k1}{z}, zmm2, xmm3/m256, imm8
+            /// </summary>
+			public static new Vector512<float> InsertVector256(Vector512<float> value, Vector256<float> data, [ConstantExpected] byte index) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_mullo_epi64 (__m512i a, __m512i b)
+            ///   VPMULLQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst
+            /// </summary>
+			public static Vector512<long> MultiplyLow(Vector512<long> left, Vector512<long> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_mullo_epi64 (__m512i a, __m512i b)
+            ///   VPMULLQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst
+            /// </summary>
+			public static Vector512<ulong> MultiplyLow(Vector512<ulong> left, Vector512<ulong> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_or_ps (__m512 a, __m512 b)
+            ///   VORPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst
+            /// </summary>
+			public static Vector512<float> Or(Vector512<float> left, Vector512<float> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_or_pd (__m512d a, __m512d b)
+            ///   VORPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst
+            /// </summary>
+			public static Vector512<double> Or(Vector512<double> left, Vector512<double> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_range_ps(__m512 a, __m512 b, int imm);
+            ///   VRANGEPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{sae}, imm8
+            /// </summary>
+			public static Vector512<float> Range(Vector512<float> left, Vector512<float> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_range_pd(__m512d a, __m512d b, int imm);
+            ///   VRANGEPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8
+            /// </summary>
+			public static Vector512<double> Range(Vector512<double> left, Vector512<double> right, [ConstantExpected(Max = (byte)(0x0F))] byte control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_reduce_ps(__m512 a, int imm);
+            ///   VREDUCEPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}, imm8
+            /// </summary>
+			public static Vector512<float> Reduce(Vector512<float> value, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_reduce_pd(__m512d a, int imm);
+            ///   VREDUCEPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8
+            /// </summary>
+			public static Vector512<double> Reduce(Vector512<double> value, [ConstantExpected] byte control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512 _mm512_xor_ps (__m512 a, __m512 b)
+            ///   VXORPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst
+            /// </summary>
+			public static Vector512<float> Xor(Vector512<float> left, Vector512<float> right) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512d _mm512_xor_pd (__m512d a, __m512d b)
+            ///   VXORPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst
+            /// </summary>
+			public static Vector512<double> Xor(Vector512<double> left, Vector512<double> right) { throw new PlatformNotSupportedException(); }
+            //from avx512dq ends
+
+            //from avx512vbmi starts
+            /// <summary>
+            /// __m512i _mm512_permutevar64x8_epi8 (__m512i a, __m512i b)
+            ///   VPERMB zmm1 {k1}{z}, zmm2, zmm3/m512
+            /// </summary>
+			public static Vector512<sbyte> PermuteVar64x8(Vector512<sbyte> left, Vector512<sbyte> control) { throw new PlatformNotSupportedException(); }
+
+            /// <summary>
+            /// __m512i _mm512_permutevar64x8_epi8 (__m512i a, __m512i b)
+            ///   VPERMB zmm1 {k1}{z}, zmm2, zmm3/m512
+            /// </summary>
+			public static Vector512<byte> PermuteVar64x8(Vector512<byte> left, Vector512<byte> control) { throw new PlatformNotSupportedException(); }
+
+            /// __m512i _mm512_permutex2var_epi8 (__m512i a, __m512i idx, __m512i b)
+            ///   VPERMI2B zmm1 {k1}{z}, zmm2, zmm3/m512
+            ///   VPERMT2B zmm1 {k1}{z}, zmm2, zmm3/m512
+            /// </summary>
+			public static Vector512<byte> PermuteVar64x8x2(Vector512<byte> lower, Vector512<byte> indices, Vector512<byte> upper) { throw new PlatformNotSupportedException(); }
+
+            /// __m512i _mm512_permutex2var_epi8 (__m512i a, __m512i idx, __m512i b)
+            ///   VPERMI2B zmm1 {k1}{z}, zmm2, zmm3/m512
+            ///   VPERMT2B zmm1 {k1}{z}, zmm2, zmm3/m512
+            /// </summary>
+			public static Vector512<sbyte> PermuteVar64x8x2(Vector512<sbyte> lower, Vector512<sbyte> indices, Vector512<sbyte> upper) { throw new PlatformNotSupportedException(); }
+            //from avx512vbmi ends
         }
     }
 }
