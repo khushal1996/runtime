@@ -40,7 +40,7 @@ using Xunit;
 5. You can capture the disasm for getAbs128 if running with env variables above.
 
 */
-namespace IntelHardwareIntrinsicTest._Avx10v1
+namespace IntelHardwareIntrinsicTest._Avx10v1_Avx512F_VL_Vector128
 {
     public partial class Program
     {

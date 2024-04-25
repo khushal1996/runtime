@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>X86_Avx10v1_handwritten_r</AssemblyName>
+    <AssemblyName>X86_Avx10v1_Avx512F_VL_Vector128_handwritten_r</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
