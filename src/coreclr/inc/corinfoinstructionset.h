@@ -230,6 +230,12 @@ public:
 
     bool HasInstructionSet(CORINFO_InstructionSet instructionSet) const
     {
+#ifdef TARGET_XARCH
+        if (instructionSet ==  InstructionSet_AVX10v1/* || instructionSet ==  InstructionSet_AVX10v1_V256 || instructionSet ==  InstructionSet_AVX10v1_V512*/)
+        {
+            return true;
+        }
+#endif
         uint32_t index = GetFlagsFieldIndex(instructionSet);
         uint64_t bitIndex = GetRelativeBitMask(instructionSet);
         return ((_flags[index] & bitIndex) != 0);

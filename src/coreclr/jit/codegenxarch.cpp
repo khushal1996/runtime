@@ -5632,6 +5632,8 @@ void CodeGen::genCodeForStoreInd(GenTreeStoreInd* tree)
                         case NI_AVX512F_ConvertToVector256UInt32:
                         case NI_AVX512F_VL_ConvertToVector128UInt32:
                         case NI_AVX512F_VL_ConvertToVector128UInt32WithSaturation:
+                        case NI_AVX10v1_ConvertToVector128UInt32:
+                        case NI_AVX10v1_ConvertToVector128UInt32WithSaturation:
                         {
                             assert(!varTypeIsFloating(baseType));
                             FALLTHROUGH;
@@ -5669,6 +5671,16 @@ void CodeGen::genCodeForStoreInd(GenTreeStoreInd* tree)
                         case NI_AVX512BW_VL_ConvertToVector128ByteWithSaturation:
                         case NI_AVX512BW_VL_ConvertToVector128SByte:
                         case NI_AVX512BW_VL_ConvertToVector128SByteWithSaturation:
+                        case NI_AVX10v1_ConvertToVector128Byte:
+                        case NI_AVX10v1_ConvertToVector128ByteWithSaturation:
+                        case NI_AVX10v1_ConvertToVector128Int16:
+                        case NI_AVX10v1_ConvertToVector128Int16WithSaturation:
+                        case NI_AVX10v1_ConvertToVector128Int32:
+                        case NI_AVX10v1_ConvertToVector128Int32WithSaturation:
+                        case NI_AVX10v1_ConvertToVector128SByte:
+                        case NI_AVX10v1_ConvertToVector128SByteWithSaturation:
+                        case NI_AVX10v1_ConvertToVector128UInt16:
+                        case NI_AVX10v1_ConvertToVector128UInt16WithSaturation:
                         {
                             // These intrinsics are "ins reg/mem, xmm"
                             ins  = HWIntrinsicInfo::lookupIns(intrinsicId, baseType);

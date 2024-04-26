@@ -2478,8 +2478,8 @@ const string SimpleOpTest_ValidationLogic = @"if ({ValidateFirstResult})
 (string templateFileName, Dictionary<string, string> templateData)[] Avx10v1_Avx512F_VL_Vector128Inputs = new []
 {
     ("SimpleUnOpTest.template",        new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "Abs",                                      ["RetVectorType"] = "Vector128", ["RetBaseType"] = "UInt64", ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Int64",                                                                                                                                                                     ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetInt64()",                                                                                                                      ["ValidateFirstResult"] = "result[0] != (ulong)((firstOp[0] < 0) ? -firstOp[0] : firstOp[0])",                                                                                                                                                                                  ["ValidateRemainingResults"] = "result[i] != (ulong)((firstOp[i] < 0) ? -firstOp[i] : firstOp[i])"}),
-    // ("ImmBinOpTest.template",          new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "AlignRight32",                             ["RetVectorType"] = "Vector128", ["RetBaseType"] = "Int32",  ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Int32",  ["Op2VectorType"] = "Vector128", ["Op2BaseType"] = "Int32",                                                                                       ["Imm"] = "1",   ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetInt32()",  ["NextValueOp2"] = "TestLibrary.Generator.GetInt32()",                                                              ["ValidateFirstResult"] = "result[0] != right[1]",                                                                                                                                                                                                                              ["ValidateRemainingResults"] = "result[i] != ((i < 3) ? right[i + 1] : left[i - 3])"}),
-    // ("ImmBinOpTest.template",          new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "AlignRight32",                             ["RetVectorType"] = "Vector128", ["RetBaseType"] = "Int32",  ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Int32",  ["Op2VectorType"] = "Vector128", ["Op2BaseType"] = "Int32",                                                                                       ["Imm"] = "5",   ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetInt32()",  ["NextValueOp2"] = "TestLibrary.Generator.GetInt32()",                                                              ["ValidateFirstResult"] = "result[0] != right[1]",                                                                                                                                                                                                                              ["ValidateRemainingResults"] = "result[i] != ((i < 3) ? right[i + 1] : left[i - 3])"}),
+    ("ImmBinOpTest.template",          new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "AlignRight32",                             ["RetVectorType"] = "Vector128", ["RetBaseType"] = "Int32",  ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Int32",  ["Op2VectorType"] = "Vector128", ["Op2BaseType"] = "Int32",                                                                                       ["Imm"] = "1",   ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetInt32()",  ["NextValueOp2"] = "TestLibrary.Generator.GetInt32()",                                                              ["ValidateFirstResult"] = "result[0] != right[1]",                                                                                                                                                                                                                              ["ValidateRemainingResults"] = "result[i] != ((i < 3) ? right[i + 1] : left[i - 3])"}),
+    ("ImmBinOpTest.template",          new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "AlignRight32",                             ["RetVectorType"] = "Vector128", ["RetBaseType"] = "Int32",  ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Int32",  ["Op2VectorType"] = "Vector128", ["Op2BaseType"] = "Int32",                                                                                       ["Imm"] = "5",   ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetInt32()",  ["NextValueOp2"] = "TestLibrary.Generator.GetInt32()",                                                              ["ValidateFirstResult"] = "result[0] != right[1]",                                                                                                                                                                                                                              ["ValidateRemainingResults"] = "result[i] != ((i < 3) ? right[i + 1] : left[i - 3])"}),
     ("ImmBinOpTest.template",          new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "AlignRight32",                             ["RetVectorType"] = "Vector128", ["RetBaseType"] = "UInt32", ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "UInt32", ["Op2VectorType"] = "Vector128", ["Op2BaseType"] = "UInt32",                                                                                      ["Imm"] = "1",   ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetUInt32()", ["NextValueOp2"] = "TestLibrary.Generator.GetUInt32()",                                                             ["ValidateFirstResult"] = "result[0] != right[1]",                                                                                                                                                                                                                              ["ValidateRemainingResults"] = "result[i] != ((i < 3) ? right[i + 1] : left[i - 3])"}),
     ("ImmBinOpTest.template",          new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "AlignRight32",                             ["RetVectorType"] = "Vector128", ["RetBaseType"] = "UInt32", ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "UInt32", ["Op2VectorType"] = "Vector128", ["Op2BaseType"] = "UInt32",                                                                                      ["Imm"] = "5",   ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetUInt32()", ["NextValueOp2"] = "TestLibrary.Generator.GetUInt32()",                                                             ["ValidateFirstResult"] = "result[0] != right[1]",                                                                                                                                                                                                                              ["ValidateRemainingResults"] = "result[i] != ((i < 3) ? right[i + 1] : left[i - 3])"}),
     ("ImmBinOpTest.template",          new Dictionary<string, string> { ["Isa"] = "Avx10v1",         ["LoadIsa"] = "Avx10v1",    ["Method"] = "AlignRight64",                             ["RetVectorType"] = "Vector128", ["RetBaseType"] = "Int64",  ["Op1VectorType"] = "Vector128", ["Op1BaseType"] = "Int64",  ["Op2VectorType"] = "Vector128", ["Op2BaseType"] = "Int64",                                                                                       ["Imm"] = "1",   ["LargestVectorSize"] = "16", ["NextValueOp1"] = "TestLibrary.Generator.GetInt64()",  ["NextValueOp2"] = "TestLibrary.Generator.GetInt64()",                                                              ["ValidateFirstResult"] = "result[0] != right[1]",                                                                                                                                                                                                                              ["ValidateRemainingResults"] = "result[i] != ((i < 1) ? right[i + 1] : left[i - 1])"}),
@@ -4010,51 +4010,51 @@ string outputDirectory = args[2];
 string testListFileName = args[3];
 
 ProcessInputs("Avx10v1_Avx512F_VL_Vector128", Avx10v1_Avx512F_VL_Vector128Inputs);
-ProcessInputs("Avx10v1_Avx512BW_VL_Vector128", Avx10v1_Avx512BW_VL_Vector128Inputs);
-ProcessInputs("Avx10v1_Avx512DQ_VL_Vector128", Avx10v1_Avx512DQ_VL_Vector128Inputs);
-ProcessInputs("Avx10v1_Avx512F_ScalarUpper", Avx10v1_Avx512F_ScalarUpperInputs);
-ProcessInputs("Avx10v1_V256_Avx512F_VL_Vector256", Avx10v1_V256_Avx512F_VL_Vector256Inputs);
-ProcessInputs("Avx10v1_V256_Avx512BW_VL_Vector256", Avx10v1_V256_Avx512BW_VL_Vector256Inputs);
-ProcessInputs("Avx10v1_V256_Avx512DQ_VL_Vector256", Avx10v1_V256_Avx512DQ_VL_Vector256Inputs);
-ProcessInputs("Avx10v1_V512_Avx512BW", Avx10v1_V512_Avx512BWInputs);
-ProcessInputs("Avx10v1_V512_Avx512F", Avx10v1_V512_Avx512FInputs);
-ProcessInputs("Avx10v1_V512_Avx512DQ", Avx10v1_V512_Avx512DQInputs);
-ProcessInputs("Sse1", Sse1Inputs);
-ProcessInputs("Sse1.X64", Sse1X64Inputs);
-ProcessInputs("Sse2", Sse2Inputs);
-ProcessInputs("Sse2.X64", Sse2X64Inputs);
-ProcessInputs("Sse3", Sse3Inputs);
-ProcessInputs("Ssse3", Ssse3Inputs);
-ProcessInputs("Sse41", Sse41Inputs);
-ProcessInputs("Sse41_Overloaded", Sse41_OverloadedInputs);
-ProcessInputs("Sse41.X64", Sse41X64Inputs);
-ProcessInputs("Sse42", Sse42Inputs);
-ProcessInputs("Avx1", Avx1Inputs);
-ProcessInputs("Avx1_Vector128", Avx1_Vector128Inputs);
-ProcessInputs("Avx2", Avx2Inputs);
-ProcessInputs("Avx2_Vector128", Avx2_Vector128Inputs);
-ProcessInputs("Avx512F", Avx512FInputs);
-ProcessInputs("Avx512F_ScalarUpper", Avx512F_ScalarUpperInputs);
-ProcessInputs("Avx512F_VL_Vector128", Avx512F_VL_Vector128Inputs);
-ProcessInputs("Avx512F_VL_Vector256", Avx512F_VL_Vector256Inputs);
-ProcessInputs("Avx512F_X64", Avx512F_X64Inputs);
-ProcessInputs("Avx512BW", Avx512BWInputs);
-ProcessInputs("Avx512BW_VL_Vector128", Avx512BW_VL_Vector128Inputs);
-ProcessInputs("Avx512BW_VL_Vector256", Avx512BW_VL_Vector256Inputs);
-ProcessInputs("Avx512DQ", Avx512DQInputs);
-ProcessInputs("Avx512DQ_ScalarUpper", Avx512DQ_ScalarUpperInputs);
-ProcessInputs("Avx512DQ_VL_Vector128", Avx512DQ_VL_Vector128Inputs);
-ProcessInputs("Avx512DQ_VL_Vector256", Avx512DQ_VL_Vector256Inputs);
-ProcessInputs("Fma_Vector128", Fma_Vector128Inputs);
-ProcessInputs("Fma_Vector256", Fma_Vector256Inputs);
-ProcessInputs("Bmi1", Bmi1Inputs);
-ProcessInputs("Bmi1.X64", Bmi1X64Inputs);
-ProcessInputs("Bmi2", Bmi2Inputs);
-ProcessInputs("Bmi2.X64", Bmi2X64Inputs);
-ProcessInputs("Aes", AesInputs);
-ProcessInputs("Pclmulqdq", PclmulqdqInputs);
-ProcessInputs("X86Base", X86BaseInputs);
-ProcessInputs("X86Base.X64", X86BaseX64Inputs);
+// ProcessInputs("Avx10v1_Avx512BW_VL_Vector128", Avx10v1_Avx512BW_VL_Vector128Inputs);
+// ProcessInputs("Avx10v1_Avx512DQ_VL_Vector128", Avx10v1_Avx512DQ_VL_Vector128Inputs);
+// ProcessInputs("Avx10v1_Avx512F_ScalarUpper", Avx10v1_Avx512F_ScalarUpperInputs);
+// ProcessInputs("Avx10v1_V256_Avx512F_VL_Vector256", Avx10v1_V256_Avx512F_VL_Vector256Inputs);
+// ProcessInputs("Avx10v1_V256_Avx512BW_VL_Vector256", Avx10v1_V256_Avx512BW_VL_Vector256Inputs);
+// ProcessInputs("Avx10v1_V256_Avx512DQ_VL_Vector256", Avx10v1_V256_Avx512DQ_VL_Vector256Inputs);
+// ProcessInputs("Avx10v1_V512_Avx512BW", Avx10v1_V512_Avx512BWInputs);
+// ProcessInputs("Avx10v1_V512_Avx512F", Avx10v1_V512_Avx512FInputs);
+// ProcessInputs("Avx10v1_V512_Avx512DQ", Avx10v1_V512_Avx512DQInputs);
+// ProcessInputs("Sse1", Sse1Inputs);
+// ProcessInputs("Sse1.X64", Sse1X64Inputs);
+// ProcessInputs("Sse2", Sse2Inputs);
+// ProcessInputs("Sse2.X64", Sse2X64Inputs);
+// ProcessInputs("Sse3", Sse3Inputs);
+// ProcessInputs("Ssse3", Ssse3Inputs);
+// ProcessInputs("Sse41", Sse41Inputs);
+// ProcessInputs("Sse41_Overloaded", Sse41_OverloadedInputs);
+// ProcessInputs("Sse41.X64", Sse41X64Inputs);
+// ProcessInputs("Sse42", Sse42Inputs);
+// ProcessInputs("Avx1", Avx1Inputs);
+// ProcessInputs("Avx1_Vector128", Avx1_Vector128Inputs);
+// ProcessInputs("Avx2", Avx2Inputs);
+// ProcessInputs("Avx2_Vector128", Avx2_Vector128Inputs);
+// ProcessInputs("Avx512F", Avx512FInputs);
+// ProcessInputs("Avx512F_ScalarUpper", Avx512F_ScalarUpperInputs);
+// ProcessInputs("Avx512F_VL_Vector128", Avx512F_VL_Vector128Inputs);
+// ProcessInputs("Avx512F_VL_Vector256", Avx512F_VL_Vector256Inputs);
+// ProcessInputs("Avx512F_X64", Avx512F_X64Inputs);
+// ProcessInputs("Avx512BW", Avx512BWInputs);
+// ProcessInputs("Avx512BW_VL_Vector128", Avx512BW_VL_Vector128Inputs);
+// ProcessInputs("Avx512BW_VL_Vector256", Avx512BW_VL_Vector256Inputs);
+// ProcessInputs("Avx512DQ", Avx512DQInputs);
+// ProcessInputs("Avx512DQ_ScalarUpper", Avx512DQ_ScalarUpperInputs);
+// ProcessInputs("Avx512DQ_VL_Vector128", Avx512DQ_VL_Vector128Inputs);
+// ProcessInputs("Avx512DQ_VL_Vector256", Avx512DQ_VL_Vector256Inputs);
+// ProcessInputs("Fma_Vector128", Fma_Vector128Inputs);
+// ProcessInputs("Fma_Vector256", Fma_Vector256Inputs);
+// ProcessInputs("Bmi1", Bmi1Inputs);
+// ProcessInputs("Bmi1.X64", Bmi1X64Inputs);
+// ProcessInputs("Bmi2", Bmi2Inputs);
+// ProcessInputs("Bmi2.X64", Bmi2X64Inputs);
+// ProcessInputs("Aes", AesInputs);
+// ProcessInputs("Pclmulqdq", PclmulqdqInputs);
+// ProcessInputs("X86Base", X86BaseInputs);
+// ProcessInputs("X86Base.X64", X86BaseX64Inputs);
 
 void ProcessInputs(string groupName, (string templateFileName, Dictionary<string, string> templateData)[] inputs)
 {

@@ -1795,6 +1795,7 @@ GenTree* Lowering::LowerHWIntrinsic(GenTreeHWIntrinsic* node)
 
         case NI_AVX512F_TernaryLogic:
         case NI_AVX512F_VL_TernaryLogic:
+        case NI_AVX10v1_TernaryLogic:
         {
             return LowerHWIntrinsicTernaryLogic(node);
         }
@@ -6871,6 +6872,8 @@ void Lowering::ContainCheckStoreIndir(GenTreeStoreInd* node)
                 case NI_AVX512F_ConvertToVector256UInt32:
                 case NI_AVX512F_VL_ConvertToVector128UInt32:
                 case NI_AVX512F_VL_ConvertToVector128UInt32WithSaturation:
+                case NI_AVX10v1_ConvertToVector128UInt32:
+                case NI_AVX10v1_ConvertToVector128UInt32WithSaturation:
                 {
                     if (varTypeIsFloating(simdBaseType))
                     {
@@ -6911,6 +6914,16 @@ void Lowering::ContainCheckStoreIndir(GenTreeStoreInd* node)
                 case NI_AVX512BW_VL_ConvertToVector128ByteWithSaturation:
                 case NI_AVX512BW_VL_ConvertToVector128SByte:
                 case NI_AVX512BW_VL_ConvertToVector128SByteWithSaturation:
+                case NI_AVX10v1_ConvertToVector128Byte:
+                case NI_AVX10v1_ConvertToVector128ByteWithSaturation:
+                case NI_AVX10v1_ConvertToVector128Int16:
+                case NI_AVX10v1_ConvertToVector128Int16WithSaturation:
+                case NI_AVX10v1_ConvertToVector128Int32:
+                case NI_AVX10v1_ConvertToVector128Int32WithSaturation:
+                case NI_AVX10v1_ConvertToVector128SByte:
+                case NI_AVX10v1_ConvertToVector128SByteWithSaturation:
+                case NI_AVX10v1_ConvertToVector128UInt16:
+                case NI_AVX10v1_ConvertToVector128UInt16WithSaturation:
                 {
                     // These intrinsics are "ins reg/mem, xmm"
                     instruction  ins       = HWIntrinsicInfo::lookupIns(intrinsicId, simdBaseType);
@@ -7946,6 +7959,7 @@ bool Lowering::IsContainableHWIntrinsicOp(GenTreeHWIntrinsic* parentNode, GenTre
                 case NI_AVX512F_ConvertToVector512Double:
                 case NI_AVX512F_VL_ConvertToVector128Double:
                 case NI_AVX512F_VL_ConvertToVector256Double:
+                case NI_AVX10v1_ConvertToVector128Double:
                 {
                     assert(!supportsSIMDScalarLoads);
 
@@ -8083,6 +8097,15 @@ bool Lowering::IsContainableHWIntrinsicOp(GenTreeHWIntrinsic* parentNode, GenTre
                 case NI_AVX512DQ_Reduce:
                 case NI_AVX512DQ_VL_Range:
                 case NI_AVX512DQ_VL_Reduce:
+                case NI_AVX10v1_AlignRight32:
+                case NI_AVX10v1_AlignRight64:
+                case NI_AVX10v1_Fixup:
+                case NI_AVX10v1_GetMantissa:
+                case NI_AVX10v1_RotateLeft:
+                case NI_AVX10v1_RotateRight:
+                case NI_AVX10v1_RoundScale:
+                case NI_AVX10v1_ShiftRightArithmetic:
+                case NI_AVX10v1_TernaryLogic:
                 {
                     assert(!supportsSIMDScalarLoads);
 
@@ -8453,6 +8476,8 @@ bool Lowering::IsContainableHWIntrinsicOp(GenTreeHWIntrinsic* parentNode, GenTre
         case NI_AVX512F_ConvertToVector256UInt32:
         case NI_AVX512F_VL_ConvertToVector128UInt32:
         case NI_AVX512F_VL_ConvertToVector128UInt32WithSaturation:
+        case NI_AVX10v1_ConvertToVector128UInt32:
+        case NI_AVX10v1_ConvertToVector128UInt32WithSaturation:
         {
             // These ones are not containable as stores when the base
             // type is a floating-point type
@@ -8510,6 +8535,16 @@ bool Lowering::IsContainableHWIntrinsicOp(GenTreeHWIntrinsic* parentNode, GenTre
         case NI_AVX512BW_VL_ConvertToVector128SByteWithSaturation:
         case NI_AVX512DQ_ExtractVector128:
         case NI_AVX512DQ_ExtractVector256:
+        case NI_AVX10v1_ConvertToVector128Byte:
+        case NI_AVX10v1_ConvertToVector128ByteWithSaturation:
+        case NI_AVX10v1_ConvertToVector128Int16:
+        case NI_AVX10v1_ConvertToVector128Int16WithSaturation:
+        case NI_AVX10v1_ConvertToVector128Int32:
+        case NI_AVX10v1_ConvertToVector128Int32WithSaturation:
+        case NI_AVX10v1_ConvertToVector128SByte:
+        case NI_AVX10v1_ConvertToVector128SByteWithSaturation:
+        case NI_AVX10v1_ConvertToVector128UInt16:
+        case NI_AVX10v1_ConvertToVector128UInt16WithSaturation:
         {
             // These are only containable as part of a store
             return false;
@@ -9045,6 +9080,8 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                     case NI_AVX512F_ConvertToVector256UInt32:
                     case NI_AVX512F_VL_ConvertToVector128UInt32:
                     case NI_AVX512F_VL_ConvertToVector128UInt32WithSaturation:
+                    case NI_AVX10v1_ConvertToVector128UInt32:
+                    case NI_AVX10v1_ConvertToVector128UInt32WithSaturation:
                     {
                         if (varTypeIsFloating(simdBaseType))
                         {
@@ -9087,6 +9124,16 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                     case NI_AVX512BW_VL_ConvertToVector128ByteWithSaturation:
                     case NI_AVX512BW_VL_ConvertToVector128SByte:
                     case NI_AVX512BW_VL_ConvertToVector128SByteWithSaturation:
+                    case NI_AVX10v1_ConvertToVector128Byte:
+                    case NI_AVX10v1_ConvertToVector128ByteWithSaturation:
+                    case NI_AVX10v1_ConvertToVector128Int16:
+                    case NI_AVX10v1_ConvertToVector128Int16WithSaturation:
+                    case NI_AVX10v1_ConvertToVector128Int32:
+                    case NI_AVX10v1_ConvertToVector128Int32WithSaturation:
+                    case NI_AVX10v1_ConvertToVector128SByte:
+                    case NI_AVX10v1_ConvertToVector128SByteWithSaturation:
+                    case NI_AVX10v1_ConvertToVector128UInt16:
+                    case NI_AVX10v1_ConvertToVector128UInt16WithSaturation:
                     {
                         // These intrinsics are "ins reg/mem, xmm" and get
                         // contained by the relevant store operation instead.
@@ -9246,6 +9293,9 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                         case NI_AVX512BW_ShiftLeftLogical:
                         case NI_AVX512BW_ShiftRightArithmetic:
                         case NI_AVX512BW_ShiftRightLogical:
+                        case NI_AVX10v1_RotateLeft:
+                        case NI_AVX10v1_RotateRight:
+                        case NI_AVX10v1_ShiftRightArithmetic:
                         {
                             // These intrinsics can have op2 be imm or reg/mem
 
@@ -9367,6 +9417,8 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                         case NI_AVX512F_VL_RoundScale:
                         case NI_AVX512DQ_Reduce:
                         case NI_AVX512DQ_VL_Reduce:
+                        case NI_AVX10v1_GetMantissa:
+                        case NI_AVX10v1_RoundScale:
                         {
                             if (!isContainedImm)
                             {
@@ -9984,6 +10036,8 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                         case NI_AVX512DQ_VL_Range:
                         case NI_AVX512DQ_ReduceScalar:
                         case NI_PCLMULQDQ_CarrylessMultiply:
+                        case NI_AVX10v1_AlignRight32:
+                        case NI_AVX10v1_AlignRight64:
                         {
                             if (!isContainedImm)
                             {
@@ -10118,6 +10172,7 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                         case NI_AVX512F_Fixup:
                         case NI_AVX512F_FixupScalar:
                         case NI_AVX512F_VL_Fixup:
+                        case NI_AVX10v1_Fixup:
                         {
                             if (!isContainedImm)
                             {
@@ -10148,6 +10203,7 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
 
                         case NI_AVX512F_TernaryLogic:
                         case NI_AVX512F_VL_TernaryLogic:
+                        case NI_AVX10v1_TernaryLogic:
                         {
                             if (!isContainedImm)
                             {

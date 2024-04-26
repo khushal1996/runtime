@@ -2589,6 +2589,8 @@ int LinearScan::BuildHWIntrinsic(GenTreeHWIntrinsic* intrinsicTree, int* pDstCou
             case NI_AVX512VBMI_PermuteVar64x8x2:
             case NI_AVX512VBMI_VL_PermuteVar16x8x2:
             case NI_AVX512VBMI_VL_PermuteVar32x8x2:
+            case NI_AVX10v1_PermuteVar2x64x2:
+            case NI_AVX10v1_PermuteVar4x32x2:
             {
                 assert(numArgs == 3);
                 assert(isRMW);

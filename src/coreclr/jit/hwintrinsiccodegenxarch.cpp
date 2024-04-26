@@ -733,6 +733,7 @@ void CodeGen::genHWIntrinsic(GenTreeHWIntrinsic* node)
         case InstructionSet_AVX512BW_VL:
         case InstructionSet_AVX512VBMI:
         case InstructionSet_AVX512VBMI_VL:
+        case InstructionSet_AVX10v1:
             genAvxFamilyIntrinsic(node, instOptions);
             break;
         case InstructionSet_AES:
@@ -1215,7 +1216,7 @@ void CodeGen::genHWIntrinsic_R_R_R_RM_I(GenTreeHWIntrinsic* node, instruction in
 
 #if defined(DEBUG)
             NamedIntrinsic intrinsicId = node->GetHWIntrinsicId();
-            assert((intrinsicId == NI_AVX512F_TernaryLogic) || (intrinsicId == NI_AVX512F_VL_TernaryLogic));
+            assert((intrinsicId == NI_AVX512F_TernaryLogic) || (intrinsicId == NI_AVX512F_VL_TernaryLogic) || (intrinsicId == NI_AVX10v1_TernaryLogic));
 
             uint8_t                 control  = static_cast<uint8_t>(ival);
             const TernaryLogicInfo& info     = TernaryLogicInfo::lookup(control);
@@ -2732,6 +2733,8 @@ void CodeGen::genAvxFamilyIntrinsic(GenTreeHWIntrinsic* node, insOpts instOption
         case NI_AVX512F_ConvertToVector256UInt32:
         case NI_AVX512F_VL_ConvertToVector128UInt32:
         case NI_AVX512F_VL_ConvertToVector128UInt32WithSaturation:
+        case NI_AVX10v1_ConvertToVector128UInt32:
+        case NI_AVX10v1_ConvertToVector128UInt32WithSaturation:
         {
             if (varTypeIsFloating(baseType))
             {
@@ -2774,6 +2777,16 @@ void CodeGen::genAvxFamilyIntrinsic(GenTreeHWIntrinsic* node, insOpts instOption
         case NI_AVX512BW_VL_ConvertToVector128ByteWithSaturation:
         case NI_AVX512BW_VL_ConvertToVector128SByte:
         case NI_AVX512BW_VL_ConvertToVector128SByteWithSaturation:
+        case NI_AVX10v1_ConvertToVector128Byte:
+        case NI_AVX10v1_ConvertToVector128ByteWithSaturation:
+        case NI_AVX10v1_ConvertToVector128Int16:
+        case NI_AVX10v1_ConvertToVector128Int16WithSaturation:
+        case NI_AVX10v1_ConvertToVector128Int32:
+        case NI_AVX10v1_ConvertToVector128Int32WithSaturation:
+        case NI_AVX10v1_ConvertToVector128SByte:
+        case NI_AVX10v1_ConvertToVector128SByteWithSaturation:
+        case NI_AVX10v1_ConvertToVector128UInt16:
+        case NI_AVX10v1_ConvertToVector128UInt16WithSaturation:
         {
             instruction ins = HWIntrinsicInfo::lookupIns(intrinsicId, baseType);
 
