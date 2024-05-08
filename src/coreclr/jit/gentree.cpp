@@ -19668,6 +19668,10 @@ bool GenTree::isContainableHWIntrinsic() const
         case NI_AVX512F_ConvertToVector256UInt32:
         case NI_AVX512F_VL_ConvertToVector128UInt32:
         case NI_AVX512F_VL_ConvertToVector128UInt32WithSaturation:
+        case NI_AVX10v1_ConvertToVector128UInt32:
+        case NI_AVX10v1_ConvertToVector128UInt32WithSaturation:
+        case NI_AVX10v1_V256_ConvertToVector128UInt32:
+        case NI_AVX10v1_V256_ConvertToVector128UInt32WithSaturation:
         {
             if (varTypeIsFloating(AsHWIntrinsic()->GetSimdBaseType()))
             {
@@ -19727,6 +19731,26 @@ bool GenTree::isContainableHWIntrinsic() const
         case NI_AVX512BW_VL_ConvertToVector128SByteWithSaturation:
         case NI_AVX512DQ_ExtractVector128:
         case NI_AVX512DQ_ExtractVector256:
+        case NI_AVX10v1_ConvertToVector128Int16:
+        case NI_AVX10v1_ConvertToVector128Int16WithSaturation:
+        case NI_AVX10v1_ConvertToVector128Int32:
+        case NI_AVX10v1_ConvertToVector128Int32WithSaturation:
+        case NI_AVX10v1_ConvertToVector128SByte:
+        case NI_AVX10v1_ConvertToVector128SByteWithSaturation:
+        case NI_AVX10v1_ConvertToVector128UInt16:
+        case NI_AVX10v1_ConvertToVector128UInt16WithSaturation:
+        case NI_AVX10v1_V256_ConvertToVector128Byte:
+        case NI_AVX10v1_V256_ConvertToVector128ByteWithSaturation:
+        case NI_AVX10v1_V256_ConvertToVector128Int16:
+        case NI_AVX10v1_V256_ConvertToVector128Int16WithSaturation:
+        case NI_AVX10v1_V256_ConvertToVector128Int32:
+        case NI_AVX10v1_V256_ConvertToVector128Int32WithSaturation:
+        case NI_AVX10v1_V256_ConvertToVector128SByte:
+        case NI_AVX10v1_V256_ConvertToVector128SByteWithSaturation:
+        case NI_AVX10v1_V256_ConvertToVector128UInt16:
+        case NI_AVX10v1_V256_ConvertToVector128UInt16WithSaturation:
+        case NI_AVX10v1_V512_ExtractVector128:
+        case NI_AVX10v1_V512_ExtractVector256:
         {
             // These HWIntrinsic operations are contained as part of a store
             return true;
@@ -19808,6 +19832,8 @@ bool GenTree::isRMWHWIntrinsic(Compiler* comp)
         case NI_AVX512F_Fixup:
         case NI_AVX512F_FixupScalar:
         case NI_AVX512F_VL_Fixup:
+        case NI_AVX10v1_Fixup:
+        case NI_AVX10v1_V256_Fixup:
         {
             // We are actually only RMW in the case where the lookup table
             // has any value that could result in `op1` being picked. So
@@ -19858,6 +19884,8 @@ bool GenTree::isRMWHWIntrinsic(Compiler* comp)
 
         case NI_AVX512F_TernaryLogic:
         case NI_AVX512F_VL_TernaryLogic:
+        case NI_AVX10v1_TernaryLogic:
+        case NI_AVX10v1_V256_TernaryLogic:
         {
             // We may not be RMW depending on the control byte as there
             // are many operations that do not use all three inputs.
@@ -26925,6 +26953,11 @@ bool GenTreeHWIntrinsic::OperIsEmbRoundingEnabled() const
         case NI_AVX512F_MultiplyScalar:
         case NI_AVX512F_SubtractScalar:
         case NI_AVX512F_SqrtScalar:
+        case NI_AVX10v1_AddScalar:
+        case NI_AVX10v1_DivideScalar:
+        case NI_AVX10v1_MultiplyScalar:
+        case NI_AVX10v1_SubtractScalar:
+        case NI_AVX10v1_SqrtScalar:
         {
             return true;
         }
@@ -26939,6 +26972,10 @@ bool GenTreeHWIntrinsic::OperIsEmbRoundingEnabled() const
         case NI_AVX512F_FusedMultiplySubtractNegated:
         case NI_AVX512F_FusedMultiplySubtractNegatedScalar:
         case NI_AVX512F_FusedMultiplySubtractScalar:
+        case NI_AVX10v1_FusedMultiplyAddScalar:
+        case NI_AVX10v1_FusedMultiplyAddNegatedScalar:
+        case NI_AVX10v1_FusedMultiplySubtractScalar:
+        case NI_AVX10v1_FusedMultiplySubtractNegatedScalar:
         {
             return numArgs == 4;
         }
@@ -26950,12 +26987,14 @@ bool GenTreeHWIntrinsic::OperIsEmbRoundingEnabled() const
 
         case NI_AVX512F_Scale:
         case NI_AVX512F_ScaleScalar:
+        case NI_AVX10v1_ScaleScalar:
 
         case NI_AVX512F_ConvertScalarToVector128Single:
 #if defined(TARGET_AMD64)
         case NI_AVX512F_X64_ConvertScalarToVector128Double:
         case NI_AVX512F_X64_ConvertScalarToVector128Single:
 #endif // TARGET_AMD64
+        case NI_AVX10v1_ConvertScalarToVector128Single:
         {
             return numArgs == 3;
         }
@@ -26977,6 +27016,10 @@ bool GenTreeHWIntrinsic::OperIsEmbRoundingEnabled() const
         case NI_AVX512DQ_ConvertToVector512Double:
         case NI_AVX512DQ_ConvertToVector512Int64:
         case NI_AVX512DQ_ConvertToVector512UInt64:
+        case NI_AVX10v1_V512_ConvertToVector256Single:
+        case NI_AVX10v1_V512_ConvertToVector512Double:
+        case NI_AVX10v1_V512_ConvertToVector512Int64:
+        case NI_AVX10v1_V512_ConvertToVector512UInt64:
         {
             return numArgs == 2;
         }
@@ -27230,6 +27273,7 @@ genTreeOps GenTreeHWIntrinsic::HWOperGet() const
         case NI_AVX2_And:
         case NI_AVX512F_And:
         case NI_AVX512DQ_And:
+        case NI_AVX10v1_V512_And:
 #elif defined(TARGET_ARM64)
         case NI_AdvSimd_And:
 #endif
@@ -27251,6 +27295,7 @@ genTreeOps GenTreeHWIntrinsic::HWOperGet() const
         case NI_AVX2_Xor:
         case NI_AVX512F_Xor:
         case NI_AVX512DQ_Xor:
+        case NI_AVX10v1_V512_Xor:
 #elif defined(TARGET_ARM64)
         case NI_AdvSimd_Xor:
 #endif
@@ -27265,6 +27310,7 @@ genTreeOps GenTreeHWIntrinsic::HWOperGet() const
         case NI_AVX2_Or:
         case NI_AVX512F_Or:
         case NI_AVX512DQ_Or:
+        case NI_AVX10v1_V512_Or:
 #elif defined(TARGET_ARM64)
         case NI_AdvSimd_Or:
 #endif
@@ -27279,6 +27325,7 @@ genTreeOps GenTreeHWIntrinsic::HWOperGet() const
         case NI_AVX2_AndNot:
         case NI_AVX512F_AndNot:
         case NI_AVX512DQ_AndNot:
+        case NI_AVX10v1_V512_AndNot:
         {
             return GT_AND_NOT;
         }
