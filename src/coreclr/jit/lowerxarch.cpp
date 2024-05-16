@@ -877,6 +877,7 @@ GenTree* Lowering::LowerCast(GenTree* tree)
         LIR::Use    castOpUse(BlockRange(), &(tree->AsCast()->CastOp()), tree);
         ReplaceWithLclVar(castOpUse);
         castOp = tree->AsCast()->CastOp();
+        bool isAvx10v1 = false;
         /*The code below is to introduce saturating conversions on X86/X64.
         The C# equivalence of the code is given below -->
 
@@ -892,7 +893,7 @@ GenTree* Lowering::LowerCast(GenTree* tree)
                     Vector128.Create<long>(long.MaxValue)
                 );
         */
-        if (comp->compOpportunisticallyDependsOn(InstructionSet_AVX10v1) ||
+        if ((isAvx10v1 = comp->compOpportunisticallyDependsOn(InstructionSet_AVX10v1)) ||
             comp->IsBaselineVector512IsaSupportedOpportunistically())
         {
             // Clone the cast operand for usage.
@@ -909,9 +910,7 @@ GenTree* Lowering::LowerCast(GenTree* tree)
             GenTree* ctrlByte = comp->gtNewIconNode(0);
             BlockRange().InsertAfter(tbl, ctrlByte);
 
-            NamedIntrinsic fixupHwIntrinsicID = comp->compOpportunisticallyDependsOn(InstructionSet_AVX10v1)
-                                                    ? NI_AVX10v1_FixupScalar
-                                                    : NI_AVX512F_FixupScalar;
+            NamedIntrinsic fixupHwIntrinsicID = isAvx10v1 ? NI_AVX10v1_FixupScalar : NI_AVX512F_FixupScalar;
             if (varTypeIsUnsigned(dstType))
             {
                 // run vfixupimmsd base on table and no flags reporting
