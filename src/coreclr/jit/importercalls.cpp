@@ -3969,7 +3969,7 @@ GenTree* Compiler::impIntrinsic(GenTree*                newobjThis,
             case NI_System_Math_FusedMultiplyAdd:
             {
 #ifdef TARGET_XARCH
-                if (compOpportunisticallyDependsOn(InstructionSet_FMA))
+                if (IsAvx10OrIsaSupportedOpportunistically(InstructionSet_FMA))
                 {
                     assert(varTypeIsFloating(callType));
 
@@ -3983,8 +3983,11 @@ GenTree* Compiler::impIntrinsic(GenTree*                newobjThis,
                     GenTree* op3 = gtNewSimdCreateScalarUnsafeNode(TYP_SIMD16, impPopStack().val, callJitType, 16);
                     GenTree* op2 = gtNewSimdCreateScalarUnsafeNode(TYP_SIMD16, impPopStack().val, callJitType, 16);
                     GenTree* op1 = gtNewSimdCreateScalarUnsafeNode(TYP_SIMD16, impPopStack().val, callJitType, 16);
-                    GenTree* res =
-                        gtNewSimdHWIntrinsicNode(TYP_SIMD16, op1, op2, op3, NI_FMA_MultiplyAddScalar, callJitType, 16);
+                    GenTree* res = compOpportunisticallyDependsOn(InstructionSet_AVX10v1)
+                                       ? gtNewSimdHWIntrinsicNode(TYP_SIMD16, op1, op2, op3,
+                                                                  NI_AVX10v1_MultiplyAddScalar, callJitType, 16)
+                                       : gtNewSimdHWIntrinsicNode(TYP_SIMD16, op1, op2, op3, NI_FMA_MultiplyAddScalar,
+                                                                  callJitType, 16);
 
                     retNode = gtNewSimdToScalarNode(callType, res, callJitType, 16);
                     break;
@@ -5260,6 +5263,10 @@ GenTree* Compiler::impPrimitiveNamedIntrinsic(NamedIntrinsic        intrinsic,
                         {
                             hwIntrinsicId = NI_SSE_X64_ConvertToInt64WithTruncation;
                         }
+                        else if (compOpportunisticallyDependsOn(InstructionSet_AVX10v1))
+                        {
+                            hwIntrinsicId = NI_AVX10v1_X64_ConvertToUInt64WithTruncation;
+                        }
                         else if (IsBaselineVector512IsaSupportedOpportunistically())
                         {
                             hwIntrinsicId = NI_AVX512F_X64_ConvertToUInt64WithTruncation;
@@ -5272,6 +5279,10 @@ GenTree* Compiler::impPrimitiveNamedIntrinsic(NamedIntrinsic        intrinsic,
                         if (!uns)
                         {
                             hwIntrinsicId = NI_SSE2_X64_ConvertToInt64WithTruncation;
+                        }
+                        else if (compOpportunisticallyDependsOn(InstructionSet_AVX10v1))
+                        {
+                            hwIntrinsicId = NI_AVX10v1_X64_ConvertToUInt64WithTruncation;
                         }
                         else if (IsBaselineVector512IsaSupportedOpportunistically())
                         {
@@ -9289,9 +9300,8 @@ GenTree* Compiler::impMinMaxIntrinsic(CORINFO_METHOD_HANDLE method,
     }
 
 #if defined(FEATURE_HW_INTRINSICS) && defined(TARGET_XARCH)
-    bool isAvx10v1 = false;
-    if (compOpportunisticallyDependsOn(InstructionSet_AVX512DQ) ||
-        (isAvx10v1 = compOpportunisticallyDependsOn(InstructionSet_AVX10v1)))
+    bool isV512Supported = false;
+    if (compIsEvexOpportunisticallySupported(isV512Supported))
     {
         // We are constructing a chain of intrinsics similar to:
         //    var op1 = Vector128.CreateScalarUnsafe(x);
@@ -9364,7 +9374,7 @@ GenTree* Compiler::impMinMaxIntrinsic(CORINFO_METHOD_HANDLE method,
         // * qnan, norm = norm
         // * norm, norm = norm
 
-        NamedIntrinsic fixupHwIntrinsicID = isAvx10v1 ? NI_AVX10v1_FixupScalar : NI_AVX512F_FixupScalar;
+        NamedIntrinsic fixupHwIntrinsicID = !isV512Supported ? NI_AVX10v1_FixupScalar : NI_AVX512F_FixupScalar;
         if (isNumber)
         {
             // We need to fixup the case of:
