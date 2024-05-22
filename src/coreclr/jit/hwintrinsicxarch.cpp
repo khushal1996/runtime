@@ -56,6 +56,10 @@ static CORINFO_InstructionSet X64VersionOfIsa(CORINFO_InstructionSet isa)
             return InstructionSet_AVX512VBMI_X64;
         case InstructionSet_AVX512VBMI_VL:
             return InstructionSet_AVX512VBMI_VL_X64;
+        case InstructionSet_AVX10v1:
+            return InstructionSet_AVX10v1_X64;
+        case InstructionSet_AVX10v1_V512:
+            return InstructionSet_AVX10v1_V512_X64;
         case InstructionSet_AVXVNNI:
             return InstructionSet_AVXVNNI_X64;
         case InstructionSet_AES:
@@ -1960,7 +1964,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
                     // generate better code. However, if it isn't then we need to fallback in the
                     // cases where multiplication isn't supported.
 
-                    if ((simdSize != 64) && !compOpportunisticallyDependsOn(InstructionSet_AVX512DQ_VL))
+                    if ((simdSize != 64) && !IsAvx10OrIsaSupportedOpportunistically(InstructionSet_AVX512DQ_VL))
                     {
                         // TODO-XARCH-CQ: We should support long/ulong multiplication
                         break;
@@ -2719,7 +2723,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
             if (varTypeIsLong(simdBaseType))
             {
-                if (simdSize != 64 && !compOpportunisticallyDependsOn(InstructionSet_AVX512DQ_VL))
+                if (simdSize != 64 && !IsAvx10OrIsaSupportedOpportunistically(InstructionSet_AVX512DQ_VL))
                 {
                     // TODO-XARCH-CQ: We should support long/ulong multiplication
                     break;
@@ -2996,8 +3000,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
                     break;
                 }
                 else if ((varTypeIsByte(simdBaseType) &&
-                          !compOpportunisticallyDependsOn(InstructionSet_AVX512VBMI_VL)) ||
-                         (varTypeIsShort(simdBaseType) && !compOpportunisticallyDependsOn(InstructionSet_AVX512BW_VL)))
+                          !IsAvx10OrIsaSupportedOpportunistically(InstructionSet_AVX512VBMI_VL)) ||
+                         (varTypeIsShort(simdBaseType) && !IsAvx10OrIsaSupportedOpportunistically(InstructionSet_AVX512BW_VL)))
                 {
                     bool crossLane = false;
 
