@@ -3372,7 +3372,7 @@ namespace System.Runtime.Intrinsics.X86
             ///   VPERMT2B zmm1 {k1}{z}, zmm2, zmm3/m512
             /// </summary>
             public static Vector512<sbyte> PermuteVar64x8x2(Vector512<sbyte> lower, Vector512<sbyte> indices, Vector512<sbyte> upper) { throw new PlatformNotSupportedException(); }
-        
+
             [Intrinsic]
             public new abstract class X64 : Avx512BW.X64
             {
