@@ -9442,7 +9442,7 @@ GenTree* Compiler::impMinMaxIntrinsic(CORINFO_METHOD_HANDLE method,
 
 #if defined(FEATURE_HW_INTRINSICS) && defined(TARGET_XARCH)
     bool isV512Supported = false;
-    if (compIsEvexOpportunisticallySupported(isV512Supported))
+    if (compIsEvexOpportunisticallySupported(isV512Supported, InstructionSet_AVX512DQ))
     {
         // We are constructing a chain of intrinsics similar to:
         //    var op1 = Vector128.CreateScalarUnsafe(x);
@@ -9496,7 +9496,9 @@ GenTree* Compiler::impMinMaxIntrinsic(CORINFO_METHOD_HANDLE method,
         GenTree* op1Clone;
         op1 = impCloneExpr(op1, &op1Clone, CHECK_SPILL_ALL, nullptr DEBUGARG("Cloning op1 for Math.Max/Min"));
 
-        GenTree* tmp = gtNewSimdHWIntrinsicNode(TYP_SIMD16, op1, op2, op3, NI_AVX512DQ_RangeScalar, callJitType, 16);
+        GenTree* tmp = !isV512Supported ?
+            gtNewSimdHWIntrinsicNode(TYP_SIMD16, op1, op2, op3, NI_AVX10v1_RangeScalar, callJitType, 16) :
+            gtNewSimdHWIntrinsicNode(TYP_SIMD16, op1, op2, op3, NI_AVX512DQ_RangeScalar, callJitType, 16);
 
         // FixupScalar(left, right, table, control) computes the input type of right
         // adjusts it based on the table and then returns
