@@ -2631,8 +2631,7 @@ GenTree* Lowering::LowerHWIntrinsicCmpOp(GenTreeHWIntrinsic* node, genTreeOps cm
                             BlockRange().InsertAfter(maskNode, cnsNode);
 
                             maskNode = comp->gtNewSimdHWIntrinsicNode(TYP_MASK, maskNode, cnsNode,
-                                                                      NI_EVEX_ShiftLeftMask,
-                                                               simdBaseJitType, simdSize);
+                                                                      NI_EVEX_ShiftLeftMask, simdBaseJitType, simdSize);
                             BlockRange().InsertAfter(cnsNode, maskNode);
                             LowerNode(maskNode);
 
