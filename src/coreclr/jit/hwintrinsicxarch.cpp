@@ -78,6 +78,8 @@ static CORINFO_InstructionSet X64VersionOfIsa(CORINFO_InstructionSet isa)
             return InstructionSet_POPCNT_X64;
         case InstructionSet_X86Serialize:
             return InstructionSet_X86Serialize_X64;
+        case InstructionSet_EVEX:
+            return InstructionSet_EVEX_X64;
         default:
             return InstructionSet_NONE;
     }
@@ -105,25 +107,6 @@ static CORINFO_InstructionSet VLVersionOfIsa(CORINFO_InstructionSet isa)
             return InstructionSet_AVX512F_VL;
         case InstructionSet_AVX512VBMI:
             return InstructionSet_AVX512VBMI_VL;
-        default:
-            return InstructionSet_NONE;
-    }
-}
-
-//------------------------------------------------------------------------
-// V256VersionOfIsa: Gets the corresponding AVX10V256 only InstructionSet for a given InstructionSet
-//
-// Arguments:
-//    isa -- The InstructionSet ID
-//
-// Return Value:
-//    The AVX10V256 only InstructionSet associated with isa
-static CORINFO_InstructionSet V256VersionOfIsa(CORINFO_InstructionSet isa)
-{
-    switch (isa)
-    {
-        case InstructionSet_AVX10v1:
-            return InstructionSet_AVX10v1_V256;
         default:
             return InstructionSet_NONE;
     }
@@ -313,11 +296,6 @@ CORINFO_InstructionSet HWIntrinsicInfo::lookupIsa(const char* className, const c
     {
         assert(enclosingClassName != nullptr);
         return VLVersionOfIsa(lookupInstructionSet(enclosingClassName));
-    }
-    else if (strcmp(className, "V256") == 0)
-    {
-        assert(enclosingClassName != nullptr);
-        return V256VersionOfIsa(lookupInstructionSet(enclosingClassName));
     }
     else if (strcmp(className, "V512") == 0)
     {
@@ -582,8 +560,8 @@ bool HWIntrinsicInfo::isFullyImplementedIsa(CORINFO_InstructionSet isa)
         case InstructionSet_X86Serialize:
         case InstructionSet_X86Serialize_X64:
         case InstructionSet_AVX10v1:
-        case InstructionSet_AVX10v1_V256:
         case InstructionSet_AVX10v1_V512:
+        case InstructionSet_EVEX:
         {
             return true;
         }
@@ -2133,8 +2111,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
                 if (!varTypeIsMask(op1))
                 {
-                    op1 = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, NI_EVEX_ConvertVectorToMask, simdBaseJitType,
-                                                   simdSize);
+                    op1 =
+                        gtNewSimdHWIntrinsicNode(TYP_MASK, op1, NI_EVEX_ConvertVectorToMask, simdBaseJitType, simdSize);
                 }
                 retNode = gtNewSimdHWIntrinsicNode(retType, op1, NI_EVEX_MoveMask, simdBaseJitType, simdSize);
             }
@@ -3026,7 +3004,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
                 }
                 else if ((varTypeIsByte(simdBaseType) &&
                           !IsAvx10OrIsaSupportedOpportunistically(InstructionSet_AVX512VBMI_VL)) ||
-                         (varTypeIsShort(simdBaseType) && !IsAvx10OrIsaSupportedOpportunistically(InstructionSet_AVX512BW_VL)))
+                         (varTypeIsShort(simdBaseType) &&
+                          !IsAvx10OrIsaSupportedOpportunistically(InstructionSet_AVX512BW_VL)))
                 {
                     bool crossLane = false;
 
@@ -4346,11 +4325,10 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
 
             if (!varTypeIsMask(op3))
             {
-                op3 =
-                    gtNewSimdHWIntrinsicNode(TYP_MASK, op3, NI_EVEX_ConvertVectorToMask, simdBaseJitType, simdSize);
+                op3 = gtNewSimdHWIntrinsicNode(TYP_MASK, op3, NI_EVEX_ConvertVectorToMask, simdBaseJitType, simdSize);
             }
-            retNode = gtNewSimdHWIntrinsicNode(retType, op1, op2, op3, NI_EVEX_BlendVariableMask, simdBaseJitType,
-                                               simdSize);
+            retNode =
+                gtNewSimdHWIntrinsicNode(retType, op1, op2, op3, NI_EVEX_BlendVariableMask, simdBaseJitType, simdSize);
             break;
         }
 
@@ -4362,8 +4340,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
             op2 = impSIMDPopStack();
             op1 = impSIMDPopStack();
 
-            retNode =
-                gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, op3, NI_EVEX_CompareMask, simdBaseJitType, simdSize);
+            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, op3, NI_EVEX_CompareMask, simdBaseJitType, simdSize);
             retNode =
                 gtNewSimdHWIntrinsicNode(retType, retNode, NI_EVEX_ConvertMaskToVector, simdBaseJitType, simdSize);
 
@@ -4378,8 +4355,7 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
             op2 = impSIMDPopStack();
             op1 = impSIMDPopStack();
 
-            retNode =
-                gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareEqualMask, simdBaseJitType, simdSize);
+            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareEqualMask, simdBaseJitType, simdSize);
             retNode =
                 gtNewSimdHWIntrinsicNode(retType, retNode, NI_EVEX_ConvertMaskToVector, simdBaseJitType, simdSize);
 
@@ -4397,8 +4373,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
             op2 = impSIMDPopStack();
             op1 = impSIMDPopStack();
 
-            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareGreaterThanMask, simdBaseJitType,
-                                               simdSize);
+            retNode =
+                gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareGreaterThanMask, simdBaseJitType, simdSize);
             retNode =
                 gtNewSimdHWIntrinsicNode(retType, retNode, NI_EVEX_ConvertMaskToVector, simdBaseJitType, simdSize);
 
@@ -4454,8 +4430,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
             op2 = impSIMDPopStack();
             op1 = impSIMDPopStack();
 
-            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareLessThanOrEqualMask,
-                                               simdBaseJitType, simdSize);
+            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareLessThanOrEqualMask, simdBaseJitType,
+                                               simdSize);
             retNode =
                 gtNewSimdHWIntrinsicNode(retType, retNode, NI_EVEX_ConvertMaskToVector, simdBaseJitType, simdSize);
 
@@ -4488,8 +4464,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
             op2 = impSIMDPopStack();
             op1 = impSIMDPopStack();
 
-            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareNotGreaterThanMask,
-                                               simdBaseJitType, simdSize);
+            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareNotGreaterThanMask, simdBaseJitType,
+                                               simdSize);
             retNode =
                 gtNewSimdHWIntrinsicNode(retType, retNode, NI_EVEX_ConvertMaskToVector, simdBaseJitType, simdSize);
 
@@ -4518,8 +4494,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
             op2 = impSIMDPopStack();
             op1 = impSIMDPopStack();
 
-            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareNotLessThanMask, simdBaseJitType,
-                                               simdSize);
+            retNode =
+                gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareNotLessThanMask, simdBaseJitType, simdSize);
             retNode =
                 gtNewSimdHWIntrinsicNode(retType, retNode, NI_EVEX_ConvertMaskToVector, simdBaseJitType, simdSize);
 
@@ -4563,8 +4539,8 @@ GenTree* Compiler::impSpecialIntrinsic(NamedIntrinsic        intrinsic,
             op2 = impSIMDPopStack();
             op1 = impSIMDPopStack();
 
-            retNode = gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareUnorderedMask, simdBaseJitType,
-                                               simdSize);
+            retNode =
+                gtNewSimdHWIntrinsicNode(TYP_MASK, op1, op2, NI_EVEX_CompareUnorderedMask, simdBaseJitType, simdSize);
             retNode =
                 gtNewSimdHWIntrinsicNode(retType, retNode, NI_EVEX_ConvertMaskToVector, simdBaseJitType, simdSize);
 
