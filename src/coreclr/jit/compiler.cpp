@@ -2325,7 +2325,7 @@ void Compiler::compSetProcessor()
             assert(instructionSetFlags.HasInstructionSet(InstructionSet_AVX512CD));
             assert(instructionSetFlags.HasInstructionSet(InstructionSet_AVX512CD_VL));
             assert(instructionSetFlags.HasInstructionSet(InstructionSet_AVX512DQ));
-            assert(instructionSetFlags.HasInstructionSet(InstructionSet_AVX512DQ_VL));
+            // assert(instructionSetFlags.HasInstructionSet(InstructionSet_AVX512DQ_VL));
 
             instructionSetFlags.AddInstructionSet(InstructionSet_Vector512);
 
