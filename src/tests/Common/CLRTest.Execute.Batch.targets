@@ -322,8 +322,20 @@ if defined RunCrossGen2 (
   call :TakeLock
 )
 
-ECHO %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
-%LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+@echo OFF
+setlocal enabledelayedexpansion
+
+if NOT "%Rex2StressLevel%"=="" (
+    ECHO Running With SDE
+    ECHO SDE path is "%SDEPath%"
+    set InvokeSDE="%SDEPath%" "-future" "-env" "DOTNET_JitStressRex2Encoding" "%Rex2StressLevel%" "--"
+    ECHO !InvokeSDE!%LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+    !InvokeSDE! %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+) else (
+    ECHO %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+    %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+)
+endlocal
 set CLRTestExitCode=!ERRORLEVEL!
 if defined RunCrossGen2 (
   call :ReleaseLock
