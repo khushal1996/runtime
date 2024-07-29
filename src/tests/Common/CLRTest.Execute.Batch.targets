@@ -339,12 +339,21 @@ if defined RunCrossGen2 (
 @echo OFF
 setlocal enabledelayedexpansion
 
-if NOT "%Rex2StressLevel%"=="" (
+if NOT "%UseSDE%"=="" (
     ECHO Running With SDE
-    ECHO SDE path is "%SDEPath%"
-    set InvokeSDE="%SDEPath%" "-future" "-env" "DOTNET_JitStressRex2Encoding" "%Rex2StressLevel%" "--"
-    ECHO !InvokeSDE!%LAUNCHER% %ExePath% %CLRTestExecutionArguments%
-    !InvokeSDE! %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+    if "%SDEPath%"=="" (
+        ECHO SDE Path not set!
+    ) else (
+        if "%Rex2StressLevel%"=="" (
+            ECHO Rex2StressLevel not set!
+        ) else (
+            ECHO SDE Path is %SDEPath%
+            ECHO REX2 stress level is %Rex2StressLevel%
+            set InvokeSDE="%SDEPath%" "-future" "-env" "DOTNET_JitStressRex2Encoding" "%Rex2StressLevel%" "--"
+            ECHO !InvokeSDE!%LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+            !InvokeSDE! %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+        )
+    )
 ) else (
     ECHO %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
     %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
