@@ -339,7 +339,7 @@ if defined RunCrossGen2 (
 @echo OFF
 setlocal enabledelayedexpansion
 
-if NOT "%UseSDE%"=="" (
+if "%UseSDE%"=="1" (
     ECHO Running With SDE
     if "%SDEPath%"=="" (
         ECHO SDE Path not set!
