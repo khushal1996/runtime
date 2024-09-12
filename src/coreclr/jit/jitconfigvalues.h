@@ -399,7 +399,8 @@ RELEASE_CONFIG_INTEGER(EnableAVX512F,               W("EnableAVX512F"),         
 RELEASE_CONFIG_INTEGER(EnableAVX512F_VL,            W("EnableAVX512F_VL"),          1) // Allows AVX512F+ AVX512VL+ hardware intrinsics to be disabled
 RELEASE_CONFIG_INTEGER(EnableAVX512VBMI,            W("EnableAVX512VBMI"),          1) // Allows AVX512VBMI+ hardware intrinsics to be disabled
 RELEASE_CONFIG_INTEGER(EnableAVX512VBMI_VL,         W("EnableAVX512VBMI_VL"),       1) // Allows AVX512VBMI_VL+ hardware intrinsics to be disabled
-RELEASE_CONFIG_INTEGER(EnableAVX10,                 W("EnableAVX10"),               1) // Allows AVX10.x+ hardware intrinsics to be disabled
+RELEASE_CONFIG_INTEGER(EnableAVX10v1,               W("EnableAVX10v1"),             1) // Allows AVX10v1+ hardware intrinsics to be disabled
+RELEASE_CONFIG_INTEGER(EnableAVX10v2,               W("EnableAVX10v2"),             1) // Allows AVX10v2+ hardware intrinsics to be disabled
 RELEASE_CONFIG_INTEGER(EnableAVXVNNI,               W("EnableAVXVNNI"),             1) // Allows AVXVNNI+ hardware intrinsics to be disabled
 RELEASE_CONFIG_INTEGER(EnableBMI1,                  W("EnableBMI1"),                1) // Allows BMI1+ hardware intrinsics to be disabled
 RELEASE_CONFIG_INTEGER(EnableBMI2,                  W("EnableBMI2"),                1) // Allows BMI2+ hardware intrinsics to be disabled
