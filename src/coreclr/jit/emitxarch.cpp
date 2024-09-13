@@ -19192,7 +19192,6 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
         case INS_vcvtudq2ps:
         case INS_vcvttpd2qq:
         case INS_vcvttpd2uqq:
-        case INS_vcvttpd2uqqs:
         case INS_vcvtuqq2pd:
         case INS_vfixupimmpd:
         case INS_vfixupimmps:
