@@ -21564,7 +21564,35 @@ GenTree* Compiler::gtNewSimdCvtNode(var_types   type,
     GenTree* fixupVal;
     bool     isV512Supported = false;
 
-    if (compIsEvexOpportunisticallySupported(isV512Supported))
+    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+    {
+        NamedIntrinsic cvtIntrinsic = NI_Illegal;
+        switch (simdTargetBaseType)
+        {
+            case TYP_INT:
+                cvtIntrinsic = NI_AVX10v2_ConvertToVectorInt32WithTruncationSaturation;
+                break;
+
+            case TYP_UINT:
+                cvtIntrinsic = NI_AVX10v2_ConvertToVectorUInt32WithTruncationSaturation;
+                break;
+
+            case TYP_LONG:
+                cvtIntrinsic = NI_AVX10v2_ConvertToVectorInt64WithTruncationSaturation;
+                break;
+
+            case TYP_ULONG:
+                cvtIntrinsic = NI_AVX10v2_ConvertToVectorUInt64WithTruncationSaturation;
+                break;
+
+            default:
+            {
+                unreached();
+            }
+        }
+        return gtNewSimdHWIntrinsicNode(type, op1, cvtIntrinsic, simdSourceBaseJitType, simdSize);
+    }
+    else if (compIsEvexOpportunisticallySupported(isV512Supported))
     {
         /*Generate the control table for VFIXUPIMMSD/SS
         - For conversion to unsigned
