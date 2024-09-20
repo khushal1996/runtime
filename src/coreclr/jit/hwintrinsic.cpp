@@ -801,7 +801,7 @@ static const HWIntrinsicIsaRange hwintrinsicIsaRangeArray[] = {
     { FIRST_NI_AVX512VBMI_VL, LAST_NI_AVX512VBMI_VL },
     { FIRST_NI_AVX10v1, LAST_NI_AVX10v1 },
     { FIRST_NI_AVX10v1_V512, LAST_NI_AVX10v1_V512 },
-    { NI_Illegal, NI_Illegal },                                 // AVX10v2
+    { FIRST_NI_AVX10v2, LAST_NI_AVX10v2 },                      // AVX10v2
     { NI_Illegal, NI_Illegal },                                 // AVX10v2_V512
     { NI_Illegal, NI_Illegal },                                 // VectorT128
     { NI_Illegal, NI_Illegal },                                 // VectorT256
