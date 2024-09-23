@@ -2455,7 +2455,7 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from, emitAttr attr)
                     default:
                         unreached();
                 }
-            } 
+            }
             else
             {
                 switch (to)
