@@ -2078,7 +2078,6 @@ emitter::code_t emitter::emitExtractEvexPrefix(instruction ins, code_t& code) co
         code &= 0xFFFF;
     }
 
-
     // Encode the escape byte in the evex prefix using either of the below:
     //          1. If there is an escape byte it must be 0x0F or 0x0F3A or 0x0F38
     //             mm bits in byte 0 of EVEX prefix allows us to encode these
@@ -19254,7 +19253,7 @@ emitter::insExecutionCharacteristics emitter::getInsExecutionCharacteristics(ins
         case INS_vcvttps2qqs:
         case INS_vcvttps2uqqs:
         {
-            //TBD: These instructions are not in the intrinsic guide table
+            // TBD: These instructions are not in the intrinsic guide table
             result.insThroughput = PERFSCORE_THROUGHPUT_2X;
             result.insLatency += PERFSCORE_LATENCY_4C;
             break;
