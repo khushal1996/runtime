@@ -1402,10 +1402,6 @@ void EEJitManager::SetCpuInfo()
         CPUCompileFlags.Set(InstructionSet_X86Serialize);
     }
 
-    CPUCompileFlags.Set(InstructionSet_AVX10v2);
-    CPUCompileFlags.Set(InstructionSet_AVX10v1);
-    CPUCompileFlags.Set(InstructionSet_AVX10v2_V512);
-    CPUCompileFlags.Set(InstructionSet_AVX10v1_V512);
     if (((cpuFeatures & XArchIntrinsicConstants_Evex) != 0) &&
         ((cpuFeatures & XArchIntrinsicConstants_Avx10v1) != 0))
     {
