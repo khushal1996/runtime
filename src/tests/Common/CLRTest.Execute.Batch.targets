@@ -344,15 +344,10 @@ if "%UseSDE%"=="1" (
     if "%SDEPath%"=="" (
         ECHO SDE Path not set!
     ) else (
-        if "%Rex2StressLevel%"=="" (
-            ECHO Rex2StressLevel not set!
-        ) else (
-            ECHO SDE Path is %SDEPath%
-            ECHO REX2 stress level is %Rex2StressLevel%
-            set InvokeSDE="%SDEPath%" "-future" "-env" "DOTNET_JitStressRex2Encoding" "%Rex2StressLevel%" "--"
-            ECHO !InvokeSDE!%LAUNCHER% %ExePath% %CLRTestExecutionArguments%
-            !InvokeSDE! %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
-        )
+        ECHO SDE Path is %SDEPath%
+        set InvokeSDE="%SDEPath%" "-dmr" "--"
+        ECHO !InvokeSDE!%LAUNCHER% %ExePath% %CLRTestExecutionArguments%
+        !InvokeSDE! %LAUNCHER% %ExePath% %CLRTestExecutionArguments%
     )
 ) else (
     ECHO %LAUNCHER% %ExePath% %CLRTestExecutionArguments%

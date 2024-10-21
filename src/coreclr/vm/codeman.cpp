@@ -1426,6 +1426,10 @@ void EEJitManager::SetCpuInfo()
             }
         }
     }
+    printf("Avx10v1: %d\n", CPUCompileFlags.IsSet(InstructionSet_AVX10v1));
+    printf("Avx10v1_V512: %d\n", CPUCompileFlags.IsSet(InstructionSet_AVX10v1_V512));
+    printf("Avx10v2: %d\n", CPUCompileFlags.IsSet(InstructionSet_AVX10v2));
+    printf("Avx10v2_V512: %d\n", CPUCompileFlags.IsSet(InstructionSet_AVX10v2_V512));
 #elif defined(TARGET_ARM64)
 
 #if !defined(TARGET_WINDOWS)
