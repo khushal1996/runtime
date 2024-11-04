@@ -9074,21 +9074,29 @@ void CodeGen::genAmd64EmitterUnitTestsApx()
     theEmitter->emitIns_R_R(INS_vcvttps2udqs, EA_32BYTE, REG_XMM0, REG_XMM1);// ymm
     theEmitter->emitIns_R_R(INS_vcvttps2udqs, EA_64BYTE, REG_XMM0, REG_XMM1);// zmm
 
+    /* We do not have a Float -> long conversion API in .NET
     theEmitter->emitIns_R_R(INS_vcvttps2qqs, EA_4BYTE, REG_XMM0, REG_XMM1); // xmm
     theEmitter->emitIns_R_R(INS_vcvttps2qqs, EA_32BYTE, REG_XMM0, REG_XMM1);// ymm
     theEmitter->emitIns_R_R(INS_vcvttps2qqs, EA_64BYTE, REG_XMM0, REG_XMM1);// zmm
+    */
 
+    /* We do not have a Float -> ulong conversion API in .NET
     theEmitter->emitIns_R_R(INS_vcvttps2uqqs, EA_4BYTE, REG_XMM0, REG_XMM1);// xmm
     theEmitter->emitIns_R_R(INS_vcvttps2uqqs, EA_32BYTE, REG_XMM0, REG_XMM1);// ymm
     theEmitter->emitIns_R_R(INS_vcvttps2uqqs, EA_64BYTE, REG_XMM0, REG_XMM1);// zmm
+    */
 
+    /* We do not have a double -> int conversion API in .NET
     theEmitter->emitIns_R_R(INS_vcvttpd2dqs, EA_8BYTE, REG_XMM0, REG_XMM1);// xmm
     theEmitter->emitIns_R_R(INS_vcvttpd2dqs, EA_32BYTE, REG_XMM0, REG_XMM1);// ymm
     theEmitter->emitIns_R_R(INS_vcvttpd2dqs, EA_64BYTE, REG_XMM0, REG_XMM1);// zmm
+    */
 
+    /* We do not have a double -> uint conversion API in .NET
     theEmitter->emitIns_R_R(INS_vcvttpd2udqs, EA_8BYTE, REG_XMM0, REG_XMM1);// xmm
     theEmitter->emitIns_R_R(INS_vcvttpd2udqs, EA_32BYTE, REG_XMM0, REG_XMM1);// ymm
     theEmitter->emitIns_R_R(INS_vcvttpd2udqs, EA_64BYTE, REG_XMM0, REG_XMM1);// zmm
+    */
 
     theEmitter->emitIns_R_R(INS_vcvttpd2qqs, EA_8BYTE, REG_XMM0, REG_XMM1);// xmm
     theEmitter->emitIns_R_R(INS_vcvttpd2qqs, EA_32BYTE, REG_XMM0, REG_XMM1);// ymm
