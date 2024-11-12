@@ -270,6 +270,7 @@ bool UseEvexEncoding() const
 }
 void SetUseEvexEncoding(bool value)
 {
+    printf("Evec encoding set khushal %d", value);
     // We expect UseVEXEncoding to be true if UseEvexEncoding is true
     assert(!value || UseVEXEncoding());
     useEvexEncodings = value;

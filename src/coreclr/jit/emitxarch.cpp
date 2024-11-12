@@ -252,7 +252,14 @@ bool emitter::IsEvexEncodableInstruction(instruction ins) const
 {
     if (!UseEvexEncoding())
     {
+        if ( ins == INS_vcvttsd2sis32 ) {
+            printf("evex encoding khushal %d", useEvexEncodings);
+            printf("returning false here khushal\n");
+        }
         return false;
+    }
+    if (ins == INS_vcvttsd2sis32 ) {
+        printf("not returning false\n");
     }
     return HasEvexEncoding(ins);
 }
@@ -1244,6 +1251,9 @@ bool emitter::TakesEvexPrefix(const instrDesc* id) const
 
     if (!IsEvexEncodableInstruction(ins))
     {
+        if ( ins == INS_vcvttsd2sis32 ) {
+            printf("returning False1 Khushal\n");
+        }
         // Never supports the EVEX encoding
         return false;
     }
@@ -2530,6 +2540,9 @@ unsigned emitter::emitGetAdjustedSize(instrDesc* id, code_t code) const
         }
         else
         {
+            if ( IsVexEncodableInstruction(ins) == false ) {
+                printf("Printing Instruction Khushal: %d", ins);
+            }
             assert(IsVexEncodableInstruction(ins));
 
             prefixAdjustedSize = emitGetVexPrefixSize(id);

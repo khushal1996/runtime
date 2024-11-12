@@ -78,11 +78,11 @@ enum CORINFO_InstructionSet
     InstructionSet_AVX512VBMI_VL=33,
     InstructionSet_AVX10v1=34,
     InstructionSet_AVX10v1_V512=35,
-    InstructionSet_AVX10v2=36,
-    InstructionSet_AVX10v2_V512=37,
-    InstructionSet_VectorT128=38,
-    InstructionSet_VectorT256=39,
-    InstructionSet_VectorT512=40,
+    InstructionSet_VectorT128=36,
+    InstructionSet_VectorT256=37,
+    InstructionSet_VectorT512=38,
+    InstructionSet_AVX10v2=39,
+    InstructionSet_AVX10v2_V512=40,
     InstructionSet_X86Base_X64=41,
     InstructionSet_SSE_X64=42,
     InstructionSet_SSE2_X64=43,
@@ -149,11 +149,11 @@ enum CORINFO_InstructionSet
     InstructionSet_AVX512VBMI_VL=33,
     InstructionSet_AVX10v1=34,
     InstructionSet_AVX10v1_V512=35,
-    InstructionSet_AVX10v2=36,
-    InstructionSet_AVX10v2_V512=37,
-    InstructionSet_VectorT128=38,
-    InstructionSet_VectorT256=39,
-    InstructionSet_VectorT512=40,
+    InstructionSet_VectorT128=36,
+    InstructionSet_VectorT256=37,
+    InstructionSet_VectorT512=38,
+    InstructionSet_AVX10v2=39,
+    InstructionSet_AVX10v2_V512=40,
     InstructionSet_X86Base_X64=41,
     InstructionSet_SSE_X64=42,
     InstructionSet_SSE2_X64=43,
@@ -962,6 +962,12 @@ inline const char *InstructionSetToString(CORINFO_InstructionSet instructionSet)
             return "AVX10v1_V512";
         case InstructionSet_AVX10v1_V512_X64 :
             return "AVX10v1_V512_X64";
+        case InstructionSet_VectorT128 :
+            return "VectorT128";
+        case InstructionSet_VectorT256 :
+            return "VectorT256";
+        case InstructionSet_VectorT512 :
+            return "VectorT512";
         case InstructionSet_AVX10v2 :
             return "AVX10v2";
         case InstructionSet_AVX10v2_X64 :
@@ -970,12 +976,6 @@ inline const char *InstructionSetToString(CORINFO_InstructionSet instructionSet)
             return "AVX10v2_V512";
         case InstructionSet_AVX10v2_V512_X64 :
             return "AVX10v2_V512_X64";
-        case InstructionSet_VectorT128 :
-            return "VectorT128";
-        case InstructionSet_VectorT256 :
-            return "VectorT256";
-        case InstructionSet_VectorT512 :
-            return "VectorT512";
 #endif // TARGET_AMD64
 #ifdef TARGET_X86
         case InstructionSet_X86Base :
@@ -1048,16 +1048,16 @@ inline const char *InstructionSetToString(CORINFO_InstructionSet instructionSet)
             return "AVX10v1";
         case InstructionSet_AVX10v1_V512 :
             return "AVX10v1_V512";
-        case InstructionSet_AVX10v2 :
-            return "AVX10v2";
-        case InstructionSet_AVX10v2_V512 :
-            return "AVX10v2_V512";
         case InstructionSet_VectorT128 :
             return "VectorT128";
         case InstructionSet_VectorT256 :
             return "VectorT256";
         case InstructionSet_VectorT512 :
             return "VectorT512";
+        case InstructionSet_AVX10v2 :
+            return "AVX10v2";
+        case InstructionSet_AVX10v2_V512 :
+            return "AVX10v2_V512";
 #endif // TARGET_X86
 
         default:
@@ -1125,11 +1125,11 @@ inline CORINFO_InstructionSet InstructionSetFromR2RInstructionSet(ReadyToRunInst
         case READYTORUN_INSTRUCTION_Avx512Vbmi_VL: return InstructionSet_AVX512VBMI_VL;
         case READYTORUN_INSTRUCTION_Avx10v1: return InstructionSet_AVX10v1;
         case READYTORUN_INSTRUCTION_Avx10v1_V512: return InstructionSet_AVX10v1_V512;
-        case READYTORUN_INSTRUCTION_Avx10v2: return InstructionSet_AVX10v2;
-        case READYTORUN_INSTRUCTION_Avx10v2_V512: return InstructionSet_AVX10v2_V512;
         case READYTORUN_INSTRUCTION_VectorT128: return InstructionSet_VectorT128;
         case READYTORUN_INSTRUCTION_VectorT256: return InstructionSet_VectorT256;
         case READYTORUN_INSTRUCTION_VectorT512: return InstructionSet_VectorT512;
+        case READYTORUN_INSTRUCTION_Avx10v2: return InstructionSet_AVX10v2;
+        case READYTORUN_INSTRUCTION_Avx10v2_V512: return InstructionSet_AVX10v2_V512;
 #endif // TARGET_AMD64
 #ifdef TARGET_X86
         case READYTORUN_INSTRUCTION_X86Base: return InstructionSet_X86Base;
@@ -1164,11 +1164,11 @@ inline CORINFO_InstructionSet InstructionSetFromR2RInstructionSet(ReadyToRunInst
         case READYTORUN_INSTRUCTION_Avx512Vbmi_VL: return InstructionSet_AVX512VBMI_VL;
         case READYTORUN_INSTRUCTION_Avx10v1: return InstructionSet_AVX10v1;
         case READYTORUN_INSTRUCTION_Avx10v1_V512: return InstructionSet_AVX10v1_V512;
-        case READYTORUN_INSTRUCTION_Avx10v2: return InstructionSet_AVX10v2;
-        case READYTORUN_INSTRUCTION_Avx10v2_V512: return InstructionSet_AVX10v2_V512;
         case READYTORUN_INSTRUCTION_VectorT128: return InstructionSet_VectorT128;
         case READYTORUN_INSTRUCTION_VectorT256: return InstructionSet_VectorT256;
         case READYTORUN_INSTRUCTION_VectorT512: return InstructionSet_VectorT512;
+        case READYTORUN_INSTRUCTION_Avx10v2: return InstructionSet_AVX10v2;
+        case READYTORUN_INSTRUCTION_Avx10v2_V512: return InstructionSet_AVX10v2_V512;
 #endif // TARGET_X86
 
         default:

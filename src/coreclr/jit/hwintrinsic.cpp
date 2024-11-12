@@ -801,11 +801,11 @@ static const HWIntrinsicIsaRange hwintrinsicIsaRangeArray[] = {
     { FIRST_NI_AVX512VBMI_VL, LAST_NI_AVX512VBMI_VL },
     { FIRST_NI_AVX10v1, LAST_NI_AVX10v1 },
     { FIRST_NI_AVX10v1_V512, LAST_NI_AVX10v1_V512 },
-    { FIRST_NI_AVX10v2, LAST_NI_AVX10v2 },                      // AVX10v2
-    { NI_Illegal, NI_Illegal },                                 // AVX10v2_V512
     { NI_Illegal, NI_Illegal },                                 // VectorT128
     { NI_Illegal, NI_Illegal },                                 // VectorT256
     { NI_Illegal, NI_Illegal },                                 // VectorT512
+    { FIRST_NI_AVX10v2, LAST_NI_AVX10v2 },                      // AVX10v2
+    { NI_Illegal, NI_Illegal },                                 // AVX10v2_V512
     { FIRST_NI_X86Base_X64, LAST_NI_X86Base_X64 },
     { FIRST_NI_SSE_X64, LAST_NI_SSE_X64 },
     { FIRST_NI_SSE2_X64, LAST_NI_SSE2_X64 },
