@@ -871,7 +871,7 @@ GenTree* Lowering::LowerCast(GenTree* tree)
     // Handle saturation logic for X64
     // Let InstructionSet_AVX10v2 pass through since it can handle the saturation
     if (varTypeIsFloating(srcType) && varTypeIsIntegral(dstType) && !varTypeIsSmall(dstType) &&
-        !comp->compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+        !(comp->canUseAVX10v2() && comp->compOpportunisticallyDependsOn(InstructionSet_AVX10v2)))
     {
         // We should have filtered out float -> long conversion and
         // converted it to float -> double -> long conversion.

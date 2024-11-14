@@ -1426,8 +1426,6 @@ void EEJitManager::SetCpuInfo()
             }
         }
     }
-    CPUCompileFlags.Set(InstructionSet_AVX10v2);
-    CPUCompileFlags.Set(InstructionSet_AVX10v1);
 #elif defined(TARGET_ARM64)
 
 #if !defined(TARGET_WINDOWS)

@@ -20444,7 +20444,6 @@ bool GenTree::isRMWHWIntrinsic(Compiler* comp)
 #if defined(TARGET_XARCH)
     GenTreeHWIntrinsic* hwintrinsic = AsHWIntrinsic();
     NamedIntrinsic      intrinsicId = hwintrinsic->GetHWIntrinsicId();
-
     if (!comp->canUseVexEncoding())
     {
         return HWIntrinsicInfo::HasRMWSemantics(intrinsicId);
@@ -21534,7 +21533,7 @@ GenTree* Compiler::gtNewSimdCvtNode(var_types   type,
     GenTree* fixupVal;
     bool     isV512Supported = false;
 
-    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+    if (canUseAVX10v2() && compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
     {
         NamedIntrinsic cvtIntrinsic = NI_Illegal;
         switch (simdTargetBaseType)

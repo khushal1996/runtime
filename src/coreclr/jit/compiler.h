@@ -9772,6 +9772,19 @@ private:
         }
     }
 
+#ifdef TARGET_XARCH
+    bool canUseAVX10v2() const
+    {
+#ifdef DEBUG
+        if (JitConfig.DisableAVX10v2())
+        {
+            return false;
+        }
+#endif
+        return compOpportunisticallyDependsOn(InstructionSet_AVX10v2);
+    }
+#endif
+
     // Answer the question: Is a particular ISA supported for explicit hardware intrinsics?
     bool compHWIntrinsicDependsOn(CORINFO_InstructionSet isa) const
     {

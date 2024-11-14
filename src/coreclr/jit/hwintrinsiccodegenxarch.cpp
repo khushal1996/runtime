@@ -3117,6 +3117,9 @@ void CodeGen::genBMI1OrBMI2Intrinsic(GenTreeHWIntrinsic* node, insOpts instOptio
             emit->emitIns_Mov(INS_mov, attr, REG_EDX, op1Reg, /* canSkip */ true);
 
             // generate code for MULX
+            if ( !node->isRMWHWIntrinsic(compiler) ) {
+                printf(" Printing Node name %d\n", node->AsHWIntrinsic()->GetHWIntrinsicId());
+            }
             assert(!node->isRMWHWIntrinsic(compiler));
             inst_RV_RV_TT(ins, attr, targetReg, lowReg, op2, false, INS_OPTS_NONE);
 
