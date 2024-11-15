@@ -3117,7 +3117,9 @@ void CodeGen::genBMI1OrBMI2Intrinsic(GenTreeHWIntrinsic* node, insOpts instOptio
             emit->emitIns_Mov(INS_mov, attr, REG_EDX, op1Reg, /* canSkip */ true);
 
             // generate code for MULX
-            if ( !node->isRMWHWIntrinsic(compiler) ) {
+            if ( node->isRMWHWIntrinsic(compiler) ) {
+                printf(" Printing InstructionSet_AES_X64 ISA %d\n", compiler->compOpportunisticallyDependsOn(InstructionSet_AES_X64));
+                printf(" Printing BMI2 ISA %d\n", compiler->compOpportunisticallyDependsOn(InstructionSet_BMI2_X64));
                 printf(" Printing Node name %d\n", node->AsHWIntrinsic()->GetHWIntrinsicId());
             }
             assert(!node->isRMWHWIntrinsic(compiler));
