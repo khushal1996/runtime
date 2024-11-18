@@ -79,6 +79,7 @@ namespace ILCompiler
             public const int Avx10v1 = 0x40000;
             public const int Evex = 0x80000;
             public const int Apx = 0x100000;
+            public const int Avx10v2 = 0x200000;
 
             public static void AddToBuilder(InstructionSetSupportBuilder builder, int flags)
             {
@@ -138,6 +139,10 @@ namespace ILCompiler
                     builder.AddSupportedInstructionSet("evex");
                 if ((flags & Apx) != 0)
                     builder.AddSupportedInstructionSet("apx");
+                if ((flags & Avx10v2) != 0)
+                    builder.AddSupportedInstructionSet("avx10v2");
+                if (((flags & Avx10v2) != 0) && ((flags & Avx512) != 0))
+                    builder.AddSupportedInstructionSet("avx10v2_v512");
             }
 
             public static int FromInstructionSet(InstructionSet instructionSet)
@@ -204,6 +209,10 @@ namespace ILCompiler
                     InstructionSet.X64_EVEX_X64 => Evex,
                     InstructionSet.X64_APX => Apx,
                     InstructionSet.X64_APX_X64 => Apx,
+                    InstructionSet.X64_AVX10v2 => Avx10v2,
+                    InstructionSet.X64_AVX10v2_X64 => Avx10v2,
+                    InstructionSet.X64_AVX10v2_V512 => (Avx10v2 | Avx512),
+                    InstructionSet.X64_AVX10v2_V512_X64 => (Avx10v2 | Avx512),
 
                     // Baseline ISAs - they're always available
                     InstructionSet.X64_SSE => 0,
