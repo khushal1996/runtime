@@ -24074,6 +24074,32 @@ GenTree* Compiler::gtNewSimdMinNode(
     return gtNewSimdMinNativeNode(type, op1, op2, simdBaseJitType, simdSize);
 }
 
+#if defined(TARGET_XARCH)
+GenTree* Compiler::gtNewSimdMinMaxNode(
+    var_types type, GenTree* op1, GenTree* op2, ssize_t ctrlByte, CorInfoType simdBaseJitType, unsigned simdSize)
+{
+    assert(IsBaselineSimdIsaSupportedDebugOnly());
+    assert(compIsaSupportedDebugOnly(InstructionSet_AVX10v2));
+    assert(simdSize != 64 || IsBaselineVector512IsaSupportedDebugOnly());
+    assert(varTypeIsSIMD(type));
+    assert(getSIMDTypeForSize(simdSize) == type);
+
+    assert(op1 != nullptr);
+    assert(op1->TypeIs(type));
+
+    assert(op2 != nullptr);
+    assert(op2->TypeIs(type));
+
+    var_types simdBaseType = JitType2PreciseVarType(simdBaseJitType);
+    assert(varTypeIsArithmetic(simdBaseType));
+    assert(varTypeIsFloating(simdBaseType));
+
+    NamedIntrinsic minMaxIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_MinMax : NI_AVX10v2_MinMax;
+
+    return gtNewSimdHWIntrinsicNode(type, op1, op2, gtNewIconNode(ctrlByte), minMaxIntrinsic, simdBaseJitType, simdSize);
+}
+#endif // TARGET_XARCH
+
 GenTree* Compiler::gtNewSimdMinNativeNode(
     var_types type, GenTree* op1, GenTree* op2, CorInfoType simdBaseJitType, unsigned simdSize)
 {
