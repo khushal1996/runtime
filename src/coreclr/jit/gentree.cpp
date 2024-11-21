@@ -24050,6 +24050,10 @@ GenTree* Compiler::gtNewSimdMinNode(
 #if defined(TARGET_XARCH)
     if (varTypeIsFloating(simdBaseType))
     {
+        if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+        {
+            return gtNewSimdMinMaxNode(type, op1, op2, 0, simdBaseJitType, simdSize);
+        }
         GenTree* op1Dup1 = fgMakeMultiUse(&op1);
         GenTree* op1Dup2 = gtCloneExpr(op1Dup1);
         GenTree* op1Dup3 = gtCloneExpr(op1Dup2);
