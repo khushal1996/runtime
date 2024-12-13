@@ -10403,6 +10403,8 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                         case NI_AVX10v1_GetMantissaScalar:
                         case NI_AVX10v1_ReduceScalar:
                         case NI_AVX10v1_RoundScaleScalar:
+                        case NI_AVX10v2_MinMaxScalar:
+                        case NI_AVX10v2_MinMax:
                         {
                             // These intrinsics have both 2 and 3-operand overloads.
                             //
@@ -10991,6 +10993,8 @@ void Lowering::ContainCheckHWIntrinsic(GenTreeHWIntrinsic* node)
                         case NI_AVX10v1_V512_InsertVector128:
                         case NI_AVX10v1_V512_InsertVector256:
                         case NI_AVX10v1_V512_Range:
+                        case NI_AVX10v2_MinMaxScalar:
+                        case NI_AVX10v2_MinMax:
                         case NI_GFNI_GaloisFieldAffineTransform:
                         case NI_GFNI_GaloisFieldAffineTransformInverse:
                         case NI_GFNI_V256_GaloisFieldAffineTransform:
