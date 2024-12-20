@@ -1333,6 +1333,7 @@ bool emitter::TakesEvexPrefix(const instrDesc* id) const
 #define LBIT_IN_BYTE_EVEX_PREFIX      0x0000002000000000ULL
 #define LPRIMEBIT_IN_BYTE_EVEX_PREFIX 0x0000004000000000ULL
 #define ZBIT_IN_BYTE_EVEX_PREFIX      0x0000008000000000ULL
+#define uBIT_IN_BYTE_EVEX_PREFIX      0x0000040000000000ULL
 
 //------------------------------------------------------------------------
 // AddEvexPrefix: Add default EVEX prefix with only LL' bits set.
@@ -1372,6 +1373,11 @@ emitter::code_t emitter::AddEvexPrefix(const instrDesc* id, code_t code, emitAtt
     {
         code |= BBIT_IN_BYTE_EVEX_PREFIX;
 
+        // enable ymm embeddd rounding
+        if (emitComp->compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+        {
+            code &= ~(uBIT_IN_BYTE_EVEX_PREFIX);
+        }
         if (!id->idHasMem())
         {
             // embedded rounding case.
