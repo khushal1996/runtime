@@ -21605,7 +21605,7 @@ GenTree* Compiler::gtNewSimdCvtNode(var_types   type,
     GenTree* fixupVal;
     bool     isV512Supported = false;
 
-    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2) || canUseAVX10v2())
     {
         NamedIntrinsic cvtIntrinsic = NI_Illegal;
         switch (simdTargetBaseType)

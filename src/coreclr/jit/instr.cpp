@@ -2463,7 +2463,7 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from, emitAttr attr)
             break;
 
         case TYP_FLOAT:
-            if (compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+            if (compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v2) || compiler->canUseAVX10v2())
             {
                 switch (to)
                 {
@@ -2506,7 +2506,7 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from, emitAttr attr)
             break;
 
         case TYP_DOUBLE:
-            if (compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+            if (compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v2) || compiler->canUseAVX10v2())
             {
                 switch (to)
                 {
