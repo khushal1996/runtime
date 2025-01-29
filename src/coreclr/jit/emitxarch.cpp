@@ -1493,7 +1493,7 @@ emitter::code_t emitter::AddEvexPrefix(const instrDesc* id, code_t code, emitAtt
             // ymm embedded rounding case.
             if (attr == EA_32BYTE)
             {
-                assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2));
+                assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) || emitComp->canUseAVX10v2());
                 code &= ~(uBIT_IN_BYTE_EVEX_PREFIX);
             }
 
@@ -2237,7 +2237,7 @@ emitter::code_t emitter::emitExtractEvexPrefix(instruction ins, code_t& code) co
         if (sizePrefix == 0)
         {
             // no simd prefix for EVEX2 - AVX10.2 and above
-            assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2));
+            assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) || emitComp->canUseAVX10v2());
         }
         else if (isPrefix(sizePrefix))
         {
@@ -2285,7 +2285,7 @@ emitter::code_t emitter::emitExtractEvexPrefix(instruction ins, code_t& code) co
         //                          1. An escape byte 0F (For isa before AVX10.2)
         //                          2. A map number from 0 to 7 (For AVX10.2 and above)
         leadingBytes = check;
-        assert(leadingBytes == 0x0F || (emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) &&
+        assert(leadingBytes == 0x0F || ((emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) || emitComp->canUseAVX10v2()) &&
                                         leadingBytes >= 0x00 && leadingBytes <= 0x07));
 
         // Get rid of both sizePrefix and escape byte
@@ -2307,7 +2307,7 @@ emitter::code_t emitter::emitExtractEvexPrefix(instruction ins, code_t& code) co
         //      1. the byte in position 11 must be an escape byte.
         //      2. the byte in position 11 must be a map number from 0 to 7.
         leadingBytes = (code >> 16) & 0xFF;
-        assert(leadingBytes == 0x0F || (emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) &&
+        assert(leadingBytes == 0x0F || ((emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) || emitComp->canUseAVX10v2()) &&
                                         leadingBytes >= 0x00 && leadingBytes <= 0x07));
         code &= 0xFFFF;
     }
@@ -2348,7 +2348,7 @@ emitter::code_t emitter::emitExtractEvexPrefix(instruction ins, code_t& code) co
 
         case 0x05:
         {
-            assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2));
+            assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) || emitComp->canUseAVX10v2());
             evexPrefix |= (0x05 << 16);
             break;
         }
