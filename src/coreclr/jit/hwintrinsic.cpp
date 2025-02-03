@@ -1993,6 +1993,7 @@ GenTree* Compiler::impHWIntrinsic(NamedIntrinsic        intrinsic,
         {
             if (HWIntrinsicInfo::lookupIns(intrinsic, simdBaseType) == INS_invalid)
             {
+                printf("Debug print simdBaseType: %s\n", varTypeName(simdBaseType));
                 assert(!"Unexpected HW intrinsic");
                 return nullptr;
             }
