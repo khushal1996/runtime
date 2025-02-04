@@ -94,6 +94,10 @@ namespace IntelHardwareIntrinsicTest._Avx10v2_V512
             else {
                 Console.WriteLine("Avx10v2_V512 not supported");
             }
+            Console.WriteLine("I am iron man");
+            Vector512<byte> byteVal = Vector512.Create<byte>(0x00);
+            Vector512<ushort> ushortVal = Avx10v2.V512.MultipleSumAbsoluteDifferences(byteVal, byteVal, 0x00);
+            Console.WriteLine("MultipleSumAbsoluteDifferences is " + ushortVal);
         }
     }
 }

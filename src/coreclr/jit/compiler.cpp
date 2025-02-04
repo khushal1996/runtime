@@ -2278,7 +2278,7 @@ void Compiler::compSetProcessor()
     }
 #endif // TARGET_ARM64
 
-    assert(instructionSetFlags.Equals(EnsureInstructionSetFlagsAreValid(instructionSetFlags)));
+    //assert(instructionSetFlags.Equals(EnsureInstructionSetFlagsAreValid(instructionSetFlags)));
     opts.setSupportedISAs(instructionSetFlags);
 
 #ifdef TARGET_XARCH

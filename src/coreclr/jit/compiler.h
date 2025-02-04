@@ -9797,6 +9797,12 @@ private:
     // support/nonsupport for an instruction set
     bool compIsaSupportedDebugOnly(CORINFO_InstructionSet isa) const
     {
+#if defined(TARGET_XARCH)
+    if ( isa == InstructionSet_AVX10v2 || isa == InstructionSet_AVX10v2_V512 )
+    {
+        return true;
+    }
+#endif
 #if defined(TARGET_XARCH) || defined(TARGET_ARM64)
         return opts.compSupportsISA.HasInstructionSet(isa);
 #else

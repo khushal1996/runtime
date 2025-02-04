@@ -3878,8 +3878,8 @@ string testListFileName = args[3];
 // ProcessInputs("Gfni", GfniInputs);
 // ProcessInputs("Gfni.V256", GfniV256Inputs);
 // ProcessInputs("Gfni.V512", GfniV512Inputs);
-ProcessInputs("Avx10v2", Avx10v2Inputs);
-// ProcessInputs("Avx10v2_V512", Avx10v2_V512Inputs);
+// ProcessInputs("Avx10v2", Avx10v2Inputs);
+ProcessInputs("Avx10v2_V512", Avx10v2_V512Inputs);
 
 
 void ProcessInputs(string groupName, (string templateFileName, Dictionary<string, string> templateData)[] inputs)

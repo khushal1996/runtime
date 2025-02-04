@@ -1559,6 +1559,9 @@ void EEJitManager::SetCpuInfo()
         CPUCompileFlags.Clear(InstructionSet_VectorT128);
     }
 
+    CPUCompileFlags.Set(InstructionSet_AVX10v2);
+    CPUCompileFlags.Set(InstructionSet_AVX10v2_V512);
+
     int cpuidInfo[4];
 
     const int CPUID_EAX = 0;

@@ -16901,6 +16901,11 @@ ssize_t emitter::TryEvexCompressDisp8Byte(instrDesc* id, ssize_t dsp, bool* dspI
     ssize_t inputSize = GetInputSizeInBytes(id);
 
     ssize_t disp8Compression = 1;
+    instruction insKh = id->idIns();
+    if ( insKh == INS_vmpsadbw ) 
+    {
+        printf("%d\n", insKh);
+    }
 
     if ((tt & INS_TT_MEM128) != 0)
     {
