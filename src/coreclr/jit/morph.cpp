@@ -306,8 +306,7 @@ GenTree* Compiler::fgMorphExpandCast(GenTreeCast* tree)
             // For pre-SSE41, the all src is converted to TYP_DOUBLE
             // and goes through helpers.
             &&
-            (tree->gtOverflow() || (dstType == TYP_LONG && !compOpportunisticallyDependsOn(InstructionSet_AVX10v2)) ||
-             !(canUseEvexEncoding() || (dstType == TYP_INT && compOpportunisticallyDependsOn(InstructionSet_SSE41))))
+            (tree->gtOverflow())
 #elif defined(TARGET_ARM)
             // Arm: src = float, dst = int64/uint64 or overflow conversion.
             && (tree->gtOverflow() || varTypeIsLong(dstType))
@@ -348,15 +347,6 @@ GenTree* Compiler::fgMorphExpandCast(GenTreeCast* tree)
                 //     float  -> int for SSE41
                 //     double -> int/uint/long for SSE41
                 // For all other conversions, we use helper functions.
-                if (canUseEvexEncoding() ||
-                    ((dstType != TYP_ULONG) && compOpportunisticallyDependsOn(InstructionSet_SSE41)))
-                {
-                    if (tree->CastOp() != oper)
-                    {
-                        tree->CastOp() = oper;
-                    }
-                    return nullptr;
-                }
 #endif // TARGET_AMD64
                 switch (dstType)
                 {
