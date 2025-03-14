@@ -631,6 +631,62 @@ void CodeGen::genHWIntrinsic(GenTreeHWIntrinsic* node)
                             break;
                         }
 
+                        case NI_AVXVNNIINT8_MultiplyWideningAndAdd:
+                        case NI_AVXVNNIINT8_V512_MultiplyWideningAndAdd:
+                        {
+                            assert(targetReg != REG_NA);
+                            assert(op1Reg != REG_NA);
+                            assert(op2Reg != REG_NA);
+                            var_types op2Type = op2->TypeGet();
+                            var_types op3Type = op3->TypeGet();
+                            assert((op2Type == TYP_BYTE && (op3Type == TYP_UBYTE || op3Type == TYP_BYTE)) || (op2Type == TYP_UBYTE && op3Type == TYP_UBYTE));
+                            ins = (op2Type == TYP_UBYTE) ? INS_vpdpbuud : ((op3Type == TYP_UBYTE) ? INS_vpdpbsud : INS_vpdpbssd);
+                            genHWIntrinsic_R_R_R_RM(ins, simdSize, targetReg, op1Reg, op2Reg, op3, instOptions);
+                            break;
+                        }
+
+                        case NI_AVXVNNIINT8_MultiplyWideningAndAddSaturate:
+                        case NI_AVXVNNIINT8_V512_MultiplyWideningAndAddSaturate:
+                        {
+                            assert(targetReg != REG_NA);
+                            assert(op1Reg != REG_NA);
+                            assert(op2Reg != REG_NA);
+                            var_types op2Type = op2->TypeGet();
+                            var_types op3Type = op3->TypeGet();
+                            assert((op2Type == TYP_BYTE && (op3Type == TYP_UBYTE || op3Type == TYP_BYTE)) || (op2Type == TYP_UBYTE && op3Type == TYP_UBYTE));
+                            ins = (op2Type == TYP_UBYTE) ? INS_vpdpbuuds : ((op3Type == TYP_UBYTE) ? INS_vpdpbsuds : INS_vpdpbssds);
+                            genHWIntrinsic_R_R_R_RM(ins, simdSize, targetReg, op1Reg, op2Reg, op3, instOptions);
+                            break;
+                        }
+
+                        case NI_AVXVNNIINT16_MultiplyWideningAndAdd:
+                        case NI_AVXVNNIINT16_V512_MultiplyWideningAndAdd:
+                        {
+                            assert(targetReg != REG_NA);
+                            assert(op1Reg != REG_NA);
+                            assert(op2Reg != REG_NA);
+                            var_types op2Type = op2->TypeGet();
+                            var_types op3Type = op3->TypeGet();
+                            assert((op2Type == TYP_USHORT && (op3Type == TYP_USHORT || op3Type == TYP_SHORT)) || (op2Type == TYP_SHORT && op3Type == TYP_USHORT));
+                            ins = (op2Type == TYP_SHORT) ? INS_vpdpwsud : ((op3Type == TYP_USHORT) ? INS_vpdpwuud : INS_vpdpwusd);
+                            genHWIntrinsic_R_R_R_RM(ins, simdSize, targetReg, op1Reg, op2Reg, op3, instOptions);
+                            break;
+                        }
+
+                        case NI_AVXVNNIINT16_MultiplyWideningAndAddSaturate:
+                        case NI_AVXVNNIINT16_V512_MultiplyWideningAndAddSaturate:
+                        {
+                            assert(targetReg != REG_NA);
+                            assert(op1Reg != REG_NA);
+                            assert(op2Reg != REG_NA);
+                            var_types op2Type = op2->TypeGet();
+                            var_types op3Type = op3->TypeGet();
+                            assert((op2Type == TYP_BYTE && (op3Type == TYP_UBYTE || op3Type == TYP_BYTE)) || (op2Type == TYP_UBYTE && op3Type == TYP_UBYTE));
+                            ins = (op2Type == TYP_SHORT) ? INS_vpdpwsuds : ((op3Type == TYP_USHORT) ? INS_vpdpwuuds : INS_vpdpwusds);
+                            genHWIntrinsic_R_R_R_RM(ins, simdSize, targetReg, op1Reg, op2Reg, op3, instOptions);
+                            break;
+                        }
+
                         default:
                         {
                             unreached();
