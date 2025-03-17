@@ -21625,7 +21625,7 @@ GenTree* Compiler::gtNewSimdCvtNode(var_types   type,
     GenTree* fixupVal;
     bool     isV512Supported = false;
 
-    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+    if (canUseAvx102Encoding())
     {
         NamedIntrinsic cvtIntrinsic = NI_Illegal;
         switch (simdTargetBaseType)
@@ -24383,7 +24383,7 @@ GenTree* Compiler::gtNewSimdMaxNode(
 #if defined(TARGET_XARCH)
     if (varTypeIsFloating(simdBaseType))
     {
-        if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+        if (canUseAvx102Encoding())
         {
             NamedIntrinsic minMaxIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_MinMax : NI_AVX10v2_MinMax;
             return gtNewSimdHWIntrinsicNode(type, op1, op2, gtNewIconNode(0x05), minMaxIntrinsic, simdBaseJitType,
@@ -24648,7 +24648,7 @@ GenTree* Compiler::gtNewSimdMinNode(
 #if defined(TARGET_XARCH)
     if (varTypeIsFloating(simdBaseType))
     {
-        if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+        if (canUseAvx102Encoding())
         {
             NamedIntrinsic minMaxIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_MinMax : NI_AVX10v2_MinMax;
             return gtNewSimdHWIntrinsicNode(type, op1, op2, gtNewIconNode(0x04), minMaxIntrinsic, simdBaseJitType,

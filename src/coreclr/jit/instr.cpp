@@ -2484,7 +2484,7 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from)
             {
                 return INS_cvtss2sd;
             }
-            isAvx10v2 = compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v2);
+            isAvx10v2 = compiler->canUseAvx102Encoding();
 
             switch (to)
             {
@@ -2510,7 +2510,7 @@ instruction CodeGen::ins_FloatConv(var_types to, var_types from)
             {
                 return ins_Move_Extend(TYP_DOUBLE, false);
             }
-            isAvx10v2 = compiler->compOpportunisticallyDependsOn(InstructionSet_AVX10v2);
+            isAvx10v2 = compiler->canUseAvx102Encoding();
 
             switch (to)
             {

@@ -9890,6 +9890,23 @@ public:
         return compOpportunisticallyDependsOn(InstructionSet_APX);
     }
 
+    //------------------------------------------------------------------------
+    // canUseApxEncoding - Answer the question: Are APX encodings supported on this target.
+    //
+    // Returns:
+    //    `true` if APX encoding is supported, `false` if not.
+    //
+    bool canUseAvx102Encoding() const
+    {
+#ifdef DEBUG
+        if (JitConfig.JitBypassAvx102Check())
+        {
+            return true;
+        }
+#endif
+        return compOpportunisticallyDependsOn(InstructionSet_AVX10v2);
+    }
+
 private:
     //------------------------------------------------------------------------
     // DoJitStressEvexEncoding- Answer the question: Do we force EVEX encoding.

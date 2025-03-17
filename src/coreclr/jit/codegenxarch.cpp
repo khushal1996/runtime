@@ -9311,7 +9311,7 @@ void CodeGen::genAmd64EmitterUnitTestsAvx10v2()
     genDefineTempLabel(genCreateTempLabel());
 
     // This test suite needs AVX10.2 enabled.
-    if (!theEmitter->emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2))
+    if (!theEmitter->emitComp->canUseAvx102Encoding())
     {
         return;
     }

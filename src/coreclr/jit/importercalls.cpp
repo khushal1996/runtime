@@ -9662,7 +9662,7 @@ GenTree* Compiler::impMinMaxIntrinsic(CORINFO_METHOD_HANDLE method,
     // new minmax instructions which is faster than using the combination
     // of instructions for lower ISAs. We can use the minmax instructions
 
-    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+    if (canUseAvx102Encoding())
     {
         impPopStack();
         impPopStack();
