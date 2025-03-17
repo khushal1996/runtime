@@ -2846,7 +2846,7 @@ def write_asmdiffs_markdown_summary(write_fh, base_jit_options, diff_jit_options
                     if not has_diffs(diff_metrics[row]):
                         continue
 
-                    write_fh.write("|{}|{:,d}|{}|{}|{}|{}|\n".format(
+                    write_fh.write("|{}|{:,d}|{}|{}|{}|{}({})|\n".format(
                         mch_file,
                         base_metrics[row]["Diffed code bytes"],
                         format_delta(
@@ -2856,7 +2856,8 @@ def write_asmdiffs_markdown_summary(write_fh, base_jit_options, diff_jit_options
                         base_metrics[row]["Instruction Count"],
                         format_delta(
                             base_metrics[row]["Instruction Count"],
-                            diff_metrics[row]["Instruction Count"])))
+                            diff_metrics[row]["Instruction Count"]),
+                        format_pct((diff_metrics[row]["Instruction Count"] - base_metrics[row]["Instruction Count"])*100 / base_metrics[row]["Instruction Count"])))
 
         write_top_context_section()
         write_pivot_section("Overall")
