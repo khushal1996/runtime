@@ -62,6 +62,10 @@ namespace IntelHardwareIntrinsicTest._AvxVnniInt8
             if (AvxVnniInt8.IsSupported)
             {
                 Console.WriteLine("AvxVnniInt8 supported");
+                Vector128<int> op1 = Vector128.Create(5);
+                Vector128<sbyte> op2 = Vector128.Create((sbyte)5);
+                Vector128<sbyte> op3 = Vector128.Create((sbyte)5);
+                Console.WriteLine("Calling API: " + AvxVnniInt8.MultiplyWideningAndAdd(op1, op2, op3));
             }
             else {
                 Console.WriteLine("AvxVnniInt8 not supported");

@@ -641,6 +641,7 @@ void CodeGen::genHWIntrinsic(GenTreeHWIntrinsic* node)
                             var_types op3Type = op3->TypeGet();
                             assert((op2Type == TYP_BYTE && (op3Type == TYP_UBYTE || op3Type == TYP_BYTE)) || (op2Type == TYP_UBYTE && op3Type == TYP_UBYTE));
                             ins = (op2Type == TYP_UBYTE) ? INS_vpdpbuud : ((op3Type == TYP_UBYTE) ? INS_vpdpbsud : INS_vpdpbssd);
+                            printf("I have reached the setting of ins\n");
                             genHWIntrinsic_R_R_R_RM(ins, simdSize, targetReg, op1Reg, op2Reg, op3, instOptions);
                             break;
                         }

@@ -199,7 +199,7 @@ static CORINFO_InstructionSet lookupInstructionSet(const char* className)
                     return InstructionSet_AVX10v2;
                 }
             }
-            else if (strncmp(className + 3, "VNNIINT", 7) == 0)
+            else if (strncmp(className + 3, "VnniInt", 7) == 0)
             {
                 if (strcmp(className + 10, "8") == 0)
                 {
