@@ -1948,11 +1948,12 @@ class DetailsSection:
 def aggregate_diff_metrics(details_file):
     """ Given the path to a CSV details file output by SPMI for a diff aggregate the metrics.
     """
-
+    # base_diff_icount_same_Diff = 0
     base_minopts = {"Successful compiles": 0, "Missing compiles": 0, "Failing compiles": 0,
                     "Contexts with diffs": 0, "Diffed code bytes": 0,
                     "Diffed PerfScore" : 0.0, "Relative PerfScore Geomean": 0.0,
-                    "Diff executed instructions": 0, "Diffed contexts": 0, "Instruction Count": 0}
+                    "Diff executed instructions": 0, "Diffed contexts": 0, "Instruction Count": 0,
+                    "Base with Diff Instruction Count": 0}
     base_fullopts = base_minopts.copy()
 
     diff_minopts = base_minopts.copy()
@@ -2019,8 +2020,12 @@ def aggregate_diff_metrics(details_file):
             if row["Has diff"] == "True":
                 base_dict["Contexts with diffs"] += 1
                 diff_dict["Contexts with diffs"] += 1
+                base_dict["Base with Diff Instruction Count"] += int(row["Base InstructionCount"])
                 diffs.append({key: row[key] for key in diffs_fields})
+                # if int(row["Base InstructionCount"]) == int(row["Diff InstructionCount"]):
+                #     base_diff_icount_same_Diff += 1
 
+    # print("***********************\n\nFound same icount methods with diff: " + str(base_diff_icount_same_Diff) + "\n\n********************************\n")
     base_overall = base_minopts.copy()
     for k in base_overall.keys():
         base_overall[k] += base_fullopts[k]
@@ -2255,8 +2260,8 @@ class SuperPMIReplayAsmDiffs:
                 print_superpmi_error_result(return_code, self.coreclr_args)
 
                 (base_metrics, diff_metrics, diffs) = aggregate_diff_metrics(detailed_info_file)
-                print("******Saving detailed_info_file\n")
-                shutil.copy(detailed_info_file, r"C:\Users\kmodi\Documents\temp.csv");
+                # print("******Saving detailed_info_file\n")
+                # shutil.copy(detailed_info_file, r"C:\Users\kmodi\Documents\temp.csv");
                 print_superpmi_success_result(return_code, base_metrics, diff_metrics)
 
                 artifacts_base_name = create_artifacts_base_name(self.coreclr_args, mch_file)
@@ -2857,7 +2862,7 @@ def write_asmdiffs_markdown_summary(write_fh, base_jit_options, diff_jit_options
                         format_delta(
                             base_metrics[row]["Instruction Count"],
                             diff_metrics[row]["Instruction Count"]),
-                        format_pct((diff_metrics[row]["Instruction Count"] - base_metrics[row]["Instruction Count"])*100 / base_metrics[row]["Instruction Count"])))
+                        format_pct((diff_metrics[row]["Instruction Count"] - base_metrics[row]["Instruction Count"])*100 / base_metrics[row]["Base with Diff Instruction Count"])))
 
         write_top_context_section()
         write_pivot_section("Overall")
