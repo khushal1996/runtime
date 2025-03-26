@@ -66,6 +66,10 @@ namespace Internal.ReadyToRunConstants
         Gfni=53,
         Gfni_V256=54,
         Gfni_V512=55,
+        AvxVnniInt8=56,
+        AvxVnniInt8_V512=57,
+        AvxVnniInt16=58,
+        AvxVnniInt16_V512=59,
 
     }
 }
