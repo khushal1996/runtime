@@ -4145,9 +4145,9 @@ int LinearScan::BuildStoreLoc(GenTreeLclVarCommon* storeLoc)
     }
     else if (op1->isContained() && op1->OperIs(GT_BITCAST))
     {
-        GenTree*         bitCastSrc   = op1->gtGetOp1();
-        RegisterType     registerType = regType(bitCastSrc->TypeGet());
-        singleUseRef = BuildUse(bitCastSrc, allRegs(registerType));
+        GenTree*     bitCastSrc   = op1->gtGetOp1();
+        RegisterType registerType = regType(bitCastSrc->TypeGet());
+        singleUseRef              = BuildUse(bitCastSrc, allRegs(registerType));
 
         Interval* srcInterval = singleUseRef->getInterval();
         assert(regType(srcInterval->registerType) == registerType);
@@ -4230,7 +4230,6 @@ int LinearScan::BuildSimple(GenTree* tree)
     if (tree->IsValue())
     {
         BuildDef(tree);
-
     }
     return srcCount;
 }
