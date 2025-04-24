@@ -21616,88 +21616,142 @@ GenTree* Compiler::gtNewSimdCvtNode(var_types   type,
     GenTree* fixupVal;
     bool     isV512Supported = false;
 
-    if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
-    {
-        NamedIntrinsic cvtIntrinsic = NI_Illegal;
-        switch (simdTargetBaseType)
-        {
-            case TYP_INT:
-                cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorInt32WithTruncationSaturation
-                                                : NI_AVX10v2_ConvertToVectorInt32WithTruncationSaturation;
-                break;
+    // if (compOpportunisticallyDependsOn(InstructionSet_AVX10v2))
+    // {
+    //     NamedIntrinsic cvtIntrinsic = NI_Illegal;
+    //     switch (simdTargetBaseType)
+    //     {
+    //         case TYP_INT:
+    //             cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorInt32WithTruncationSaturation
+    //                                             : NI_AVX10v2_ConvertToVectorInt32WithTruncationSaturation;
+    //             break;
 
-            case TYP_UINT:
-                cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorUInt32WithTruncationSaturation
-                                                : NI_AVX10v2_ConvertToVectorUInt32WithTruncationSaturation;
-                break;
+    //         case TYP_UINT:
+    //             cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorUInt32WithTruncationSaturation
+    //                                             : NI_AVX10v2_ConvertToVectorUInt32WithTruncationSaturation;
+    //             break;
 
-            case TYP_LONG:
-                cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorInt64WithTruncationSaturation
-                                                : NI_AVX10v2_ConvertToVectorInt64WithTruncationSaturation;
-                break;
+    //         case TYP_LONG:
+    //             cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorInt64WithTruncationSaturation
+    //                                             : NI_AVX10v2_ConvertToVectorInt64WithTruncationSaturation;
+    //             break;
 
-            case TYP_ULONG:
-                cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorUInt64WithTruncationSaturation
-                                                : NI_AVX10v2_ConvertToVectorUInt64WithTruncationSaturation;
-                break;
+    //         case TYP_ULONG:
+    //             cvtIntrinsic = (simdSize == 64) ? NI_AVX10v2_V512_ConvertToVectorUInt64WithTruncationSaturation
+    //                                             : NI_AVX10v2_ConvertToVectorUInt64WithTruncationSaturation;
+    //             break;
 
-            default:
-            {
-                unreached();
-            }
-        }
-        return gtNewSimdHWIntrinsicNode(type, op1, cvtIntrinsic, simdSourceBaseJitType, simdSize);
-    }
-    else if (compIsEvexOpportunisticallySupported(isV512Supported))
-    {
-        /*Generate the control table for VFIXUPIMMSD/SS
-        - For conversion to unsigned
-                    // QNAN: 0b1000: Saturate to Zero
-                    // SNAN: 0b1000: Saturate to Zero
-                    // ZERO: 0b0000
-                    // +ONE: 0b0000
-                    // -INF: 0b1000: Saturate to Zero
-                    // +INF: 0b0000
-                    // -VAL: 0b1000: Saturate to Zero
-                    // +VAL: 0b0000
-        - For conversion to signed
-                    // QNAN: 0b1000: Saturate to Zero
-                    // SNAN: 0b1000: Saturate to Zero
-                    // ZERO: 0b0000
-                    // +ONE: 0b0000
-                    // -INF: 0b0000
-                    // +INF: 0b0000
-                    // -VAL: 0b0000
-                    // +VAL: 0b0000
-        */
-        int32_t  iconVal = varTypeIsUnsigned(simdTargetBaseType) ? 0x08080088 : 0x00000088;
-        GenTree* tblCon  = gtNewSimdCreateBroadcastNode(type, gtNewIconNode(iconVal), simdTargetBaseJitType, simdSize);
+    //         default:
+    //         {
+    //             unreached();
+    //         }
+    //     }
+    //     return gtNewSimdHWIntrinsicNode(type, op1, cvtIntrinsic, simdSourceBaseJitType, simdSize);
+    // }
+    // else if (compIsEvexOpportunisticallySupported(isV512Supported))
+    // {
+    //     if (varTypeIsSigned(simdTargetBaseType))
+    //     {
+    //         if (simdSourceBaseType == TYP_FLOAT && simdTargetBaseType == TYP_INT)
+    //         {
+    //             NamedIntrinsic convertIntrinsic = NI_Illegal;
+    //             GenTree*       maxIntegralValue = gtNewIconNode(INT32_MAX);
+    //             maxIntegralValue                          = gtNewSimdCreateBroadcastNode(type, maxIntegralValue, simdTargetBaseJitType, simdSize);
+    //             GenTree*       maxFloatingValue           = gtNewDconNode(2147483648.0, simdSourceBaseType);
+    //             maxFloatingValue                          = gtNewSimdCreateBroadcastNode(type, maxFloatingValue, simdSourceBaseJitType, simdSize);
+                
+    //             convertIntrinsic        = (simdSize == 16) ? NI_SSE2_ConvertToVector128Int32WithTruncation
+    //                                                        : (simdSize == 32) ? NI_AVX_ConvertToVector256Int32WithTruncation
+    //                                                                           : NI_AVX512F_ConvertToVector512Int32WithTruncation;
 
-        // We need op1Clone to run fixup
-        GenTree*       op1Clone = fgMakeMultiUse(&op1);
-        NamedIntrinsic fixupHwIntrinsicID;
 
-        if (simdSize == 64)
-        {
-            fixupHwIntrinsicID = NI_AVX512F_Fixup;
-        }
-        else
-        {
-            fixupHwIntrinsicID = !isV512Supported ? NI_AVX10v1_Fixup : NI_AVX512F_VL_Fixup;
-        }
-        // run vfixupimmsd base on table and no flags reporting
-        fixupVal = gtNewSimdHWIntrinsicNode(type, op1, op1Clone, tblCon, gtNewIconNode(0), fixupHwIntrinsicID,
-                                            simdSourceBaseJitType, simdSize);
-    }
-    else
-    {
+    //             // GenTree* srcClone1      = fgMakeMultiUse(&op1);
+    //             GenTree* srcClone2      = fgMakeMultiUse(&op1);
+    //             GenTree* srcClone3      = fgMakeMultiUse(&op1);
+    //             GenTree* convertResult = nullptr;
+
+    //             // NamedIntrinsic compareNaNIntrinsic = (simdSize == 16) ? NI_SSE_CompareOrdered
+    //             //                                                       : (simdSize == 32) ? NI_AVX_CompareOrdered
+    //             //                                                                          : NI_AVX512F_CompareOrdered;
+
+    //             // GenTree* nanMask = gtNewSimdHWIntrinsicNode(type, op1, srcClone1, compareNaNIntrinsic,
+    //             //                                                             simdSourceBaseJitType, simdSize);
+
+    //             // fixupVal = gtNewSimdBinOpNode(GT_AND, type, nanMask, srcClone2, simdSourceBaseJitType, simdSize);
+    //             GenTree* nanMask     = gtNewSimdIsNaNNode(type, op1, simdSourceBaseJitType, simdSize);
+    //             fixupVal             = gtNewSimdBinOpNode(GT_AND_NOT, type, srcClone2, nanMask, simdSourceBaseJitType, simdSize);
+
+    //             convertResult = gtNewSimdHWIntrinsicNode(type, fixupVal, convertIntrinsic, simdSourceBaseJitType, simdSize);
+
+    //             // NamedIntrinsic compareIntrinsic = (simdSize == 16) ? NI_SSE_CompareGreaterThanOrEqual
+    //             //                                                    : (simdSize == 32) ? NI_AVX_CompareGreaterThanOrEqual
+    //             //                                                                       : NI_AVX512F_CompareGreaterThanOrEqual;
+
+    //             // GenTree* compareMax = gtNewSimdHWIntrinsicNode(type, srcClone3, maxFloatingValue,
+    //             //                                                     compareIntrinsic, simdSourceBaseJitType, simdSize);
+    //             GenTree* compareMax = gtNewSimdCmpOpNode(GT_GE, type, srcClone3, maxFloatingValue, simdSourceBaseJitType, simdSize);
+    //             return gtNewConditionalNode(GT_SELECT, compareMax, maxIntegralValue, convertResult, genActualType(simdTargetBaseType));
+    //         }
+    //         else
+    //         {
+    //             /*Generate the control table for VFIXUPIMMSD/SS
+    //             - For conversion to unsigned
+    //                         // QNAN: 0b1000: Saturate to Zero
+    //                         // SNAN: 0b1000: Saturate to Zero
+    //                         // ZERO: 0b0000
+    //                         // +ONE: 0b0000
+    //                         // -INF: 0b1000: Saturate to Zero
+    //                         // +INF: 0b0000
+    //                         // -VAL: 0b1000: Saturate to Zero
+    //                         // +VAL: 0b0000
+    //             - For conversion to signed
+    //                         // QNAN: 0b1000: Saturate to Zero
+    //                         // SNAN: 0b1000: Saturate to Zero
+    //                         // ZERO: 0b0000
+    //                         // +ONE: 0b0000
+    //                         // -INF: 0b0000
+    //                         // +INF: 0b0000
+    //                         // -VAL: 0b0000
+    //                         // +VAL: 0b0000
+    //             */
+    //             int32_t  iconVal = varTypeIsUnsigned(simdTargetBaseType) ? 0x08080088 : 0x00000088;
+    //             GenTree* tblCon  = gtNewSimdCreateBroadcastNode(type, gtNewIconNode(iconVal), simdTargetBaseJitType, simdSize);
+
+    //             // We need op1Clone to run fixup
+    //             GenTree*       op1Clone = fgMakeMultiUse(&op1);
+    //             NamedIntrinsic fixupHwIntrinsicID;
+
+    //             if (simdSize == 64)
+    //             {
+    //                 fixupHwIntrinsicID = NI_AVX512F_Fixup;
+    //             }
+    //             else
+    //             {
+    //                 fixupHwIntrinsicID = !isV512Supported ? NI_AVX10v1_Fixup : NI_AVX512F_VL_Fixup;
+    //             }
+    //             // run vfixupimmsd base on table and no flags reporting
+    //             fixupVal = gtNewSimdHWIntrinsicNode(type, op1, op1Clone, tblCon, gtNewIconNode(0), fixupHwIntrinsicID,
+    //                                                 simdSourceBaseJitType, simdSize);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         // Add equivalent of clinton's scalar code for unsigned conversions
+    //         NamedIntrinsic maxScalarIntrinsic = (simdSize == 64) ? NI_AVX512F_Max : (simdSize == 32) ? NI_AVX_Max : (simdSourceBaseType == TYP_FLOAT) ? NI_SSE_Max : NI_SSE2_Max;
+
+    //         GenTree* zero = gtNewZeroConNode(type);
+    //         fixupVal = gtNewSimdHWIntrinsicNode(type, op1, zero, maxScalarIntrinsic, simdSourceBaseJitType, simdSize);
+    //     }
+    // }
+    // else
+    // {
         // Zero out NaN values from the input.
         // mask1 contains the output either 0xFFFFFFFF or 0.
         // FixupVal zeros out any NaN values in the input by ANDing input with mask1.
         GenTree* op1Clone1 = fgMakeMultiUse(&op1);
         GenTree* mask1     = gtNewSimdIsNaNNode(type, op1, simdSourceBaseJitType, simdSize);
         fixupVal           = gtNewSimdBinOpNode(GT_AND_NOT, type, op1Clone1, mask1, simdSourceBaseJitType, simdSize);
-    }
+    // }
 
     if (varTypeIsSigned(simdTargetBaseType))
     {
