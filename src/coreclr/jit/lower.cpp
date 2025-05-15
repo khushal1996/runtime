@@ -11385,15 +11385,53 @@ bool Lowering::TryLowerAndOrToCCMP(GenTreeOp* tree, GenTree** next)
     // by TryLowerConditionToFlagsNode.
     //
     GenCondition cond1;
+    if (op2->OperIsCmpCompare())
+    {
+        if (varTypeIsIntegralOrI(op2->gtGetOp1()))
+        {
+            if (IsInvariantInRange(op2, tree))
+            {
+                if (op2->gtGetOp1()->IsIntegralConst() || !op2->gtGetOp1()->isContained())
+                {
+                    if (op2->gtGetOp2() == nullptr || op2->gtGetOp2()->IsIntegralConst() || !op2->gtGetOp2()->isContained())
+                    {
+                        // if (TryLowerConditionToFlagsNode(tree, op1, &cond1, false))
+                        // {
+                        //     // fall through
+                        // }
+                    }
+                }
+            }
+        }
+    }
+    if (op1->OperIsCmpCompare())
+    {
+        if (varTypeIsIntegralOrI(op1->gtGetOp1()))
+        {
+            if (IsInvariantInRange(op1, tree))
+            {
+                if (op1->gtGetOp1()->IsIntegralConst() || !op1->gtGetOp1()->isContained())
+                {
+                    if (op1->gtGetOp2() == nullptr || op1->gtGetOp2()->IsIntegralConst() || !op1->gtGetOp2()->isContained())
+                    {
+                        // if (TryLowerConditionToFlagsNode(tree, op2, &cond1, false))
+                        // {
+                        //     // fall through
+                        // }
+                    }
+                }
+            }
+        }
+    }
     if (op2->OperIsCmpCompare() && varTypeIsIntegralOrI(op2->gtGetOp1()) && IsInvariantInRange(op2, tree) &&
-        (op2->gtGetOp1()->IsIntegralConst() || !op2->gtGetOp1()->isContained()) &&
+        (op2->gtGetOp1()->IsIntegralConst() || op2->gtGetOp1()->OperIs(GT_LCL_FLD/*, GT_IND*/) || !op2->gtGetOp1()->isContained()) &&
         (op2->gtGetOp2() == nullptr || op2->gtGetOp2()->IsIntegralConst() || !op2->gtGetOp2()->isContained()) &&
         TryLowerConditionToFlagsNode(tree, op1, &cond1, false))
     {
         // Fall through, converting op2 to the CCMP
     }
     else if (op1->OperIsCmpCompare() && varTypeIsIntegralOrI(op1->gtGetOp1()) && IsInvariantInRange(op1, tree) &&
-             (op1->gtGetOp1()->IsIntegralConst() || !op1->gtGetOp1()->isContained()) &&
+             (op1->gtGetOp1()->IsIntegralConst() || op1->gtGetOp1()->OperIs(GT_LCL_FLD/*, GT_IND*/) || !op1->gtGetOp1()->isContained()) &&
              (op1->gtGetOp2() == nullptr || op1->gtGetOp2()->IsIntegralConst() || !op1->gtGetOp2()->isContained()) &&
              TryLowerConditionToFlagsNode(tree, op2, &cond1, false))
     {
