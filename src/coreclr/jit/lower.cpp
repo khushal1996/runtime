@@ -11440,8 +11440,12 @@ bool Lowering::TryLowerAndOrToCCMP(GenTreeOp* tree, GenTree** next)
         }
     }
     if (canConvertOp2ToCCMP && 
-        !(canConvertOp1ToCCMP && !(op2->gtGetOp2() == nullptr || op2->gtGetOp2()->IsIntegralConst() || !op2->gtGetOp2()->isContained()) && 
-        (op1->gtGetOp2() == nullptr || op1->gtGetOp2()->IsIntegralConst() || !op1->gtGetOp2()->isContained())) &&
+        !(canConvertOp1ToCCMP &&
+        !((op2->gtGetOp1()->IsIntegralConst() || !op2->gtGetOp1()->isContained()) &&
+        (op2->gtGetOp2() == nullptr || op2->gtGetOp2()->IsIntegralConst() || !op2->gtGetOp2()->isContained()))) &&
+        // !(op2->gtGetOp2() == nullptr || op2->gtGetOp2()->IsIntegralConst() || !op2->gtGetOp2()->isContained()) &&
+        // !(op2->gtGetOp1()->IsIntegralConst() || !op2->gtGetOp1()->isContained()) &&
+        // (op1->gtGetOp2() == nullptr || op1->gtGetOp2()->IsIntegralConst() || !op1->gtGetOp2()->isContained())) &&
         /*(op2->gtGetOp2() == nullptr || op2->gtGetOp2()->IsIntegralConst() || !op2->gtGetOp2()->isContained()) &&*/
         TryLowerConditionToFlagsNode(tree, op1, &cond1, false))
     {
