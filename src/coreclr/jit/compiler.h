@@ -9771,12 +9771,6 @@ public:
     //
     bool canUseApxEncoding() const
     {
-#ifdef DEBUG
-        if (JitConfig.JitBypassApxCheck())
-        {
-            return true;
-        }
-#endif
         return compOpportunisticallyDependsOn(InstructionSet_APX);
     }
 
