@@ -187,6 +187,10 @@ bool Compiler::optSwitchDetectAndConvert(BasicBlock* firstBlock, bool testingFor
             // TODO: make it more flexible and support cases like "x != cns1 && x != cns2 && ..."
             return false;
         }
+        if (testingForConversion && firstBlock->HasFlag(BBF_SWITCH_CONVERSION_LIKELY))
+        {
+            return true;
+        }
 
         // No more than SWITCH_MAX_TABLE_SIZE blocks are allowed (arbitrary limit in this context)
         int     testValueIndex                  = 0;
@@ -260,15 +264,9 @@ bool Compiler::optSwitchDetectAndConvert(BasicBlock* firstBlock, bool testingFor
                 if (isReversed)
                 {
                     // We only support reversed test (GT_NE) for the last block.
-                    // return !testingForConversion &&
-                    //        optSwitchConvert(firstBlock, testValueIndex, testValues, falseLikelihood, variableNode);
                     return optSwitchConvert(firstBlock, testValueIndex, testValues, falseLikelihood, variableNode,
                                             testingForConversion);
                 }
-
-                // if (testingForConversion)
-                //     return true;
-
                 prevBlock = currBb;
             }
             else
@@ -309,10 +307,6 @@ bool Compiler::optSwitchConvert(BasicBlock* firstBlock,
     assert(firstBlock->KindIs(BBJ_COND));
     assert(!varTypeIsSmall(nodeToTest));
 
-    if (testingForConversion && firstBlock->HasFlag(BBF_SWITCH_CONVERSION_LIKELY))
-    {
-        return true;
-    }
     if (testingForConversion && (testsCount < CONVERT_SWITCH_TO_CCMP_MIN_TEST))
     {
         return false;
