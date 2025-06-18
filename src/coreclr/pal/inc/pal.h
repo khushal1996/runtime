@@ -1514,7 +1514,7 @@ typedef struct _KNONVOLATILE_CONTEXT_POINTERS {
     } ;
 
     union {
-        PDWORD64 IntegerContext[16];
+        PDWORD64 IntegerContext[32];
         struct {
             PDWORD64 Rax;
             PDWORD64 Rcx;
@@ -1532,6 +1532,22 @@ typedef struct _KNONVOLATILE_CONTEXT_POINTERS {
             PDWORD64 R13;
             PDWORD64 R14;
             PDWORD64 R15;
+            // PDWORD64 R16;
+            // PDWORD64 R17;
+            // PDWORD64 R18;
+            // PDWORD64 R19;
+            // PDWORD64 R20;
+            // PDWORD64 R21;
+            // PDWORD64 R22;
+            // PDWORD64 R23;
+            // PDWORD64 R24;
+            // PDWORD64 R25;
+            // PDWORD64 R26;
+            // PDWORD64 R27;
+            // PDWORD64 R28;
+            // PDWORD64 R29;
+            // PDWORD64 R30;
+            // PDWORD64 R31;
         } ;
     } ;
 
