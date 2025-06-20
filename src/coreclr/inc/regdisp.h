@@ -220,7 +220,7 @@ typedef struct _Amd64VolatileContextPointer
             PDWORD64 R31;
             //X18 is reserved by OS, in userspace it represents TEB
         };
-        PDWORD64 X[16];
+        PDWORD64 R[16];
     };
 } Amd64VolatileContextPointer;
 #endif //TARGET_AMD64
@@ -455,7 +455,7 @@ typedef REGDISPLAY *PREGDISPLAY;
 inline void FillContextPointers(PT_KNONVOLATILE_CONTEXT_POINTERS pCtxPtrs, PT_CONTEXT pCtx)
 {
 #ifdef TARGET_AMD64
-    for (int i = 0; i < 32; i++)
+    for (int i = 0; i < 16; i++)
     {
         *(&pCtxPtrs->Rax + i) = (&pCtx->Rax + i);
     }
@@ -595,7 +595,11 @@ inline void FillRegDisplay(const PREGDISPLAY pRD, PT_CONTEXT pctx, PT_CONTEXT pC
     // Fill volatile context pointers. They can be used by GC in the case of the leaf frame
     for (int i=0; i < 18; i++)
         pRD->volatileCurrContextPointers.X[i] = &pctx->X[i];
-#elif defined(TARGET_LOONGARCH64) // TARGET_ARM64
+#elif defined(TARGET_AMD64) // TARGET_ARM64
+    // Fill volatile context pointers. They can be used by GC in the case of the leaf frame
+    for (int i=0; i < 16; i++)
+        pRD->volatileCurrContextPointers.R[i] = &pctx->R[i];
+#elif defined(TARGET_LOONGARCH64) // TARGET_AMD64
     pRD->volatileCurrContextPointers.A0 = &pctx->A0;
     pRD->volatileCurrContextPointers.A1 = &pctx->A1;
     pRD->volatileCurrContextPointers.A2 = &pctx->A2;

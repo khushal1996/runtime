@@ -1464,24 +1464,28 @@ typedef struct DECLSPEC_ALIGN(16) _CONTEXT {
         M512 Zmm31;
     };
 
-    struct
+    union
     {
-        DWORD64 R16;
-        DWORD64 R17;
-        DWORD64 R18;
-        DWORD64 R19;
-        DWORD64 R20;
-        DWORD64 R21;
-        DWORD64 R22;
-        DWORD64 R23;
-        DWORD64 R24;
-        DWORD64 R25;
-        DWORD64 R26;
-        DWORD64 R27;
-        DWORD64 R28;
-        DWORD64 R29;
-        DWORD64 R30;
-        DWORD64 R31;
+        struct
+        {
+            DWORD64 R16;
+            DWORD64 R17;
+            DWORD64 R18;
+            DWORD64 R19;
+            DWORD64 R20;
+            DWORD64 R21;
+            DWORD64 R22;
+            DWORD64 R23;
+            DWORD64 R24;
+            DWORD64 R25;
+            DWORD64 R26;
+            DWORD64 R27;
+            DWORD64 R28;
+            DWORD64 R29;
+            DWORD64 R30;
+            DWORD64 R31;
+        };
+        DWORD64 R[16];
     };
 
 } CONTEXT, *PCONTEXT, *LPCONTEXT;
@@ -1514,7 +1518,7 @@ typedef struct _KNONVOLATILE_CONTEXT_POINTERS {
     } ;
 
     union {
-        PDWORD64 IntegerContext[32];
+        PDWORD64 IntegerContext[16];
         struct {
             PDWORD64 Rax;
             PDWORD64 Rcx;
@@ -1532,22 +1536,6 @@ typedef struct _KNONVOLATILE_CONTEXT_POINTERS {
             PDWORD64 R13;
             PDWORD64 R14;
             PDWORD64 R15;
-            // PDWORD64 R16;
-            // PDWORD64 R17;
-            // PDWORD64 R18;
-            // PDWORD64 R19;
-            // PDWORD64 R20;
-            // PDWORD64 R21;
-            // PDWORD64 R22;
-            // PDWORD64 R23;
-            // PDWORD64 R24;
-            // PDWORD64 R25;
-            // PDWORD64 R26;
-            // PDWORD64 R27;
-            // PDWORD64 R28;
-            // PDWORD64 R29;
-            // PDWORD64 R30;
-            // PDWORD64 R31;
         } ;
     } ;
 
