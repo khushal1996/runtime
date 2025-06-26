@@ -27,6 +27,7 @@ struct REGDISPLAY
     PTR_uintptr_t pR13;
     PTR_uintptr_t pR14;
     PTR_uintptr_t pR15;
+#if defined(TARGET_UNIX)
     PTR_uintptr_t pR16;
     PTR_uintptr_t pR17;
     PTR_uintptr_t pR18;
@@ -43,6 +44,7 @@ struct REGDISPLAY
     PTR_uintptr_t pR29;
     PTR_uintptr_t pR30;
     PTR_uintptr_t pR31;
+#endif //TARGET_UNIX
 #endif // TARGET_AMD64
 
     uintptr_t   SP;

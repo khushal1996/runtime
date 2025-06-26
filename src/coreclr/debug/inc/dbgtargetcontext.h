@@ -256,6 +256,7 @@ typedef struct DECLSPEC_ALIGN(16) {
     DWORD64 R14;
     DWORD64 R15;
 
+#if defined(TARGET_UNIX)
     //EGPRs for APX
     union {
         struct {
@@ -278,6 +279,7 @@ typedef struct DECLSPEC_ALIGN(16) {
         };
         DWORD64 R[16];
     };
+#endif // TARGET_UNIX
 
     DWORD64 Rip;
 

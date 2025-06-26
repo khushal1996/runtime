@@ -16891,6 +16891,7 @@ void FuncEvalFrame::UpdateRegDisplay_Impl(const PREGDISPLAY pRD, bool updateFloa
     pRD->pCurrentContextPointers->R14 = &(pDE->m_context.R14);
     pRD->pCurrentContextPointers->R15 = &(pDE->m_context.R15);
 
+#if defined(TARGET_UNIX)
     // This would mean we need to update winnt.h in windows sdk.
     pRD->volatileCurrContextPointers.R16 = &(pDE->m_context.R16);
     pRD->volatileCurrContextPointers.R17 = &(pDE->m_context.R17);
@@ -16908,6 +16909,7 @@ void FuncEvalFrame::UpdateRegDisplay_Impl(const PREGDISPLAY pRD, bool updateFloa
     pRD->volatileCurrContextPointers.R29 = &(pDE->m_context.R29);
     pRD->volatileCurrContextPointers.R30 = &(pDE->m_context.R30);
     pRD->volatileCurrContextPointers.R31 = &(pDE->m_context.R31);
+#endif // TARGET_UNIX
 
     // SyncRegDisplayToCurrentContext() sets the pRD->SP and pRD->ControlPC on AMD64.
     SyncRegDisplayToCurrentContext(pRD);

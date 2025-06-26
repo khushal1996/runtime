@@ -1494,16 +1494,18 @@ template <typename GcInfoEncoding> OBJECTREF* TGcInfoDecoder<GcInfoEncoding>::Ge
 #ifdef FEATURE_NATIVEAOT
     PTR_uintptr_t* ppRax = &pRD->pRax;
     if (regNum > 4) regNum--; // rsp is skipped in NativeAOT RegDisplay
-#else
+#else // FEATURE_NATIVEAOT
     // The fields of KNONVOLATILE_CONTEXT_POINTERS are in the same order as
     // the processor encoding numbers.
     ULONGLONG **ppRax = &pRD->pCurrentContextPointers->Rax;
+#if defined(TARGET_UNIX)
     if(regNum >= 17)
     {
         ppRax = &pRD->volatileCurrContextPointers.R16;
         return (OBJECTREF*)*(ppRax + regNum - 17);
     }
-#endif
+#endif // TARGET_UNIX
+#endif // FEATURE_NATIVEAOT
 
     return (OBJECTREF*)*(ppRax + regNum);
 }

@@ -1464,6 +1464,7 @@ typedef struct DECLSPEC_ALIGN(16) _CONTEXT {
         M512 Zmm31;
     };
 
+    // XSTATE_APX
     union
     {
         struct
