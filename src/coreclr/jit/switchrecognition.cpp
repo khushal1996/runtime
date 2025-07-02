@@ -289,7 +289,7 @@ bool Compiler::optSwitchDetectAndConvert(BasicBlock* firstBlock, bool testingFor
 
 optSwitchConvert:
     return optSwitchConvert(firstBlock, testValueIndex, testValues, falseLikelihood, variableNode,
-                            testingForConversion);
+                            testingForConversion, ccmp_vec);
 }
 
 //------------------------------------------------------------------------------
