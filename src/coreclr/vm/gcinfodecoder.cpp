@@ -1500,7 +1500,12 @@ template <typename GcInfoEncoding> OBJECTREF* TGcInfoDecoder<GcInfoEncoding>::Ge
     ULONGLONG **ppRax = &pRD->pCurrentContextPointers->Rax;
     if(regNum >= 16)
     {
-        assert(IsAPXSupported());
+        // DWORD64 featureMask = GetEnabledXStateFeatures();
+        _ASSERTE(IsAPXSupported());
+// #ifndef TARGET_WINDOWS
+//         _ASSERTE(featureMask & XSTATE_MASK_APX);
+//         XSAVE_AMD64_APX_FORMAT* pCET = (XSAVE_AMD64_APX_FORMAT*)LocateXStateFeature(pContext, XSTATE_CET_U, NULL);
+// #endif
         ppRax = &pRD->volatileCurrContextPointers.R16;
         return (OBJECTREF*)*(ppRax + regNum - 16);
     }
@@ -1515,17 +1520,14 @@ template <typename GcInfoEncoding> OBJECTREF* TGcInfoDecoder<GcInfoEncoding>::Ge
     PREGDISPLAY     pRD
     )
 {
-#if defined(TARGET_UNIX)
-    _ASSERTE(regNum >= 0 && regNum <= 32);
-#else // TARGET_UNIX
-    _ASSERTE(regNum >= 0 && regNum <= 16);
-#endif // TARGET_UNIX
+    _ASSERTE(regNum >= 0 && (regNum <= 16 || (IsAPXSupported() && regNum <=32)));
     _ASSERTE(regNum != 4);  // rsp
 
     // The fields of CONTEXT are in the same order as
     // the processor encoding numbers.
-    if (ExecutionManager::GetEEJitManager()->IsAPXSupported() && regNum >= 16)
+    if (regNum >= 16)
     {
+        assert(IsAPXSupported());
         ULONGLONG *pRax = &pRD->pCurrentContext->R16;
         return (OBJECTREF*)(pRax + regNum - 16);
     }
@@ -1537,11 +1539,7 @@ template <typename GcInfoEncoding> OBJECTREF* TGcInfoDecoder<GcInfoEncoding>::Ge
 
 template <typename GcInfoEncoding> bool TGcInfoDecoder<GcInfoEncoding>::IsScratchRegister(int regNum,  PREGDISPLAY pRD)
 {
-#if defined(TARGET_UNIX)
-    _ASSERTE(regNum >= 0 && regNum <= 32);
-#else // TARGET_UNIX
-    _ASSERTE(regNum >= 0 && regNum <= 16);
-#endif // TARGET_UNIX
+    _ASSERTE(regNum >= 0 && (regNum <= 16 || (IsAPXSupported() && regNum <=32)));
     _ASSERTE(regNum != 4);  // rsp
 
     UINT32 PreservedRegMask =

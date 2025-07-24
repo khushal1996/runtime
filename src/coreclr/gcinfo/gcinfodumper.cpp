@@ -703,10 +703,14 @@ GcInfoDumper::EnumerateStateChangesResults GcInfoDumper::EnumerateStateChanges (
 #if defined(TARGET_UNIX) && defined(HOST_UNIX)
     if (IsAPXSupported())
     {
+        DWORD64 featureMask = GetEnabledXStateFeatures();
+        _ASSERTE(featureMask & XSTATE_MASK_APX);
+        DWORD size = 0;
+        PDWORD64 contextAPX = (PDWORD64)LocateXStateFeature(&regdisp.pCurrentContext, XSTATE_APX, &size);
         ULONG64 **ppVolatileReg = &regdisp.volatileCurrContextPointers.R16;
         for (iReg = 0; iReg < 16; iReg++)
         {
-            *(ppVolatileReg+iReg) = &regdisp.pCurrentContext->R16 + iReg;
+            *(ppVolatileReg+iReg) = &contextAPX[iReg];
         }
     }
 #endif // TARGET_UNIX

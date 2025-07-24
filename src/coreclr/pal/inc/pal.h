@@ -1243,6 +1243,19 @@ typedef struct DECLSPEC_ALIGN(16) _M512 {
     M256 High;
 } M512, *PM512;
 
+DWORD64 GetEnabledXStateFeatures()
+{
+    reutrn 0;
+}
+//
+// Format for APX XSTATE component.
+//
+
+typedef struct _XSAVE_AMD64_APX_FORMAT {
+    DWORD64 Ia32CetUMsr;
+    DWORD64 Ia32Pl3SspMsr;
+} XSAVE_AMD64_APX_FORMAT;
+
 typedef struct _XMM_SAVE_AREA32 {
     WORD   ControlWord;
     WORD   StatusWord;
