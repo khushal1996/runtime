@@ -211,14 +211,15 @@ inline var_types JITtype2varType(CorInfoType type)
         TYP_LONG,   // CORINFO_TYPE_ULONG           = 0xb,
         TYP_I_IMPL, // CORINFO_TYPE_NATIVEINT       = 0xc,
         TYP_I_IMPL, // CORINFO_TYPE_NATIVEUINT      = 0xd,
-        TYP_FLOAT,  // CORINFO_TYPE_FLOAT           = 0xe,
-        TYP_DOUBLE, // CORINFO_TYPE_DOUBLE          = 0xf,
-        TYP_REF,    // CORINFO_TYPE_STRING          = 0x10,         // Not used, should remove
-        TYP_I_IMPL, // CORINFO_TYPE_PTR             = 0x11,
-        TYP_BYREF,  // CORINFO_TYPE_BYREF           = 0x12,
-        TYP_STRUCT, // CORINFO_TYPE_VALUECLASS      = 0x13,
-        TYP_REF,    // CORINFO_TYPE_CLASS           = 0x14,
-        TYP_STRUCT, // CORINFO_TYPE_REFANY          = 0x15,
+        TYP_HALF,   // CORINFO_TYPE_HALF            = 0xe,
+        TYP_FLOAT,  // CORINFO_TYPE_FLOAT           = 0xf,
+        TYP_DOUBLE, // CORINFO_TYPE_DOUBLE          = 0x10,
+        TYP_REF,    // CORINFO_TYPE_STRING          = 0x11,         // Not used, should remove
+        TYP_I_IMPL, // CORINFO_TYPE_PTR             = 0x12,
+        TYP_BYREF,  // CORINFO_TYPE_BYREF           = 0x13,
+        TYP_STRUCT, // CORINFO_TYPE_VALUECLASS      = 0x14,
+        TYP_REF,    // CORINFO_TYPE_CLASS           = 0x15,
+        TYP_STRUCT, // CORINFO_TYPE_REFANY          = 0x16,
 
         // Generic type variables only appear when we're doing
         // verification of generic code, in which case we're running
@@ -231,7 +232,7 @@ inline var_types JITtype2varType(CorInfoType type)
         // choice places to do with verification, where we use
         // verification types and CLASS_HANDLEs to track the difference.
 
-        TYP_REF, // CORINFO_TYPE_VAR             = 0x16,
+        TYP_REF, // CORINFO_TYPE_VAR             = 0x17,
     };
 
     // spot check to make certain enumerations have not changed
@@ -272,14 +273,15 @@ inline var_types JitType2PreciseVarType(CorInfoType type)
         TYP_ULONG,  // CORINFO_TYPE_ULONG           = 0xb,
         TYP_I_IMPL, // CORINFO_TYPE_NATIVEINT       = 0xc,
         TYP_U_IMPL, // CORINFO_TYPE_NATIVEUINT      = 0xd,
-        TYP_FLOAT,  // CORINFO_TYPE_FLOAT           = 0xe,
-        TYP_DOUBLE, // CORINFO_TYPE_DOUBLE          = 0xf,
-        TYP_REF,    // CORINFO_TYPE_STRING          = 0x10,         // Not used, should remove
-        TYP_U_IMPL, // CORINFO_TYPE_PTR             = 0x11,
-        TYP_BYREF,  // CORINFO_TYPE_BYREF           = 0x12,
-        TYP_STRUCT, // CORINFO_TYPE_VALUECLASS      = 0x13,
-        TYP_REF,    // CORINFO_TYPE_CLASS           = 0x14,
-        TYP_STRUCT, // CORINFO_TYPE_REFANY          = 0x15,
+        TYP_HALF,   // CORINFO_TYPE_HALF            = 0xe,
+        TYP_FLOAT,   // CORINFO_TYPE_FLOAT          = 0xf,
+        TYP_DOUBLE, // CORINFO_TYPE_DOUBLE          = 0x10,
+        TYP_REF,    // CORINFO_TYPE_STRING          = 0x11,         // Not used, should remove
+        TYP_U_IMPL, // CORINFO_TYPE_PTR             = 0x12,
+        TYP_BYREF,  // CORINFO_TYPE_BYREF           = 0x13,
+        TYP_STRUCT, // CORINFO_TYPE_VALUECLASS      = 0x14,
+        TYP_REF,    // CORINFO_TYPE_CLASS           = 0x15,
+        TYP_STRUCT, // CORINFO_TYPE_REFANY          = 0x16,
 
         // Generic type variables only appear when we're doing
         // verification of generic code, in which case we're running
@@ -292,7 +294,7 @@ inline var_types JitType2PreciseVarType(CorInfoType type)
         // choice places to do with verification, where we use
         // verification types and CLASS_HANDLEs to track the difference.
 
-        TYP_REF, // CORINFO_TYPE_VAR             = 0x16,
+        TYP_REF, // CORINFO_TYPE_VAR             = 0x17,
     };
 
     // spot check to make certain enumerations have not changed
