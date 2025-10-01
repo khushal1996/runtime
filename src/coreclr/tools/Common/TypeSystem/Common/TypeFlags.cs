@@ -25,28 +25,27 @@ namespace Internal.TypeSystem
         UInt64          = 0x0B,
         IntPtr          = 0x0C,
         UIntPtr         = 0x0D,
-        Half            = 0x0E,
-        Single          = 0x0F,
-        Double          = 0x10,
+        Single          = 0x0E,
+        Double          = 0x0F,
 
-        ValueType       = 0x11,
-        Enum            = 0x12, // Parent is enum
-        Nullable        = 0x13, // Nullable instantiation
-        // Unused         0x14
+        ValueType       = 0x10,
+        Enum            = 0x11, // Parent is enum
+        Nullable        = 0x12, // Nullable instantiation
+        // Unused         0x13
 
-        Class           = 0x15,
-        Interface       = 0x16,
-        // Unused         0x17
+        Class           = 0x14,
+        Interface       = 0x15,
+        // Unused         0x16
 
-        Array           = 0x18,
-        SzArray         = 0x19,
-        ByRef           = 0x1A,
-        Pointer         = 0x1B,
-        FunctionPointer = 0x1C,
+        Array           = 0x17,
+        SzArray         = 0x18,
+        ByRef           = 0x19,
+        Pointer         = 0x1A,
+        FunctionPointer = 0x1B,
 
-        GenericParameter        = 0x1D,
-        SignatureTypeVariable   = 0x1E,
-        SignatureMethodVariable = 0x1F,
+        GenericParameter        = 0x1C,
+        SignatureTypeVariable   = 0x1D,
+        SignatureMethodVariable = 0x1E,
 
         HasGenericVariance         = 0x100,
         HasGenericVarianceComputed = 0x200,

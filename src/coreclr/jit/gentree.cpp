@@ -697,20 +697,7 @@ void Compiler::fgWalkAllTreesPre(fgWalkPreFn* visitor, void* pCallBackData)
 //
 ClassLayout* GenTree::GetLayout(Compiler* compiler) const
 {
-    printf("khushal: ref %d\n", TYP_REF);
-    printf("khushal: type here %d\n", TypeGet());
-    printf("khushal: oper %d\n", OperGet());
-    printf("khushal: gtFlags %x\n", gtFlags);
-    
-    // Print call stack info
-    if (!varTypeIsStruct(TypeGet()))
-    {
-        printf("ERROR: GetLayout called on non-struct type %d (oper %d)\n", TypeGet(), OperGet());
-        assert(!"GetLayout called on non-struct type");
-    }
-    
     assert(varTypeIsStruct(TypeGet()));
-    printf("khushal: type after %d\n", TypeGet());
 
     CORINFO_CLASS_HANDLE structHnd = NO_CLASS_HANDLE;
     switch (OperGet())
