@@ -125,7 +125,7 @@ HRESULT _CountBytesOfOneArg(
             break;
 
         case ELEMENT_TYPE_SZARRAY:
-        case 0x1e /* obsolete */:
+        case 0x1f /* obsolete */:
             // skip over base type
             CHECK_REMAINDER;
             cb = cbTotalMax - cbTotal;

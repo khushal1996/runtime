@@ -33,6 +33,7 @@ ReturnKind VarTypeToReturnKind(var_types type)
             return RT_ByRef;
         case TYP_FLOAT:
         case TYP_DOUBLE:
+        case TYP_HALF:
             return RT_Float;
         default:
             return RT_Scalar;

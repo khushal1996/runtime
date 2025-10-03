@@ -882,40 +882,41 @@ typedef enum CorElementType
     ELEMENT_TYPE_U4             = 0x09,
     ELEMENT_TYPE_I8             = 0x0a,
     ELEMENT_TYPE_U8             = 0x0b,
-    ELEMENT_TYPE_R4             = 0x0c,
-    ELEMENT_TYPE_R8             = 0x0d,
-    ELEMENT_TYPE_STRING         = 0x0e,
+    ELEMENT_TYPE_R2             = 0x0c,
+    ELEMENT_TYPE_R4             = 0x0d,
+    ELEMENT_TYPE_R8             = 0x0e,
+    ELEMENT_TYPE_STRING         = 0x0f,
 
     // every type above PTR will be simple type
-    ELEMENT_TYPE_PTR            = 0x0f,     // PTR <type>
-    ELEMENT_TYPE_BYREF          = 0x10,     // BYREF <type>
+    ELEMENT_TYPE_PTR            = 0x10,     // PTR <type>
+    ELEMENT_TYPE_BYREF          = 0x11,     // BYREF <type>
 
     // Please use ELEMENT_TYPE_VALUETYPE. ELEMENT_TYPE_VALUECLASS is deprecated.
-    ELEMENT_TYPE_VALUETYPE      = 0x11,     // VALUETYPE <class Token>
-    ELEMENT_TYPE_CLASS          = 0x12,     // CLASS <class Token>
-    ELEMENT_TYPE_VAR            = 0x13,     // a class type variable VAR <number>
-    ELEMENT_TYPE_ARRAY          = 0x14,     // MDARRAY <type> <rank> <bcount> <bound1> ... <lbcount> <lb1> ...
-    ELEMENT_TYPE_GENERICINST    = 0x15,     // GENERICINST <generic type> <argCnt> <arg1> ... <argn>
-    ELEMENT_TYPE_TYPEDBYREF     = 0x16,     // TYPEDREF  (it takes no args) a typed reference to some other type
+    ELEMENT_TYPE_VALUETYPE      = 0x12,     // VALUETYPE <class Token>
+    ELEMENT_TYPE_CLASS          = 0x13,     // CLASS <class Token>
+    ELEMENT_TYPE_VAR            = 0x14,     // a class type variable VAR <number>
+    ELEMENT_TYPE_ARRAY          = 0x15,     // MDARRAY <type> <rank> <bcount> <bound1> ... <lbcount> <lb1> ...
+    ELEMENT_TYPE_GENERICINST    = 0x16,     // GENERICINST <generic type> <argCnt> <arg1> ... <argn>
+    ELEMENT_TYPE_TYPEDBYREF     = 0x18,     // TYPEDREF  (it takes no args) a typed reference to some other type
 
-    ELEMENT_TYPE_I              = 0x18,     // native integer size
-    ELEMENT_TYPE_U              = 0x19,     // native unsigned integer size
-    ELEMENT_TYPE_FNPTR          = 0x1b,     // FNPTR <complete sig for the function including calling convention>
-    ELEMENT_TYPE_OBJECT         = 0x1c,     // Shortcut for System.Object
-    ELEMENT_TYPE_SZARRAY        = 0x1d,     // Shortcut for single dimension zero lower bound array
+    ELEMENT_TYPE_I              = 0x19,     // native integer size
+    ELEMENT_TYPE_U              = 0x1b,     // native unsigned integer size
+    ELEMENT_TYPE_FNPTR          = 0x1c,     // FNPTR <complete sig for the function including calling convention>
+    ELEMENT_TYPE_OBJECT         = 0x1d,     // Shortcut for System.Object
+    ELEMENT_TYPE_SZARRAY        = 0x1e,     // Shortcut for single dimension zero lower bound array
                                             // SZARRAY <type>
-    ELEMENT_TYPE_MVAR           = 0x1e,     // a method type variable MVAR <number>
+    ELEMENT_TYPE_MVAR           = 0x1f,     // a method type variable MVAR <number>
 
     // This is only for binding
-    ELEMENT_TYPE_CMOD_REQD      = 0x1f,     // required C modifier : E_T_CMOD_REQD <mdTypeRef/mdTypeDef>
-    ELEMENT_TYPE_CMOD_OPT       = 0x20,     // optional C modifier : E_T_CMOD_OPT <mdTypeRef/mdTypeDef>
+    ELEMENT_TYPE_CMOD_REQD      = 0x20,     // required C modifier : E_T_CMOD_REQD <mdTypeRef/mdTypeDef>
+    ELEMENT_TYPE_CMOD_OPT       = 0x21,     // optional C modifier : E_T_CMOD_OPT <mdTypeRef/mdTypeDef>
 
     // This is for signatures generated internally (which will not be persisted in any way).
-    ELEMENT_TYPE_INTERNAL       = 0x21,     // INTERNAL <typehandle>
-    ELEMENT_TYPE_CMOD_INTERNAL  = 0x22,     // CMOD_INTERNAL <required (1 byte: non-zero if required, 0 if optional)> <typehandle>
+    ELEMENT_TYPE_INTERNAL       = 0x22,     // INTERNAL <typehandle>
+    ELEMENT_TYPE_CMOD_INTERNAL  = 0x23,     // CMOD_INTERNAL <required (1 byte: non-zero if required, 0 if optional)> <typehandle>
 
     // Note that this is the max of base type excluding modifiers
-    ELEMENT_TYPE_MAX            = 0x23,     // first invalid element type
+    ELEMENT_TYPE_MAX            = 0x24,     // first invalid element type
 
 
     ELEMENT_TYPE_MODIFIER       = 0x40,
@@ -944,6 +945,7 @@ typedef enum CorSerializationType
     SERIALIZATION_TYPE_U4           = ELEMENT_TYPE_U4,
     SERIALIZATION_TYPE_I8           = ELEMENT_TYPE_I8,
     SERIALIZATION_TYPE_U8           = ELEMENT_TYPE_U8,
+    SERIALIZATION_TYPE_R2           = ELEMENT_TYPE_R2,
     SERIALIZATION_TYPE_R4           = ELEMENT_TYPE_R4,
     SERIALIZATION_TYPE_R8           = ELEMENT_TYPE_R8,
     SERIALIZATION_TYPE_STRING       = ELEMENT_TYPE_STRING,

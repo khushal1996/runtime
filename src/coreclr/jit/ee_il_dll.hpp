@@ -211,6 +211,7 @@ inline var_types JITtype2varType(CorInfoType type)
         TYP_LONG,   // CORINFO_TYPE_ULONG           = 0xb,
         TYP_I_IMPL, // CORINFO_TYPE_NATIVEINT       = 0xc,
         TYP_I_IMPL, // CORINFO_TYPE_NATIVEUINT      = 0xd,
+        TYP_HALF,   // CORINFO_TYPE_HALF            = 0xd,
         TYP_FLOAT,  // CORINFO_TYPE_FLOAT           = 0xe,
         TYP_DOUBLE, // CORINFO_TYPE_DOUBLE          = 0xf,
         TYP_REF,    // CORINFO_TYPE_STRING          = 0x10,         // Not used, should remove
@@ -272,6 +273,7 @@ inline var_types JitType2PreciseVarType(CorInfoType type)
         TYP_ULONG,  // CORINFO_TYPE_ULONG           = 0xb,
         TYP_I_IMPL, // CORINFO_TYPE_NATIVEINT       = 0xc,
         TYP_U_IMPL, // CORINFO_TYPE_NATIVEUINT      = 0xd,
+        TYP_HALF,   // CORINFO_TYPE_HALF           = 0xe,
         TYP_FLOAT,  // CORINFO_TYPE_FLOAT           = 0xe,
         TYP_DOUBLE, // CORINFO_TYPE_DOUBLE          = 0xf,
         TYP_REF,    // CORINFO_TYPE_STRING          = 0x10,         // Not used, should remove
