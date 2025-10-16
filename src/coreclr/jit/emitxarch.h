@@ -967,7 +967,7 @@ void emitIns_R_R_A(instruction   ins,
                    GenTreeIndir* indir,
                    insOpts       instOptions = INS_OPTS_NONE);
 
-void emitIns_R_R_AR(instruction ins, emitAttr attr, regNumber reg1, regNumber reg2, regNumber base, int offs);
+void emitIns_R_R_AR(instruction ins, emitAttr attr, regNumber reg1, regNumber reg2, regNumber base, int offs, insOpts instOptions = INS_OPTS_NONE);
 
 void emitIns_R_AR_R(instruction ins,
                     emitAttr    attr,

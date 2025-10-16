@@ -5393,7 +5393,9 @@ UNATIVE_OFFSET emitter::emitInsSizeAM(instrDesc* id, code_t code)
                // kmov instructions reach this path with EA_8BYTE size, even on x86
                || IsKMOVInstruction(ins)
                // The prefetch instructions are always 3 bytes and have part of their modr/m byte hardcoded
-               || isPrefetch(ins));
+               || isPrefetch(ins)
+               // cmov intructions reach this path with EA_2BYTE
+               || insIsCMOV(ins));
 
         size = (attrSize == EA_2BYTE) && (ins == INS_cmpxchg) ? 4 : 3;
     }
@@ -8245,8 +8247,8 @@ void emitter::emitIns_R_S_I(
 void emitter::emitIns_R_R_A(
     instruction ins, emitAttr attr, regNumber reg1, regNumber reg2, GenTreeIndir* indir, insOpts instOptions)
 {
-    assert(IsSimdInstruction(ins));
-    assert(IsThreeOperandAVXInstruction(ins));
+    assert(IsSimdInstruction(ins) || insIsCMOV(ins));
+    assert(IsThreeOperandAVXInstruction(ins) || insIsCMOV(ins));
 
     ssize_t    offs = indir->Offset();
     instrDesc* id   = emitNewInstrAmd(attr, offs);
@@ -8259,6 +8261,8 @@ void emitter::emitIns_R_R_A(
 
     SetEvexBroadcastIfNeeded(id, instOptions);
     SetEvexEmbMaskIfNeeded(id, instOptions);
+    SetEvexNdIfNeeded(id, instOptions);
+    SetEvexNfIfNeeded(id, instOptions);
 
     UNATIVE_OFFSET sz = emitInsSizeAM(id, insCodeRM(ins));
     id->idCodeSize(sz);
@@ -8267,10 +8271,10 @@ void emitter::emitIns_R_R_A(
     emitCurIGsize += sz;
 }
 
-void emitter::emitIns_R_R_AR(instruction ins, emitAttr attr, regNumber reg1, regNumber reg2, regNumber base, int offs)
+void emitter::emitIns_R_R_AR(instruction ins, emitAttr attr, regNumber reg1, regNumber reg2, regNumber base, int offs, insOpts instOptions)
 {
-    assert(IsSimdInstruction(ins));
-    assert(IsThreeOperandAVXInstruction(ins));
+    assert(IsSimdInstruction(ins) || insIsCMOV(ins));
+    assert(IsThreeOperandAVXInstruction(ins) || insIsCMOV(ins));
 
     instrDesc* id = emitNewInstrAmd(attr, offs);
 
@@ -8281,6 +8285,9 @@ void emitter::emitIns_R_R_AR(instruction ins, emitAttr attr, regNumber reg1, reg
     id->idInsFmt(emitInsModeFormat(ins, IF_RRD_RRD_ARD));
     id->idAddr()->iiaAddrMode.amBaseReg = base;
     id->idAddr()->iiaAddrMode.amIndxReg = REG_NA;
+
+    SetEvexNdIfNeeded(id, instOptions);
+    SetEvexNfIfNeeded(id, instOptions);
 
     UNATIVE_OFFSET sz = emitInsSizeAM(id, insCodeRM(ins));
     id->idCodeSize(sz);

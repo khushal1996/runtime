@@ -9339,6 +9339,19 @@ void CodeGen::genAmd64EmitterUnitTestsApx()
     theEmitter->emitIns_R_R(INS_dec, EA_2BYTE, REG_R11, REG_ECX, INS_OPTS_EVEX_nd);
 
     theEmitter->emitIns_R_R_R(INS_cmovo, EA_4BYTE, REG_R12, REG_R11, REG_EAX, INS_OPTS_EVEX_nd);
+    // Test all CC codes
+    for (uint32_t ins = INS_cmovo; ins <= INS_cmovg; ins++)
+    {
+        theEmitter->emitIns_R_R_R((instruction)ins, EA_8BYTE, REG_R10, REG_EAX, REG_ECX, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_R((instruction)ins, EA_4BYTE, REG_R10, REG_EAX, REG_ECX, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_R((instruction)ins, EA_2BYTE, REG_R10, REG_EAX, REG_ECX, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_AR((instruction)ins, EA_8BYTE, REG_R16, REG_R17, REG_R18, 2, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_AR((instruction)ins, EA_4BYTE, REG_R16, REG_R17, REG_R18, 2, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_AR((instruction)ins, EA_2BYTE, REG_R16, REG_R17, REG_R18, 2, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_A((instruction)ins, EA_8BYTE, REG_R16, REG_R17, &load, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_A((instruction)ins, EA_4BYTE, REG_R16, REG_R17, &load, (insOpts)(INS_OPTS_EVEX_nd));
+        theEmitter->emitIns_R_R_A((instruction)ins, EA_2BYTE, REG_R16, REG_R17, &load, (insOpts)(INS_OPTS_EVEX_nd));
+    }
 
     theEmitter->emitIns_R_R_R(INS_imul, EA_4BYTE, REG_R12, REG_R11, REG_ECX, INS_OPTS_EVEX_nd);
     theEmitter->emitIns_R_R_S(INS_imul, EA_4BYTE, REG_R12, REG_R11, 0, 1, INS_OPTS_EVEX_nd);
