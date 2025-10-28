@@ -970,7 +970,7 @@ inline bool emitter::IsCFCMOV(instruction ins)
 //
 inline insCC emitter::GetCCFromIns(instruction ins)
 {
-    assert(IsCCMP(ins)/* || IsCFCMOV(ins)*/);
+    assert(IsCCMP(ins));
     switch (ins)
     {
         case INS_ccmpo:
@@ -2201,12 +2201,6 @@ emitter::code_t emitter::AddEvexPrefix(const instrDesc* id, code_t code, emitAtt
             code |= ((size_t)id->idGetEvexDFV()) << 43;
             code |= ((size_t)GetCCFromIns(ins)) << 32;
         }
-        else if (IsCFCMOV(ins))
-        {
-            // code &= 0xFFFF87F0FFFFFFFF;
-            // code |= ((size_t)id->idGetEvexDFV()) << 43;
-            // code |= ((size_t)GetCCFromIns(ins)) << 32;
-        }
 #endif
 
         return code;
@@ -2317,7 +2311,7 @@ emitter::code_t emitter::AddEvexPrefix(const instrDesc* id, code_t code, emitAtt
         default:
         {
 #ifdef TARGET_AMD64
-            if (IsCCMP(id->idIns())/* || IsCFCMOV(id->idIns())*/) // Special case for conditional ins such as CCMP, CCMOV
+            if (IsCCMP(id->idIns()))
             {
                 break;
             }
@@ -3110,7 +3104,7 @@ emitter::code_t emitter::emitExtractEvexPrefix(instruction ins, code_t& code) co
         //                          2. A map number from 0 to 7 (For AVX10.2 and above)
         leadingBytes = check;
         assert((leadingBytes == 0x0F) || ((emitComp->compIsaSupportedDebugOnly(InstructionSet_AVX10v2) ||
-                                           (emitComp->compIsaSupportedDebugOnly(InstructionSet_APX))) &&
+                                           (emitComp->compIsaSupportedDebugOnly(InstructionSet_APX) || JitConfig.JitBypassApxCheck())) &&
                                           (leadingBytes >= 0x00) && (leadingBytes <= 0x07)));
 
         // Get rid of both sizePrefix and escape byte
@@ -3184,7 +3178,7 @@ emitter::code_t emitter::emitExtractEvexPrefix(instruction ins, code_t& code) co
 
         case 0x04:
         {
-            assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_APX));
+            assert(emitComp->compIsaSupportedDebugOnly(InstructionSet_APX) || JitConfig.JitBypassApxCheck());
             evexPrefix |= (0x04 << 16);
             break;
         }
@@ -12818,11 +12812,6 @@ void emitter::emitDispIns(
     /* Display the instruction name */
 
 #ifdef TARGET_AMD64
-    if (IsApxNddEncodableInstruction(id->idIns()) && id->idIsEvexNdContextSet())
-    {
-        // print the EVEX.ND indication in pseudo prefix style
-        printf("{nd}    ");
-    }
     if (IsApxNfEncodableInstruction(id->idIns()) && id->idIsEvexNfContextSet())
     {
         // print the EVEX.NF indication in psudeo prefix style.
@@ -12834,7 +12823,7 @@ void emitter::emitDispIns(
     printf(" %-9s", sstr);
 
 #ifdef TARGET_AMD64
-    if (IsCCMP(id->idIns())/* || IsCFCMOV(id->idIns())*/)
+    if (IsCCMP(id->idIns()))
     {
         // print finite set notation for DFV
         unsigned dfv        = id->idGetEvexDFV();
