@@ -2666,6 +2666,10 @@ void CodeGen::genEmitterUnitTests()
     {
         genAmd64EmitterUnitTestsCFCMOV();
     }
+    if (unitTestSectionAll || (strstr(unitTestSection, "ctest") != nullptr))
+    {
+        genAmd64EmitterUnitTestsCTEST();
+    }
 
 #elif defined(TARGET_ARM64)
     if (unitTestSectionAll || (strstr(unitTestSection, "general") != nullptr))
